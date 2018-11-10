@@ -78,3 +78,5 @@ let addMonths = (date, months) =>
   );
 
 let addYears = (date, years) => date->addMonths(12 * years);
+
+let startOfDay = date => date->setHoursMSMs(~hours=0., ~minutes=0., ~seconds=0., ~milliseconds=0., ())->fromFloat;
