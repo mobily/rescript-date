@@ -80,3 +80,11 @@ let addMonths = (date, months) =>
 let addYears = (date, years) => date->addMonths(12 * years);
 
 let startOfDay = date => date->setHoursMSMs(~hours=0., ~minutes=0., ~seconds=0., ~milliseconds=0., ())->fromFloat;
+
+let diffInCalendarDays = (fst, snd) => {
+  let fstTime = fst->startOfDay->getTime -. fst->getTimezoneOffsetInMilliseconds;
+  let sndTime = snd->startOfDay->getTime -. snd->getTimezoneOffsetInMilliseconds;
+  let diff = (fstTime -. sndTime) /. dayMs->float_of_int;
+
+  diff->Js.Math.round->int_of_float;
+};

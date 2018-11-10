@@ -22,7 +22,7 @@
 
 - [x] `addDays`
 - [ ] `diffInDays`
-- [ ] `diffInCalendarDays`
+- [x] `diffInCalendarDays`
 - [ ] `eachDay`
 - [x] `startOfDay`
 - [ ] `endOfDay`
