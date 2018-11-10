@@ -11,6 +11,8 @@
 - [x] `compareDesc`
 - [x] `max`
 - [x] `min`
+- [ ] `closestTo`
+- [ ] `closestIndexTo`
 
 ### Range
 
