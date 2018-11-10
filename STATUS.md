@@ -25,7 +25,7 @@
 - [x] `diffInCalendarDays`
 - [ ] `eachDay`
 - [x] `startOfDay`
-- [ ] `endOfDay`
+- [x] `endOfDay`
 - [ ] `startOfToday`
 - [ ] `endOfToday`
 - [ ] `startOfTomorrow`
