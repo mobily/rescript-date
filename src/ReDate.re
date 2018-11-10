@@ -58,7 +58,7 @@ let getOverlappingDaysInIntervals = (left, right) =>
     let overlapEndTime = ret > let' ? let' : ret;
     let overlap = (overlapEndTime -. overlapStartTime) /. dayMs->float_of_int;
 
-    overlap->Js.Math.ceil_float->int_of_float;
+    overlap->Js.Math.ceil_int;
   | _ => 0
   };
 
