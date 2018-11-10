@@ -11,11 +11,11 @@ type interval = {
   end_: Js.Date.t,
 };
 
-let isEqual = (firstDate, secondDate) => firstDate->getTime === secondDate->getTime;
+let isEqual = (fst, snd) => fst->getTime === snd->getTime;
 
-let isAfter = (firstDate, secondDate) => firstDate->getTime > secondDate->getTime;
+let isAfter = (fst, snd) => fst->getTime > snd->getTime;
 
-let isBefore = (firstDate, secondDate) => firstDate->getTime < secondDate->getTime;
+let isBefore = (fst, snd) => fst->getTime < snd->getTime;
 
 let isFuture = date => date->isAfter(make());
 

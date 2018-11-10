@@ -5,7 +5,7 @@ open Js.Date;
 describe("min", () => {
   open ExpectJs;
 
-  test("returns the earliest date (List)", () => {
+  test("returns the earliest date (list)", () => {
     let a = makeWithYMD(~year=1999., ~month=0., ~date=1., ());
     let b = makeWithYMD(~year=2017., ~month=2., ~date=1., ());
     let c = makeWithYMD(~year=2017., ~month=4., ~date=1., ());
@@ -16,7 +16,7 @@ describe("min", () => {
     ReDate.List(dates)->ReDate.min->expect->toEqual(a, _);
   });
 
-  test("returns the earliest date (Array)", () => {
+  test("returns the earliest date (array)", () => {
     let a = makeWithYMD(~year=1999., ~month=0., ~date=1., ());
     let b = makeWithYMD(~year=2017., ~month=2., ~date=1., ());
     let c = makeWithYMD(~year=2017., ~month=4., ~date=1., ());

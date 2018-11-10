@@ -5,7 +5,7 @@ open Js.Date;
 describe("max", () => {
   open ExpectJs;
 
-  test("returns the latest date (List)", () => {
+  test("returns the latest date (list)", () => {
     let a = makeWithYMD(~year=1999., ~month=0., ~date=1., ());
     let b = makeWithYMD(~year=2017., ~month=2., ~date=1., ());
     let c = makeWithYMD(~year=2017., ~month=4., ~date=1., ());
@@ -16,7 +16,7 @@ describe("max", () => {
     ReDate.List(dates)->ReDate.max->expect->toEqual(d, _);
   });
 
-  test("returns the latest date (Array)", () => {
+  test("returns the latest date (array)", () => {
     let a = makeWithYMD(~year=1999., ~month=0., ~date=1., ());
     let b = makeWithYMD(~year=2017., ~month=2., ~date=1., ());
     let c = makeWithYMD(~year=2017., ~month=4., ~date=1., ());
