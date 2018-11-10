@@ -1,0 +1,13 @@
+node_modules/
+lib/
+coverage/
+dist/
+.idea/
+.vscode/
+
+.DS_Store
+.merlin
+.bsb.lock
+
+*.log
+*.bs.js

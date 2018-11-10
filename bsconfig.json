@@ -1,0 +1,35 @@
+{
+  "name": "@mobily/re-date",
+  "namespace": false,
+  "bsc-flags": [
+    "-bs-no-version-header",
+    "-bs-super-errors"
+  ],
+  "bs-dependencies": [
+  ],
+  "bs-dev-dependencies": [
+    "@glennsl/bs-jest"
+  ],
+  "package-specs": [{
+    "module": "commonjs",
+    "in-source": false
+  }, {
+    "module": "es6",
+    "in-source": false
+  }],
+  "suffix": ".bs.js",
+  "sources": [
+    {
+      "dir": "src"
+    },
+    {
+      "dir": "__tests__",
+      "type": "dev"
+    }
+  ],
+  "refmt": 3,
+  "warnings": {
+    "number": "+R",
+    "error": "+R"
+  }
+}

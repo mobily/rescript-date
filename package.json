@@ -1,0 +1,45 @@
+{
+  "name": "@mobily/re-date",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "bsb -make-world -w",
+    "clean": "bsb -clean-world",
+    "build": "bsb -make-world",
+    "test": "yarn clean && yarn build && jest"
+  },
+  "license": "MIT",
+  "keywords": [
+    "reason",
+    "reasonml",
+    "date"
+  ],
+  "files": [
+    "src/*.re*",
+    "bsconfig.json"
+  ],
+  "author": "mobily",
+  "homepage": "https://github.com/mobily/re-date#readme",
+  "bugs": "https://github.com/mobily/re-date/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mobily/re-date.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@glennsl/bs-jest": "^0.4.2",
+    "bs-platform": "^4.0.7"
+  },
+  "jest": {
+    "verbose": true,
+    "bail": true,
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "testMatch": [
+      "**/__tests__/*_test.bs.js"
+    ],
+    "modulePathIgnorePatterns": [
+      "/es6/"
+    ]
+  }
+}
