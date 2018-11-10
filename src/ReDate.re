@@ -63,18 +63,18 @@ let getOverlappingDaysInIntervals = (left, right) =>
   };
 
 let getDaysInMonth = date =>
-  makeYMDWithResetHMS(~year=date->getFullYear, ~month=date->getMonth +. 1., ~date=0., ())->getDate;
+  makeYMDWithResetHMS(~year=date->getFullYear, ~month=date->getMonth +. 1., ~date=0., ())->getDate->int_of_float;
 
-let addDays = (date, days) => date->setDate(date->getDate +. days)->fromFloat;
+let addDays = (date, days) => date->setDate(date->getDate +. days->float_of_int)->fromFloat;
 
-let addWeeks = (date, weeks) => date->addDays(weeks *. 7.);
+let addWeeks = (date, weeks) => date->addDays(weeks * 7);
 
 let addMonths = (date, months) =>
   makeWithYMD(
     ~year=date->getFullYear,
-    ~month=date->getMonth +. months,
-    ~date=Js.Math.min_float(date->getDaysInMonth, date->getDate),
+    ~month=date->getMonth +. months->float_of_int,
+    ~date=Js.Math.min_float(date->getDaysInMonth->float_of_int, date->getDate),
     (),
   );
 
-let addYears = (date, years) => date->addMonths(12. *. years);
+let addYears = (date, years) => date->addMonths(12 * years);
