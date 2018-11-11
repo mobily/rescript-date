@@ -49,7 +49,17 @@ let getOverlappingDaysInIntervals = (left, right) =>
   };
 
 let getDaysInMonth = date =>
-  makeYMDWithResetHMS(~year=date->getFullYear, ~month=date->getMonth +. 1., ~date=0., ())->getDate->int_of_float;
+  makeWithYMDHMS(
+    ~year=date->getFullYear,
+    ~month=date->getMonth +. 1.,
+    ~date=0.,
+    ~hours=0.,
+    ~minutes=0.,
+    ~seconds=0.,
+    (),
+  )
+  ->getDate
+  ->int_of_float;
 
 let addDays = (date, days) => date->setDate(date->getDate +. days->float_of_int)->fromFloat;
 

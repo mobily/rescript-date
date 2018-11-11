@@ -21,8 +21,6 @@ let ascDescComparator = (tuple, firstDate, secondDate) => {
   };
 };
 
-let makeYMDWithResetHMS = makeWithYMDHMS(~hours=0., ~minutes=0., ~seconds=0.);
-
 /* based on: https://github.com/date-fns/date-fns/blob/master/src/_lib/getTimezoneOffsetInMilliseconds/index.js */
 let getTimezoneOffsetInMilliseconds = date =>
   date->getTimezoneOffset
