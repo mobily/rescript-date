@@ -24,6 +24,12 @@ let internal_getTimezoneOffsetInMilliseconds = date =>
   +. (date->setSecondsMs(~seconds=0., ~milliseconds=0., ())->int_of_float mod Constants.minuteMilliseconds)
      ->float_of_int;
 
+let internal_dateWithStartHoursMSMs = date =>
+  date->setHoursMSMs(~hours=0., ~minutes=0., ~seconds=0., ~milliseconds=0., ())->fromFloat;
+
+let internal_dateWithEndHoursMSMs = date =>
+  date->setHoursMSMs(~hours=23., ~minutes=59., ~seconds=59., ~milliseconds=999., ())->fromFloat;
+
 let isEqual = (fst, snd) => fst->getTime === snd->getTime;
 
 let isAfter = (fst, snd) => fst->getTime > snd->getTime;
@@ -117,9 +123,9 @@ let addYears = (date, years) => date->addMonths(12 * years);
 
 let subYears = (date, years) => date->addYears(- years);
 
-let startOfDay = date => date->setHoursMSMs(~hours=0., ~minutes=0., ~seconds=0., ~milliseconds=0., ())->fromFloat;
+let startOfDay = internal_dateWithStartHoursMSMs;
 
-let endOfDay = date => date->setHoursMSMs(~hours=23., ~minutes=59., ~seconds=59., ~milliseconds=999., ())->fromFloat;
+let endOfDay = internal_dateWithEndHoursMSMs;
 
 let internal_makeDiff = (ms, fst, snd) => {
   let fstTime = fst->getTime -. fst->internal_getTimezoneOffsetInMilliseconds;
@@ -160,9 +166,7 @@ let eachDayOfIntervalList = interval => {
 };
 
 let startOfYear = date =>
-  makeWithYMD(~year=date->getFullYear, ~month=0., ~date=1., ())
-  ->setHoursMSMs(~hours=0., ~minutes=0., ~seconds=0., ~milliseconds=0., ())
-  ->fromFloat;
+  makeWithYMD(~year=date->getFullYear, ~month=0., ~date=1., ())->internal_dateWithStartHoursMSMs;
 
 let getDayOfYear = date => date->diffInCalendarDays(date->startOfYear)->succ;
 
@@ -198,16 +202,10 @@ let internal_startOrEndOfWeek = (type_, weekStartsOn) => {
 };
 
 let startOfWeek = (~weekStartsOn=0, date) =>
-  Start(date)
-  ->internal_startOrEndOfWeek(weekStartsOn)
-  ->setHoursMSMs(~hours=0., ~minutes=0., ~seconds=0., ~milliseconds=0., ())
-  ->fromFloat;
+  Start(date)->internal_startOrEndOfWeek(weekStartsOn)->internal_dateWithStartHoursMSMs;
 
 let endOfWeek = (~weekStartsOn=0, date) =>
-  End(date)
-  ->internal_startOrEndOfWeek(weekStartsOn)
-  ->setHoursMSMs(~hours=23., ~minutes=59., ~seconds=59., ~milliseconds=999., ())
-  ->fromFloat;
+  End(date)->internal_startOrEndOfWeek(weekStartsOn)->internal_dateWithEndHoursMSMs;
 
 let internal_diffInCalendarWeeks = internal_makeDiff(Constants.weekMilliseconds);
 
