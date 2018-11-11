@@ -60,3 +60,5 @@ let diffInDays: (Js.Date.t, Js.Date.t) => int;
 let eachDayOfIntervalArray: interval => array(Js.Date.t);
 
 let eachDayOfIntervalList: interval => list(Js.Date.t);
+
+let startOfYear: Js.Date.t => Js.Date.t;

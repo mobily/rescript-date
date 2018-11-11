@@ -84,7 +84,7 @@
 - [x] `subYears`
 - [ ] `diffInYears`
 - [ ] `diffInCalendarYears`
-- [ ] `startOfYear`
+- [x] `startOfYear`
 - [ ] `endOfYear`
 - [ ] `getDaysInYear`
 - [ ] `getYear`

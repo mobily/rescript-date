@@ -150,3 +150,6 @@ let eachDayOfIntervalList = interval => {
   let amount = interval->internal_getAmountOfIntervalDays;
   Belt.List.makeBy(amount, interval->internal_makeEachDay);
 };
+
+let startOfYear = date =>
+  makeWithYMDHMS(~year=date->getFullYear, ~month=0., ~date=1., ~hours=0., ~minutes=0., ~seconds=0., ());
