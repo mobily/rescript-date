@@ -43,7 +43,6 @@
 - [ ] `isToday`
 - [ ] `isTomorrow`
 - [ ] `isYesterday`
-- [ ] `setDayOfYear`
 
 ### Weekday
 
