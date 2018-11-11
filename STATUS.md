@@ -28,7 +28,8 @@
 - [x] `subDays`
 - [ ] `diffInDays`
 - [x] `diffInCalendarDays`
-- [ ] `eachDay`
+- [x] `eachDayOfIntervalArray`
+- [x] `eachDayOfIntervalList`
 - [x] `startOfDay`
 - [x] `endOfDay`
 - [ ] `startOfToday`

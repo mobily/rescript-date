@@ -54,3 +54,7 @@ let startOfDay: Js.Date.t => Js.Date.t;
 let endOfDay: Js.Date.t => Js.Date.t;
 
 let diffInCalendarDays: (Js.Date.t, Js.Date.t) => int;
+
+let eachDayOfIntervalArray: interval => array(Js.Date.t);
+
+let eachDayOfIntervalList: interval => list(Js.Date.t);

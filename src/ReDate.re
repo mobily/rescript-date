@@ -84,3 +84,17 @@ let diffInCalendarDays = (fst, snd) => {
 
   diff->Js.Math.round->int_of_float;
 };
+
+let internal_getAmountOfIntervalDays = interval => diffInCalendarDays(interval.end_, interval.start)->succ;
+
+let internal_makeEachDay = (interval, index) => interval.start->startOfDay->addDays(index);
+
+let eachDayOfIntervalArray = interval => {
+  let amount = interval->internal_getAmountOfIntervalDays;
+  Belt.Array.makeBy(amount, interval->internal_makeEachDay);
+};
+
+let eachDayOfIntervalList = interval => {
+  let amount = interval->internal_getAmountOfIntervalDays;
+  Belt.List.makeBy(amount, interval->internal_makeEachDay);
+};
