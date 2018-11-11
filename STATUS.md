@@ -43,7 +43,6 @@
 - [ ] `isToday`
 - [ ] `isTomorrow`
 - [ ] `isYesterday`
-- [ ] `setDate`
 - [ ] `setDayOfYear`
 
 ### Weekday
@@ -58,8 +57,6 @@
 - [ ] `isSaturday`
 - [ ] `isSunday`
 - [ ] `isWeekend`
-- [ ] `setDay`
-- [ ] `setISODay`
 
 ### Week
 
@@ -87,7 +84,6 @@
 - [ ] `isSameMonth`
 - [ ] `isThisMonth`
 - [ ] `lastDayOfMonth`
-- [ ] `setMonth`
 
 ### Year
 
@@ -103,4 +99,3 @@
 - [ ] `isSameYear`
 - [ ] `isThisYear`
 - [ ] `lastDayOfYear`
-- [ ] `setYear`
