@@ -74,3 +74,5 @@ let isTomorrow: Js.Date.t => bool;
 let isYesterday: Js.Date.t => bool;
 
 let diffInWeeks: (Js.Date.t, Js.Date.t) => int;
+
+let startOfWeek: (~weekStartsOn: int=?, Js.Date.t) => Js.Date.t;

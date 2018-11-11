@@ -57,7 +57,7 @@
 - [x] `subWeeks`
 - [x] `diffInWeeks`
 - [ ] `diffInCalendarWeeks`
-- [ ] `startOfWeek`
+- [x] `startOfWeek`
 - [ ] `endOfWeek`
 - [ ] `isSameWeek`
 - [ ] `isThisWeek`
