@@ -23,6 +23,7 @@
 ### Day
 
 - [x] `addDays`
+- [x] `subDays`
 - [ ] `diffInDays`
 - [x] `diffInCalendarDays`
 - [ ] `eachDay`
@@ -41,7 +42,6 @@
 - [ ] `isYesterday`
 - [ ] `setDate`
 - [ ] `setDayOfYear`
-- [ ] `subDays`
 
 ### Weekday
 

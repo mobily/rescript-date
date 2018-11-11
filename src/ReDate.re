@@ -67,6 +67,8 @@ let getDaysInMonth = date =>
 
 let addDays = (date, days) => date->setDate(date->getDate +. days->float_of_int)->fromFloat;
 
+let subDays = (date, days) => date->addDays(- days);
+
 let addWeeks = (date, weeks) => date->addDays(weeks * 7);
 
 let addMonths = (date, months) =>
