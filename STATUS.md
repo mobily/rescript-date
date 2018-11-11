@@ -89,6 +89,7 @@
 ### Year
 
 - [x] `addYears`
+- [x] `subYears`
 - [ ] `diffInYears`
 - [ ] `diffInCalendarYears`
 - [ ] `startOfYear`
@@ -100,4 +101,3 @@
 - [ ] `isThisYear`
 - [ ] `lastDayOfYear`
 - [ ] `setYear`
-- [ ] `subYears`

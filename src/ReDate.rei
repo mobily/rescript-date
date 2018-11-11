@@ -47,6 +47,8 @@ let subMonths: (Js.Date.t, int) => Js.Date.t;
 
 let addYears: (Js.Date.t, int) => Js.Date.t;
 
+let subYears: (Js.Date.t, int) => Js.Date.t;
+
 let startOfDay: Js.Date.t => Js.Date.t;
 
 let endOfDay: Js.Date.t => Js.Date.t;
