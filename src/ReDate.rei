@@ -66,3 +66,9 @@ let startOfYear: Js.Date.t => Js.Date.t;
 let getDayOfYear: Js.Date.t => int;
 
 let isSameDay: (Js.Date.t, Js.Date.t) => bool;
+
+let isToday: Js.Date.t => bool;
+
+let isTomorrow: Js.Date.t => bool;
+
+let isYesterday: Js.Date.t => bool;

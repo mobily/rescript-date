@@ -157,3 +157,9 @@ let startOfYear = date =>
 let getDayOfYear = date => date->diffInCalendarDays(date->startOfYear)->succ;
 
 let isSameDay = (fst, snd) => isEqual(fst->startOfDay, snd->startOfDay);
+
+let isToday = date => date->isSameDay(make());
+
+let isTomorrow = date => date->isSameDay(make()->addDays(1));
+
+let isYesterday = date => date->isSameDay(make()->subDays(1));

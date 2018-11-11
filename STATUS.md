@@ -34,9 +34,9 @@
 - [x] `endOfDay`
 - [x] `getDayOfYear`
 - [x] `isSameDay`
-- [ ] `isToday`
-- [ ] `isTomorrow`
-- [ ] `isYesterday`
+- [x] `isToday` ⚠️
+- [x] `isTomorrow` ⚠️
+- [x] `isYesterday` ⚠️
 
 ### Weekday
 
