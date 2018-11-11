@@ -9,6 +9,8 @@ module Constants = {
   let minuteMilliseconds = 60 * 1000;
 
   let dayMilliseconds = 24 * 60 * minuteMilliseconds;
+
+  let weekMilliseconds = 7 * dayMilliseconds;
 };
 
 /* based on: https://github.com/date-fns/date-fns/blob/master/src/_lib/getTimezoneOffsetInMilliseconds/index.js */
@@ -115,11 +117,13 @@ let startOfDay = date => date->setHoursMSMs(~hours=0., ~minutes=0., ~seconds=0.,
 
 let endOfDay = date => date->setHoursMSMs(~hours=23., ~minutes=59., ~seconds=59., ~milliseconds=999., ())->fromFloat;
 
-let internal_diffInDays = (fst, snd) => {
+let internal_makeDiff = (ms, fst, snd) => {
   let fstTime = fst->getTime -. fst->internal_getTimezoneOffsetInMilliseconds;
   let sndTime = snd->getTime -. snd->internal_getTimezoneOffsetInMilliseconds;
-  (fstTime -. sndTime) /. Constants.dayMilliseconds->float_of_int;
+  (fstTime -. sndTime) /. ms->float_of_int;
 };
+
+let internal_diffInDays = internal_makeDiff(Constants.dayMilliseconds);
 
 let diffInCalendarDays = (fst, snd) => {
   let diff = internal_diffInDays(fst->startOfDay, snd->startOfDay);
@@ -183,4 +187,13 @@ let startOfWeek = (~weekStartsOn=0, date) => {
     ~seconds=0.,
     (),
   );
+};
+
+let internal_diffInCalendarWeeks = internal_makeDiff(Constants.weekMilliseconds);
+
+let diffInCalendarWeeks = (~weekStartsOn=0, fst, snd) => {
+  let startOfWeek' = startOfWeek(~weekStartsOn);
+  let diff = internal_diffInCalendarWeeks(fst->startOfWeek', snd->startOfWeek');
+
+  diff->Js.Math.round->int_of_float;
 };
