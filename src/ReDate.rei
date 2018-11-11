@@ -39,6 +39,8 @@ let subDays: (Js.Date.t, int) => Js.Date.t;
 
 let addWeeks: (Js.Date.t, int) => Js.Date.t;
 
+let subWeeks: (Js.Date.t, int) => Js.Date.t;
+
 let addMonths: (Js.Date.t, int) => Js.Date.t;
 
 let addYears: (Js.Date.t, int) => Js.Date.t;

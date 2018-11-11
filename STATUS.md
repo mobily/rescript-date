@@ -61,6 +61,7 @@
 ### Week
 
 - [x] `addWeeks`
+- [x] `subWeeks`
 - [ ] `diffInWeeks`
 - [ ] `diffInCalendarWeeks`
 - [ ] `startOfWeek`
@@ -68,11 +69,11 @@
 - [ ] `isSameWeek`
 - [ ] `isThisWeek`
 - [ ] `lastDayOfWeek`
-- [ ] `subWeeks`
 
 ### Month
 
 - [x] `addMonths`
+- [ ] `subMonths`
 - [ ] `diffInMonths`
 - [ ] `diffInCalendarMonths`
 - [ ] `startOfMonth`

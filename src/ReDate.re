@@ -71,6 +71,8 @@ let subDays = (date, days) => date->addDays(- days);
 
 let addWeeks = (date, weeks) => date->addDays(weeks * 7);
 
+let subWeeks = (date, weeks) => date->addWeeks(- weeks);
+
 let addMonths = (date, months) =>
   makeWithYMD(
     ~year=date->getFullYear,
