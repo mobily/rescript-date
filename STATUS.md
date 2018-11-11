@@ -32,7 +32,7 @@
 - [x] `eachDayOfIntervalList`
 - [x] `startOfDay`
 - [x] `endOfDay`
-- [ ] `getDayOfYear`
+- [x] `getDayOfYear`
 - [ ] `isSameDay`
 - [ ] `isToday`
 - [ ] `isTomorrow`

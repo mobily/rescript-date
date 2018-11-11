@@ -153,3 +153,5 @@ let eachDayOfIntervalList = interval => {
 
 let startOfYear = date =>
   makeWithYMDHMS(~year=date->getFullYear, ~month=0., ~date=1., ~hours=0., ~minutes=0., ~seconds=0., ());
+
+let getDayOfYear = date => date->diffInCalendarDays(date->startOfYear)->succ;
