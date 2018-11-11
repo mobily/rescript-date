@@ -5,6 +5,10 @@ type interval = {
   end_: Js.Date.t,
 };
 
+type time =
+  | Start(Js.Date.t)
+  | End(Js.Date.t);
+
 module Constants = {
   let minuteMilliseconds = 60 * 1000;
 
@@ -156,7 +160,9 @@ let eachDayOfIntervalList = interval => {
 };
 
 let startOfYear = date =>
-  makeWithYMDHMS(~year=date->getFullYear, ~month=0., ~date=1., ~hours=0., ~minutes=0., ~seconds=0., ());
+  makeWithYMD(~year=date->getFullYear, ~month=0., ~date=1., ())
+  ->setHoursMSMs(~hours=0., ~minutes=0., ~seconds=0., ~milliseconds=0., ())
+  ->fromFloat;
 
 let getDayOfYear = date => date->diffInCalendarDays(date->startOfYear)->succ;
 
@@ -173,21 +179,35 @@ let diffInWeeks = (fst, snd) => {
   diff > 0. ? diff->Js.Math.floor_int : diff->Js.Math.ceil_int;
 };
 
-let startOfWeek = (~weekStartsOn=0, date) => {
+let internal_startOrEndOfWeek = (type_, weekStartsOn) => {
   let week = weekStartsOn->float_of_int;
-  let day = date->getDay;
-  let diff = (day < week ? 7. : 0.) +. day -. week;
 
-  makeWithYMDHMS(
-    ~year=date->getFullYear,
-    ~month=date->getMonth,
-    ~date=date->getDate -. diff,
-    ~hours=0.,
-    ~minutes=0.,
-    ~seconds=0.,
-    (),
-  );
+  let date =
+    switch (type_) {
+    | Start(date) =>
+      let day = date->getDay;
+      let diff = (day < week ? 7. : 0.) +. day -. week;
+      date->setDate(date->getDate -. diff);
+    | End(date) =>
+      let day = date->getDay;
+      let diff = (day < week ? (-7.) : 0.) +. 6. -. (day -. week);
+      date->setDate(date->getDate +. diff);
+    };
+
+  date->fromFloat;
 };
+
+let startOfWeek = (~weekStartsOn=0, date) =>
+  Start(date)
+  ->internal_startOrEndOfWeek(weekStartsOn)
+  ->setHoursMSMs(~hours=0., ~minutes=0., ~seconds=0., ~milliseconds=0., ())
+  ->fromFloat;
+
+let endOfWeek = (~weekStartsOn=0, date) =>
+  End(date)
+  ->internal_startOrEndOfWeek(weekStartsOn)
+  ->setHoursMSMs(~hours=23., ~minutes=59., ~seconds=59., ~milliseconds=999., ())
+  ->fromFloat;
 
 let internal_diffInCalendarWeeks = internal_makeDiff(Constants.weekMilliseconds);
 
