@@ -64,3 +64,5 @@ let eachDayOfIntervalList: interval => list(Js.Date.t);
 let startOfYear: Js.Date.t => Js.Date.t;
 
 let getDayOfYear: Js.Date.t => int;
+
+let isSameDay: (Js.Date.t, Js.Date.t) => bool;

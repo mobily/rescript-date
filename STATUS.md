@@ -33,7 +33,7 @@
 - [x] `startOfDay`
 - [x] `endOfDay`
 - [x] `getDayOfYear`
-- [ ] `isSameDay`
+- [x] `isSameDay`
 - [ ] `isToday`
 - [ ] `isTomorrow`
 - [ ] `isYesterday`
