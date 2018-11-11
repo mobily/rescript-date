@@ -9,8 +9,10 @@
 - [x] `isPast`
 - [x] `compareAsc`
 - [x] `compareDesc`
-- [x] `max`
-- [x] `min`
+- [x] `maxOfArray`
+- [x] `maxOfList`
+- [x] `minOfArray`
+- [x] `minOfList`
 - [ ] `closestTo`
 - [ ] `closestIndexTo`
 

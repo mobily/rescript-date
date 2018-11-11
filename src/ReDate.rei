@@ -1,7 +1,3 @@
-type dates =
-  | List(list(Js.Date.t))
-  | Array(array(Js.Date.t));
-
 type interval = {
   start: Js.Date.t,
   end_: Js.Date.t
@@ -21,9 +17,13 @@ let compareAsc: (Js.Date.t, Js.Date.t) => int;
 
 let compareDesc: (Js.Date.t, Js.Date.t) => int;
 
-let min: dates => Js.Date.t;
+let minOfArray: array(Js.Date.t) => Js.Date.t;
 
-let max: dates => Js.Date.t;
+let minOfList: list(Js.Date.t) => Js.Date.t;
+
+let maxOfArray: array(Js.Date.t) => Js.Date.t;
+
+let maxOfList: list(Js.Date.t) => Js.Date.t;
 
 let isWithinInterval: (Js.Date.t, ~start: Js.Date.t, ~end_: Js.Date.t) => bool;
 

@@ -2,10 +2,6 @@ open Js.Date;
 
 open ReDate__Internal;
 
-type dates =
-  | List(list(Js.Date.t))
-  | Array(array(Js.Date.t));
-
 type interval = {
   start: Js.Date.t,
   end_: Js.Date.t,
@@ -25,23 +21,13 @@ let compareAsc = ((-1), 1)->ascDescComparator;
 
 let compareDesc = (1, (-1))->ascDescComparator;
 
-let min = dates =>
-  (
-    switch (dates) {
-    | List(dates) => dates->Belt.List.reduce(None, (<)->minMaxReducer)
-    | Array(dates) => dates->Belt.Array.reduce(None, (<)->minMaxReducer)
-    }
-  )
-  ->retrieveMinMax;
+let minOfArray = dates => dates->Belt.Array.reduce(None, (<)->minMaxReducer)->retrieveMinMax;
 
-let max = dates =>
-  (
-    switch (dates) {
-    | List(dates) => dates->Belt.List.reduce(None, (>)->minMaxReducer)
-    | Array(dates) => dates->Belt.Array.reduce(None, (>)->minMaxReducer)
-    }
-  )
-  ->retrieveMinMax;
+let minOfList = dates => dates->Belt.List.reduce(None, (<)->minMaxReducer)->retrieveMinMax;
+
+let maxOfArray = dates => dates->Belt.Array.reduce(None, (>)->minMaxReducer)->retrieveMinMax;
+
+let maxOfList = dates => dates->Belt.List.reduce(None, (>)->minMaxReducer)->retrieveMinMax;
 
 let isWithinInterval = (date, ~start, ~end_) => {
   let ts = date->getTime;
