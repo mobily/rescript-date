@@ -163,3 +163,8 @@ let isToday = date => date->isSameDay(make());
 let isTomorrow = date => date->isSameDay(make()->addDays(1));
 
 let isYesterday = date => date->isSameDay(make()->subDays(1));
+
+let diffInWeeks = (fst, snd) => {
+  let diff = (fst->diffInDays(snd) / 7)->float_of_int;
+  diff > 0. ? diff->Js.Math.floor_int : diff->Js.Math.ceil_int;
+};

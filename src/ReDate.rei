@@ -72,3 +72,5 @@ let isToday: Js.Date.t => bool;
 let isTomorrow: Js.Date.t => bool;
 
 let isYesterday: Js.Date.t => bool;
+
+let diffInWeeks: (Js.Date.t, Js.Date.t) => int;
