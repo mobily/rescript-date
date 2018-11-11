@@ -1,11 +1,22 @@
 open Js.Date;
 
-open ReDate__Internal;
-
 type interval = {
   start: Js.Date.t,
   end_: Js.Date.t,
 };
+
+module Constants = {
+  let minuteMilliseconds = 60 * 1000;
+
+  let dayMilliseconds = 24 * 60 * minuteMilliseconds;
+};
+
+/* based on: https://github.com/date-fns/date-fns/blob/master/src/_lib/getTimezoneOffsetInMilliseconds/index.js */
+let internal_getTimezoneOffsetInMilliseconds = date =>
+  date->getTimezoneOffset
+  *. Constants.minuteMilliseconds->float_of_int
+  +. (date->setSecondsMs(~seconds=0., ~milliseconds=0., ())->int_of_float mod Constants.minuteMilliseconds)
+     ->float_of_int;
 
 let isEqual = (fst, snd) => fst->getTime === snd->getTime;
 
@@ -17,17 +28,34 @@ let isFuture = date => date->isAfter(make());
 
 let isPast = date => date->isBefore(make());
 
-let compareAsc = ((-1), 1)->ascDescComparator;
+let internal_compareAscOrDesc = (tuple, firstDate, secondDate) => {
+  let (x, y) = tuple;
+  switch (firstDate->getTime -. secondDate->getTime) {
+  | ts when ts < 0. => x
+  | ts when ts > 0. => y
+  | _ => 0
+  };
+};
 
-let compareDesc = (1, (-1))->ascDescComparator;
+let compareAsc = ((-1), 1)->internal_compareAscOrDesc;
 
-let minOfArray = dates => dates->Belt.Array.reduce(None, (<)->minMaxReducer)->retrieveMinMax;
+let compareDesc = (1, (-1))->internal_compareAscOrDesc;
 
-let minOfList = dates => dates->Belt.List.reduce(None, (<)->minMaxReducer)->retrieveMinMax;
+let internal_reduceMinOrMax = (fn, acc, date) =>
+  switch (date->getTime) {
+  | ts when acc === None || fn(ts, acc->Belt.Option.getExn) => Some(ts)
+  | _ => acc
+  };
 
-let maxOfArray = dates => dates->Belt.Array.reduce(None, (>)->minMaxReducer)->retrieveMinMax;
+let internal_retrieveMinOrMax = value => value->Belt.Option.getExn->fromFloat;
 
-let maxOfList = dates => dates->Belt.List.reduce(None, (>)->minMaxReducer)->retrieveMinMax;
+let minOfArray = dates => dates->Belt.Array.reduce(None, (<)->internal_reduceMinOrMax)->internal_retrieveMinOrMax;
+
+let minOfList = dates => dates->Belt.List.reduce(None, (<)->internal_reduceMinOrMax)->internal_retrieveMinOrMax;
+
+let maxOfArray = dates => dates->Belt.Array.reduce(None, (>)->internal_reduceMinOrMax)->internal_retrieveMinOrMax;
+
+let maxOfList = dates => dates->Belt.List.reduce(None, (>)->internal_reduceMinOrMax)->internal_retrieveMinOrMax;
 
 let isWithinInterval = (date, ~start, ~end_) => {
   let ts = date->getTime;
@@ -42,7 +70,7 @@ let getOverlappingDaysInIntervals = (left, right) =>
   | (lst, let', rst, ret) when lst < ret && rst < let' =>
     let overlapStartTime = rst < lst ? lst : rst;
     let overlapEndTime = ret > let' ? let' : ret;
-    let overlap = (overlapEndTime -. overlapStartTime) /. dayMs->float_of_int;
+    let overlap = (overlapEndTime -. overlapStartTime) /. Constants.dayMilliseconds->float_of_int;
 
     overlap->Js.Math.ceil_int;
   | _ => 0
@@ -88,9 +116,9 @@ let startOfDay = date => date->setHoursMSMs(~hours=0., ~minutes=0., ~seconds=0.,
 let endOfDay = date => date->setHoursMSMs(~hours=23., ~minutes=59., ~seconds=59., ~milliseconds=999., ())->fromFloat;
 
 let diffInCalendarDays = (fst, snd) => {
-  let fstTime = fst->startOfDay->getTime -. fst->getTimezoneOffsetInMilliseconds;
-  let sndTime = snd->startOfDay->getTime -. snd->getTimezoneOffsetInMilliseconds;
-  let diff = (fstTime -. sndTime) /. dayMs->float_of_int;
+  let fstTime = fst->startOfDay->getTime -. fst->internal_getTimezoneOffsetInMilliseconds;
+  let sndTime = snd->startOfDay->getTime -. snd->internal_getTimezoneOffsetInMilliseconds;
+  let diff = (fstTime -. sndTime) /. Constants.dayMilliseconds->float_of_int;
 
   diff->Js.Math.round->int_of_float;
 };
