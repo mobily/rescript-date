@@ -115,12 +115,26 @@ let startOfDay = date => date->setHoursMSMs(~hours=0., ~minutes=0., ~seconds=0.,
 
 let endOfDay = date => date->setHoursMSMs(~hours=23., ~minutes=59., ~seconds=59., ~milliseconds=999., ())->fromFloat;
 
+let internal_diffInDays = (fst, snd) => {
+  let fstTime = fst->getTime -. fst->internal_getTimezoneOffsetInMilliseconds;
+  let sndTime = snd->getTime -. snd->internal_getTimezoneOffsetInMilliseconds;
+  (fstTime -. sndTime) /. Constants.dayMilliseconds->float_of_int;
+};
+
 let diffInCalendarDays = (fst, snd) => {
-  let fstTime = fst->startOfDay->getTime -. fst->internal_getTimezoneOffsetInMilliseconds;
-  let sndTime = snd->startOfDay->getTime -. snd->internal_getTimezoneOffsetInMilliseconds;
-  let diff = (fstTime -. sndTime) /. Constants.dayMilliseconds->float_of_int;
+  let diff = internal_diffInDays(fst->startOfDay, snd->startOfDay);
 
   diff->Js.Math.round->int_of_float;
+};
+
+let diffInDays = (fst, snd) => {
+  let diff = internal_diffInDays(fst, snd);
+
+  switch (diff) {
+  | x when x > 0. => x->Js.Math.floor_int
+  | x when x < 0. => x->Js.Math.ceil_int
+  | _ => 0
+  };
 };
 
 let internal_getAmountOfIntervalDays = interval => diffInCalendarDays(interval.end_, interval.start)->succ;

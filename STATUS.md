@@ -26,7 +26,7 @@
 
 - [x] `addDays`
 - [x] `subDays`
-- [ ] `diffInDays`
+- [x] `diffInDays`
 - [x] `diffInCalendarDays`
 - [x] `eachDayOfIntervalArray`
 - [x] `eachDayOfIntervalList`
