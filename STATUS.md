@@ -73,7 +73,7 @@
 ### Month
 
 - [x] `addMonths`
-- [ ] `subMonths`
+- [x] `subMonths`
 - [ ] `diffInMonths`
 - [ ] `diffInCalendarMonths`
 - [ ] `startOfMonth`
@@ -85,7 +85,6 @@
 - [ ] `isThisMonth`
 - [ ] `lastDayOfMonth`
 - [ ] `setMonth`
-- [ ] `subMonths`
 
 ### Year
 
