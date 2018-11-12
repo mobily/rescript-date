@@ -107,6 +107,8 @@ let isFuture = date => date->isAfter(Date.make());
 
 let isPast = date => date->isBefore(Date.make());
 
+let isLeap = year => (year mod 400 === 0) || (year mod 4 === 0 && year mod 100 !== 0);
+
 let compareAsc = ((-1), 1)->Internal.compareAscOrDesc;
 
 let compareDesc = (1, (-1))->Internal.compareAscOrDesc;
@@ -280,3 +282,5 @@ let subYears = (date, years) => date->addYears(- years);
 let startOfYear = Internal.startOfYear;
 
 let isSameYear = (fst, snd) => (fst->Internal.startOfYear->isEqual(snd->Internal.startOfYear));
+
+let isLeapYear = date => Date.(date->getFullYear->int_of_float->isLeap);

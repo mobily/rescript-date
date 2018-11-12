@@ -95,7 +95,7 @@
 - [x] `startOfYear`
 - [ ] `endOfYear`
 - [ ] `getDaysInYear`
-- [ ] `isLeapYear`
+- [x] `isLeapYear`
 - [x] `isSameYear`
 - [ ] `lastDayOfYear`
 
