@@ -58,7 +58,7 @@
 
 - [x] `addDays`
 - [x] `subDays`
-- [x] `diffInDays`
+- [x] `differenceInDays`
 - [x] `diffInCalendarDays`
 - [x] `startOfDay`
 - [x] `endOfDay`

@@ -50,7 +50,7 @@ module Internal = {
   let startOfYear = date =>
     Date.(makeWithYMD(~year=date->getFullYear, ~month=0., ~date=1., ())->makeDateWithStartOfDayHours);
 
-  let diffInDays = makeDiff(Constants.dayMilliseconds);
+  let differenceInDays = makeDiff(Constants.dayMilliseconds);
 
   let differenceInCalendarWeeks = makeDiff(Constants.weekMilliseconds);
 
@@ -132,13 +132,13 @@ let startOfDay = Internal.makeDateWithStartOfDayHours;
 let endOfDay = Internal.makeDateWithEndOfDayHours;
 
 let diffInCalendarDays = (fst, snd) => {
-  let diff = fst->startOfDay->Internal.diffInDays(snd->startOfDay);
+  let diff = fst->startOfDay->Internal.differenceInDays(snd->startOfDay);
 
   diff->Math.round->int_of_float;
 };
 
-let diffInDays = (fst, snd) => {
-  let diff = Internal.diffInDays(fst, snd);
+let differenceInDays = (fst, snd) => {
+  let diff = Internal.differenceInDays(fst, snd);
 
   switch (diff) {
   | x when x > 0. => x->Math.floor_int
@@ -164,7 +164,7 @@ let addWeeks = (date, weeks) => date->addDays(weeks * 7);
 let subWeeks = (date, weeks) => date->addWeeks(- weeks);
 
 let differenceInWeeks = (fst, snd) => {
-  let diff = (fst->diffInDays(snd) / 7)->float_of_int;
+  let diff = (fst->differenceInDays(snd) / 7)->float_of_int;
   diff > 0. ? diff->Math.floor_int : diff->Math.ceil_int;
 };
 

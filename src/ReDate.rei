@@ -50,7 +50,7 @@ let endOfDay: Js.Date.t => Js.Date.t;
 
 let diffInCalendarDays: (Js.Date.t, Js.Date.t) => int;
 
-let diffInDays: (Js.Date.t, Js.Date.t) => int;
+let differenceInDays: (Js.Date.t, Js.Date.t) => int;
 
 let getDayOfYear: Js.Date.t => int;
 
