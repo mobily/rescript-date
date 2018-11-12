@@ -35,10 +35,10 @@ module Internal = {
     +. (date->Date.setSecondsMs(~seconds=0., ~milliseconds=0., ())->int_of_float mod Constants.minuteMilliseconds)
        ->float_of_int;
 
-  let dateWithStartHoursMSMs = date =>
+  let makeDateWithStartOfDayHours = date =>
     Date.(date->setHoursMSMs(~hours=0., ~minutes=0., ~seconds=0., ~milliseconds=0., ())->fromFloat);
 
-  let dateWithEndHoursMSMs = date =>
+  let makeDateWithEndOfDayHours = date =>
     Date.(date->setHoursMSMs(~hours=23., ~minutes=59., ~seconds=59., ~milliseconds=999., ())->fromFloat);
 
   let makeDiff = (ms, fst, snd) => {
@@ -48,7 +48,7 @@ module Internal = {
   };
 
   let startOfYear = date =>
-    Date.(makeWithYMD(~year=date->getFullYear, ~month=0., ~date=1., ())->dateWithStartHoursMSMs);
+    Date.(makeWithYMD(~year=date->getFullYear, ~month=0., ~date=1., ())->makeDateWithStartOfDayHours);
 
   let diffInDays = makeDiff(Constants.dayMilliseconds);
 
@@ -150,9 +150,9 @@ let addDays = (date, days) => Date.(date->setDate(date->getDate +. days->float_o
 
 let subDays = (date, days) => date->addDays(- days);
 
-let startOfDay = Internal.dateWithStartHoursMSMs;
+let startOfDay = Internal.makeDateWithStartOfDayHours;
 
-let endOfDay = Internal.dateWithEndHoursMSMs;
+let endOfDay = Internal.makeDateWithEndOfDayHours;
 
 let diffInCalendarDays = (fst, snd) => {
   let diff = fst->startOfDay->Internal.diffInDays(snd->startOfDay);
@@ -202,10 +202,10 @@ let diffInWeeks = (fst, snd) => {
 };
 
 let startOfWeek = (~weekStartsOn=Sunday, date) =>
-  Internal.(Start(date)->startOrEndOfWeek(weekStartsOn)->dateWithStartHoursMSMs);
+  Internal.(Start(date)->startOrEndOfWeek(weekStartsOn)->makeDateWithStartOfDayHours);
 
 let endOfWeek = (~weekStartsOn=Sunday, date) =>
-  Internal.(End(date)->startOrEndOfWeek(weekStartsOn)->dateWithEndHoursMSMs);
+  Internal.(End(date)->startOrEndOfWeek(weekStartsOn)->makeDateWithEndOfDayHours);
 
 let diffInCalendarWeeks = (~weekStartsOn=Sunday, fst, snd) => {
   let startOfWeek' = startOfWeek(~weekStartsOn);
@@ -220,7 +220,7 @@ let isSameWeek = (~weekStartsOn=Sunday, fst, snd) => {
 };
 
 let lastDayOfWeek = (~weekStartsOn=Sunday, date) =>
-  Internal.(End(date)->startOrEndOfWeek(weekStartsOn)->dateWithStartHoursMSMs);
+  Internal.(End(date)->startOrEndOfWeek(weekStartsOn)->makeDateWithStartOfDayHours);
 
 /* ——[Weekday]——————————— */
 
@@ -259,9 +259,9 @@ let subMonths = (date, months) => date->addMonths(- months);
 let diffInCalendarMonths = (fst, snd) =>
   Date.((fst->getFullYear -. snd->getFullYear) *. 12. +. (fst->getMonth -. snd->getMonth))->int_of_float;
 
-let startOfMonth = date => Date.(date->setDate(1.)->fromFloat->Internal.dateWithStartHoursMSMs);
+let startOfMonth = date => Date.(date->setDate(1.)->fromFloat->Internal.makeDateWithStartOfDayHours);
 
-let endOfMonth = date => Internal.(date->makeLastDayOfMonth->dateWithEndHoursMSMs);
+let endOfMonth = date => Internal.(date->makeLastDayOfMonth->makeDateWithEndOfDayHours);
 
 /* ——[Year]——————————— */
 
