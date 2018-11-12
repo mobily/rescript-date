@@ -30,7 +30,7 @@
 
 - [ ] `addSeconds` 
 - [ ] `subSeconds` 
-- [ ] `diffInSeconds` 
+- [ ] `differenceInSeconds` 
 - [ ] `startOfSecond` 
 - [ ] `endOfSecond` 
 - [ ] `isSameSecond` 
@@ -39,7 +39,7 @@
 
 - [ ] `addMinutes` 
 - [ ] `subMinutes` 
-- [ ] `diffInMinutes` 
+- [ ] `differenceInMinutes` 
 - [ ] `startOfMinute` 
 - [ ] `endOfMinute` 
 - [ ] `isSameMinute` 
@@ -49,7 +49,7 @@
 
 - [ ] `addHours`
 - [ ] `subHours`
-- [ ] `diffInHours`
+- [ ] `differenceInHours`
 - [ ] `startOfHour`
 - [ ] `endOfHour`
 - [ ] `isSameHour`
@@ -110,8 +110,8 @@
 
 - [x] `addYears`
 - [x] `subYears`
-- [ ] `diffInYears`
-- [ ] `diffInCalendarYears`
+- [ ] `differenceInYears`
+- [ ] `differenceInCalendarYears`
 - [x] `startOfYear`
 - [ ] `endOfYear`
 - [ ] `getDaysInYear`
