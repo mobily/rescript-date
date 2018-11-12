@@ -265,6 +265,8 @@ let endOfMonth = date => Internal.(date->makeLastDayOfMonth->makeDateWithEndOfDa
 
 let isFirstDayOfMonth = date => date->Date.getDate->int_of_float === 1;
 
+let isLastDayOfMonth = date => Date.(date->endOfDay->getTime === date->endOfMonth->getTime);
+
 /* ——[Year]——————————— */
 
 let addYears = (date, years) => date->addMonths(12 * years);

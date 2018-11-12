@@ -117,3 +117,5 @@ let startOfMonth: Js.Date.t => Js.Date.t;
 let endOfMonth: Js.Date.t => Js.Date.t;
 
 let isFirstDayOfMonth: Js.Date.t => bool;
+
+let isLastDayOfMonth: Js.Date.t => bool;
