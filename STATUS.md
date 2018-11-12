@@ -81,7 +81,7 @@
 - [x] `startOfMonth`
 - [x] `endOfMonth`
 - [x] `getDaysInMonth`
-- [ ] `isFirstDayOfMonth`
+- [x] `isFirstDayOfMonth`
 - [ ] `isLastDayOfMonth`
 - [ ] `isSameMonth`
 - [ ] `lastDayOfMonth`
