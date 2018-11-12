@@ -74,7 +74,6 @@
 - [ ] `isFirstDayOfMonth`
 - [ ] `isLastDayOfMonth`
 - [ ] `isSameMonth`
-- [ ] `isThisMonth`
 - [ ] `lastDayOfMonth`
 
 ### Year
@@ -89,5 +88,4 @@
 - [ ] `getYear`
 - [ ] `isLeapYear`
 - [ ] `isSameYear`
-- [ ] `isThisYear`
 - [ ] `lastDayOfYear`
