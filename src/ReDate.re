@@ -142,7 +142,7 @@ let internal_makeDiff = (ms, fst, snd) => {
 let internal_diffInDays = internal_makeDiff(Constants.dayMilliseconds);
 
 let diffInCalendarDays = (fst, snd) => {
-  let diff = internal_diffInDays(fst->startOfDay, snd->startOfDay);
+  let diff = fst->startOfDay->internal_diffInDays(snd->startOfDay);
 
   diff->Math.round->int_of_float;
 };
@@ -157,19 +157,15 @@ let diffInDays = (fst, snd) => {
   };
 };
 
-let internal_getAmountOfIntervalDays = interval => diffInCalendarDays(interval.end_, interval.start)->succ;
+let internal_getAmountOfIntervalDays = interval => interval.end_->diffInCalendarDays(interval.start)->succ;
 
 let internal_makeEachDay = (interval, index) => interval.start->startOfDay->addDays(index);
 
-let eachDayOfIntervalArray = interval => {
-  let amount = interval->internal_getAmountOfIntervalDays;
-  Belt.Array.makeBy(amount, interval->internal_makeEachDay);
-};
+let eachDayOfIntervalArray = interval =>
+  interval->internal_getAmountOfIntervalDays->Belt.Array.makeBy(interval->internal_makeEachDay);
 
-let eachDayOfIntervalList = interval => {
-  let amount = interval->internal_getAmountOfIntervalDays;
-  Belt.List.makeBy(amount, interval->internal_makeEachDay);
-};
+let eachDayOfIntervalList = interval =>
+  interval->internal_getAmountOfIntervalDays->Belt.List.makeBy(interval->internal_makeEachDay);
 
 let startOfYear = date =>
   Date.(makeWithYMD(~year=date->getFullYear, ~month=0., ~date=1., ())->internal_dateWithStartHoursMSMs);
@@ -219,7 +215,7 @@ let internal_diffInCalendarWeeks = internal_makeDiff(Constants.weekMilliseconds)
 
 let diffInCalendarWeeks = (~weekStartsOn=0, fst, snd) => {
   let startOfWeek' = startOfWeek(~weekStartsOn);
-  let diff = internal_diffInCalendarWeeks(fst->startOfWeek', snd->startOfWeek');
+  let diff = fst->startOfWeek'->internal_diffInCalendarWeeks(snd->startOfWeek');
 
   diff->Math.round->int_of_float;
 };
