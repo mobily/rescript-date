@@ -53,7 +53,6 @@ TODO
 ### Weekday
 
 - [ ] `getDay`
-- [ ] `getISODay`
 - [ ] `isMonday`
 - [ ] `isTuesday`
 - [ ] `isWednesday`
@@ -101,3 +100,7 @@ TODO
 - [ ] `isLeapYear`
 - [ ] `isSameYear`
 - [ ] `lastDayOfYear`
+
+### ISO
+
+TODO
