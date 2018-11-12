@@ -269,6 +269,8 @@ let subMonths = (date, months) => date->addMonths(- months);
 let diffInCalendarMonths = (fst, snd) =>
   Date.((fst->getFullYear -. snd->getFullYear) *. 12. +. (fst->getMonth -. snd->getMonth))->int_of_float;
 
+let startOfMonth = date => Date.(date->setDate(1.)->fromFloat->Internal.dateWithStartHoursMSMs);
+
 /* ——[Year]——————————— */
 
 let addYears = (date, years) => date->addMonths(12 * years);
