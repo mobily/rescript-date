@@ -36,7 +36,7 @@ let maxOfArray: array(Js.Date.t) => Js.Date.t;
 
 let maxOfList: list(Js.Date.t) => Js.Date.t;
 
-/* ——[Seconds helpers]——————————— */
+/* ——[Second helpers]——————————— */
 
 let addSeconds: (Js.Date.t, int) => Js.Date.t;
 
