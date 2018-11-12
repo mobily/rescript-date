@@ -22,6 +22,18 @@
 - [x] `areIntervalsOverlapping`
 - [x] `getOverlappingDaysInIntervals`
 
+### Second
+
+TODO
+
+### Minute
+
+TODO
+
+### Hour
+
+TODO
+
 ### Day
 
 - [x] `addDays`
