@@ -17,18 +17,81 @@ module Constants = {
   let weekMilliseconds = 7 * dayMilliseconds;
 };
 
-/* based on: https://github.com/date-fns/date-fns/blob/master/src/_lib/getTimezoneOffsetInMilliseconds/index.js */
-let internal_getTimezoneOffsetInMilliseconds = date =>
-  date->Date.getTimezoneOffset
-  *. Constants.minuteMilliseconds->float_of_int
-  +. (date->Date.setSecondsMs(~seconds=0., ~milliseconds=0., ())->int_of_float mod Constants.minuteMilliseconds)
-     ->float_of_int;
+module Internal = {
+  /* based on: https://github.com/date-fns/date-fns/blob/master/src/_lib/getTimezoneOffsetInMilliseconds/index.js */
+  let getTimezoneOffsetInMilliseconds = date =>
+    date->Date.getTimezoneOffset
+    *. Constants.minuteMilliseconds->float_of_int
+    +. (date->Date.setSecondsMs(~seconds=0., ~milliseconds=0., ())->int_of_float mod Constants.minuteMilliseconds)
+       ->float_of_int;
 
-let internal_dateWithStartHoursMSMs = date =>
-  Date.(date->setHoursMSMs(~hours=0., ~minutes=0., ~seconds=0., ~milliseconds=0., ())->fromFloat);
+  let dateWithStartHoursMSMs = date =>
+    Date.(date->setHoursMSMs(~hours=0., ~minutes=0., ~seconds=0., ~milliseconds=0., ())->fromFloat);
 
-let internal_dateWithEndHoursMSMs = date =>
-  Date.(date->setHoursMSMs(~hours=23., ~minutes=59., ~seconds=59., ~milliseconds=999., ())->fromFloat);
+  let dateWithEndHoursMSMs = date =>
+    Date.(date->setHoursMSMs(~hours=23., ~minutes=59., ~seconds=59., ~milliseconds=999., ())->fromFloat);
+
+  let makeDiff = (ms, fst, snd) => {
+    let fstTime = fst->Date.getTime -. fst->getTimezoneOffsetInMilliseconds;
+    let sndTime = snd->Date.getTime -. snd->getTimezoneOffsetInMilliseconds;
+    (fstTime -. sndTime) /. ms->float_of_int;
+  };
+
+  let startOfYear = date =>
+    Date.(makeWithYMD(~year=date->getFullYear, ~month=0., ~date=1., ())->dateWithStartHoursMSMs);
+
+  let diffInDays = makeDiff(Constants.dayMilliseconds);
+
+  let retrieveMinOrMax = value => value->Belt.Option.getExn->Date.fromFloat;
+
+  let compareAscOrDesc = (tuple, firstDate, secondDate) => {
+    let (x, y) = tuple;
+    switch (firstDate->Date.getTime -. secondDate->Date.getTime) {
+    | ts when ts < 0. => x
+    | ts when ts > 0. => y
+    | _ => 0
+    };
+  };
+
+  let reduceMinOrMax = (fn, acc, date) =>
+    switch (date->Date.getTime) {
+    | ts when acc === None || fn(ts, acc->Belt.Option.getExn) => Some(ts)
+    | _ => acc
+    };
+
+  let startOrEndOfWeek = (type_, weekStartsOn) => {
+    open Date;
+
+    let week = weekStartsOn->float_of_int;
+
+    let date =
+      switch (type_) {
+      | Start(date) =>
+        let day = date->getDay;
+        let diff = (day < week ? 7. : 0.) +. day -. week;
+        date->setDate(date->getDate -. diff);
+      | End(date) =>
+        let day = date->getDay;
+        let diff = (day < week ? (-7.) : 0.) +. 6. -. (day -. week);
+        date->setDate(date->getDate +. diff);
+      };
+
+    date->fromFloat;
+  };
+
+  let isWeekday = (day, date) => date->Date.getDay === day->float_of_int;
+};
+
+/**
+
+ ██████╗ ██████╗ ███╗   ███╗███╗   ███╗ ██████╗ ███╗   ██╗
+██╔════╝██╔═══██╗████╗ ████║████╗ ████║██╔═══██╗████╗  ██║
+██║     ██║   ██║██╔████╔██║██╔████╔██║██║   ██║██╔██╗ ██║
+██║     ██║   ██║██║╚██╔╝██║██║╚██╔╝██║██║   ██║██║╚██╗██║
+╚██████╗╚██████╔╝██║ ╚═╝ ██║██║ ╚═╝ ██║╚██████╔╝██║ ╚████║
+ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝
+
+*/
 
 let isEqual = (fst, snd) => Date.(fst->getTime === snd->getTime);
 
@@ -40,34 +103,28 @@ let isFuture = date => date->isAfter(Date.make());
 
 let isPast = date => date->isBefore(Date.make());
 
-let internal_compareAscOrDesc = (tuple, firstDate, secondDate) => {
-  let (x, y) = tuple;
-  switch (firstDate->Date.getTime -. secondDate->Date.getTime) {
-  | ts when ts < 0. => x
-  | ts when ts > 0. => y
-  | _ => 0
-  };
-};
+let compareAsc = ((-1), 1)->Internal.compareAscOrDesc;
 
-let compareAsc = ((-1), 1)->internal_compareAscOrDesc;
+let compareDesc = (1, (-1))->Internal.compareAscOrDesc;
 
-let compareDesc = (1, (-1))->internal_compareAscOrDesc;
+let minOfArray = dates => Internal.(dates->Belt.Array.reduce(None, (<)->reduceMinOrMax)->retrieveMinOrMax);
 
-let internal_reduceMinOrMax = (fn, acc, date) =>
-  switch (date->Date.getTime) {
-  | ts when acc === None || fn(ts, acc->Belt.Option.getExn) => Some(ts)
-  | _ => acc
-  };
+let minOfList = dates => Internal.(dates->Belt.List.reduce(None, (<)->reduceMinOrMax)->retrieveMinOrMax);
 
-let internal_retrieveMinOrMax = value => value->Belt.Option.getExn->Date.fromFloat;
+let maxOfArray = dates => Internal.(dates->Belt.Array.reduce(None, (>)->reduceMinOrMax)->retrieveMinOrMax);
 
-let minOfArray = dates => dates->Belt.Array.reduce(None, (<)->internal_reduceMinOrMax)->internal_retrieveMinOrMax;
+let maxOfList = dates => Internal.(dates->Belt.List.reduce(None, (>)->reduceMinOrMax)->retrieveMinOrMax);
 
-let minOfList = dates => dates->Belt.List.reduce(None, (<)->internal_reduceMinOrMax)->internal_retrieveMinOrMax;
+/**
 
-let maxOfArray = dates => dates->Belt.Array.reduce(None, (>)->internal_reduceMinOrMax)->internal_retrieveMinOrMax;
+██╗███╗   ██╗████████╗███████╗██████╗ ██╗   ██╗ █████╗ ██╗
+██║████╗  ██║╚══██╔══╝██╔════╝██╔══██╗██║   ██║██╔══██╗██║
+██║██╔██╗ ██║   ██║   █████╗  ██████╔╝██║   ██║███████║██║
+██║██║╚██╗██║   ██║   ██╔══╝  ██╔══██╗╚██╗ ██╔╝██╔══██║██║
+██║██║ ╚████║   ██║   ███████╗██║  ██║ ╚████╔╝ ██║  ██║███████╗
+╚═╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝
 
-let maxOfList = dates => dates->Belt.List.reduce(None, (>)->internal_reduceMinOrMax)->internal_retrieveMinOrMax;
+*/
 
 let isWithinInterval = (date, ~start, ~end_) => {
   let ts = date->Date.getTime;
@@ -90,6 +147,17 @@ let getOverlappingDaysInIntervals = (left, right) =>
     }
   );
 
+/**
+
+██████╗  █████╗ ██╗   ██╗
+██╔══██╗██╔══██╗╚██╗ ██╔╝
+██║  ██║███████║ ╚████╔╝
+██║  ██║██╔══██║  ╚██╔╝
+██████╔╝██║  ██║   ██║
+╚═════╝ ╚═╝  ╚═╝   ╚═╝
+
+*/
+
 let getDaysInMonth = date =>
   Date.(
     makeWithYMDHMS(
@@ -109,46 +177,18 @@ let addDays = (date, days) => Date.(date->setDate(date->getDate +. days->float_o
 
 let subDays = (date, days) => date->addDays(- days);
 
-let addWeeks = (date, weeks) => date->addDays(weeks * 7);
+let startOfDay = Internal.dateWithStartHoursMSMs;
 
-let subWeeks = (date, weeks) => date->addWeeks(- weeks);
-
-let addMonths = (date, months) =>
-  Date.(
-    makeWithYMD(
-      ~year=date->getFullYear,
-      ~month=date->getMonth +. months->float_of_int,
-      ~date=Math.min_float(date->getDaysInMonth->float_of_int, date->getDate),
-      (),
-    )
-  );
-
-let subMonths = (date, months) => date->addMonths(- months);
-
-let addYears = (date, years) => date->addMonths(12 * years);
-
-let subYears = (date, years) => date->addYears(- years);
-
-let startOfDay = internal_dateWithStartHoursMSMs;
-
-let endOfDay = internal_dateWithEndHoursMSMs;
-
-let internal_makeDiff = (ms, fst, snd) => {
-  let fstTime = fst->Date.getTime -. fst->internal_getTimezoneOffsetInMilliseconds;
-  let sndTime = snd->Date.getTime -. snd->internal_getTimezoneOffsetInMilliseconds;
-  (fstTime -. sndTime) /. ms->float_of_int;
-};
-
-let internal_diffInDays = internal_makeDiff(Constants.dayMilliseconds);
+let endOfDay = Internal.dateWithEndHoursMSMs;
 
 let diffInCalendarDays = (fst, snd) => {
-  let diff = fst->startOfDay->internal_diffInDays(snd->startOfDay);
+  let diff = fst->startOfDay->Internal.diffInDays(snd->startOfDay);
 
   diff->Math.round->int_of_float;
 };
 
 let diffInDays = (fst, snd) => {
-  let diff = internal_diffInDays(fst, snd);
+  let diff = Internal.diffInDays(fst, snd);
 
   switch (diff) {
   | x when x > 0. => x->Math.floor_int
@@ -157,20 +197,17 @@ let diffInDays = (fst, snd) => {
   };
 };
 
+let internal_makeIntervalDay = (interval, index) => interval.start->startOfDay->addDays(index);
+
 let internal_getAmountOfIntervalDays = interval => interval.end_->diffInCalendarDays(interval.start)->succ;
 
-let internal_makeEachDay = (interval, index) => interval.start->startOfDay->addDays(index);
-
 let eachDayOfIntervalArray = interval =>
-  interval->internal_getAmountOfIntervalDays->Belt.Array.makeBy(interval->internal_makeEachDay);
+  interval->internal_getAmountOfIntervalDays->Belt.Array.makeBy(interval->internal_makeIntervalDay);
 
 let eachDayOfIntervalList = interval =>
-  interval->internal_getAmountOfIntervalDays->Belt.List.makeBy(interval->internal_makeEachDay);
+  interval->internal_getAmountOfIntervalDays->Belt.List.makeBy(interval->internal_makeIntervalDay);
 
-let startOfYear = date =>
-  Date.(makeWithYMD(~year=date->getFullYear, ~month=0., ~date=1., ())->internal_dateWithStartHoursMSMs);
-
-let getDayOfYear = date => date->diffInCalendarDays(date->startOfYear)->succ;
+let getDayOfYear = date => date->diffInCalendarDays(date->Internal.startOfYear)->succ;
 
 let isSameDay = (fst, snd) => fst->startOfDay->isEqual(snd->startOfDay);
 
@@ -180,38 +217,33 @@ let isTomorrow = date => date->isSameDay(Date.make()->addDays(1));
 
 let isYesterday = date => date->isSameDay(Date.make()->subDays(1));
 
+/**
+
+██╗    ██╗███████╗███████╗██╗  ██╗
+██║    ██║██╔════╝██╔════╝██║ ██╔╝
+██║ █╗ ██║█████╗  █████╗  █████╔╝
+██║███╗██║██╔══╝  ██╔══╝  ██╔═██╗
+╚███╔███╔╝███████╗███████╗██║  ██╗
+ ╚══╝╚══╝ ╚══════╝╚══════╝╚═╝  ╚═╝
+
+*/
+
+let addWeeks = (date, weeks) => date->addDays(weeks * 7);
+
+let subWeeks = (date, weeks) => date->addWeeks(- weeks);
+
 let diffInWeeks = (fst, snd) => {
   let diff = (fst->diffInDays(snd) / 7)->float_of_int;
   diff > 0. ? diff->Math.floor_int : diff->Math.ceil_int;
 };
 
-let internal_startOrEndOfWeek = (type_, weekStartsOn) => {
-  open Date;
-
-  let week = weekStartsOn->float_of_int;
-
-  let date =
-    switch (type_) {
-    | Start(date) =>
-      let day = date->getDay;
-      let diff = (day < week ? 7. : 0.) +. day -. week;
-      date->setDate(date->getDate -. diff);
-    | End(date) =>
-      let day = date->getDay;
-      let diff = (day < week ? (-7.) : 0.) +. 6. -. (day -. week);
-      date->setDate(date->getDate +. diff);
-    };
-
-  date->fromFloat;
-};
-
 let startOfWeek = (~weekStartsOn=0, date) =>
-  Start(date)->internal_startOrEndOfWeek(weekStartsOn)->internal_dateWithStartHoursMSMs;
+  Internal.(Start(date)->startOrEndOfWeek(weekStartsOn)->dateWithStartHoursMSMs);
 
 let endOfWeek = (~weekStartsOn=0, date) =>
-  End(date)->internal_startOrEndOfWeek(weekStartsOn)->internal_dateWithEndHoursMSMs;
+  Internal.(End(date)->startOrEndOfWeek(weekStartsOn)->dateWithEndHoursMSMs);
 
-let internal_diffInCalendarWeeks = internal_makeDiff(Constants.weekMilliseconds);
+let internal_diffInCalendarWeeks = Internal.makeDiff(Constants.weekMilliseconds);
 
 let diffInCalendarWeeks = (~weekStartsOn=0, fst, snd) => {
   let startOfWeek' = startOfWeek(~weekStartsOn);
@@ -226,25 +258,74 @@ let isSameWeek = (~weekStartsOn=0, fst, snd) => {
 };
 
 let lastDayOfWeek = (~weekStartsOn=0, date) =>
-  End(date)->internal_startOrEndOfWeek(weekStartsOn)->internal_dateWithStartHoursMSMs;
+  Internal.(End(date)->startOrEndOfWeek(weekStartsOn)->dateWithStartHoursMSMs);
 
-let internal_isDay = (day, date) => date->Date.getDay === day->float_of_int;
+/**
 
-let isSunday = internal_isDay(0);
+██╗    ██╗███████╗███████╗██╗  ██╗██████╗  █████╗ ██╗   ██╗
+██║    ██║██╔════╝██╔════╝██║ ██╔╝██╔══██╗██╔══██╗╚██╗ ██╔╝
+██║ █╗ ██║█████╗  █████╗  █████╔╝ ██║  ██║███████║ ╚████╔╝
+██║███╗██║██╔══╝  ██╔══╝  ██╔═██╗ ██║  ██║██╔══██║  ╚██╔╝
+╚███╔███╔╝███████╗███████╗██║  ██╗██████╔╝██║  ██║   ██║
+ ╚══╝╚══╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝   ╚═╝
 
-let isMonday = internal_isDay(1);
+*/
 
-let isTuesday = internal_isDay(2);
+let isSunday = Internal.isWeekday(0);
 
-let isWednesday = internal_isDay(3);
+let isMonday = Internal.isWeekday(1);
 
-let isThursday = internal_isDay(4);
+let isTuesday = Internal.isWeekday(2);
 
-let isFriday = internal_isDay(5);
+let isWednesday = Internal.isWeekday(3);
 
-let isSaturday = internal_isDay(6);
+let isThursday = Internal.isWeekday(4);
+
+let isFriday = Internal.isWeekday(5);
+
+let isSaturday = Internal.isWeekday(6);
 
 let isWeekend = date => date->isSaturday || date->isSunday;
 
+/**
+
+███╗   ███╗ ██████╗ ███╗   ██╗████████╗██╗  ██╗
+████╗ ████║██╔═══██╗████╗  ██║╚══██╔══╝██║  ██║
+██╔████╔██║██║   ██║██╔██╗ ██║   ██║   ███████║
+██║╚██╔╝██║██║   ██║██║╚██╗██║   ██║   ██╔══██║
+██║ ╚═╝ ██║╚██████╔╝██║ ╚████║   ██║   ██║  ██║
+╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝
+
+*/
+
+let addMonths = (date, months) =>
+  Date.(
+    makeWithYMD(
+      ~year=date->getFullYear,
+      ~month=date->getMonth +. months->float_of_int,
+      ~date=Math.min_float(date->getDaysInMonth->float_of_int, date->getDate),
+      (),
+    )
+  );
+
+let subMonths = (date, months) => date->addMonths(- months);
+
 let diffInCalendarMonths = (fst, snd) =>
   Date.((fst->getFullYear -. snd->getFullYear) *. 12. +. (fst->getMonth -. snd->getMonth))->int_of_float;
+
+/**
+
+██╗   ██╗███████╗ █████╗ ██████╗
+╚██╗ ██╔╝██╔════╝██╔══██╗██╔══██╗
+ ╚████╔╝ █████╗  ███████║██████╔╝
+  ╚██╔╝  ██╔══╝  ██╔══██║██╔══██╗
+   ██║   ███████╗██║  ██║██║  ██║
+   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝
+
+*/
+
+let addYears = (date, years) => date->addMonths(12 * years);
+
+let subYears = (date, years) => date->addYears(- years);
+
+let startOfYear = Internal.startOfYear;

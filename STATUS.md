@@ -16,7 +16,7 @@
 - [ ] `closestTo`
 - [ ] `closestIndexTo`
 
-### Range
+### Interval
 
 - [x] `isWithinInterval`
 - [x] `areIntervalsOverlapping`
