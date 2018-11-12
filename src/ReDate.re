@@ -269,6 +269,8 @@ let isLastDayOfMonth = date => Date.(date->endOfDay->getTime === date->endOfMont
 
 let isSameMonth = (fst, snd) => fst->startOfMonth->isEqual(snd->startOfMonth);
 
+let lastDayOfMonth = date => Internal.(date->makeLastDayOfMonth->makeDateWithStartOfDayHours);
+
 /* ——[Year]——————————— */
 
 let addYears = (date, years) => date->addMonths(12 * years);

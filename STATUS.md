@@ -84,7 +84,7 @@
 - [x] `isFirstDayOfMonth`
 - [x] `isLastDayOfMonth`
 - [x] `isSameMonth`
-- [ ] `lastDayOfMonth`
+- [x] `lastDayOfMonth`
 
 ### Year
 
