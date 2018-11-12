@@ -84,9 +84,7 @@ module Internal = {
   let isWeekday = (day, date) => date->Date.getDay === day->float_of_int;
 };
 
-/*
- ▀▄▀▄▀▄ coммon ▄▀▄▀▄▀
- */
+/* ——[Common]——————————— */
 
 let isEqual = (fst, snd) => Date.(fst->getTime === snd->getTime);
 
@@ -110,9 +108,7 @@ let maxOfArray = dates => Internal.(dates->Belt.Array.reduce(None, (>)->reduceMi
 
 let maxOfList = dates => Internal.(dates->Belt.List.reduce(None, (>)->reduceMinOrMax)->retrieveMinOrMax);
 
-/*
- ▀▄▀▄▀▄ ιnтerval ▄▀▄▀▄▀
- */
+/* ——[Interval]——————————— */
 
 let isWithinInterval = (date, ~start, ~end_) => {
   let ts = date->Date.getTime;
@@ -135,9 +131,7 @@ let getOverlappingDaysInIntervals = (left, right) =>
     }
   );
 
-/*
- ▀▄▀▄▀▄ day ▄▀▄▀▄▀
- */
+/* ——[Day]——————————— */
 
 let getDaysInMonth = date =>
   Date.(
@@ -198,9 +192,7 @@ let isTomorrow = date => date->isSameDay(Date.make()->addDays(1));
 
 let isYesterday = date => date->isSameDay(Date.make()->subDays(1));
 
-/*
- ▀▄▀▄▀▄ weeĸ ▄▀▄▀▄▀
- */
+/* ——[Week]——————————— */
 
 let addWeeks = (date, weeks) => date->addDays(weeks * 7);
 
@@ -232,9 +224,7 @@ let isSameWeek = (~weekStartsOn=0, fst, snd) => {
 let lastDayOfWeek = (~weekStartsOn=0, date) =>
   Internal.(End(date)->startOrEndOfWeek(weekStartsOn)->dateWithStartHoursMSMs);
 
-/*
- ▀▄▀▄▀▄ weeĸday ▄▀▄▀▄▀
- */
+/* ——[Weekday]——————————— */
 
 let isSunday = Internal.isWeekday(0);
 
@@ -252,9 +242,7 @@ let isSaturday = Internal.isWeekday(6);
 
 let isWeekend = date => date->isSaturday || date->isSunday;
 
-/*
- ▀▄▀▄▀▄ мonтн ▄▀▄▀▄▀
- */
+/* ——[Month]——————————— */
 
 let addMonths = (date, months) =>
   Date.(
@@ -271,9 +259,7 @@ let subMonths = (date, months) => date->addMonths(- months);
 let diffInCalendarMonths = (fst, snd) =>
   Date.((fst->getFullYear -. snd->getFullYear) *. 12. +. (fst->getMonth -. snd->getMonth))->int_of_float;
 
-/*
- ▀▄▀▄▀▄ year ▄▀▄▀▄▀
- */
+/* ——[Year]——————————— */
 
 let addYears = (date, years) => date->addMonths(12 * years);
 
