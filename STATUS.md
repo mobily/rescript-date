@@ -79,7 +79,7 @@
 - [ ] `diffInMonths`
 - [x] `diffInCalendarMonths`
 - [x] `startOfMonth`
-- [ ] `endOfMonth`
+- [x] `endOfMonth`
 - [x] `getDaysInMonth`
 - [ ] `isFirstDayOfMonth`
 - [ ] `isLastDayOfMonth`

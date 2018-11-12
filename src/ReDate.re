@@ -90,6 +90,9 @@ module Internal = {
 
     date->fromFloat;
   };
+
+  let makeLastDayOfMonth = date =>
+    Date.(makeWithYMD(~year=date->getFullYear, ~month=date->getMonth +. 1., ~date=0., ()));
 };
 
 /* ——[Common]——————————— */
@@ -141,20 +144,7 @@ let getOverlappingDaysInIntervals = (left, right) =>
 
 /* ——[Day]——————————— */
 
-let getDaysInMonth = date =>
-  Date.(
-    makeWithYMDHMS(
-      ~year=date->getFullYear,
-      ~month=date->getMonth +. 1.,
-      ~date=0.,
-      ~hours=0.,
-      ~minutes=0.,
-      ~seconds=0.,
-      (),
-    )
-    ->getDate
-    ->int_of_float
-  );
+let getDaysInMonth = date => date->Internal.makeLastDayOfMonth->Date.getDate->int_of_float;
 
 let addDays = (date, days) => Date.(date->setDate(date->getDate +. days->float_of_int)->fromFloat);
 
@@ -270,6 +260,8 @@ let diffInCalendarMonths = (fst, snd) =>
   Date.((fst->getFullYear -. snd->getFullYear) *. 12. +. (fst->getMonth -. snd->getMonth))->int_of_float;
 
 let startOfMonth = date => Date.(date->setDate(1.)->fromFloat->Internal.dateWithStartHoursMSMs);
+
+let endOfMonth = date => Internal.(date->makeLastDayOfMonth->dateWithEndHoursMSMs);
 
 /* ——[Year]——————————— */
 
