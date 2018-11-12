@@ -83,7 +83,7 @@
 - [x] `getDaysInMonth`
 - [x] `isFirstDayOfMonth`
 - [x] `isLastDayOfMonth`
-- [ ] `isSameMonth`
+- [x] `isSameMonth`
 - [ ] `lastDayOfMonth`
 
 ### Year

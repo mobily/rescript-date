@@ -267,6 +267,8 @@ let isFirstDayOfMonth = date => date->Date.getDate->int_of_float === 1;
 
 let isLastDayOfMonth = date => Date.(date->endOfDay->getTime === date->endOfMonth->getTime);
 
+let isSameMonth = (fst, snd) => fst->startOfMonth->isEqual(snd->startOfMonth);
+
 /* ——[Year]——————————— */
 
 let addYears = (date, years) => date->addMonths(12 * years);
