@@ -123,3 +123,5 @@ let isLastDayOfMonth: Js.Date.t => bool;
 let isSameMonth: (Js.Date.t, Js.Date.t) => bool;
 
 let lastDayOfMonth: Js.Date.t => Js.Date.t;
+
+let isSameYear: (Js.Date.t, Js.Date.t) => bool;

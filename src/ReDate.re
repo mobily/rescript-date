@@ -278,3 +278,5 @@ let addYears = (date, years) => date->addMonths(12 * years);
 let subYears = (date, years) => date->addYears(- years);
 
 let startOfYear = Internal.startOfYear;
+
+let isSameYear = (fst, snd) => (fst->Internal.startOfYear->isEqual(snd->Internal.startOfYear));

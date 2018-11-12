@@ -96,7 +96,7 @@
 - [ ] `endOfYear`
 - [ ] `getDaysInYear`
 - [ ] `isLeapYear`
-- [ ] `isSameYear`
+- [x] `isSameYear`
 - [ ] `lastDayOfYear`
 
 ### ISO
