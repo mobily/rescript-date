@@ -24,15 +24,15 @@
 
 ### Second
 
-TODO
+>  TODO
 
 ### Minute
 
-TODO
+> TODO
 
 ### Hour
 
-TODO
+>  TODO
 
 ### Day
 
@@ -52,7 +52,6 @@ TODO
 
 ### Weekday
 
-- [ ] `getDay`
 - [ ] `isMonday`
 - [ ] `isTuesday`
 - [ ] `isWednesday`
@@ -96,11 +95,10 @@ TODO
 - [x] `startOfYear`
 - [ ] `endOfYear`
 - [ ] `getDaysInYear`
-- [ ] `getYear`
 - [ ] `isLeapYear`
 - [ ] `isSameYear`
 - [ ] `lastDayOfYear`
 
 ### ISO
 
-TODO
+> TODO
