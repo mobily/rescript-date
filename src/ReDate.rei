@@ -98,3 +98,5 @@ let isThursday: Js.Date.t => bool;
 let isFriday: Js.Date.t => bool;
 
 let isSaturday: Js.Date.t => bool;
+
+let isWeekend: Js.Date.t => bool;

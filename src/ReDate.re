@@ -243,3 +243,5 @@ let isThursday = internal_isDay(4);
 let isFriday = internal_isDay(5);
 
 let isSaturday = internal_isDay(6);
+
+let isWeekend = date => date->isSaturday || date->isSunday;
