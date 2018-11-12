@@ -47,7 +47,7 @@
 
 ### Hour helpers
 
-- [ ] `addHours`
+- [x] `addHours`
 - [ ] `subHours`
 - [ ] `differenceInHours`
 - [ ] `startOfHour`

@@ -48,6 +48,12 @@ let addMinutes: (Js.Date.t, int) => Js.Date.t;
 
 let subMinutes: (Js.Date.t, int) => Js.Date.t;
 
+/* ——[Hour helpers]——————————— */
+
+let addHours: (Js.Date.t, int) => Js.Date.t;
+
+let subHours: (Js.Date.t, int) => Js.Date.t;
+
 /* ——[Day helpers——————————— */
 
 let getDaysInMonth: Js.Date.t => int;
