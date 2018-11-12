@@ -60,8 +60,7 @@
 - [x] `startOfWeek`
 - [x] `endOfWeek`
 - [x] `isSameWeek`
-- [ ] `isThisWeek`
-- [ ] `lastDayOfWeek`
+- [x] `lastDayOfWeek`
 
 ### Month
 

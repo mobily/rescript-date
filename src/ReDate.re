@@ -228,3 +228,6 @@ let isSameWeek = (~weekStartsOn=0, fst, snd) => {
   let startOfWeek' = startOfWeek(~weekStartsOn);
   fst->startOfWeek'->isEqual(snd->startOfWeek');
 };
+
+let lastDayOfWeek = (~weekStartsOn=0, date) =>
+  End(date)->internal_startOrEndOfWeek(weekStartsOn)->internal_dateWithStartHoursMSMs;
