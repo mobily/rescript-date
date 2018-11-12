@@ -241,3 +241,5 @@ let isWednesday = internal_isDay(3);
 let isThursday = internal_isDay(4);
 
 let isFriday = internal_isDay(5);
+
+let isSaturday = internal_isDay(6);

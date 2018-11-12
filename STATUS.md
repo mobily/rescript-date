@@ -57,7 +57,7 @@
 - [x] `isWednesday`
 - [x] `isThursday`
 - [x] `isFriday`
-- [ ] `isSaturday`
+- [x] `isSaturday`
 - [x] `isSunday`
 - [ ] `isWeekend`
 
