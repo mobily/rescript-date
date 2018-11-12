@@ -9,6 +9,16 @@ type offset =
   | Start(Date.t)
   | End(Date.t);
 
+[@bs.deriving jsConverter]
+type day =
+  | Sunday
+  | Monday
+  | Tuesday
+  | Wednesday
+  | Thursday
+  | Friday
+  | Saturday;
+
 module Constants = {
   let minuteMilliseconds = 60 * 1000;
 
@@ -64,7 +74,7 @@ module Internal = {
   let startOrEndOfWeek = (type_, weekStartsOn) => {
     open Date;
 
-    let week = weekStartsOn->float_of_int;
+    let week = weekStartsOn->dayToJs->float_of_int;
 
     let date =
       switch (type_) {
@@ -203,25 +213,25 @@ let diffInWeeks = (fst, snd) => {
   diff > 0. ? diff->Math.floor_int : diff->Math.ceil_int;
 };
 
-let startOfWeek = (~weekStartsOn=0, date) =>
+let startOfWeek = (~weekStartsOn=Sunday, date) =>
   Internal.(Start(date)->startOrEndOfWeek(weekStartsOn)->dateWithStartHoursMSMs);
 
-let endOfWeek = (~weekStartsOn=0, date) =>
+let endOfWeek = (~weekStartsOn=Sunday, date) =>
   Internal.(End(date)->startOrEndOfWeek(weekStartsOn)->dateWithEndHoursMSMs);
 
-let diffInCalendarWeeks = (~weekStartsOn=0, fst, snd) => {
+let diffInCalendarWeeks = (~weekStartsOn=Sunday, fst, snd) => {
   let startOfWeek' = startOfWeek(~weekStartsOn);
   let diff = fst->startOfWeek'->Internal.diffInCalendarWeeks(snd->startOfWeek');
 
   diff->Math.round->int_of_float;
 };
 
-let isSameWeek = (~weekStartsOn=0, fst, snd) => {
+let isSameWeek = (~weekStartsOn=Sunday, fst, snd) => {
   let startOfWeek' = startOfWeek(~weekStartsOn);
   fst->startOfWeek'->isEqual(snd->startOfWeek');
 };
 
-let lastDayOfWeek = (~weekStartsOn=0, date) =>
+let lastDayOfWeek = (~weekStartsOn=Sunday, date) =>
   Internal.(End(date)->startOrEndOfWeek(weekStartsOn)->dateWithStartHoursMSMs);
 
 /* ——[Weekday]——————————— */

@@ -3,6 +3,15 @@ type interval = {
   end_: Js.Date.t
 };
 
+type day =
+  | Sunday
+  | Monday
+  | Tuesday
+  | Wednesday
+  | Thursday
+  | Friday
+  | Saturday;
+
 let isEqual: (Js.Date.t, Js.Date.t) => bool;
 
 let isAfter: (Js.Date.t, Js.Date.t) => bool;
@@ -75,15 +84,15 @@ let isYesterday: Js.Date.t => bool;
 
 let diffInWeeks: (Js.Date.t, Js.Date.t) => int;
 
-let startOfWeek: (~weekStartsOn: int=?, Js.Date.t) => Js.Date.t;
+let startOfWeek: (~weekStartsOn: day=?, Js.Date.t) => Js.Date.t;
 
-let endOfWeek: (~weekStartsOn: int=?, Js.Date.t) => Js.Date.t;
+let endOfWeek: (~weekStartsOn: day=?, Js.Date.t) => Js.Date.t;
 
-let diffInCalendarWeeks: (~weekStartsOn: int=?, Js.Date.t, Js.Date.t) => int;
+let diffInCalendarWeeks: (~weekStartsOn: day=?, Js.Date.t, Js.Date.t) => int;
 
-let isSameWeek: (~weekStartsOn: int=?, Js.Date.t, Js.Date.t) => bool;
+let isSameWeek: (~weekStartsOn: day=?, Js.Date.t, Js.Date.t) => bool;
 
-let lastDayOfWeek: (~weekStartsOn: int=?, Js.Date.t) => Js.Date.t;
+let lastDayOfWeek: (~weekStartsOn: day=?, Js.Date.t) => Js.Date.t;
 
 let isSunday: Js.Date.t => bool;
 

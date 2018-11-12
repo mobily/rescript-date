@@ -22,7 +22,7 @@ describe("isSameWeek", () => {
   test("allows to specify which day is the first day of the week", () => {
     let fstDate = makeWithYMDHMS(~year=2018., ~month=0., ~date=6., ~hours=23., ~minutes=59., ~seconds=59., ());
     let sndDate = makeWithYMDHMS(~year=2018., ~month=0., ~date=7., ~hours=0., ~minutes=0., ~seconds=0., ());
-    let isSameWeek' = ReDate.isSameWeek(~weekStartsOn=1);
+    let isSameWeek' = ReDate.isSameWeek(~weekStartsOn=Monday);
 
     fstDate->isSameWeek'(sndDate)->expect->toBeTruthy;
   });

@@ -21,7 +21,7 @@ describe("endOfWeek", () => {
       makeWithYMD(~year=2018., ~month=0., ~date=14., ())
       ->setHoursMSMs(~hours=23., ~minutes=59., ~seconds=59., ~milliseconds=999., ())
       ->fromFloat;
-    let endOfWeek' = ReDate.endOfWeek(~weekStartsOn=1);
+    let endOfWeek' = ReDate.endOfWeek(~weekStartsOn=Monday);
 
     date->endOfWeek'->expect->toEqual(expectedDate, _);
   });

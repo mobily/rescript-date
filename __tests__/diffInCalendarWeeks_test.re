@@ -15,7 +15,7 @@ describe("diffInCalendarWeeks", () => {
   test("allows to specify which day is the first day of the week", () => {
     let fstDate = makeWithYMD(~year=2018., ~month=6., ~date=15., ());
     let sndDate = makeWithYMD(~year=2018., ~month=5., ~date=20., ());
-    let diffInCalendarWeeks' = ReDate.diffInCalendarWeeks(~weekStartsOn=1);
+    let diffInCalendarWeeks' = ReDate.diffInCalendarWeeks(~weekStartsOn=Monday);
 
     fstDate->diffInCalendarWeeks'(sndDate)->expect->toEqual(3, _);
   });

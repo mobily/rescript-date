@@ -21,7 +21,7 @@ describe("lastDayOfWeek", () => {
       makeWithYMD(~year=2018., ~month=0., ~date=14., ())
       ->setHoursMSMs(~hours=0., ~minutes=0., ~seconds=0., ~milliseconds=0., ())
       ->fromFloat;
-    let lastDayOfWeek' = ReDate.lastDayOfWeek(~weekStartsOn=1);
+    let lastDayOfWeek' = ReDate.lastDayOfWeek(~weekStartsOn=Monday);
 
     date->lastDayOfWeek'->expect->toEqual(expectedDate, _);
   });
