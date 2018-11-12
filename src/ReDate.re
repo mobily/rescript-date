@@ -125,6 +125,10 @@ let addSeconds = (date, seconds) => Date.(date->setSeconds(date->getSeconds +. s
 
 let subSeconds = (date, seconds) => date->addSeconds(- seconds);
 
+/* ——[Minute helpers]——————————— */
+
+let addMinutes = (date, minutes) => Date.(date->setMinutes(date->getMinutes +. minutes->float_of_int)->fromFloat);
+
 /* ——[Day helpers]——————————— */
 
 let getDaysInMonth = date => date->Internal.makeLastDayOfMonth->Date.getDate->int_of_float;

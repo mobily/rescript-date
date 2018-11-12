@@ -37,7 +37,7 @@
 
 ### Minute helpers
 
-- [ ] `addMinutes` 
+- [x] `addMinutes` 
 - [ ] `subMinutes` 
 - [ ] `differenceInMinutes` 
 - [ ] `startOfMinute` 

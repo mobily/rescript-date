@@ -42,6 +42,10 @@ let addSeconds: (Js.Date.t, int) => Js.Date.t;
 
 let subSeconds: (Js.Date.t, int) => Js.Date.t;
 
+/* ——[Minute helpers]——————————— */
+
+let addMinutes: (Js.Date.t, int) => Js.Date.t;
+
 /* ——[Day helpers——————————— */
 
 let getDaysInMonth: Js.Date.t => int;
