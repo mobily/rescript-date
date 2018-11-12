@@ -227,3 +227,7 @@ let isSameWeek = (~weekStartsOn=0, fst, snd) => {
 
 let lastDayOfWeek = (~weekStartsOn=0, date) =>
   End(date)->internal_startOrEndOfWeek(weekStartsOn)->internal_dateWithStartHoursMSMs;
+
+let internal_isDay = (day, date) => date->Date.getDay === day->float_of_int;
+
+let isSunday = internal_isDay(0);

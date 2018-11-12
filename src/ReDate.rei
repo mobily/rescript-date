@@ -84,3 +84,5 @@ let diffInCalendarWeeks: (~weekStartsOn: int=?, Js.Date.t, Js.Date.t) => int;
 let isSameWeek: (~weekStartsOn: int=?, Js.Date.t, Js.Date.t) => bool;
 
 let lastDayOfWeek: (~weekStartsOn: int=?, Js.Date.t) => Js.Date.t;
+
+let isSunday: Js.Date.t => bool;
