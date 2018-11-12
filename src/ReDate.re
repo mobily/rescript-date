@@ -231,3 +231,5 @@ let lastDayOfWeek = (~weekStartsOn=0, date) =>
 let internal_isDay = (day, date) => date->Date.getDay === day->float_of_int;
 
 let isSunday = internal_isDay(0);
+
+let isMonday = internal_isDay(1);

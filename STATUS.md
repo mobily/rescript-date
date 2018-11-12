@@ -52,7 +52,7 @@
 
 ### Weekday
 
-- [ ] `isMonday`
+- [x] `isMonday`
 - [ ] `isTuesday`
 - [ ] `isWednesday`
 - [ ] `isThursday`

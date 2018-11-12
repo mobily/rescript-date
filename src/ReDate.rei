@@ -86,3 +86,5 @@ let isSameWeek: (~weekStartsOn: int=?, Js.Date.t, Js.Date.t) => bool;
 let lastDayOfWeek: (~weekStartsOn: int=?, Js.Date.t) => Js.Date.t;
 
 let isSunday: Js.Date.t => bool;
+
+let isMonday: Js.Date.t => bool;
