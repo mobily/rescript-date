@@ -245,3 +245,6 @@ let isFriday = internal_isDay(5);
 let isSaturday = internal_isDay(6);
 
 let isWeekend = date => date->isSaturday || date->isSunday;
+
+let diffInCalendarMonths = (fst, snd) =>
+  Date.((fst->getFullYear -. snd->getFullYear) *. 12. +. (fst->getMonth -. snd->getMonth))->int_of_float;

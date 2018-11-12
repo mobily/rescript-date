@@ -77,7 +77,7 @@
 - [x] `addMonths`
 - [x] `subMonths`
 - [ ] `diffInMonths`
-- [ ] `diffInCalendarMonths`
+- [x] `diffInCalendarMonths`
 - [ ] `startOfMonth`
 - [ ] `endOfMonth`
 - [x] `getDaysInMonth`

@@ -100,3 +100,5 @@ let isFriday: Js.Date.t => bool;
 let isSaturday: Js.Date.t => bool;
 
 let isWeekend: Js.Date.t => bool;
+
+let diffInCalendarMonths: (Js.Date.t, Js.Date.t) => int;
