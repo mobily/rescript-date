@@ -95,7 +95,7 @@ module Internal = {
     Date.(makeWithYMD(~year=date->getFullYear, ~month=date->getMonth +. 1., ~date=0., ()));
 };
 
-/* ——[Common]——————————— */
+/* ——[Common helpers]——————————— */
 
 let isEqual = (fst, snd) => Date.(fst->getTime === snd->getTime);
 
@@ -119,30 +119,7 @@ let maxOfArray = dates => Internal.(dates->Belt.Array.reduce(None, (>)->reduceMi
 
 let maxOfList = dates => Internal.(dates->Belt.List.reduce(None, (>)->reduceMinOrMax)->retrieveMinOrMax);
 
-/* ——[Interval]——————————— */
-
-let isWithinInterval = (date, ~start, ~end_) => {
-  let ts = date->Date.getTime;
-  ts >= start->Date.getTime && ts <= end_->Date.getTime;
-};
-
-let areIntervalsOverlapping = (left, right) =>
-  Date.(left.start->getTime < right.end_->getTime && right.start->getTime < left.end_->getTime);
-
-let getOverlappingDaysInIntervals = (left, right) =>
-  Date.(
-    switch (left.start->getTime, left.end_->getTime, right.start->getTime, right.end_->getTime) {
-    | (lst, let', rst, ret) when lst < ret && rst < let' =>
-      let overlapStartTime = rst < lst ? lst : rst;
-      let overlapEndTime = ret > let' ? let' : ret;
-      let overlap = (overlapEndTime -. overlapStartTime) /. Constants.dayMilliseconds->float_of_int;
-
-      overlap->Math.ceil_int;
-    | _ => 0
-    }
-  );
-
-/* ——[Day]——————————— */
+/* ——[Day helpers——————————— */
 
 let getDaysInMonth = date => date->Internal.makeLastDayOfMonth->Date.getDate->int_of_float;
 
@@ -170,16 +147,6 @@ let diffInDays = (fst, snd) => {
   };
 };
 
-let internal_makeIntervalDay = (interval, index) => interval.start->startOfDay->addDays(index);
-
-let internal_getAmountOfIntervalDays = interval => interval.end_->diffInCalendarDays(interval.start)->succ;
-
-let eachDayOfIntervalArray = interval =>
-  interval->internal_getAmountOfIntervalDays->Belt.Array.makeBy(interval->internal_makeIntervalDay);
-
-let eachDayOfIntervalList = interval =>
-  interval->internal_getAmountOfIntervalDays->Belt.List.makeBy(interval->internal_makeIntervalDay);
-
 let getDayOfYear = date => date->diffInCalendarDays(date->Internal.startOfYear)->succ;
 
 let isSameDay = (fst, snd) => fst->startOfDay->isEqual(snd->startOfDay);
@@ -190,7 +157,7 @@ let isTomorrow = date => date->isSameDay(Date.make()->addDays(1));
 
 let isYesterday = date => date->isSameDay(Date.make()->subDays(1));
 
-/* ——[Week]——————————— */
+/* ——[Week helpers]——————————— */
 
 let addWeeks = (date, weeks) => date->addDays(weeks * 7);
 
@@ -222,7 +189,7 @@ let isSameWeek = (~weekStartsOn=Sunday, fst, snd) => {
 let lastDayOfWeek = (~weekStartsOn=Sunday, date) =>
   Internal.(End(date)->startOrEndOfWeek(weekStartsOn)->makeDateWithStartOfDayHours);
 
-/* ——[Weekday]——————————— */
+/* ——[Weekday helpers]——————————— */
 
 let is = (date, day) => date->Date.getDay === day->dayToJs->float_of_int;
 
@@ -242,7 +209,7 @@ let isSaturday = is(_, Saturday);
 
 let isWeekend = date => date->isSaturday || date->isSunday;
 
-/* ——[Month]——————————— */
+/* ——[Month helpers]——————————— */
 
 let addMonths = (date, months) =>
   Date.(
@@ -271,10 +238,43 @@ let isSameMonth = (fst, snd) => fst->startOfMonth->isEqual(snd->startOfMonth);
 
 let lastDayOfMonth = date => Internal.(date->makeLastDayOfMonth->makeDateWithStartOfDayHours);
 
-/* ——[Year]——————————— */
+/* ——[Year helpers]——————————— */
 
 let addYears = (date, years) => date->addMonths(12 * years);
 
 let subYears = (date, years) => date->addYears(- years);
 
 let startOfYear = Internal.startOfYear;
+
+/* ——[Interval helpers]——————————— */
+
+let isWithinInterval = (date, ~start, ~end_) => {
+  let ts = date->Date.getTime;
+  ts >= start->Date.getTime && ts <= end_->Date.getTime;
+};
+
+let areIntervalsOverlapping = (left, right) =>
+  Date.(left.start->getTime < right.end_->getTime && right.start->getTime < left.end_->getTime);
+
+let getOverlappingDaysInIntervals = (left, right) =>
+  Date.(
+    switch (left.start->getTime, left.end_->getTime, right.start->getTime, right.end_->getTime) {
+    | (lst, let', rst, ret) when lst < ret && rst < let' =>
+      let overlapStartTime = rst < lst ? lst : rst;
+      let overlapEndTime = ret > let' ? let' : ret;
+      let overlap = (overlapEndTime -. overlapStartTime) /. Constants.dayMilliseconds->float_of_int;
+
+      overlap->Math.ceil_int;
+    | _ => 0
+    }
+  );
+
+let internal_makeIntervalDay = (interval, index) => interval.start->startOfDay->addDays(index);
+
+let internal_getAmountOfIntervalDays = interval => interval.end_->diffInCalendarDays(interval.start)->succ;
+
+let eachDayOfIntervalArray = interval =>
+  interval->internal_getAmountOfIntervalDays->Belt.Array.makeBy(interval->internal_makeIntervalDay);
+
+let eachDayOfIntervalList = interval =>
+  interval->internal_getAmountOfIntervalDays->Belt.List.makeBy(interval->internal_makeIntervalDay);
