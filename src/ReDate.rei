@@ -36,6 +36,10 @@ let maxOfArray: array(Js.Date.t) => Js.Date.t;
 
 let maxOfList: list(Js.Date.t) => Js.Date.t;
 
+/* ——[Seconds helpers]——————————— */
+
+let addSeconds: (Js.Date.t, int) => Js.Date.t;
+
 /* ——[Day helpers——————————— */
 
 let getDaysInMonth: Js.Date.t => int;

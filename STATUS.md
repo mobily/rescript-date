@@ -28,7 +28,7 @@
 
 ### Second helpers
 
-- [ ] `addSeconds` 
+- [x] `addSeconds` 
 - [ ] `subSeconds` 
 - [ ] `differenceInSeconds` 
 - [ ] `startOfSecond` 

@@ -119,6 +119,10 @@ let maxOfArray = dates => Internal.(dates->Belt.Array.reduce(None, (>)->reduceMi
 
 let maxOfList = dates => Internal.(dates->Belt.List.reduce(None, (>)->reduceMinOrMax)->retrieveMinOrMax);
 
+/* ——[Seconds helpers]——————————— */
+
+let addSeconds = (date, seconds) => Date.(date->setSeconds(date->getSeconds +. seconds->float_of_int)->fromFloat);
+
 /* ——[Day helpers]——————————— */
 
 let getDaysInMonth = date => date->Internal.makeLastDayOfMonth->Date.getDate->int_of_float;
