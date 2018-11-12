@@ -176,7 +176,7 @@ let startOfYear = date =>
 
 let getDayOfYear = date => date->diffInCalendarDays(date->startOfYear)->succ;
 
-let isSameDay = (fst, snd) => isEqual(fst->startOfDay, snd->startOfDay);
+let isSameDay = (fst, snd) => fst->startOfDay->isEqual(snd->startOfDay);
 
 let isToday = date => date->isSameDay(Date.make());
 
@@ -222,4 +222,9 @@ let diffInCalendarWeeks = (~weekStartsOn=0, fst, snd) => {
   let diff = internal_diffInCalendarWeeks(fst->startOfWeek', snd->startOfWeek');
 
   diff->Math.round->int_of_float;
+};
+
+let isSameWeek = (~weekStartsOn=0, fst, snd) => {
+  let startOfWeek' = startOfWeek(~weekStartsOn);
+  fst->startOfWeek'->isEqual(snd->startOfWeek');
 };
