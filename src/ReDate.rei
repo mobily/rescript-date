@@ -74,7 +74,7 @@ let startOfWeek: (~weekStartsOn: day=?, Js.Date.t) => Js.Date.t;
 
 let endOfWeek: (~weekStartsOn: day=?, Js.Date.t) => Js.Date.t;
 
-let diffInCalendarWeeks: (~weekStartsOn: day=?, Js.Date.t, Js.Date.t) => int;
+let differenceInCalendarWeeks: (~weekStartsOn: day=?, Js.Date.t, Js.Date.t) => int;
 
 let isSameWeek: (~weekStartsOn: day=?, Js.Date.t, Js.Date.t) => bool;
 

@@ -52,7 +52,7 @@ module Internal = {
 
   let diffInDays = makeDiff(Constants.dayMilliseconds);
 
-  let diffInCalendarWeeks = makeDiff(Constants.weekMilliseconds);
+  let differenceInCalendarWeeks = makeDiff(Constants.weekMilliseconds);
 
   let retrieveMinOrMax = value => value->Belt.Option.getExn->Date.fromFloat;
 
@@ -174,9 +174,9 @@ let startOfWeek = (~weekStartsOn=Sunday, date) =>
 let endOfWeek = (~weekStartsOn=Sunday, date) =>
   Internal.(End(date)->startOrEndOfWeek(weekStartsOn)->makeDateWithEndOfDayHours);
 
-let diffInCalendarWeeks = (~weekStartsOn=Sunday, fst, snd) => {
+let differenceInCalendarWeeks = (~weekStartsOn=Sunday, fst, snd) => {
   let startOfWeek' = startOfWeek(~weekStartsOn);
-  let diff = fst->startOfWeek'->Internal.diffInCalendarWeeks(snd->startOfWeek');
+  let diff = fst->startOfWeek'->Internal.differenceInCalendarWeeks(snd->startOfWeek');
 
   diff->Math.round->int_of_float;
 };
