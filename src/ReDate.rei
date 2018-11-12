@@ -106,7 +106,7 @@ let addMonths: (Js.Date.t, int) => Js.Date.t;
 
 let subMonths: (Js.Date.t, int) => Js.Date.t;
 
-let diffInCalendarMonths: (Js.Date.t, Js.Date.t) => int;
+let differenceInCalendarMonths: (Js.Date.t, Js.Date.t) => int;
 
 let startOfMonth: Js.Date.t => Js.Date.t;
 
