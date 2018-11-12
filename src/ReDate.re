@@ -163,7 +163,7 @@ let addWeeks = (date, weeks) => date->addDays(weeks * 7);
 
 let subWeeks = (date, weeks) => date->addWeeks(- weeks);
 
-let diffInWeeks = (fst, snd) => {
+let differenceInWeeks = (fst, snd) => {
   let diff = (fst->diffInDays(snd) / 7)->float_of_int;
   diff > 0. ? diff->Math.floor_int : diff->Math.ceil_int;
 };

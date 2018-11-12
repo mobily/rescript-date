@@ -68,7 +68,7 @@ let addWeeks: (Js.Date.t, int) => Js.Date.t;
 
 let subWeeks: (Js.Date.t, int) => Js.Date.t;
 
-let diffInWeeks: (Js.Date.t, Js.Date.t) => int;
+let differenceInWeeks: (Js.Date.t, Js.Date.t) => int;
 
 let startOfWeek: (~weekStartsOn: day=?, Js.Date.t) => Js.Date.t;
 

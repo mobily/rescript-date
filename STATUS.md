@@ -83,7 +83,7 @@
 
 - [x] `addWeeks`
 - [x] `subWeeks`
-- [x] `diffInWeeks`
+- [x] `differenceInWeeks`
 - [x] `diffInCalendarWeeks`
 - [x] `startOfWeek`
 - [x] `endOfWeek`
