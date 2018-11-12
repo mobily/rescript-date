@@ -29,7 +29,7 @@
 ### Second helpers
 
 - [x] `addSeconds` 
-- [ ] `subSeconds` 
+- [x] `subSeconds` 
 - [ ] `differenceInSeconds` 
 - [ ] `startOfSecond` 
 - [ ] `endOfSecond` 

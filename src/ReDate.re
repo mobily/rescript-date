@@ -123,6 +123,8 @@ let maxOfList = dates => Internal.(dates->Belt.List.reduce(None, (>)->reduceMinO
 
 let addSeconds = (date, seconds) => Date.(date->setSeconds(date->getSeconds +. seconds->float_of_int)->fromFloat);
 
+let subSeconds = (date, seconds) => date->addSeconds(- seconds);
+
 /* ——[Day helpers]——————————— */
 
 let getDaysInMonth = date => date->Internal.makeLastDayOfMonth->Date.getDate->int_of_float;
