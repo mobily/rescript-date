@@ -91,7 +91,7 @@ module Internal = {
     date->fromFloat;
   };
 
-  let isWeekday = (day, date) => date->Date.getDay === day->float_of_int;
+  let isWeekday = (day, date) => date->Date.getDay === day->dayToJs->float_of_int;
 };
 
 /* ——[Common]——————————— */
@@ -236,19 +236,19 @@ let lastDayOfWeek = (~weekStartsOn=Sunday, date) =>
 
 /* ——[Weekday]——————————— */
 
-let isSunday = Internal.isWeekday(0);
+let isSunday = Internal.isWeekday(Sunday);
 
-let isMonday = Internal.isWeekday(1);
+let isMonday = Internal.isWeekday(Monday);
 
-let isTuesday = Internal.isWeekday(2);
+let isTuesday = Internal.isWeekday(Tuesday);
 
-let isWednesday = Internal.isWeekday(3);
+let isWednesday = Internal.isWeekday(Wednesday);
 
-let isThursday = Internal.isWeekday(4);
+let isThursday = Internal.isWeekday(Thursday);
 
-let isFriday = Internal.isWeekday(5);
+let isFriday = Internal.isWeekday(Friday);
 
-let isSaturday = Internal.isWeekday(6);
+let isSaturday = Internal.isWeekday(Saturday);
 
 let isWeekend = date => date->isSaturday || date->isSunday;
 
