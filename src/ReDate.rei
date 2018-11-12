@@ -48,7 +48,7 @@ let startOfDay: Js.Date.t => Js.Date.t;
 
 let endOfDay: Js.Date.t => Js.Date.t;
 
-let diffInCalendarDays: (Js.Date.t, Js.Date.t) => int;
+let differenceInCalendarDays: (Js.Date.t, Js.Date.t) => int;
 
 let differenceInDays: (Js.Date.t, Js.Date.t) => int;
 

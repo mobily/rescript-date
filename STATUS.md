@@ -59,7 +59,7 @@
 - [x] `addDays`
 - [x] `subDays`
 - [x] `differenceInDays`
-- [x] `diffInCalendarDays`
+- [x] `differenceInCalendarDays`
 - [x] `startOfDay`
 - [x] `endOfDay`
 - [x] `getDayOfYear`

@@ -131,7 +131,7 @@ let startOfDay = Internal.makeDateWithStartOfDayHours;
 
 let endOfDay = Internal.makeDateWithEndOfDayHours;
 
-let diffInCalendarDays = (fst, snd) => {
+let differenceInCalendarDays = (fst, snd) => {
   let diff = fst->startOfDay->Internal.differenceInDays(snd->startOfDay);
 
   diff->Math.round->int_of_float;
@@ -147,7 +147,7 @@ let differenceInDays = (fst, snd) => {
   };
 };
 
-let getDayOfYear = date => date->diffInCalendarDays(date->Internal.startOfYear)->succ;
+let getDayOfYear = date => date->differenceInCalendarDays(date->Internal.startOfYear)->succ;
 
 let isSameDay = (fst, snd) => fst->startOfDay->isEqual(snd->startOfDay);
 
@@ -271,7 +271,7 @@ let getOverlappingDaysInIntervals = (left, right) =>
 
 let internal_makeIntervalDay = (interval, index) => interval.start->startOfDay->addDays(index);
 
-let internal_getAmountOfIntervalDays = interval => interval.end_->diffInCalendarDays(interval.start)->succ;
+let internal_getAmountOfIntervalDays = interval => interval.end_->differenceInCalendarDays(interval.start)->succ;
 
 let eachDayOfIntervalArray = interval =>
   interval->internal_getAmountOfIntervalDays->Belt.Array.makeBy(interval->internal_makeIntervalDay);
