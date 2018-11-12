@@ -1,6 +1,6 @@
 {
   "name": "@mobily/re-date",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "scripts": {
     "dev": "bsb -make-world -w",
     "clean": "bsb -clean-world",
