@@ -1,6 +1,6 @@
 # Status
 
-### Common
+### Common helpers
 
 - [x] `isEqual`
 - [x] `isBefore`
@@ -16,32 +16,50 @@
 - [ ] `closestTo`
 - [ ] `closestIndexTo`
 
-### Interval
+### Interval helpers
 
 - [x] `isWithinInterval`
 - [x] `areIntervalsOverlapping`
 - [x] `getOverlappingDaysInIntervals`
+- [x] `eachDayOfIntervalArray`
+- [x] `eachDayOfIntervalList`
+- [ ] `eachWeekOfIntervalArray`
+- [ ] `eachWeekOfIntervalList`
 
-### Second
+### Second helpers
 
-> TODO
+- [x] `addSeconds`
+- [x] `subSeconds`
+- [ ] `differenceInSeconds`
+- [ ] `startOfSecond`
+- [ ] `endOfSecond`
+- [ ] `isSameSecond`
 
-### Minute
+### Minute helpers
 
-> TODO
+- [x] `addMinutes`
+- [x] `subMinutes`
+- [ ] `differenceInMinutes`
+- [ ] `startOfMinute`
+- [ ] `endOfMinute`
+- [ ] `isSameMinute`
+- [ ] `roundToNearestMinute`
 
-### Hour
+### Hour helpers
 
-> TODO
+- [x] `addHours`
+- [x] `subHours`
+- [ ] `differenceInHours`
+- [ ] `startOfHour`
+- [ ] `endOfHour`
+- [ ] `isSameHour`
 
-### Day
+### Day helpers
 
 - [x] `addDays`
 - [x] `subDays`
-- [x] `diffInDays`
-- [x] `diffInCalendarDays`
-- [x] `eachDayOfIntervalArray`
-- [x] `eachDayOfIntervalList`
+- [x] `differenceInDays`
+- [x] `differenceInCalendarDays`
 - [x] `startOfDay`
 - [x] `endOfDay`
 - [x] `getDayOfYear`
@@ -50,7 +68,7 @@
 - [x] `isTomorrow` ⚠️
 - [x] `isYesterday` ⚠️
 
-### Weekday
+### Weekday helpers
 
 - [x] `isMonday`
 - [x] `isTuesday`
@@ -61,23 +79,25 @@
 - [x] `isSunday`
 - [x] `isWeekend`
 
-### Week
+### Week helpers
 
 - [x] `addWeeks`
 - [x] `subWeeks`
-- [x] `diffInWeeks`
-- [x] `diffInCalendarWeeks`
+- [x] `differenceInWeeks`
+- [x] `differenceInCalendarWeeks`
 - [x] `startOfWeek`
 - [x] `endOfWeek`
 - [x] `isSameWeek`
 - [x] `lastDayOfWeek`
+- [ ] `getWeekOfMonth`
+- [ ] `getWeeksOfMonth`
 
-### Month
+### Month helpers
 
 - [x] `addMonths`
 - [x] `subMonths`
-- [ ] `diffInMonths`
-- [x] `diffInCalendarMonths`
+- [ ] `differenceInMonths`
+- [x] `differenceInCalendarMonths`
 - [x] `startOfMonth`
 - [x] `endOfMonth`
 - [x] `getDaysInMonth`
@@ -86,12 +106,12 @@
 - [x] `isSameMonth`
 - [x] `lastDayOfMonth`
 
-### Year
+### Year helpers
 
 - [x] `addYears`
 - [x] `subYears`
-- [ ] `diffInYears`
-- [ ] `diffInCalendarYears`
+- [ ] `differenceInYears`
+- [ ] `differenceInCalendarYears`
 - [x] `startOfYear`
 - [x] `endOfYear`
 - [x] `getDaysInYear`

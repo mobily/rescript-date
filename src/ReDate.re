@@ -53,9 +53,9 @@ module Internal = {
   let endOfYear = date =>
     Date.(makeWithYMD(~year=date->getFullYear +. 1., ~month=0., ~date=0., ())->makeDateWithEndOfDayHours);
 
-  let diffInDays = makeDiff(Constants.dayMilliseconds);
+  let differenceInDays = makeDiff(Constants.dayMilliseconds);
 
-  let diffInCalendarWeeks = makeDiff(Constants.weekMilliseconds);
+  let differenceInCalendarWeeks = makeDiff(Constants.weekMilliseconds);
 
   let retrieveMinOrMax = value => value->Belt.Option.getExn->Date.fromFloat;
 
@@ -98,7 +98,7 @@ module Internal = {
     Date.(makeWithYMD(~year=date->getFullYear, ~month=date->getMonth +. 1., ~date=0., ()));
 };
 
-/* ——[Common]——————————— */
+/* ——[Common helpers]——————————— */
 
 let isEqual = (fst, snd) => Date.(fst->getTime === snd->getTime);
 
@@ -124,7 +124,165 @@ let maxOfArray = dates => Internal.(dates->Belt.Array.reduce(None, (>)->reduceMi
 
 let maxOfList = dates => Internal.(dates->Belt.List.reduce(None, (>)->reduceMinOrMax)->retrieveMinOrMax);
 
-/* ——[Interval]——————————— */
+/* ——[Second helpers]——————————— */
+
+let addSeconds = (date, seconds) => Date.(date->setSeconds(date->getSeconds +. seconds->float_of_int)->fromFloat);
+
+let subSeconds = (date, seconds) => date->addSeconds(- seconds);
+
+/* ——[Minute helpers]——————————— */
+
+let addMinutes = (date, minutes) => Date.(date->setMinutes(date->getMinutes +. minutes->float_of_int)->fromFloat);
+
+let subMinutes = (date, minutes) => date->addMinutes(- minutes);
+
+/* ——[Hour helpers]——————————— */
+
+let addHours = (date, hours) => Date.(date->setHours(date->getHours +. hours->float_of_int)->fromFloat);
+
+let subHours = (date, hours) => date->addHours(- hours);
+
+/* ——[Day helpers]——————————— */
+
+let getDaysInMonth = date => date->Internal.makeLastDayOfMonth->Date.getDate->int_of_float;
+
+let addDays = (date, days) => Date.(date->setDate(date->getDate +. days->float_of_int)->fromFloat);
+
+let subDays = (date, days) => date->addDays(- days);
+
+let startOfDay = Internal.makeDateWithStartOfDayHours;
+
+let endOfDay = Internal.makeDateWithEndOfDayHours;
+
+let differenceInCalendarDays = (fst, snd) => {
+  let diff = fst->startOfDay->Internal.differenceInDays(snd->startOfDay);
+
+  diff->Math.round->int_of_float;
+};
+
+let differenceInDays = (fst, snd) => {
+  let diff = Internal.differenceInDays(fst, snd);
+
+  switch (diff) {
+  | x when x > 0. => x->Math.floor_int
+  | x when x < 0. => x->Math.ceil_int
+  | _ => 0
+  };
+};
+
+let getDayOfYear = date => date->differenceInCalendarDays(date->Internal.startOfYear)->succ;
+
+let isSameDay = (fst, snd) => fst->startOfDay->isEqual(snd->startOfDay);
+
+let isToday = date => date->isSameDay(Date.make());
+
+let isTomorrow = date => date->isSameDay(Date.make()->addDays(1));
+
+let isYesterday = date => date->isSameDay(Date.make()->subDays(1));
+
+/* ——[Week helpers]——————————— */
+
+let addWeeks = (date, weeks) => date->addDays(weeks * 7);
+
+let subWeeks = (date, weeks) => date->addWeeks(- weeks);
+
+let differenceInWeeks = (fst, snd) => {
+  let diff = (fst->differenceInDays(snd) / 7)->float_of_int;
+  diff > 0. ? diff->Math.floor_int : diff->Math.ceil_int;
+};
+
+let startOfWeek = (~weekStartsOn=Sunday, date) =>
+  Internal.(Start(date)->startOrEndOfWeek(weekStartsOn)->makeDateWithStartOfDayHours);
+
+let endOfWeek = (~weekStartsOn=Sunday, date) =>
+  Internal.(End(date)->startOrEndOfWeek(weekStartsOn)->makeDateWithEndOfDayHours);
+
+let differenceInCalendarWeeks = (~weekStartsOn=Sunday, fst, snd) => {
+  let startOfWeek' = startOfWeek(~weekStartsOn);
+  let diff = fst->startOfWeek'->Internal.differenceInCalendarWeeks(snd->startOfWeek');
+
+  diff->Math.round->int_of_float;
+};
+
+let isSameWeek = (~weekStartsOn=Sunday, fst, snd) => {
+  let startOfWeek' = startOfWeek(~weekStartsOn);
+  fst->startOfWeek'->isEqual(snd->startOfWeek');
+};
+
+let lastDayOfWeek = (~weekStartsOn=Sunday, date) =>
+  Internal.(End(date)->startOrEndOfWeek(weekStartsOn)->makeDateWithStartOfDayHours);
+
+/* ——[Weekday helpers]——————————— */
+
+let is = (date, day) => date->Date.getDay === day->dayToJs->float_of_int;
+
+let isSunday = is(_, Sunday);
+
+let isMonday = is(_, Monday);
+
+let isTuesday = is(_, Tuesday);
+
+let isWednesday = is(_, Wednesday);
+
+let isThursday = is(_, Thursday);
+
+let isFriday = is(_, Friday);
+
+let isSaturday = is(_, Saturday);
+
+let isWeekend = date => date->isSaturday || date->isSunday;
+
+/* ——[Month helpers]——————————— */
+
+let addMonths = (date, months) =>
+  Date.(
+    makeWithYMD(
+      ~year=date->getFullYear,
+      ~month=date->getMonth +. months->float_of_int,
+      ~date=Math.min_float(date->getDaysInMonth->float_of_int, date->getDate),
+      (),
+    )
+  );
+
+let subMonths = (date, months) => date->addMonths(- months);
+
+let differenceInCalendarMonths = (fst, snd) =>
+  Date.((fst->getFullYear -. snd->getFullYear) *. 12. +. (fst->getMonth -. snd->getMonth))->int_of_float;
+
+let startOfMonth = date => Date.(date->setDate(1.)->fromFloat->Internal.makeDateWithStartOfDayHours);
+
+let endOfMonth = date => Internal.(date->makeLastDayOfMonth->makeDateWithEndOfDayHours);
+
+let isFirstDayOfMonth = date => date->Date.getDate->int_of_float === 1;
+
+let isLastDayOfMonth = date => Date.(date->endOfDay->getTime === date->endOfMonth->getTime);
+
+let isSameMonth = (fst, snd) => fst->startOfMonth->isEqual(snd->startOfMonth);
+
+let lastDayOfMonth = date => Internal.(date->makeLastDayOfMonth->makeDateWithStartOfDayHours);
+
+/* ——[Year helpers]——————————— */
+
+let addYears = (date, years) => date->addMonths(12 * years);
+
+let subYears = (date, years) => date->addYears(- years);
+
+let startOfYear = Internal.startOfYear;
+
+let isSameYear = (fst, snd) => fst->Internal.startOfYear->isEqual(snd->Internal.startOfYear);
+
+let isLeapYear = date => Date.(date->getFullYear->int_of_float->isLeap);
+
+let endOfYear = Internal.endOfYear;
+
+let lastMonthOfYear = date =>
+  Date.(makeWithYMD(~year=date->getFullYear +. 1., ~month=0., ~date=0., ())->startOfMonth);
+
+let lastDayOfYear = date => date->lastMonthOfYear->lastDayOfMonth;
+
+let getDaysInYear = date => date->isLeapYear ? 366 : 365;
+
+/* ——[Interval helpers]——————————— */
 
 let isWithinInterval = (date, ~start, ~end_) => {
   let ts = date->Date.getTime;
@@ -147,152 +305,12 @@ let getOverlappingDaysInIntervals = (left, right) =>
     }
   );
 
-/* ——[Day]——————————— */
-
-let getDaysInMonth = date => date->Internal.makeLastDayOfMonth->Date.getDate->int_of_float;
-
-let addDays = (date, days) => Date.(date->setDate(date->getDate +. days->float_of_int)->fromFloat);
-
-let subDays = (date, days) => date->addDays(- days);
-
-let startOfDay = Internal.makeDateWithStartOfDayHours;
-
-let endOfDay = Internal.makeDateWithEndOfDayHours;
-
-let diffInCalendarDays = (fst, snd) => {
-  let diff = fst->startOfDay->Internal.diffInDays(snd->startOfDay);
-
-  diff->Math.round->int_of_float;
-};
-
-let diffInDays = (fst, snd) => {
-  let diff = Internal.diffInDays(fst, snd);
-
-  switch (diff) {
-  | x when x > 0. => x->Math.floor_int
-  | x when x < 0. => x->Math.ceil_int
-  | _ => 0
-  };
-};
-
 let internal_makeIntervalDay = (interval, index) => interval.start->startOfDay->addDays(index);
 
-let internal_getAmountOfIntervalDays = interval => interval.end_->diffInCalendarDays(interval.start)->succ;
+let internal_getAmountOfIntervalDays = interval => interval.end_->differenceInCalendarDays(interval.start)->succ;
 
 let eachDayOfIntervalArray = interval =>
   interval->internal_getAmountOfIntervalDays->Belt.Array.makeBy(interval->internal_makeIntervalDay);
 
 let eachDayOfIntervalList = interval =>
   interval->internal_getAmountOfIntervalDays->Belt.List.makeBy(interval->internal_makeIntervalDay);
-
-let getDayOfYear = date => date->diffInCalendarDays(date->Internal.startOfYear)->succ;
-
-let isSameDay = (fst, snd) => fst->startOfDay->isEqual(snd->startOfDay);
-
-let isToday = date => date->isSameDay(Date.make());
-
-let isTomorrow = date => date->isSameDay(Date.make()->addDays(1));
-
-let isYesterday = date => date->isSameDay(Date.make()->subDays(1));
-
-/* ——[Week]——————————— */
-
-let addWeeks = (date, weeks) => date->addDays(weeks * 7);
-
-let subWeeks = (date, weeks) => date->addWeeks(- weeks);
-
-let diffInWeeks = (fst, snd) => {
-  let diff = (fst->diffInDays(snd) / 7)->float_of_int;
-  diff > 0. ? diff->Math.floor_int : diff->Math.ceil_int;
-};
-
-let startOfWeek = (~weekStartsOn=Sunday, date) =>
-  Internal.(Start(date)->startOrEndOfWeek(weekStartsOn)->makeDateWithStartOfDayHours);
-
-let endOfWeek = (~weekStartsOn=Sunday, date) =>
-  Internal.(End(date)->startOrEndOfWeek(weekStartsOn)->makeDateWithEndOfDayHours);
-
-let diffInCalendarWeeks = (~weekStartsOn=Sunday, fst, snd) => {
-  let startOfWeek' = startOfWeek(~weekStartsOn);
-  let diff = fst->startOfWeek'->Internal.diffInCalendarWeeks(snd->startOfWeek');
-
-  diff->Math.round->int_of_float;
-};
-
-let isSameWeek = (~weekStartsOn=Sunday, fst, snd) => {
-  let startOfWeek' = startOfWeek(~weekStartsOn);
-  fst->startOfWeek'->isEqual(snd->startOfWeek');
-};
-
-let lastDayOfWeek = (~weekStartsOn=Sunday, date) =>
-  Internal.(End(date)->startOrEndOfWeek(weekStartsOn)->makeDateWithStartOfDayHours);
-
-/* ——[Weekday]——————————— */
-
-let is = (date, day) => date->Date.getDay === day->dayToJs->float_of_int;
-
-let isSunday = is(_, Sunday);
-
-let isMonday = is(_, Monday);
-
-let isTuesday = is(_, Tuesday);
-
-let isWednesday = is(_, Wednesday);
-
-let isThursday = is(_, Thursday);
-
-let isFriday = is(_, Friday);
-
-let isSaturday = is(_, Saturday);
-
-let isWeekend = date => date->isSaturday || date->isSunday;
-
-/* ——[Month]——————————— */
-
-let addMonths = (date, months) =>
-  Date.(
-    makeWithYMD(
-      ~year=date->getFullYear,
-      ~month=date->getMonth +. months->float_of_int,
-      ~date=Math.min_float(date->getDaysInMonth->float_of_int, date->getDate),
-      (),
-    )
-  );
-
-let subMonths = (date, months) => date->addMonths(- months);
-
-let diffInCalendarMonths = (fst, snd) =>
-  Date.((fst->getFullYear -. snd->getFullYear) *. 12. +. (fst->getMonth -. snd->getMonth))->int_of_float;
-
-let startOfMonth = date => Date.(date->setDate(1.)->fromFloat->Internal.makeDateWithStartOfDayHours);
-
-let endOfMonth = date => Internal.(date->makeLastDayOfMonth->makeDateWithEndOfDayHours);
-
-let isFirstDayOfMonth = date => date->Date.getDate->int_of_float === 1;
-
-let isLastDayOfMonth = date => Date.(date->endOfDay->getTime === date->endOfMonth->getTime);
-
-let isSameMonth = (fst, snd) => fst->startOfMonth->isEqual(snd->startOfMonth);
-
-let lastDayOfMonth = date => Internal.(date->makeLastDayOfMonth->makeDateWithStartOfDayHours);
-
-/* ——[Year]——————————— */
-
-let addYears = (date, years) => date->addMonths(12 * years);
-
-let subYears = (date, years) => date->addYears(- years);
-
-let startOfYear = Internal.startOfYear;
-
-let isSameYear = (fst, snd) => fst->Internal.startOfYear->isEqual(snd->Internal.startOfYear);
-
-let isLeapYear = date => Date.(date->getFullYear->int_of_float->isLeap);
-
-let endOfYear = Internal.endOfYear;
-
-let lastMonthOfYear = date =>
-  Date.(makeWithYMD(~year=date->getFullYear +. 1., ~month=0., ~date=0., ())->startOfMonth);
-
-let lastDayOfYear = date => date->lastMonthOfYear->lastDayOfMonth;
-
-let getDaysInYear = date => date->isLeapYear ? 366 : 365;

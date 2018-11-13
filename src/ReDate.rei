@@ -12,6 +12,8 @@ type day =
   | Friday
   | Saturday;
 
+/* ——[Common helpers]——————————— */
+
 let isEqual: (Js.Date.t, Js.Date.t) => bool;
 
 let isAfter: (Js.Date.t, Js.Date.t) => bool;
@@ -34,11 +36,25 @@ let maxOfArray: array(Js.Date.t) => Js.Date.t;
 
 let maxOfList: list(Js.Date.t) => Js.Date.t;
 
-let isWithinInterval: (Js.Date.t, ~start: Js.Date.t, ~end_: Js.Date.t) => bool;
+/* ——[Second helpers]——————————— */
 
-let areIntervalsOverlapping: (interval, interval) => bool;
+let addSeconds: (Js.Date.t, int) => Js.Date.t;
 
-let getOverlappingDaysInIntervals: (interval, interval) => int;
+let subSeconds: (Js.Date.t, int) => Js.Date.t;
+
+/* ——[Minute helpers]——————————— */
+
+let addMinutes: (Js.Date.t, int) => Js.Date.t;
+
+let subMinutes: (Js.Date.t, int) => Js.Date.t;
+
+/* ——[Hour helpers]——————————— */
+
+let addHours: (Js.Date.t, int) => Js.Date.t;
+
+let subHours: (Js.Date.t, int) => Js.Date.t;
+
+/* ——[Day helpers——————————— */
 
 let getDaysInMonth: Js.Date.t => int;
 
@@ -46,31 +62,13 @@ let addDays: (Js.Date.t, int) => Js.Date.t;
 
 let subDays: (Js.Date.t, int) => Js.Date.t;
 
-let addWeeks: (Js.Date.t, int) => Js.Date.t;
-
-let subWeeks: (Js.Date.t, int) => Js.Date.t;
-
-let addMonths: (Js.Date.t, int) => Js.Date.t;
-
-let subMonths: (Js.Date.t, int) => Js.Date.t;
-
-let addYears: (Js.Date.t, int) => Js.Date.t;
-
-let subYears: (Js.Date.t, int) => Js.Date.t;
-
 let startOfDay: Js.Date.t => Js.Date.t;
 
 let endOfDay: Js.Date.t => Js.Date.t;
 
-let diffInCalendarDays: (Js.Date.t, Js.Date.t) => int;
+let differenceInCalendarDays: (Js.Date.t, Js.Date.t) => int;
 
-let diffInDays: (Js.Date.t, Js.Date.t) => int;
-
-let eachDayOfIntervalArray: interval => array(Js.Date.t);
-
-let eachDayOfIntervalList: interval => list(Js.Date.t);
-
-let startOfYear: Js.Date.t => Js.Date.t;
+let differenceInDays: (Js.Date.t, Js.Date.t) => int;
 
 let getDayOfYear: Js.Date.t => int;
 
@@ -82,17 +80,27 @@ let isTomorrow: Js.Date.t => bool;
 
 let isYesterday: Js.Date.t => bool;
 
-let diffInWeeks: (Js.Date.t, Js.Date.t) => int;
+/* ——[Week helpers]——————————— */
+
+let addWeeks: (Js.Date.t, int) => Js.Date.t;
+
+let subWeeks: (Js.Date.t, int) => Js.Date.t;
+
+let differenceInWeeks: (Js.Date.t, Js.Date.t) => int;
 
 let startOfWeek: (~weekStartsOn: day=?, Js.Date.t) => Js.Date.t;
 
 let endOfWeek: (~weekStartsOn: day=?, Js.Date.t) => Js.Date.t;
 
-let diffInCalendarWeeks: (~weekStartsOn: day=?, Js.Date.t, Js.Date.t) => int;
+let differenceInCalendarWeeks: (~weekStartsOn: day=?, Js.Date.t, Js.Date.t) => int;
 
 let isSameWeek: (~weekStartsOn: day=?, Js.Date.t, Js.Date.t) => bool;
 
 let lastDayOfWeek: (~weekStartsOn: day=?, Js.Date.t) => Js.Date.t;
+
+/* ——[Weekday helpers]——————————— */
+
+let is: (Js.Date.t, day) => bool;
 
 let isSunday: Js.Date.t => bool;
 
@@ -110,7 +118,13 @@ let isSaturday: Js.Date.t => bool;
 
 let isWeekend: Js.Date.t => bool;
 
-let diffInCalendarMonths: (Js.Date.t, Js.Date.t) => int;
+/* ——[Month helpers]——————————— */
+
+let addMonths: (Js.Date.t, int) => Js.Date.t;
+
+let subMonths: (Js.Date.t, int) => Js.Date.t;
+
+let differenceInCalendarMonths: (Js.Date.t, Js.Date.t) => int;
 
 let startOfMonth: Js.Date.t => Js.Date.t;
 
@@ -124,6 +138,14 @@ let isSameMonth: (Js.Date.t, Js.Date.t) => bool;
 
 let lastDayOfMonth: Js.Date.t => Js.Date.t;
 
+/* ——[Year helpers]——————————— */
+
+let addYears: (Js.Date.t, int) => Js.Date.t;
+
+let subYears: (Js.Date.t, int) => Js.Date.t;
+
+let startOfYear: Js.Date.t => Js.Date.t;
+
 let isSameYear: (Js.Date.t, Js.Date.t) => bool;
 
 let isLeapYear: Js.Date.t => bool;
@@ -135,3 +157,15 @@ let lastMonthOfYear: Js.Date.t => Js.Date.t;
 let lastDayOfYear: Js.Date.t => Js.Date.t;
 
 let getDaysInYear: Js.Date.t => int;
+
+/* ——[Interval helpers]——————————— */
+
+let isWithinInterval: (Js.Date.t, ~start: Js.Date.t, ~end_: Js.Date.t) => bool;
+
+let areIntervalsOverlapping: (interval, interval) => bool;
+
+let getOverlappingDaysInIntervals: (interval, interval) => int;
+
+let eachDayOfIntervalArray: interval => array(Js.Date.t);
+
+let eachDayOfIntervalList: interval => list(Js.Date.t);
