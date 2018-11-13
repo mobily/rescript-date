@@ -98,7 +98,7 @@
 - [x] `isLeapYear`
 - [x] `isSameYear`
 - [x] `lastMonthOfYear`
-- [ ] `lastDayOfYear`
+- [x] `lastDayOfYear`
 
 ### ISO
 

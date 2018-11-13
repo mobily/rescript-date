@@ -131,3 +131,5 @@ let isLeapYear: Js.Date.t => bool;
 let endOfYear: Js.Date.t => Js.Date.t;
 
 let lastMonthOfYear: Js.Date.t => Js.Date.t;
+
+let lastDayOfYear: Js.Date.t => Js.Date.t;
