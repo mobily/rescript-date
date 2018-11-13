@@ -1,6 +1,6 @@
 type interval = {
   start: Js.Date.t,
-  end_: Js.Date.t
+  end_: Js.Date.t,
 };
 
 type day =
@@ -129,3 +129,5 @@ let isSameYear: (Js.Date.t, Js.Date.t) => bool;
 let isLeapYear: Js.Date.t => bool;
 
 let endOfYear: Js.Date.t => Js.Date.t;
+
+let lastMonthOfYear: Js.Date.t => Js.Date.t;

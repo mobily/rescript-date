@@ -289,3 +289,6 @@ let isSameYear = (fst, snd) => fst->Internal.startOfYear->isEqual(snd->Internal.
 let isLeapYear = date => Date.(date->getFullYear->int_of_float->isLeap);
 
 let endOfYear = Internal.endOfYear;
+
+let lastMonthOfYear = date =>
+  Date.(makeWithYMD(~year=date->getFullYear +. 1., ~month=0., ~date=0., ())->startOfMonth);
