@@ -111,7 +111,7 @@
 - [x] `addYears`
 - [x] `subYears`
 - [ ] `differenceInYears`
-- [ ] `differenceInCalendarYears`
+- [x] `differenceInCalendarYears`
 - [x] `startOfYear`
 - [x] `endOfYear`
 - [x] `getDaysInYear`

@@ -282,6 +282,8 @@ let lastDayOfYear = date => date->lastMonthOfYear->lastDayOfMonth;
 
 let getDaysInYear = date => date->isLeapYear ? 366 : 365;
 
+let differenceInCalendarYears = (fst, snd) => Date.(fst->getFullYear -. snd->getFullYear)->int_of_float;
+
 /* ——[Interval helpers]——————————— */
 
 let isWithinInterval = (date, ~start, ~end_) => {
