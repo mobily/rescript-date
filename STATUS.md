@@ -94,7 +94,7 @@
 - [ ] `diffInCalendarYears`
 - [x] `startOfYear`
 - [x] `endOfYear`
-- [ ] `getDaysInYear`
+- [x] `getDaysInYear`
 - [x] `isLeapYear`
 - [x] `isSameYear`
 - [x] `lastMonthOfYear`

@@ -294,3 +294,5 @@ let lastMonthOfYear = date =>
   Date.(makeWithYMD(~year=date->getFullYear +. 1., ~month=0., ~date=0., ())->startOfMonth);
 
 let lastDayOfYear = date => date->lastMonthOfYear->lastDayOfMonth;
+
+let getDaysInYear = date => date->isLeapYear ? 366 : 365;

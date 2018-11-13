@@ -133,3 +133,5 @@ let endOfYear: Js.Date.t => Js.Date.t;
 let lastMonthOfYear: Js.Date.t => Js.Date.t;
 
 let lastDayOfYear: Js.Date.t => Js.Date.t;
+
+let getDaysInYear: Js.Date.t => int;
