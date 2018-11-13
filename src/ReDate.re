@@ -50,6 +50,9 @@ module Internal = {
   let startOfYear = date =>
     Date.(makeWithYMD(~year=date->getFullYear, ~month=0., ~date=1., ())->makeDateWithStartOfDayHours);
 
+  let endOfYear = date =>
+    Date.(makeWithYMD(~year=date->getFullYear +. 1., ~month=0., ~date=0., ())->makeDateWithEndOfDayHours);
+
   let diffInDays = makeDiff(Constants.dayMilliseconds);
 
   let diffInCalendarWeeks = makeDiff(Constants.weekMilliseconds);
@@ -107,7 +110,7 @@ let isFuture = date => date->isAfter(Date.make());
 
 let isPast = date => date->isBefore(Date.make());
 
-let isLeap = year => (year mod 400 === 0) || (year mod 4 === 0 && year mod 100 !== 0);
+let isLeap = year => year mod 400 === 0 || year mod 4 === 0 && year mod 100 !== 0;
 
 let compareAsc = ((-1), 1)->Internal.compareAscOrDesc;
 
@@ -281,6 +284,8 @@ let subYears = (date, years) => date->addYears(- years);
 
 let startOfYear = Internal.startOfYear;
 
-let isSameYear = (fst, snd) => (fst->Internal.startOfYear->isEqual(snd->Internal.startOfYear));
+let isSameYear = (fst, snd) => fst->Internal.startOfYear->isEqual(snd->Internal.startOfYear);
 
 let isLeapYear = date => Date.(date->getFullYear->int_of_float->isLeap);
+
+let endOfYear = Internal.endOfYear;

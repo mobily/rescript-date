@@ -24,7 +24,7 @@
 
 ### Second
 
->  TODO
+> TODO
 
 ### Minute
 
@@ -32,7 +32,7 @@
 
 ### Hour
 
->  TODO
+> TODO
 
 ### Day
 
@@ -93,7 +93,7 @@
 - [ ] `diffInYears`
 - [ ] `diffInCalendarYears`
 - [x] `startOfYear`
-- [ ] `endOfYear`
+- [x] `endOfYear`
 - [ ] `getDaysInYear`
 - [x] `isLeapYear`
 - [x] `isSameYear`
