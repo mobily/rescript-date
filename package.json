@@ -27,6 +27,7 @@
   "dependencies": {},
   "devDependencies": {
     "@glennsl/bs-jest": "^0.4.2",
+    "all-contributors-cli": "^5.4.1",
     "bs-platform": "^4.0.7"
   },
   "publishConfig": {
