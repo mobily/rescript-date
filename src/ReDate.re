@@ -271,7 +271,7 @@ let isSameYear = (fst, snd) => fst->startOfYear->isEqual(snd->startOfYear);
 let isLeapYear = date => date->Date.getFullYear->int_of_float->Internal.isLeap;
 
 let endOfYear = date =>
-  Date.(makeWithYMD(~year=date->getFullYear +. 1., ~month=0., ~date=0., ()))->Internal.makeDateWithEndOfDayHours;
+  Date.(makeWithYMD(~year=date->getFullYear, ~month=11., ~date=31., ()))->Internal.makeDateWithEndOfDayHours;
 
 let lastMonthOfYear = date =>
   Date.(makeWithYMD(~year=date->getFullYear, ~month=11., ~date=1., ()))->Internal.makeDateWithStartOfDayHours;
