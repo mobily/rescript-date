@@ -50,9 +50,6 @@ module Internal = {
   let startOfYear = date =>
     Date.(makeWithYMD(~year=date->getFullYear, ~month=0., ~date=1., ())->makeDateWithStartOfDayHours);
 
-  let endOfYear = date =>
-    Date.(makeWithYMD(~year=date->getFullYear +. 1., ~month=0., ~date=0., ())->makeDateWithEndOfDayHours);
-
   let differenceInDays = makeDiff(Constants.dayMilliseconds);
 
   let differenceInCalendarWeeks = makeDiff(Constants.weekMilliseconds);
@@ -269,14 +266,15 @@ let subYears = (date, years) => date->addYears(- years);
 
 let startOfYear = Internal.startOfYear;
 
-let isSameYear = (fst, snd) => fst->Internal.startOfYear->isEqual(snd->Internal.startOfYear);
+let isSameYear = (fst, snd) => fst->startOfYear->isEqual(snd->startOfYear);
 
-let isLeapYear = date => Date.(date->getFullYear->int_of_float->Internal.isLeap);
+let isLeapYear = date => date->Date.getFullYear->int_of_float->Internal.isLeap;
 
-let endOfYear = Internal.endOfYear;
+let endOfYear = date =>
+  Date.(makeWithYMD(~year=date->getFullYear +. 1., ~month=0., ~date=0., ()))->Internal.makeDateWithEndOfDayHours;
 
 let lastMonthOfYear = date =>
-  Date.(makeWithYMD(~year=date->getFullYear, ~month=11., ~date=1., ())->Internal.makeDateWithStartOfDayHours);
+  Date.(makeWithYMD(~year=date->getFullYear, ~month=11., ~date=1., ()))->Internal.makeDateWithStartOfDayHours;
 
 let lastDayOfYear = date => date->lastMonthOfYear->lastDayOfMonth;
 
