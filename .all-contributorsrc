@@ -1,0 +1,31 @@
+{
+  "projectName": "re-date",
+  "projectOwner": "mobily",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "mobily",
+      "name": "Marcin Dziewulski",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1467712?v=4",
+      "profile": "https://twitter.com/__marcin_",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "panr",
+      "name": "Radek Kozieł",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1303365?v=4",
+      "profile": "http://radoslawkoziel.pl",
+      "contributions": [
+        "code"
+      ]
+    }
+  ]
+}
