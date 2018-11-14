@@ -28,22 +28,22 @@
 
 ### Second helpers
 
-- [x] `addSeconds` 
-- [x] `subSeconds` 
-- [ ] `differenceInSeconds` 
-- [ ] `startOfSecond` 
-- [ ] `endOfSecond` 
-- [ ] `isSameSecond` 
+- [x] `addSeconds`
+- [x] `subSeconds`
+- [ ] `differenceInSeconds`
+- [ ] `startOfSecond`
+- [ ] `endOfSecond`
+- [ ] `isSameSecond`
 
 ### Minute helpers
 
-- [x] `addMinutes` 
-- [x] `subMinutes` 
-- [ ] `differenceInMinutes` 
-- [ ] `startOfMinute` 
-- [ ] `endOfMinute` 
-- [ ] `isSameMinute` 
-- [ ] `roundToNearestMinute` 
+- [x] `addMinutes`
+- [x] `subMinutes`
+- [ ] `differenceInMinutes`
+- [ ] `startOfMinute`
+- [ ] `endOfMinute`
+- [ ] `isSameMinute`
+- [ ] `roundToNearestMinute`
 
 ### Hour helpers
 
@@ -111,13 +111,14 @@
 - [x] `addYears`
 - [x] `subYears`
 - [ ] `differenceInYears`
-- [ ] `differenceInCalendarYears`
+- [x] `differenceInCalendarYears`
 - [x] `startOfYear`
-- [ ] `endOfYear`
-- [ ] `getDaysInYear`
-- [ ] `isLeapYear`
-- [ ] `isSameYear`
-- [ ] `lastDayOfYear`
+- [x] `endOfYear`
+- [x] `getDaysInYear`
+- [x] `isLeapYear`
+- [x] `isSameYear`
+- [x] `lastMonthOfYear`
+- [x] `lastDayOfYear`
 
 ### ISO
 

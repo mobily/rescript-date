@@ -93,6 +93,8 @@ module Internal = {
 
   let makeLastDayOfMonth = date =>
     Date.(makeWithYMD(~year=date->getFullYear, ~month=date->getMonth +. 1., ~date=0., ()));
+
+  let isLeap = year => year mod 400 === 0 || year mod 4 === 0 && year mod 100 !== 0;
 };
 
 /* ——[Common helpers]——————————— */
@@ -263,6 +265,22 @@ let addYears = (date, years) => date->addMonths(12 * years);
 let subYears = (date, years) => date->addYears(- years);
 
 let startOfYear = Internal.startOfYear;
+
+let isSameYear = (fst, snd) => fst->startOfYear->isEqual(snd->startOfYear);
+
+let isLeapYear = date => date->Date.getFullYear->int_of_float->Internal.isLeap;
+
+let endOfYear = date =>
+  Date.(makeWithYMD(~year=date->getFullYear +. 1., ~month=0., ~date=0., ()))->Internal.makeDateWithEndOfDayHours;
+
+let lastMonthOfYear = date =>
+  Date.(makeWithYMD(~year=date->getFullYear, ~month=11., ~date=1., ()))->Internal.makeDateWithStartOfDayHours;
+
+let lastDayOfYear = date => date->lastMonthOfYear->lastDayOfMonth;
+
+let getDaysInYear = date => date->isLeapYear ? 366 : 365;
+
+let differenceInCalendarYears = (fst, snd) => Date.(fst->getFullYear -. snd->getFullYear)->int_of_float;
 
 /* ——[Interval helpers]——————————— */
 
