@@ -20,7 +20,9 @@ type day =
   | Saturday;
 
 module Constants = {
-  let minuteMilliseconds = 60 * 1000;
+  let secondMilliseconds = 1000;
+
+  let minuteMilliseconds = 60 * secondMilliseconds;
 
   let dayMilliseconds = 24 * 60 * minuteMilliseconds;
 
@@ -126,6 +128,16 @@ let maxOfList = dates => Internal.(dates->Belt.List.reduce(None, (>)->reduceMinO
 let addSeconds = (date, seconds) => Date.(date->setSeconds(date->getSeconds +. seconds->float_of_int)->fromFloat);
 
 let subSeconds = (date, seconds) => date->addSeconds(- seconds);
+
+let differenceInSeconds = (fst, snd) => {
+  let diff = (fst->Date.getTime -. snd->Date.getTime) /. Constants.secondMilliseconds->float_of_int;
+
+  switch (diff) {
+  | x when x > 0. => x->Math.floor_int
+  | x when x < 0. => x->Math.ceil_int
+  | _ => 0
+  };
+};
 
 /* ——[Minute helpers]——————————— */
 

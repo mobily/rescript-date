@@ -30,7 +30,7 @@
 
 - [x] `addSeconds`
 - [x] `subSeconds`
-- [ ] `differenceInSeconds`
+- [x] `differenceInSeconds`
 - [ ] `startOfSecond`
 - [ ] `endOfSecond`
 - [ ] `isSameSecond`
