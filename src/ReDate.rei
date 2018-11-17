@@ -68,6 +68,8 @@ let startOfHour: Js.Date.t => Js.Date.t;
 
 let endOfHour: Js.Date.t => Js.Date.t;
 
+let isSameHour: (Js.Date.t, Js.Date.t) => bool;
+
 /* ——[Day helpers——————————— */
 
 let getDaysInMonth: Js.Date.t => int;

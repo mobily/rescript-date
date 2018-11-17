@@ -173,6 +173,8 @@ let startOfHour = date => Date.(date->setMinutesSMs(~minutes=0., ~seconds=0., ~m
 
 let endOfHour = date => Date.(date->setMinutesSMs(~minutes=59., ~seconds=59., ~milliseconds=999., ())->fromFloat);
 
+let isSameHour = (fst, snd) => fst->startOfHour->isEqual(snd->startOfHour);
+
 /* ——[Day helpers]——————————— */
 
 let getDaysInMonth = date => date->Internal.makeLastDayOfMonth->Date.getDate->int_of_float;
