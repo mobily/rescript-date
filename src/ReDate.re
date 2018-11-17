@@ -141,6 +141,8 @@ let differenceInSeconds = (fst, snd) => {
 
 let startOfSecond = date => Date.(date->setMilliseconds(0.)->fromFloat);
 
+let endOfSecond = date => Date.(date->setMilliseconds(999.)->fromFloat);
+
 /* ——[Minute helpers]——————————— */
 
 let addMinutes = (date, minutes) => Date.(date->setMinutes(date->getMinutes +. minutes->float_of_int)->fromFloat);

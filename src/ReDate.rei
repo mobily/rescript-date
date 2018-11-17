@@ -46,6 +46,8 @@ let differenceInSeconds: (Js.Date.t, Js.Date.t) => int;
 
 let startOfSecond: Js.Date.t => Js.Date.t;
 
+let endOfSecond: Js.Date.t => Js.Date.t;
+
 /* ——[Minute helpers]——————————— */
 
 let addMinutes: (Js.Date.t, int) => Js.Date.t;

@@ -32,7 +32,7 @@
 - [x] `subSeconds`
 - [x] `differenceInSeconds`
 - [x] `startOfSecond`
-- [ ] `endOfSecond`
+- [x] `endOfSecond`
 - [ ] `isSameSecond`
 
 ### Minute helpers
