@@ -144,6 +144,8 @@ let subMonths: (Js.Date.t, int) => Js.Date.t;
 
 let differenceInCalendarMonths: (Js.Date.t, Js.Date.t) => int;
 
+let differenceInMonths: (Js.Date.t, Js.Date.t) => int;
+
 let startOfMonth: Js.Date.t => Js.Date.t;
 
 let endOfMonth: Js.Date.t => Js.Date.t;
