@@ -100,11 +100,7 @@ module Internal = {
       | Days
       | Weeks =>
         let diff = (fst->getTime -. snd->getTime) /. differenceType->getMillisecondsOf->float_of_int;
-        switch (diff) {
-        | x when x > 0. => x->Math.floor_int
-        | x when x < 0. => x->Math.ceil_int
-        | _ => 0
-        };
+        diff > 0. ? diff->Math.floor_int : diff->Math.ceil_int;
       | Months =>
         let diff = (fst->getMonth -. snd->getMonth +. 12. *. (fst->getFullYear -. snd->getFullYear))->int_of_float;
         let anchor = fst->addMonths(1);
@@ -115,12 +111,7 @@ module Internal = {
             (snd->getTime -. anchor->getTime) /. (fst->addMonths(diff + 1)->getTime -. anchor->getTime);
           };
 
-        switch (diff) {
-        | x when x > 0 => - (x + adjust->int_of_float)
-        | x when x < 0 => x + adjust->int_of_float
-        | _ => 0
-        };
-
+        diff > 0 ? - (diff + adjust->int_of_float) : diff + adjust->int_of_float;
       | CalendarDays(startOf)
       | CalendarWeeks(startOf) =>
         let fst = fst->startOf;
