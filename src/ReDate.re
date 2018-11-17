@@ -143,6 +143,8 @@ let startOfSecond = date => Date.(date->setMilliseconds(0.)->fromFloat);
 
 let endOfSecond = date => Date.(date->setMilliseconds(999.)->fromFloat);
 
+let isSameSecond = (fst, snd) => fst->startOfSecond->isEqual(snd->startOfSecond);
+
 /* ——[Minute helpers]——————————— */
 
 let addMinutes = (date, minutes) => Date.(date->setMinutes(date->getMinutes +. minutes->float_of_int)->fromFloat);

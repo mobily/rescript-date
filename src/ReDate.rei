@@ -48,6 +48,8 @@ let startOfSecond: Js.Date.t => Js.Date.t;
 
 let endOfSecond: Js.Date.t => Js.Date.t;
 
+let isSameSecond: (Js.Date.t, Js.Date.t) => bool;
+
 /* ——[Minute helpers]——————————— */
 
 let addMinutes: (Js.Date.t, int) => Js.Date.t;
