@@ -2,7 +2,7 @@ open Jest;
 
 open Js.Date;
 
-describe("startOfWeek", () =>
+describe("startOfSecond", () =>
   ExpectJs.(
     test("returns the date with the time setted to the first millisecond of a second", () => {
       let date =
