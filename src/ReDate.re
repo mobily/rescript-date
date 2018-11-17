@@ -192,6 +192,8 @@ let addMinutes = (date, minutes) => Date.(date->setMinutes(date->getMinutes +. m
 
 let subMinutes = (date, minutes) => date->addMinutes(- minutes);
 
+let differenceInMinutes = Internal.differenceIn(Minutes);
+
 /* ——[Hour helpers]——————————— */
 
 let addHours = (date, hours) => Date.(date->setHours(date->getHours +. hours->float_of_int)->fromFloat);
