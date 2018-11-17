@@ -24,7 +24,9 @@ module Constants = {
 
   let minuteMilliseconds = 60 * secondMilliseconds;
 
-  let dayMilliseconds = 24 * 60 * minuteMilliseconds;
+  let hourMilliseconds = 60 * minuteMilliseconds;
+
+  let dayMilliseconds = 24 * hourMilliseconds;
 
   let weekMilliseconds = 7 * dayMilliseconds;
 };
@@ -156,6 +158,16 @@ let subMinutes = (date, minutes) => date->addMinutes(- minutes);
 let addHours = (date, hours) => Date.(date->setHours(date->getHours +. hours->float_of_int)->fromFloat);
 
 let subHours = (date, hours) => date->addHours(- hours);
+
+let differenceInHours = (fst, snd) => {
+  let diff = (fst->Date.getTime -. snd->Date.getTime) /. Constants.hourMilliseconds->float_of_int;
+
+  switch (diff) {
+  | x when x > 0. => x->Math.floor_int
+  | x when x < 0. => x->Math.ceil_int
+  | _ => 0
+  };
+};
 
 /* ——[Day helpers]——————————— */
 

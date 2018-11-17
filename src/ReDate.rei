@@ -62,6 +62,8 @@ let addHours: (Js.Date.t, int) => Js.Date.t;
 
 let subHours: (Js.Date.t, int) => Js.Date.t;
 
+let differenceInHours: (Js.Date.t, Js.Date.t) => int;
+
 /* ——[Day helpers——————————— */
 
 let getDaysInMonth: Js.Date.t => int;
