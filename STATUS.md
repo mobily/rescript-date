@@ -51,7 +51,7 @@
 - [x] `subHours`
 - [x] `differenceInHours`
 - [x] `startOfHour`
-- [ ] `endOfHour`
+- [x] `endOfHour`
 - [ ] `isSameHour`
 
 ### Day helpers
