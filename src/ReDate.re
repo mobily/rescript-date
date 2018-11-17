@@ -169,6 +169,8 @@ let differenceInHours = (fst, snd) => {
   };
 };
 
+let startOfHour = date => Date.(date->setMinutesSMs(~minutes=0., ~seconds=0., ~milliseconds=0., ())->fromFloat);
+
 /* ——[Day helpers]——————————— */
 
 let getDaysInMonth = date => date->Internal.makeLastDayOfMonth->Date.getDate->int_of_float;

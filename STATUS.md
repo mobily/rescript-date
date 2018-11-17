@@ -50,7 +50,7 @@
 - [x] `addHours`
 - [x] `subHours`
 - [x] `differenceInHours`
-- [ ] `startOfHour`
+- [x] `startOfHour`
 - [ ] `endOfHour`
 - [ ] `isSameHour`
 
