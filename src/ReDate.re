@@ -177,8 +177,6 @@ let isSameHour = (fst, snd) => fst->startOfHour->isEqual(snd->startOfHour);
 
 /* ——[Day helpers]——————————— */
 
-let getDaysInMonth = date => date->Internal.makeLastDayOfMonth->Date.getDate->int_of_float;
-
 let addDays = (date, days) => Date.(date->setDate(date->getDate +. days->float_of_int)->fromFloat);
 
 let subDays = (date, days) => date->addDays(- days);
@@ -266,6 +264,8 @@ let isSaturday = is(_, Saturday);
 let isWeekend = date => date->isSaturday || date->isSunday;
 
 /* ——[Month helpers]——————————— */
+
+let getDaysInMonth = date => date->Internal.makeLastDayOfMonth->Date.getDate->int_of_float;
 
 let addMonths = (date, months) =>
   Date.(

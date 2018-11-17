@@ -72,8 +72,6 @@ let isSameHour: (Js.Date.t, Js.Date.t) => bool;
 
 /* ——[Day helpers——————————— */
 
-let getDaysInMonth: Js.Date.t => int;
-
 let addDays: (Js.Date.t, int) => Js.Date.t;
 
 let subDays: (Js.Date.t, int) => Js.Date.t;
@@ -135,6 +133,8 @@ let isSaturday: Js.Date.t => bool;
 let isWeekend: Js.Date.t => bool;
 
 /* ——[Month helpers]——————————— */
+
+let getDaysInMonth: Js.Date.t => int;
 
 let addMonths: (Js.Date.t, int) => Js.Date.t;
 
