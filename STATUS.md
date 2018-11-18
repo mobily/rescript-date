@@ -40,7 +40,7 @@
 - [x] `addMinutes`
 - [x] `subMinutes`
 - [x] `differenceInMinutes`
-- [ ] `startOfMinute`
+- [x] `startOfMinute`
 - [ ] `endOfMinute`
 - [ ] `isSameMinute`
 - [ ] `roundToNearestMinute`
