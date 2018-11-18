@@ -110,7 +110,7 @@
 
 - [x] `addYears`
 - [x] `subYears`
-- [ ] `differenceInYears`
+- [x] `differenceInYears`
 - [x] `differenceInCalendarYears`
 - [x] `startOfYear`
 - [x] `endOfYear`

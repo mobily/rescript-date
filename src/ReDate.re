@@ -91,7 +91,7 @@ module Internal = {
       | _ => failwith("error")
     );
 
-  let differenceIn = (differenceType, fst, snd) =>
+  let rec differenceIn = (differenceType, fst, snd) =>
     Date.(
       switch (differenceType) {
       | Seconds
@@ -103,15 +103,16 @@ module Internal = {
         diff > 0. ? diff->Math.floor_int : diff->Math.ceil_int;
       | Months =>
         let diff = (fst->getMonth -. snd->getMonth +. 12. *. (fst->getFullYear -. snd->getFullYear))->int_of_float;
-        let anchor = fst->addMonths(1);
+        let anchor = snd->addMonths(diff);
         let adjust =
-          if (snd->getTime -. anchor->getTime < 0.) {
-            (snd->getTime -. anchor->getTime) /. (anchor->getTime -. fst->addMonths(diff - 1)->getTime);
+          if (fst->getTime -. anchor->getTime < 0.) {
+            (fst->getTime -. anchor->getTime) /. (anchor->getTime -. snd->addMonths(diff->pred)->getTime);
           } else {
-            (snd->getTime -. anchor->getTime) /. (fst->addMonths(diff + 1)->getTime -. anchor->getTime);
+            (fst->getTime -. anchor->getTime) /. (snd->addMonths(diff->succ)->getTime -. anchor->getTime);
           };
 
-        diff > 0 ? - (diff + adjust->int_of_float) : diff + adjust->int_of_float;
+        adjust->Math.round->int_of_float + diff;
+      | Years => differenceIn(Months, fst, snd) / 12
       | CalendarDays(startOf)
       | CalendarWeeks(startOf) =>
         let fst = fst->startOf;
@@ -123,7 +124,6 @@ module Internal = {
       | CalendarMonths =>
         ((fst->getFullYear -. snd->getFullYear) *. 12. +. (fst->getMonth -. snd->getMonth))->int_of_float
       | CalendarYears => (fst->getFullYear -. snd->getFullYear)->int_of_float
-      | _ => failwith("error")
       }
     );
 
@@ -345,6 +345,8 @@ let lastDayOfYear = date => date->lastMonthOfYear->lastDayOfMonth;
 let getDaysInYear = date => date->isLeapYear ? 366 : 365;
 
 let differenceInCalendarYears = Internal.differenceIn(CalendarYears);
+
+let differenceInYears = Internal.differenceIn(Years);
 
 /* ——[Interval helpers]——————————— */
 

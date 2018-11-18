@@ -180,6 +180,8 @@ let getDaysInYear: Js.Date.t => int;
 
 let differenceInCalendarYears: (Js.Date.t, Js.Date.t) => int;
 
+let differenceInYears: (Js.Date.t, Js.Date.t) => int;
+
 /* ——[Interval helpers]——————————— */
 
 let isWithinInterval: (Js.Date.t, ~start: Js.Date.t, ~end_: Js.Date.t) => bool;
