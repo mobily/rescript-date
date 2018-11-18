@@ -4,6 +4,10 @@
 
 > …
 
+## Motivation
+
+TODO
+
 ## Installation
 
 ```shell
@@ -14,36 +18,7 @@ yarn add @mobily/re-date
 
 `ReDate` has (almost) the same API as the popular [`date-fns`](https://date-fns.org/v2.0.0-alpha.25/docs/Getting-Started). 
 
-### Day helpers
-
-#### `addDays: (Js.Date.t, int) => Js.Date.t;`
-
-Add the specified number of days to the given date.
- 
-```reason
-let date = Js.Date.make();
-date->ReDate.addDays(1);
-```
-
-#### `subDays: (Js.Date.t, int) => Js.Date.t`
-
-Subtract the specified number of days from the given date.
-
-```reason
-let date = Js.Date.make();
-date->ReDate.subDays(1);
-```
-
-### Month helpers
-
-#### `getDaysInMonth:  Js.Date.t => int`
-
-Get the number of days in a month of the given date.
-
-```reason
-let date = Js.Date.(make()->setMonth(5.));
-date->ReDate.getDaysInMonth;
-```
+TODO
 
 ## Status
 
