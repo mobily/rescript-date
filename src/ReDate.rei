@@ -58,7 +58,9 @@ let subMinutes: (Js.Date.t, int) => Js.Date.t;
 
 let differenceInMinutes: (Js.Date.t, Js.Date.t) => int;
 
-let startOfMinute: Js.Date.t => Js.Date.t
+let startOfMinute: Js.Date.t => Js.Date.t;
+
+let endOfMinute: Js.Date.t => Js.Date.t;
 
 /* ——[Hour helpers]——————————— */
 

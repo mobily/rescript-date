@@ -225,6 +225,8 @@ let differenceInMinutes = Internal.differenceIn(Minutes);
 
 let startOfMinute = date => Date.(date->Internal.makeDate->setSecondsMs(~seconds=0., ~milliseconds=0., ())->fromFloat);
 
+let endOfMinute = date => Date.(date->Internal.makeDate->setSecondsMs(~seconds=59., ~milliseconds=999., ())->fromFloat);
+
 /* ——[Hour helpers]——————————— */
 
 let addHours = (date, hours) =>
