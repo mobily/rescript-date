@@ -47,18 +47,19 @@ module Milliseconds = {
 };
 
 module Internal = {
+  let makeDate = date => Date.(date->valueOf->fromFloat);
   /* based on: https://github.com/date-fns/date-fns/blob/master/src/_lib/getTimezoneOffsetInMilliseconds/index.js */
   let getTimezoneOffsetInMilliseconds = date =>
     date->Date.getTimezoneOffset
     *. Milliseconds.minute->float_of_int
-    +. (date->Date.setSecondsMs(~seconds=0., ~milliseconds=0., ())->int_of_float mod Milliseconds.minute)
+    +. (date->makeDate->Date.setSecondsMs(~seconds=0., ~milliseconds=0., ())->int_of_float mod Milliseconds.minute)
        ->float_of_int;
 
   let makeDateWithStartOfDayHours = date =>
-    Date.(date->setHoursMSMs(~hours=0., ~minutes=0., ~seconds=0., ~milliseconds=0., ())->fromFloat);
+    Date.(date->makeDate->setHoursMSMs(~hours=0., ~minutes=0., ~seconds=0., ~milliseconds=0., ())->fromFloat);
 
   let makeDateWithEndOfDayHours = date =>
-    Date.(date->setHoursMSMs(~hours=23., ~minutes=59., ~seconds=59., ~milliseconds=999., ())->fromFloat);
+    Date.(date->makeDate->setHoursMSMs(~hours=23., ~minutes=59., ~seconds=59., ~milliseconds=999., ())->fromFloat);
 
   let makeLastDayOfMonth = date =>
     Date.(makeWithYMD(~year=date->getFullYear, ~month=date->getMonth +. 1., ~date=0., ()));
@@ -154,11 +155,11 @@ module Internal = {
       | Start(date) =>
         let day = date->getDay;
         let diff = (day < week ? 7. : 0.) +. day -. week;
-        date->setDate(date->getDate -. diff);
+        date->makeDate->setDate(date->getDate -. diff);
       | End(date) =>
         let day = date->getDay;
         let diff = (day < week ? (-7.) : 0.) +. 6. -. (day -. week);
-        date->setDate(date->getDate +. diff);
+        date->makeDate->setDate(date->getDate +. diff);
       };
 
     date->fromFloat;
@@ -193,21 +194,23 @@ let maxOfList = dates => Internal.(dates->Belt.List.reduce(None, (>)->reduceMinO
 
 /* ——[Second helpers]——————————— */
 
-let addSeconds = (date, seconds) => Date.(date->setSeconds(date->getSeconds +. seconds->float_of_int)->fromFloat);
+let addSeconds = (date, seconds) =>
+  Date.(date->Internal.makeDate->setSeconds(date->getSeconds +. seconds->float_of_int)->fromFloat);
 
 let subSeconds = (date, seconds) => date->addSeconds(- seconds);
 
 let differenceInSeconds = Internal.differenceIn(Seconds);
 
-let startOfSecond = date => Date.(date->setMilliseconds(0.)->fromFloat);
+let startOfSecond = date => Date.(date->Internal.makeDate->setMilliseconds(0.)->fromFloat);
 
-let endOfSecond = date => Date.(date->setMilliseconds(999.)->fromFloat);
+let endOfSecond = date => Date.(date->Internal.makeDate->setMilliseconds(999.)->fromFloat);
 
 let isSameSecond = (fst, snd) => fst->startOfSecond->isEqual(snd->startOfSecond);
 
 /* ——[Minute helpers]——————————— */
 
-let addMinutes = (date, minutes) => Date.(date->setMinutes(date->getMinutes +. minutes->float_of_int)->fromFloat);
+let addMinutes = (date, minutes) =>
+  Date.(date->Internal.makeDate->setMinutes(date->getMinutes +. minutes->float_of_int)->fromFloat);
 
 let subMinutes = (date, minutes) => date->addMinutes(- minutes);
 
@@ -215,21 +218,25 @@ let differenceInMinutes = Internal.differenceIn(Minutes);
 
 /* ——[Hour helpers]——————————— */
 
-let addHours = (date, hours) => Date.(date->setHours(date->getHours +. hours->float_of_int)->fromFloat);
+let addHours = (date, hours) =>
+  Date.(date->Internal.makeDate->setHours(date->getHours +. hours->float_of_int)->fromFloat);
 
 let subHours = (date, hours) => date->addHours(- hours);
 
 let differenceInHours = Internal.differenceIn(Hours);
 
-let startOfHour = date => Date.(date->setMinutesSMs(~minutes=0., ~seconds=0., ~milliseconds=0., ())->fromFloat);
+let startOfHour = date =>
+  Date.(date->Internal.makeDate->setMinutesSMs(~minutes=0., ~seconds=0., ~milliseconds=0., ())->fromFloat);
 
-let endOfHour = date => Date.(date->setMinutesSMs(~minutes=59., ~seconds=59., ~milliseconds=999., ())->fromFloat);
+let endOfHour = date =>
+  Date.(date->Internal.makeDate->setMinutesSMs(~minutes=59., ~seconds=59., ~milliseconds=999., ())->fromFloat);
 
 let isSameHour = (fst, snd) => fst->startOfHour->isEqual(snd->startOfHour);
 
 /* ——[Day helpers]——————————— */
 
-let addDays = (date, days) => Date.(date->setDate(date->getDate +. days->float_of_int)->fromFloat);
+let addDays = (date, days) =>
+  Date.(date->Internal.makeDate->setDate(date->getDate +. days->float_of_int)->fromFloat);
 
 let subDays = (date, days) => date->addDays(- days);
 
@@ -310,7 +317,8 @@ let differenceInCalendarMonths = Internal.differenceIn(CalendarMonths);
 
 let differenceInMonths = Internal.differenceIn(Months);
 
-let startOfMonth = date => Date.(date->setDate(1.)->fromFloat->Internal.makeDateWithStartOfDayHours);
+let startOfMonth = date =>
+  Date.(date->Internal.makeDate->setDate(1.)->fromFloat->Internal.makeDateWithStartOfDayHours);
 
 let endOfMonth = date => Internal.(date->makeLastDayOfMonth->makeDateWithEndOfDayHours);
 
