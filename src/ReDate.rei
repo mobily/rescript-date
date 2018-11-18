@@ -62,6 +62,8 @@ let startOfMinute: Js.Date.t => Js.Date.t;
 
 let endOfMinute: Js.Date.t => Js.Date.t;
 
+let isSameMinute: (Js.Date.t, Js.Date.t) => bool;
+
 /* ——[Hour helpers]——————————— */
 
 let addHours: (Js.Date.t, int) => Js.Date.t;

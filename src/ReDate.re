@@ -227,6 +227,8 @@ let startOfMinute = date => Date.(date->Internal.makeDate->setSecondsMs(~seconds
 
 let endOfMinute = date => Date.(date->Internal.makeDate->setSecondsMs(~seconds=59., ~milliseconds=999., ())->fromFloat);
 
+let isSameMinute = (fst, snd) => fst->startOfMinute->isEqual(snd->startOfMinute);
+
 /* ——[Hour helpers]——————————— */
 
 let addHours = (date, hours) =>

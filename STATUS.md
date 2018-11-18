@@ -42,7 +42,7 @@
 - [x] `differenceInMinutes`
 - [x] `startOfMinute`
 - [x] `endOfMinute`
-- [ ] `isSameMinute`
+- [x] `isSameMinute`
 - [ ] `roundToNearestMinute`
 
 ### Hour helpers
