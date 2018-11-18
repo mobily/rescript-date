@@ -47,7 +47,7 @@ module Milliseconds = {
 };
 
 module Internal = {
-  let makeDate = date => Date.(date->valueOf->fromFloat);
+  let makeDate = date => Date.(date->getTime->fromFloat);
   /* based on: https://github.com/date-fns/date-fns/blob/master/src/_lib/getTimezoneOffsetInMilliseconds/index.js */
   let getTimezoneOffsetInMilliseconds = date =>
     date->Date.getTimezoneOffset
@@ -68,6 +68,8 @@ module Internal = {
     Date.(makeWithYMD(~year=date->getFullYear, ~month=0., ~date=1., ())->makeDateWithStartOfDayHours);
 
   let getDaysInMonth = date => date->makeLastDayOfMonth->Date.getDate->int_of_float;
+
+  let addDays = (date, days) => Date.(date->makeDate->setDate(date->getDate +. days->float_of_int)->fromFloat);
 
   let addMonths = (date, months) =>
     Date.(
@@ -105,11 +107,13 @@ module Internal = {
       | Months =>
         let diff = (fst->getMonth -. snd->getMonth +. 12. *. (fst->getFullYear -. snd->getFullYear))->int_of_float;
         let anchor = snd->addMonths(diff);
+        let anchorTime = anchor->getTime;
+        let fstTime = fst->getTime;
         let adjust =
-          if (fst->getTime -. anchor->getTime < 0.) {
-            (fst->getTime -. anchor->getTime) /. (anchor->getTime -. snd->addMonths(diff->pred)->getTime);
+          if (fstTime -. anchorTime < 0.) {
+            (fstTime -. anchorTime) /. (anchorTime -. snd->addMonths(diff->pred)->getTime);
           } else {
-            (fst->getTime -. anchor->getTime) /. (snd->addMonths(diff->succ)->getTime -. anchor->getTime);
+            (fstTime -. anchorTime) /. (snd->addMonths(diff->succ)->getTime -. anchorTime);
           };
 
         adjust->Math.round->int_of_float + diff;
@@ -130,14 +134,12 @@ module Internal = {
 
   let retrieveMinOrMax = value => value->Belt.Option.getExn->Date.fromFloat;
 
-  let compareAscOrDesc = (tuple, firstDate, secondDate) => {
-    let (x, y) = tuple;
+  let compareAscOrDesc = (~x, ~y, firstDate, secondDate) =>
     switch (firstDate->Date.getTime -. secondDate->Date.getTime) {
     | ts when ts < 0. => x
     | ts when ts > 0. => y
     | _ => 0
     };
-  };
 
   let reduceMinOrMax = (fn, acc, date) =>
     switch (date->Date.getTime) {
@@ -166,6 +168,11 @@ module Internal = {
   };
 
   let isLeap = year => year mod 400 === 0 || year mod 4 === 0 && year mod 100 !== 0;
+
+  let makeIntervalDay = (interval, index) => interval.start->makeDateWithStartOfDayHours->addDays(index);
+
+  let getAmountOfIntervalDays = interval =>
+    differenceIn(CalendarDays(makeDateWithStartOfDayHours), interval.end_, interval.start)->succ;
 };
 
 /* ——[Common helpers]——————————— */
@@ -180,9 +187,9 @@ let isFuture = date => date->isAfter(Date.make());
 
 let isPast = date => date->isBefore(Date.make());
 
-let compareAsc = ((-1), 1)->Internal.compareAscOrDesc;
+let compareAsc = Internal.compareAscOrDesc(~x=-1, ~y=1);
 
-let compareDesc = (1, (-1))->Internal.compareAscOrDesc;
+let compareDesc = Internal.compareAscOrDesc(~x=1, ~y=-1);
 
 let minOfArray = dates => Internal.(dates->Belt.Array.reduce(None, (<)->reduceMinOrMax)->retrieveMinOrMax);
 
@@ -235,8 +242,7 @@ let isSameHour = (fst, snd) => fst->startOfHour->isEqual(snd->startOfHour);
 
 /* ——[Day helpers]——————————— */
 
-let addDays = (date, days) =>
-  Date.(date->Internal.makeDate->setDate(date->getDate +. days->float_of_int)->fromFloat);
+let addDays = Internal.addDays;
 
 let subDays = (date, days) => date->addDays(- days);
 
@@ -379,12 +385,8 @@ let getOverlappingDaysInIntervals = (left, right) =>
     }
   );
 
-let internal_makeIntervalDay = (interval, index) => interval.start->startOfDay->addDays(index);
-
-let internal_getAmountOfIntervalDays = interval => interval.end_->differenceInCalendarDays(interval.start)->succ;
-
 let eachDayOfIntervalArray = interval =>
-  interval->internal_getAmountOfIntervalDays->Belt.Array.makeBy(interval->internal_makeIntervalDay);
+  Internal.(interval->getAmountOfIntervalDays->Belt.Array.makeBy(interval->makeIntervalDay));
 
 let eachDayOfIntervalList = interval =>
-  interval->internal_getAmountOfIntervalDays->Belt.List.makeBy(interval->internal_makeIntervalDay);
+  Internal.(interval->getAmountOfIntervalDays->Belt.List.makeBy(interval->makeIntervalDay));
