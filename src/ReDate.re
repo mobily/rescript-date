@@ -48,6 +48,7 @@ module Milliseconds = {
 
 module Internal = {
   let makeDate = date => Date.(date->getTime->fromFloat);
+
   /* based on: https://github.com/date-fns/date-fns/blob/master/src/_lib/getTimezoneOffsetInMilliseconds/index.js */
   let getTimezoneOffsetInMilliseconds = date =>
     date->Date.getTimezoneOffset
@@ -335,6 +336,14 @@ let isLastDayOfMonth = date => Date.(date->endOfDay->getTime === date->endOfMont
 let isSameMonth = (fst, snd) => fst->startOfMonth->isEqual(snd->startOfMonth);
 
 let lastDayOfMonth = date => Internal.(date->makeLastDayOfMonth->makeDateWithStartOfDayHours);
+
+let getWeekOfMonth = (~weekStartsOn=Sunday, date) => {
+  let startWeekDay = date->startOfMonth->Date.getDay;
+  let weekStartsOn' = weekStartsOn->dayToJs->float_of_int;
+  let diff = startWeekDay < weekStartsOn' ? 7. -. weekStartsOn' +. startWeekDay : startWeekDay -. weekStartsOn';
+
+  ((date->Date.getDate +. diff) /. 7.)->Math.ceil_int;
+};
 
 /* ——[Year helpers]——————————— */
 

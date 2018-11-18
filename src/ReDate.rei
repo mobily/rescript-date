@@ -158,6 +158,8 @@ let isSameMonth: (Js.Date.t, Js.Date.t) => bool;
 
 let lastDayOfMonth: Js.Date.t => Js.Date.t;
 
+let getWeekOfMonth: (~weekStartsOn: day=?, Js.Date.t) => int;
+
 /* ——[Year helpers]——————————— */
 
 let addYears: (Js.Date.t, int) => Js.Date.t;
