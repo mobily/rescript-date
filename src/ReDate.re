@@ -19,51 +19,128 @@ type day =
   | Friday
   | Saturday;
 
-module Constants = {
-  let minuteMilliseconds = 60 * 1000;
+type helper = Date.t => Date.t;
 
-  let dayMilliseconds = 24 * 60 * minuteMilliseconds;
+type differenceIn =
+  | Seconds
+  | Hours
+  | Minutes
+  | Days
+  | CalendarDays(helper)
+  | Weeks
+  | CalendarWeeks(helper)
+  | Months
+  | CalendarMonths
+  | Years
+  | CalendarYears;
 
-  let weekMilliseconds = 7 * dayMilliseconds;
+module Milliseconds = {
+  let second = 1000;
+
+  let minute = 60 * second;
+
+  let hour = 60 * minute;
+
+  let day = 24 * hour;
+
+  let week = 7 * day;
 };
 
 module Internal = {
+  let makeDate = date => Date.(date->getTime->fromFloat);
+
   /* based on: https://github.com/date-fns/date-fns/blob/master/src/_lib/getTimezoneOffsetInMilliseconds/index.js */
   let getTimezoneOffsetInMilliseconds = date =>
     date->Date.getTimezoneOffset
-    *. Constants.minuteMilliseconds->float_of_int
-    +. (date->Date.setSecondsMs(~seconds=0., ~milliseconds=0., ())->int_of_float mod Constants.minuteMilliseconds)
+    *. Milliseconds.minute->float_of_int
+    +. (date->makeDate->Date.setSecondsMs(~seconds=0., ~milliseconds=0., ())->int_of_float mod Milliseconds.minute)
        ->float_of_int;
 
   let makeDateWithStartOfDayHours = date =>
-    Date.(date->setHoursMSMs(~hours=0., ~minutes=0., ~seconds=0., ~milliseconds=0., ())->fromFloat);
+    Date.(date->makeDate->setHoursMSMs(~hours=0., ~minutes=0., ~seconds=0., ~milliseconds=0., ())->fromFloat);
 
   let makeDateWithEndOfDayHours = date =>
-    Date.(date->setHoursMSMs(~hours=23., ~minutes=59., ~seconds=59., ~milliseconds=999., ())->fromFloat);
+    Date.(date->makeDate->setHoursMSMs(~hours=23., ~minutes=59., ~seconds=59., ~milliseconds=999., ())->fromFloat);
 
-  let makeDiff = (ms, fst, snd) => {
-    let fstTime = fst->Date.getTime -. fst->getTimezoneOffsetInMilliseconds;
-    let sndTime = snd->Date.getTime -. snd->getTimezoneOffsetInMilliseconds;
-    (fstTime -. sndTime) /. ms->float_of_int;
-  };
+  let makeLastDayOfMonth = date =>
+    Date.(makeWithYMD(~year=date->getFullYear, ~month=date->getMonth +. 1., ~date=0., ()));
 
   let startOfYear = date =>
     Date.(makeWithYMD(~year=date->getFullYear, ~month=0., ~date=1., ())->makeDateWithStartOfDayHours);
 
-  let differenceInDays = makeDiff(Constants.dayMilliseconds);
+  let getDaysInMonth = date => date->makeLastDayOfMonth->Date.getDate->int_of_float;
 
-  let differenceInCalendarWeeks = makeDiff(Constants.weekMilliseconds);
+  let addDays = (date, days) => Date.(date->makeDate->setDate(date->getDate +. days->float_of_int)->fromFloat);
+
+  let addMonths = (date, months) =>
+    Date.(
+      makeWithYMD(
+        ~year=date->getFullYear,
+        ~month=date->getMonth +. months->float_of_int,
+        ~date=Math.min_float(date->getDaysInMonth->float_of_int, date->getDate),
+        (),
+      )
+    );
+
+  let getMillisecondsOf =
+    Milliseconds.(
+      fun
+      | Seconds => second
+      | Minutes => minute
+      | Hours => hour
+      | Days
+      | CalendarDays(_) => day
+      | Weeks
+      | CalendarWeeks(_) => week
+      | _ => failwith("error")
+    );
+
+  let rec differenceIn = (differenceType, fst, snd) =>
+    Date.(
+      switch (differenceType) {
+      | Seconds
+      | Minutes
+      | Hours
+      | Days
+      | Weeks =>
+        let diff = (fst->getTime -. snd->getTime) /. differenceType->getMillisecondsOf->float_of_int;
+        diff > 0. ? diff->Math.floor_int : diff->Math.ceil_int;
+      | Months =>
+        let diff = (fst->getMonth -. snd->getMonth +. 12. *. (fst->getFullYear -. snd->getFullYear))->int_of_float;
+        let anchor = snd->addMonths(diff);
+        let anchorTime = anchor->getTime;
+        let fstTime = fst->getTime;
+        let adjust =
+          if (fstTime -. anchorTime < 0.) {
+            (fstTime -. anchorTime) /. (anchorTime -. snd->addMonths(diff->pred)->getTime);
+          } else {
+            (fstTime -. anchorTime) /. (snd->addMonths(diff->succ)->getTime -. anchorTime);
+          };
+
+        adjust->Math.round->int_of_float + diff;
+      | Years => differenceIn(Months, fst, snd) / 12
+      | CalendarDays(startOf)
+      | CalendarWeeks(startOf) =>
+        let fst = fst->startOf;
+        let snd = snd->startOf;
+        let fstTime = fst->Date.getTime -. fst->getTimezoneOffsetInMilliseconds;
+        let sndTime = snd->Date.getTime -. snd->getTimezoneOffsetInMilliseconds;
+        let diff = (fstTime -. sndTime) /. differenceType->getMillisecondsOf->float_of_int;
+        diff->Math.round->int_of_float;
+      | CalendarMonths =>
+        ((fst->getFullYear -. snd->getFullYear) *. 12. +. (fst->getMonth -. snd->getMonth))->int_of_float
+      | CalendarYears => (fst->getFullYear -. snd->getFullYear)->int_of_float
+      }
+    );
 
   let retrieveMinOrMax = value => value->Belt.Option.getExn->Date.fromFloat;
 
-  let compareAscOrDesc = (tuple, firstDate, secondDate) => {
-    let (x, y) = tuple;
+  let compareAscOrDesc = (~x, ~y, firstDate, secondDate) =>
     switch (firstDate->Date.getTime -. secondDate->Date.getTime) {
     | ts when ts < 0. => x
     | ts when ts > 0. => y
     | _ => 0
     };
-  };
 
   let reduceMinOrMax = (fn, acc, date) =>
     switch (date->Date.getTime) {
@@ -81,20 +158,22 @@ module Internal = {
       | Start(date) =>
         let day = date->getDay;
         let diff = (day < week ? 7. : 0.) +. day -. week;
-        date->setDate(date->getDate -. diff);
+        date->makeDate->setDate(date->getDate -. diff);
       | End(date) =>
         let day = date->getDay;
         let diff = (day < week ? (-7.) : 0.) +. 6. -. (day -. week);
-        date->setDate(date->getDate +. diff);
+        date->makeDate->setDate(date->getDate +. diff);
       };
 
     date->fromFloat;
   };
 
-  let makeLastDayOfMonth = date =>
-    Date.(makeWithYMD(~year=date->getFullYear, ~month=date->getMonth +. 1., ~date=0., ()));
-
   let isLeap = year => year mod 400 === 0 || year mod 4 === 0 && year mod 100 !== 0;
+
+  let makeIntervalDay = (interval, index) => interval.start->makeDateWithStartOfDayHours->addDays(index);
+
+  let getAmountOfIntervalDays = interval =>
+    differenceIn(CalendarDays(makeDateWithStartOfDayHours), interval.end_, interval.start)->succ;
 };
 
 /* ——[Common helpers]——————————— */
@@ -109,9 +188,9 @@ let isFuture = date => date->isAfter(Date.make());
 
 let isPast = date => date->isBefore(Date.make());
 
-let compareAsc = ((-1), 1)->Internal.compareAscOrDesc;
+let compareAsc = Internal.compareAscOrDesc(~x=-1, ~y=1);
 
-let compareDesc = (1, (-1))->Internal.compareAscOrDesc;
+let compareDesc = Internal.compareAscOrDesc(~x=1, ~y=-1);
 
 let minOfArray = dates => Internal.(dates->Belt.Array.reduce(None, (<)->reduceMinOrMax)->retrieveMinOrMax);
 
@@ -123,27 +202,48 @@ let maxOfList = dates => Internal.(dates->Belt.List.reduce(None, (>)->reduceMinO
 
 /* ——[Second helpers]——————————— */
 
-let addSeconds = (date, seconds) => Date.(date->setSeconds(date->getSeconds +. seconds->float_of_int)->fromFloat);
+let addSeconds = (date, seconds) =>
+  Date.(date->Internal.makeDate->setSeconds(date->getSeconds +. seconds->float_of_int)->fromFloat);
 
 let subSeconds = (date, seconds) => date->addSeconds(- seconds);
 
+let differenceInSeconds = Internal.differenceIn(Seconds);
+
+let startOfSecond = date => Date.(date->Internal.makeDate->setMilliseconds(0.)->fromFloat);
+
+let endOfSecond = date => Date.(date->Internal.makeDate->setMilliseconds(999.)->fromFloat);
+
+let isSameSecond = (fst, snd) => fst->startOfSecond->isEqual(snd->startOfSecond);
+
 /* ——[Minute helpers]——————————— */
 
-let addMinutes = (date, minutes) => Date.(date->setMinutes(date->getMinutes +. minutes->float_of_int)->fromFloat);
+let addMinutes = (date, minutes) =>
+  Date.(date->Internal.makeDate->setMinutes(date->getMinutes +. minutes->float_of_int)->fromFloat);
 
 let subMinutes = (date, minutes) => date->addMinutes(- minutes);
 
+let differenceInMinutes = Internal.differenceIn(Minutes);
+
 /* ——[Hour helpers]——————————— */
 
-let addHours = (date, hours) => Date.(date->setHours(date->getHours +. hours->float_of_int)->fromFloat);
+let addHours = (date, hours) =>
+  Date.(date->Internal.makeDate->setHours(date->getHours +. hours->float_of_int)->fromFloat);
 
 let subHours = (date, hours) => date->addHours(- hours);
 
+let differenceInHours = Internal.differenceIn(Hours);
+
+let startOfHour = date =>
+  Date.(date->Internal.makeDate->setMinutesSMs(~minutes=0., ~seconds=0., ~milliseconds=0., ())->fromFloat);
+
+let endOfHour = date =>
+  Date.(date->Internal.makeDate->setMinutesSMs(~minutes=59., ~seconds=59., ~milliseconds=999., ())->fromFloat);
+
+let isSameHour = (fst, snd) => fst->startOfHour->isEqual(snd->startOfHour);
+
 /* ——[Day helpers]——————————— */
 
-let getDaysInMonth = date => date->Internal.makeLastDayOfMonth->Date.getDate->int_of_float;
-
-let addDays = (date, days) => Date.(date->setDate(date->getDate +. days->float_of_int)->fromFloat);
+let addDays = Internal.addDays;
 
 let subDays = (date, days) => date->addDays(- days);
 
@@ -151,21 +251,9 @@ let startOfDay = Internal.makeDateWithStartOfDayHours;
 
 let endOfDay = Internal.makeDateWithEndOfDayHours;
 
-let differenceInCalendarDays = (fst, snd) => {
-  let diff = fst->startOfDay->Internal.differenceInDays(snd->startOfDay);
+let differenceInCalendarDays = Internal.differenceIn(CalendarDays(startOfDay));
 
-  diff->Math.round->int_of_float;
-};
-
-let differenceInDays = (fst, snd) => {
-  let diff = Internal.differenceInDays(fst, snd);
-
-  switch (diff) {
-  | x when x > 0. => x->Math.floor_int
-  | x when x < 0. => x->Math.ceil_int
-  | _ => 0
-  };
-};
+let differenceInDays = Internal.differenceIn(Days);
 
 let getDayOfYear = date => date->differenceInCalendarDays(date->Internal.startOfYear)->succ;
 
@@ -183,10 +271,7 @@ let addWeeks = (date, weeks) => date->addDays(weeks * 7);
 
 let subWeeks = (date, weeks) => date->addWeeks(- weeks);
 
-let differenceInWeeks = (fst, snd) => {
-  let diff = (fst->differenceInDays(snd) / 7)->float_of_int;
-  diff > 0. ? diff->Math.floor_int : diff->Math.ceil_int;
-};
+let differenceInWeeks = Internal.differenceIn(Weeks);
 
 let startOfWeek = (~weekStartsOn=Sunday, date) =>
   Internal.(Start(date)->startOrEndOfWeek(weekStartsOn)->makeDateWithStartOfDayHours);
@@ -194,11 +279,9 @@ let startOfWeek = (~weekStartsOn=Sunday, date) =>
 let endOfWeek = (~weekStartsOn=Sunday, date) =>
   Internal.(End(date)->startOrEndOfWeek(weekStartsOn)->makeDateWithEndOfDayHours);
 
-let differenceInCalendarWeeks = (~weekStartsOn=Sunday, fst, snd) => {
+let differenceInCalendarWeeks = (~weekStartsOn=Sunday) => {
   let startOfWeek' = startOfWeek(~weekStartsOn);
-  let diff = fst->startOfWeek'->Internal.differenceInCalendarWeeks(snd->startOfWeek');
-
-  diff->Math.round->int_of_float;
+  Internal.differenceIn(CalendarWeeks(startOfWeek'));
 };
 
 let isSameWeek = (~weekStartsOn=Sunday, fst, snd) => {
@@ -231,22 +314,18 @@ let isWeekend = date => date->isSaturday || date->isSunday;
 
 /* ——[Month helpers]——————————— */
 
-let addMonths = (date, months) =>
-  Date.(
-    makeWithYMD(
-      ~year=date->getFullYear,
-      ~month=date->getMonth +. months->float_of_int,
-      ~date=Math.min_float(date->getDaysInMonth->float_of_int, date->getDate),
-      (),
-    )
-  );
+let getDaysInMonth = Internal.getDaysInMonth;
+
+let addMonths = Internal.addMonths;
 
 let subMonths = (date, months) => date->addMonths(- months);
 
-let differenceInCalendarMonths = (fst, snd) =>
-  Date.((fst->getFullYear -. snd->getFullYear) *. 12. +. (fst->getMonth -. snd->getMonth))->int_of_float;
+let differenceInCalendarMonths = Internal.differenceIn(CalendarMonths);
 
-let startOfMonth = date => Date.(date->setDate(1.)->fromFloat->Internal.makeDateWithStartOfDayHours);
+let differenceInMonths = Internal.differenceIn(Months);
+
+let startOfMonth = date =>
+  Date.(date->Internal.makeDate->setDate(1.)->fromFloat->Internal.makeDateWithStartOfDayHours);
 
 let endOfMonth = date => Internal.(date->makeLastDayOfMonth->makeDateWithEndOfDayHours);
 
@@ -257,6 +336,19 @@ let isLastDayOfMonth = date => Date.(date->endOfDay->getTime === date->endOfMont
 let isSameMonth = (fst, snd) => fst->startOfMonth->isEqual(snd->startOfMonth);
 
 let lastDayOfMonth = date => Internal.(date->makeLastDayOfMonth->makeDateWithStartOfDayHours);
+
+let getWeekOfMonth = (~weekStartsOn=Sunday, date) => {
+  let startWeekDay = date->startOfMonth->Date.getDay;
+  let weekStartsOn' = weekStartsOn->dayToJs->float_of_int;
+  let diff = startWeekDay < weekStartsOn' ? 7. -. weekStartsOn' +. startWeekDay : startWeekDay -. weekStartsOn';
+
+  ((date->Date.getDate +. diff) /. 7.)->Math.ceil_int;
+};
+
+let getWeeksInMonth = (~weekStartsOn=Sunday, date) => {
+  let differenceInCalendarWeeks' = differenceInCalendarWeeks(~weekStartsOn);
+  date->lastDayOfMonth->differenceInCalendarWeeks'(date->startOfMonth)->succ;
+};
 
 /* ——[Year helpers]——————————— */
 
@@ -271,7 +363,7 @@ let isSameYear = (fst, snd) => fst->startOfYear->isEqual(snd->startOfYear);
 let isLeapYear = date => date->Date.getFullYear->int_of_float->Internal.isLeap;
 
 let endOfYear = date =>
-  Date.(makeWithYMD(~year=date->getFullYear +. 1., ~month=0., ~date=0., ()))->Internal.makeDateWithEndOfDayHours;
+  Date.(makeWithYMD(~year=date->getFullYear, ~month=11., ~date=31., ()))->Internal.makeDateWithEndOfDayHours;
 
 let lastMonthOfYear = date =>
   Date.(makeWithYMD(~year=date->getFullYear, ~month=11., ~date=1., ()))->Internal.makeDateWithStartOfDayHours;
@@ -280,7 +372,9 @@ let lastDayOfYear = date => date->lastMonthOfYear->lastDayOfMonth;
 
 let getDaysInYear = date => date->isLeapYear ? 366 : 365;
 
-let differenceInCalendarYears = (fst, snd) => Date.(fst->getFullYear -. snd->getFullYear)->int_of_float;
+let differenceInCalendarYears = Internal.differenceIn(CalendarYears);
+
+let differenceInYears = Internal.differenceIn(Years);
 
 /* ——[Interval helpers]——————————— */
 
@@ -298,19 +392,15 @@ let getOverlappingDaysInIntervals = (left, right) =>
     | (lst, let', rst, ret) when lst < ret && rst < let' =>
       let overlapStartTime = rst < lst ? lst : rst;
       let overlapEndTime = ret > let' ? let' : ret;
-      let overlap = (overlapEndTime -. overlapStartTime) /. Constants.dayMilliseconds->float_of_int;
+      let overlap = (overlapEndTime -. overlapStartTime) /. Milliseconds.day->float_of_int;
 
       overlap->Math.ceil_int;
     | _ => 0
     }
   );
 
-let internal_makeIntervalDay = (interval, index) => interval.start->startOfDay->addDays(index);
-
-let internal_getAmountOfIntervalDays = interval => interval.end_->differenceInCalendarDays(interval.start)->succ;
-
 let eachDayOfIntervalArray = interval =>
-  interval->internal_getAmountOfIntervalDays->Belt.Array.makeBy(interval->internal_makeIntervalDay);
+  Internal.(interval->getAmountOfIntervalDays->Belt.Array.makeBy(interval->makeIntervalDay));
 
 let eachDayOfIntervalList = interval =>
-  interval->internal_getAmountOfIntervalDays->Belt.List.makeBy(interval->internal_makeIntervalDay);
+  Internal.(interval->getAmountOfIntervalDays->Belt.List.makeBy(interval->makeIntervalDay));

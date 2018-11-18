@@ -30,16 +30,16 @@
 
 - [x] `addSeconds`
 - [x] `subSeconds`
-- [ ] `differenceInSeconds`
-- [ ] `startOfSecond`
-- [ ] `endOfSecond`
-- [ ] `isSameSecond`
+- [x] `differenceInSeconds`
+- [x] `startOfSecond`
+- [x] `endOfSecond`
+- [x] `isSameSecond`
 
 ### Minute helpers
 
 - [x] `addMinutes`
 - [x] `subMinutes`
-- [ ] `differenceInMinutes`
+- [x] `differenceInMinutes`
 - [ ] `startOfMinute`
 - [ ] `endOfMinute`
 - [ ] `isSameMinute`
@@ -49,10 +49,10 @@
 
 - [x] `addHours`
 - [x] `subHours`
-- [ ] `differenceInHours`
-- [ ] `startOfHour`
-- [ ] `endOfHour`
-- [ ] `isSameHour`
+- [x] `differenceInHours`
+- [x] `startOfHour`
+- [x] `endOfHour`
+- [x] `isSameHour`
 
 ### Day helpers
 
@@ -89,14 +89,14 @@
 - [x] `endOfWeek`
 - [x] `isSameWeek`
 - [x] `lastDayOfWeek`
-- [ ] `getWeekOfMonth`
-- [ ] `getWeeksOfMonth`
+- [x] `getWeekOfMonth`
+- [x] `getWeeksInMonth`
 
 ### Month helpers
 
 - [x] `addMonths`
 - [x] `subMonths`
-- [ ] `differenceInMonths`
+- [x] `differenceInMonths`
 - [x] `differenceInCalendarMonths`
 - [x] `startOfMonth`
 - [x] `endOfMonth`
@@ -110,7 +110,7 @@
 
 - [x] `addYears`
 - [x] `subYears`
-- [ ] `differenceInYears`
+- [x] `differenceInYears`
 - [x] `differenceInCalendarYears`
 - [x] `startOfYear`
 - [x] `endOfYear`

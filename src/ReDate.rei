@@ -42,11 +42,21 @@ let addSeconds: (Js.Date.t, int) => Js.Date.t;
 
 let subSeconds: (Js.Date.t, int) => Js.Date.t;
 
+let differenceInSeconds: (Js.Date.t, Js.Date.t) => int;
+
+let startOfSecond: Js.Date.t => Js.Date.t;
+
+let endOfSecond: Js.Date.t => Js.Date.t;
+
+let isSameSecond: (Js.Date.t, Js.Date.t) => bool;
+
 /* ——[Minute helpers]——————————— */
 
 let addMinutes: (Js.Date.t, int) => Js.Date.t;
 
 let subMinutes: (Js.Date.t, int) => Js.Date.t;
+
+let differenceInMinutes: (Js.Date.t, Js.Date.t) => int;
 
 /* ——[Hour helpers]——————————— */
 
@@ -54,9 +64,15 @@ let addHours: (Js.Date.t, int) => Js.Date.t;
 
 let subHours: (Js.Date.t, int) => Js.Date.t;
 
-/* ——[Day helpers——————————— */
+let differenceInHours: (Js.Date.t, Js.Date.t) => int;
 
-let getDaysInMonth: Js.Date.t => int;
+let startOfHour: Js.Date.t => Js.Date.t;
+
+let endOfHour: Js.Date.t => Js.Date.t;
+
+let isSameHour: (Js.Date.t, Js.Date.t) => bool;
+
+/* ——[Day helpers——————————— */
 
 let addDays: (Js.Date.t, int) => Js.Date.t;
 
@@ -120,11 +136,15 @@ let isWeekend: Js.Date.t => bool;
 
 /* ——[Month helpers]——————————— */
 
+let getDaysInMonth: Js.Date.t => int;
+
 let addMonths: (Js.Date.t, int) => Js.Date.t;
 
 let subMonths: (Js.Date.t, int) => Js.Date.t;
 
 let differenceInCalendarMonths: (Js.Date.t, Js.Date.t) => int;
+
+let differenceInMonths: (Js.Date.t, Js.Date.t) => int;
 
 let startOfMonth: Js.Date.t => Js.Date.t;
 
@@ -137,6 +157,10 @@ let isLastDayOfMonth: Js.Date.t => bool;
 let isSameMonth: (Js.Date.t, Js.Date.t) => bool;
 
 let lastDayOfMonth: Js.Date.t => Js.Date.t;
+
+let getWeekOfMonth: (~weekStartsOn: day=?, Js.Date.t) => int;
+
+let getWeeksInMonth: (~weekStartsOn: day=?, Js.Date.t) => int
 
 /* ——[Year helpers]——————————— */
 
@@ -159,6 +183,8 @@ let lastDayOfYear: Js.Date.t => Js.Date.t;
 let getDaysInYear: Js.Date.t => int;
 
 let differenceInCalendarYears: (Js.Date.t, Js.Date.t) => int;
+
+let differenceInYears: (Js.Date.t, Js.Date.t) => int;
 
 /* ——[Interval helpers]——————————— */
 

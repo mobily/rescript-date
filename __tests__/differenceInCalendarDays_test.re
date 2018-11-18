@@ -2,7 +2,7 @@ open Jest;
 
 open Js.Date;
 
-describe("differenceInDays", () => {
+describe("differenceInCalendarDays", () => {
   open ExpectJs;
 
   test("returns the number of calendar days between the given dates", () => {
