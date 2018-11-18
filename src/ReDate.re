@@ -345,6 +345,11 @@ let getWeekOfMonth = (~weekStartsOn=Sunday, date) => {
   ((date->Date.getDate +. diff) /. 7.)->Math.ceil_int;
 };
 
+let getWeeksInMonth = (~weekStartsOn=Sunday, date) => {
+  let differenceInCalendarWeeks' = differenceInCalendarWeeks(~weekStartsOn);
+  date->lastDayOfMonth->differenceInCalendarWeeks'(date->startOfMonth)->succ;
+};
+
 /* ——[Year helpers]——————————— */
 
 let addYears = (date, years) => date->addMonths(12 * years);

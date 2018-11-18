@@ -90,7 +90,7 @@
 - [x] `isSameWeek`
 - [x] `lastDayOfWeek`
 - [x] `getWeekOfMonth`
-- [ ] `getWeeksOfMonth`
+- [x] `getWeeksInMonth`
 
 ### Month helpers
 
