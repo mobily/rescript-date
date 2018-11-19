@@ -205,12 +205,7 @@ let isValid = (~year, ~month, ~date, ()) =>
   | (year, _, _) when year > 199999. || year < (-199999.) => None
   | (_, month, _) when month > 11. || month < 0. => None
   | (_, _, date) when date < 1. => None
-  | (year, month, date)
-      when
-        month === 1.
-        && !Internal.isLeap(year->int_of_float)
-        && date > 28.
-        || Date.makeWithYM(~year, ~month, ())->Internal.makeLastDayOfMonth->Date.getDate < date =>
+  | (year, month, date) when Date.makeWithYM(~year, ~month, ())->Internal.makeLastDayOfMonth->Date.getDate < date =>
     None
   | (year, month, date) => Some(Date.makeWithYMD(~year, ~month, ~date, ()))
   };
