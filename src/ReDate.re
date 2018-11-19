@@ -229,6 +229,14 @@ let endOfMinute = date => Date.(date->Internal.makeDate->setSecondsMs(~seconds=5
 
 let isSameMinute = (fst, snd) => fst->startOfMinute->isEqual(snd->startOfMinute);
 
+let roundToNearestMinute = (~nearest=1, date) => {
+  let closestTo = Math.round(date->Date.getSeconds /. 60.);
+  let closestMinute = Date.(date->getMinutes +. closestTo);
+  let nearestRoundedMinute = nearest !== 1 ? ((date->Date.getMinutes /. nearest->float_of_int)
+    ->Math.round *. nearest->float_of_int) : closestMinute;
+  Date.(date->Internal.makeDate->setMinutes(nearestRoundedMinute)->fromFloat->startOfMinute);
+};
+
 /* ——[Hour helpers]——————————— */
 
 let addHours = (date, hours) =>
