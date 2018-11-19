@@ -224,17 +224,21 @@ let subMinutes = (date, minutes) => date->addMinutes(- minutes);
 
 let differenceInMinutes = Internal.differenceIn(Minutes);
 
-let startOfMinute = date => Date.(date->Internal.makeDate->setSecondsMs(~seconds=0., ~milliseconds=0., ())->fromFloat);
+let startOfMinute = date =>
+  Date.(date->Internal.makeDate->setSecondsMs(~seconds=0., ~milliseconds=0., ())->fromFloat);
 
-let endOfMinute = date => Date.(date->Internal.makeDate->setSecondsMs(~seconds=59., ~milliseconds=999., ())->fromFloat);
+let endOfMinute = date =>
+  Date.(date->Internal.makeDate->setSecondsMs(~seconds=59., ~milliseconds=999., ())->fromFloat);
 
 let isSameMinute = (fst, snd) => fst->startOfMinute->isEqual(snd->startOfMinute);
 
-let roundToNearestMinute = (~nearest=1, date) => {
+let roundToNearestMinute = (~nearestTo=1, date) => {
   let closestTo = Math.round(date->Date.getSeconds /. 60.);
   let closestMinute = Date.(date->getMinutes +. closestTo);
-  let nearestRoundedMinute = nearest !== 1 ? ((date->Date.getMinutes /. nearest->float_of_int)
-    ->Math.round *. nearest->float_of_int) : closestMinute;
+  let nearestRoundedMinute =
+    nearestTo !== 1 ?
+      (date->Date.getMinutes /. nearestTo->float_of_int)->Math.round *. nearestTo->float_of_int : closestMinute;
+
   Date.(date->Internal.makeDate->setMinutes(nearestRoundedMinute)->fromFloat->startOfMinute);
 };
 
