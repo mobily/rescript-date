@@ -40,10 +40,10 @@
 - [x] `addMinutes`
 - [x] `subMinutes`
 - [x] `differenceInMinutes`
-- [ ] `startOfMinute`
-- [ ] `endOfMinute`
-- [ ] `isSameMinute`
-- [ ] `roundToNearestMinute`
+- [x] `startOfMinute`
+- [x] `endOfMinute`
+- [x] `isSameMinute`
+- [x] `roundToNearestMinute`
 
 ### Hour helpers
 
