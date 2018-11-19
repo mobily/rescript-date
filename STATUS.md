@@ -15,6 +15,7 @@
 - [x] `minOfList`
 - [ ] `closestTo`
 - [ ] `closestIndexTo`
+- [x] `isValid` ⚠️
 
 ### Interval helpers
 

@@ -36,6 +36,8 @@ let maxOfArray: array(Js.Date.t) => Js.Date.t;
 
 let maxOfList: list(Js.Date.t) => Js.Date.t;
 
+let isValid: (~year: float, ~month: float, ~date: float, unit) => option(Js.Date.t);
+
 /* ——[Second helpers]——————————— */
 
 let addSeconds: (Js.Date.t, int) => Js.Date.t;
