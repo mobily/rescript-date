@@ -200,14 +200,19 @@ let maxOfArray = dates => Internal.(dates->Belt.Array.reduce(None, (>)->reduceMi
 
 let maxOfList = dates => Internal.(dates->Belt.List.reduce(None, (>)->reduceMinOrMax)->retrieveMinOrMax);
 
-let isValid = (~year, ~month, ~date, ()) =>
-  switch (year, month, date) {
-  | (year, _, _) when year > 199999. || year < (-199999.) => None
-  | (_, month, _) when month > 11. || month < 0. => None
-  | (_, _, date) when date < 1. => None
-  | (year, month, date) when Date.makeWithYM(~year, ~month, ())->Internal.makeLastDayOfMonth->Date.getDate < date =>
+let isValid = (~year, ~month, ~date, ~hours=0., ~minutes=0., ~seconds=0., ()) =>
+  switch (year, month, date, hours, minutes, seconds) {
+  | (year, _, _, _, _, _) when year > 199999. || year < (-199999.) => None
+  | (_, month, _, _, _, _) when month > 11. || month < 0. => None
+  | (_, _, date, _, _, _) when date < 1. => None
+  | (_, _, _, hours, minutes, seconds)
+      when hours < 0. || hours > 23. || minutes < 0. || minutes > 59. || seconds < 0. || seconds > 59. =>
     None
-  | (year, month, date) => Some(Date.makeWithYMD(~year, ~month, ~date, ()))
+  | (year, month, date, _, _, _)
+      when Date.makeWithYM(~year, ~month, ())->Internal.makeLastDayOfMonth->Date.getDate < date =>
+    None
+  | (year, month, date, hours, minutes, seconds) =>
+    Some(Date.makeWithYMDHMS(~year, ~month, ~date, ~hours, ~minutes, ~seconds, ()))
   };
 
 /* ——[Second helpers]——————————— */
