@@ -41,6 +41,12 @@ TODO
 yarn add @mobily/re-date
 ```
 
+or with `npm`
+
+```shell
+npm install @mobily/re-date --save
+```
+
 Then add `@mobily/re-date` to `bs-dependencies` in your `bsconfig.json`:
 
 ```json
