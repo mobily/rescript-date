@@ -14,9 +14,10 @@ const readDocFile = name => {
   return readFile(file)
 }
 const retrieveMarkdownTree = md => mdContents(md).tree()
-const treeToMarkdown = tree => mdContents.treeToMarkdown(tree)
+const treeToMarkdown = tree => mdContents.treeToMarkdown(tree[0].descendants)
 const pathToDocs = doc => `docs/${doc}.md`
 const generateAnchors = curry((doc, content) => replace(/\(\#(.+)\)/g, `(${pathToDocs(doc)}#$1)`, content))
+const capitalizeFirstLetter = str => str.charAt(0).toUpperCase() + str.slice(1)
 
 const docs = ['second', 'hour', 'day']
 const retrieveMarkdownOf = pipe(
@@ -27,14 +28,14 @@ const retrieveMarkdownOf = pipe(
 const generateToC = pipe(
   map(doc => {
     const content = retrieveMarkdownOf(doc)
-    return generateAnchors(doc, content)
+    return `**${capitalizeFirstLetter(doc)}**\n\n${generateAnchors(doc, content)}\n`
   }),
   reduce((acc, toc) => `${acc}${toc}`, ''),
 )
 const saveReadme = content => {
   const readmeContent = readFile(pathToReadme)
   const newReadmeContent = replace(
-    /\<\!\-\- TOC\:START.+\-\-\>(\n.+)+\n+\<\!\-\- TOC:END \-\-\>/gm,
+    /\<\!\-\- TOC\:START.+\-\-\>(\n.*)*\n*\<\!\-\- TOC:END \-\-\>/gm,
     `<!-- TOC:START - Do not remove or modify this section -->\n${content}<!-- TOC:END -->`,
     readmeContent
   )
