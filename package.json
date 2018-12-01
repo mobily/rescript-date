@@ -7,7 +7,8 @@
     "clean": "bsb -clean-world",
     "build": "bsb -make-world",
     "test": "jest --coverage",
-    "generate:toc": "node ./scripts/generate-toc.js"
+    "generate:toc": "node ./scripts/generate-toc.js",
+    "generate:contributors": "yarn all-contributors generate"
   },
   "license": "MIT",
   "keywords": [
