@@ -8,6 +8,7 @@
 
 ```reason
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ());
+
 date->ReDate.addDays(5);
 ```
 
@@ -19,6 +20,7 @@ date->ReDate.addDays(5);
 
 ```reason
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ());
+
 date->ReDate.subDays(5);
 ```
 
@@ -30,6 +32,7 @@ date->ReDate.subDays(5);
 
 ```reason
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=16., ~minutes=50., ~seconds=12., ());
+
 date->ReDate.startOfDay;
 ```
 
@@ -41,6 +44,7 @@ date->ReDate.startOfDay;
 
 ```reason
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=16., ~minutes=50., ~seconds=12., ());
+
 date->ReDate.endOfDay;
 ```
 
@@ -103,6 +107,7 @@ fstDate->ReDate.isSameDay(sndDate);
 
 ```reason
 let date = Js.Date.make();
+
 date->ReDate.isToday;
 ```
 
@@ -114,6 +119,7 @@ date->ReDate.isToday;
 
 ```reason
 let date = Js.Date.make();
+
 ReDate.(date->addDays(1)->isTomorrow);
 ```
 
@@ -125,5 +131,6 @@ ReDate.(date->addDays(1)->isTomorrow);
 
 ```reason
 let date = Js.Date.make();
+
 ReDate.(date->subDays(1)->isYesterday);
 ```
