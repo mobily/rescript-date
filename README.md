@@ -64,6 +64,7 @@ If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 <!-- TOC:START - Do not remove or modify this section -->
 <details>
 <summary><code>Common helpers</code></summary>
+
 * [isEqual](docs/common.md#isequal)
 * [isBefore](docs/common.md#isbefore)
 * [isAfter](docs/common.md#isafter)
@@ -80,6 +81,7 @@ If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 
 <details>
 <summary><code>Interval helpers</code></summary>
+
 * [isWithinInterval](docs/interval.md#iswithininterval)
 * [areIntervalsOverlapping](docs/interval.md#areintervalsoverlapping)
 * [getOverlappingDaysInIntervals](docs/interval.md#getoverlappingdaysinintervals)
@@ -89,6 +91,7 @@ If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 
 <details>
 <summary><code>Second helpers</code></summary>
+
 * [addSeconds](docs/second.md#addseconds)
 * [subSeconds](docs/second.md#subseconds)
 * [differenceInSeconds](docs/second.md#differenceinseconds)
@@ -99,6 +102,7 @@ If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 
 <details>
 <summary><code>Minute helpers</code></summary>
+
 * [addMinutes](docs/minute.md#addminutes)
 * [subMinutes](docs/minute.md#subminutes)
 * [differenceInMinutes](docs/minute.md#differenceinminutes)
@@ -110,6 +114,7 @@ If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 
 <details>
 <summary><code>Hour helpers</code></summary>
+
 * [addHours](docs/hour.md#addhours)
 * [subHours](docs/hour.md#subhours)
 * [differenceInHours](docs/hour.md#differenceinhours)
@@ -120,6 +125,7 @@ If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 
 <details>
 <summary><code>Day helpers</code></summary>
+
 * [addDays](docs/day.md#adddays)
 * [subDays](docs/day.md#subdays)
 * [startOfDay](docs/day.md#startofday)
@@ -135,6 +141,7 @@ If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 
 <details>
 <summary><code>Week helpers</code></summary>
+
 * [addWeeks](docs/week.md#addweeks)
 * [subWeeks](docs/week.md#subweeks)
 * [differenceInWeeks](docs/week.md#differenceinweeks)
@@ -147,6 +154,7 @@ If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 
 <details>
 <summary><code>Weekday helpers</code></summary>
+
 * [is](docs/weekday.md#is)
 * [isSunday](docs/weekday.md#issunday)
 * [isMonday](docs/weekday.md#ismonday)
@@ -160,6 +168,7 @@ If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 
 <details>
 <summary><code>Month helpers</code></summary>
+
 * [addMonths](docs/month.md#addmonths)
 * [subMonths](docs/month.md#submonths)
 * [differenceInCalendarMonths](docs/month.md#differenceincalendarmonths)
@@ -177,6 +186,7 @@ If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 
 <details>
 <summary><code>Year helpers</code></summary>
+
 * [addYears](docs/year.md#addyears)
 * [subYears](docs/year.md#subyears)
 * [startOfYear](docs/year.md#startofyear)
