@@ -49,6 +49,16 @@ yarn add @mobily/re-date
 * [endOfSecond](docs/second.md#endofsecond)
 * [isSameSecond](docs/second.md#issamesecond)
 
+**Minute**
+
+* [addMinutes](docs/minute.md#addminutes)
+* [subMinutes](docs/minute.md#subminutes)
+* [differenceInMinutes](docs/minute.md#differenceinminutes)
+* [startOfMinute](docs/minute.md#startofminute)
+* [endOfMinute](docs/minute.md#endofminute)
+* [isSameMinute](docs/minute.md#issameminute)
+* [roundToNearestMinute](docs/minute.md#roundtonearestminute)
+
 **Hour**
 
 * [addHours](docs/hour.md#addhours)
