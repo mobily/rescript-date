@@ -652,6 +652,14 @@ console-control-strings@^1.0.0, console-control-strings@~1.1.0:
   resolved "https://registry.yarnpkg.com/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
   integrity sha1-PXz0Rk22RG6mRL9LOVB/mFEAjo4=
 
+contents@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/contents/-/contents-5.0.0.tgz#4310b7304509659779adc1686bfde940310a063e"
+  integrity sha512-wnnGorqo07ZSIzMQmUc4vUv1NEXl7elBtqoz5UcysV+pbSvphZYfI763rXgpFK2H9o5rvjQQ8kZxp7hOOwIe3A==
+  dependencies:
+    lodash "^4.17.10"
+    sister "^3.0.1"
+
 convert-source-map@^1.4.0, convert-source-map@^1.5.1:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-1.6.0.tgz#51b537a8c43e0f04dec1993bffcdd504e758ac20"
@@ -2288,6 +2296,14 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
+markdown-contents@^1.0.11:
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/markdown-contents/-/markdown-contents-1.0.11.tgz#e184d5143a2a4d86da3eac3d27ae8a194ca8f2eb"
+  integrity sha512-6o8It0JhmoN398ATp8zOWHAniTB3/tEXUVTCP00gTqwZNc465DIoHTTaspyEkaov93QLhrqirxizJ29E/i8/0Q==
+  dependencies:
+    contents "^5.0.0"
+    lodash "^4.17.10"
+
 math-random@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/math-random/-/math-random-1.0.1.tgz#8b3aac588b8a66e4975e3cdea67f7bb329601fac"
@@ -2873,6 +2889,11 @@ qs@~6.5.2:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
   integrity sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==
 
+ramda@^0.26.0:
+  version "0.26.0"
+  resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.26.0.tgz#3cbe059f5c18fbc0eb86f2396ab1f8320705424c"
+  integrity sha512-maK1XqpgsOo5DwjhROjqDvpm1vkphLQbpleVv+b3t5Y9uOQ0t8hTHT582+mDs7RLrex1kd4lWYizNXWLVjsq9w==
+
 randomatic@^3.0.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/randomatic/-/randomatic-3.1.1.tgz#b776efc59375984e36c537b2f51a1f0aff0da1ed"
@@ -3178,6 +3199,11 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
   integrity sha1-tf3AjxKH6hF4Yo5BXiUTK3NkbG0=
+
+sister@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/sister/-/sister-3.0.1.tgz#a36ba6a1d1e46415ba16cb4ecefe14cbd8d82d1f"
+  integrity sha512-aG41gNRHRRxPq52MpX4vtm9tapnr6ENmHUx8LMAJWCOplEMwXzh/dp5WIo52Wl8Zlc/VUyHLJ2snX0ck+Nma9g==
 
 sisteransi@^0.1.1:
   version "0.1.1"
