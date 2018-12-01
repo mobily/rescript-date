@@ -2,12 +2,12 @@
   ReDate
 </h1>
 
-<h4 align="center">
+<blockquote align="center">
   📆 A toolset that parses, validates, manipulates dates, with the same modern API as the well-known `date-fns`, written in pure ReasonML.
-</h4>
+</blockquote>
 
 <div align="center">
-  <img alt="ReDate" width="85%" src="assets/header.png"/>
+  <img alt="ReDate" width="100%" src="assets/header.png"/>
 </div>
 
 <p align="center">
