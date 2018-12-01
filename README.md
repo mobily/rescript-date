@@ -82,6 +82,17 @@ yarn add @mobily/re-date
 * [isTomorrow](docs/day.md#istomorrow)
 * [isYesterday](docs/day.md#isyesterday)
 
+**Week**
+
+* [addWeeks](docs/week.md#addweeks)
+* [subWeeks](docs/week.md#subweeks)
+* [differenceInWeeks](docs/week.md#differenceinweeks)
+* [differenceInCalendarWeeks](docs/week.md#differenceincalendarweeks)
+* [startOfWeek](docs/week.md#startofweek)
+* [endOfWeek](docs/week.md#endofweek)
+* [isSameWeek](docs/week.md#issameweek)
+* [lastDayOfWeek](docs/week.md#lastdayofweek)
+
 <!-- TOC:END -->
 
 ## Status
