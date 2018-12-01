@@ -7,7 +7,7 @@
 `let addMinutes: (Js.Date.t, int) => Js.Date.t`
 
 ```reason
-let date = makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=30., ());
+let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=30., ());
 
 date->ReDate.addMinutes(1);
 ```
@@ -19,7 +19,7 @@ date->ReDate.addMinutes(1);
 `let subMinutes: (Js.Date.t, int) => Js.Date.t`
 
 ```reason
-let date = makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=30., ());
+let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=30., ());
 
 date->ReDate.subMinutes(1);
 ```
@@ -31,8 +31,8 @@ date->ReDate.subMinutes(1);
 `let differenceInMinutes: (Js.Date.t, Js.Date.t) => int`
 
 ```reason
-let fstDate = makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=40., ~seconds=15., ());
-let sndDate = makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=0., ());
+let fstDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=40., ~seconds=15., ());
+let sndDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=0., ());
 
 fstDate->ReDate.differenceInMinutes(sndDate);
 ```
@@ -44,7 +44,7 @@ fstDate->ReDate.differenceInMinutes(sndDate);
 `let startOfMinute: Js.Date.t => Js.Date.t`
 
 ```reason
-let date = makeWithYMDHMS(~year=2018., ~month=8., ~date=10., ~hours=8., ~minutes=20., ~seconds=35., ());
+let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=8., ~date=10., ~hours=8., ~minutes=20., ~seconds=35., ());
 
 date->ReDate.startOfMinute;
 ```
@@ -56,7 +56,7 @@ date->ReDate.startOfMinute;
 `let endOfMinute: Js.Date.t => Js.Date.t`
 
 ```reason
-let date = makeWithYMDHMS(~year=2018., ~month=8., ~date=10., ~hours=8., ~minutes=20., ~seconds=35., ());
+let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=8., ~date=10., ~hours=8., ~minutes=20., ~seconds=35., ());
 
 date->ReDate.endOfMinute;
 ```
@@ -68,8 +68,8 @@ date->ReDate.endOfMinute;
 `let isSameMinute: (Js.Date.t, Js.Date.t) => bool`
 
 ```reason
-let fstDate = makeWithYMDHMS(~year=2018., ~month=8., ~date=10., ~hours=19., ~minutes=6., ~seconds=10., ());
-let sndDate = makeWithYMDHMS(~year=2018., ~month=8., ~date=10., ~hours=19., ~minutes=6., ~seconds=35., ());
+let fstDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=8., ~date=10., ~hours=19., ~minutes=6., ~seconds=10., ());
+let sndDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=8., ~date=10., ~hours=19., ~minutes=6., ~seconds=35., ());
 
 fstDate->ReDate.isSameMinute(sndDate);
 ```
@@ -81,13 +81,13 @@ fstDate->ReDate.isSameMinute(sndDate);
 `let roundToNearestMinute: (~nearestTo: int=?, Js.Date.t) => Js.Date.t`
 
 ```reason
-let date = makeWithYMDHMS(~year=2018., ~month=8., ~date=10., ~hours=19., ~minutes=6., ~seconds=31., ());
+let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=8., ~date=10., ~hours=19., ~minutes=6., ~seconds=31., ());
 
 date->ReDate.roundToNearestMinute;
 ```
 
 ```reason
-let date = makeWithYMDHMS(~year=2018., ~month=8., ~date=10., ~hours=19., ~minutes=12., ~seconds=10., ());
+let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=8., ~date=10., ~hours=19., ~minutes=12., ~seconds=10., ());
 let roundToNearest15Minute = ReDate.roundToNearestMinute(~nearestTo=15);
 
 date->roundToNearest15Minute;
