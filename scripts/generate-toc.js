@@ -19,7 +19,7 @@ const pathToDocs = doc => `docs/${doc}.md`
 const generateAnchors = curry((doc, content) => replace(/\(\#(.+)\)/g, `(${pathToDocs(doc)}#$1)`, content))
 const capitalizeFirstLetter = str => str.charAt(0).toUpperCase() + str.slice(1)
 
-const docs = ['common', 'interval', 'second', 'minute', 'hour', 'day', 'week', 'weekday', 'month']
+const docs = ['common', 'interval', 'second', 'minute', 'hour', 'day', 'week', 'weekday', 'month', 'year']
 const retrieveMarkdownOf = pipe(
   readDocFile,
   retrieveMarkdownTree,
@@ -28,7 +28,7 @@ const retrieveMarkdownOf = pipe(
 const generateToC = pipe(
   map(doc => {
     const content = retrieveMarkdownOf(doc)
-    return `**${capitalizeFirstLetter(doc)}**\n\n${generateAnchors(doc, content)}\n`
+    return `**\`${capitalizeFirstLetter(doc)}\` helpers**\n\n${generateAnchors(doc, content)}\n`
   }),
   reduce((acc, toc) => `${acc}${toc}`, ''),
 )
