@@ -1,5 +1,16 @@
 # Week helpers
 
+```reason
+type day =
+  | Sunday
+  | Monday
+  | Tuesday
+  | Wednesday
+  | Thursday
+  | Friday
+  | Saturday;
+```
+
 #### addWeeks
 
 > Add the specified number of week to the given date.
