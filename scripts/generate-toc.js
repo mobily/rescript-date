@@ -28,7 +28,7 @@ const retrieveMarkdownOf = pipe(
 const generateToC = pipe(
   map(doc => {
     const content = retrieveMarkdownOf(doc)
-    return `<details><summary><strong>${capitalizeFirstLetter(doc)} helpers</strong></summary>\n\n${generateAnchors(doc, content)}\n</details>`
+    return `<details><summary><strong>${capitalizeFirstLetter(doc)}</strong></summary>\n\n${generateAnchors(doc, content)}</details>\n\n`
   }),
   reduce((acc, toc) => `${acc}${toc}`, ''),
 )
