@@ -32,6 +32,14 @@ yarn add @mobily/re-date
 * [minOfList](docs/common.md#minoflist)
 * [isValid](docs/common.md#isvalid)
 
+**Interval**
+
+* [isWithinInterval](docs/interval.md#iswithininterval)
+* [areIntervalsOverlapping](docs/interval.md#areintervalsoverlapping)
+* [getOverlappingDaysInIntervals](docs/interval.md#getoverlappingdaysinintervals)
+* [eachDayOfIntervalArray](docs/interval.md#eachdayofintervalarray)
+* [eachDayOfIntervalList](docs/interval.md#eachdayofintervallist)
+
 **Second**
 
 * [addSeconds](docs/second.md#addseconds)
