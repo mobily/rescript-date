@@ -1,7 +1,7 @@
 {
   "name": "@mobily/re-date",
   "description": "📆 A toolset that parses, validates, manipulates dates, with the same modern API as the well-known `date-fns`, written in pure ReasonML.",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "scripts": {
     "dev": "bsb -make-world -w",
     "clean": "bsb -clean-world",
