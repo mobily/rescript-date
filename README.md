@@ -1,8 +1,31 @@
-# `re-date`
+<h1 align="center">
+  ReDate
+</h1>
 
-[![Build Status](https://img.shields.io/travis/com/mobily/re-date.svg?style=flat-square)](https://travis-ci.com/mobily/re-date) [![Coverage](https://img.shields.io/coveralls/github/mobily/re-date.svg?style=flat-square)](https://coveralls.io/github/mobily/re-date?branch=master) [![npm](https://img.shields.io/npm/v/@mobily/re-date.svg?style=flat-square)](https://www.npmjs.com/package/@mobily/re-date) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/mobily/re-date/blob/master/LICENSE)
+<h4 align="center">
+  📆 A toolset that parses, validates, manipulates dates, with the same modern API as the well-known `date-fns`, written in pure ReasonML.
+</h4>
 
-> …
+<p align="center">
+  <a href="https://travis-ci.com/mobily/re-date">
+    <img src="https://img.shields.io/travis/com/mobily/re-date.svg?style=flat-square" alt="Build Status" />
+  </a>
+  <a href="https://coveralls.io/github/mobily/re-date?branch=master">
+    <img src="https://img.shields.io/coveralls/github/mobily/re-date.svg?style=flat-square" alt="Coverage" />
+  </a>
+  <a href="https://www.npmjs.com/package/@mobily/re-date">
+    <img src="https://img.shields.io/npm/v/@mobily/re-date.svg?style=flat-square" alt="npm" />
+  </a>
+  <a href="http://makeapullrequest.com">
+    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome" />
+  </a>
+  <a href="#contributors">
+    <img src="https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square" alt="All Contributors" />
+  </a>
+  <a href="https://github.com/mobily/re-date/blob/master/LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="GitHub license" />
+  </a>
+</p>
 
 ## Motivation
 
@@ -12,6 +35,17 @@ TODO
 
 ```shell
 yarn add @mobily/re-date
+```
+
+Then add `@mobily/re-date` to `bs-dependencies` in your `bsconfig.json`:
+
+```json
+{
+  …
+  "bs-dependencies": [
+    "@mobily/re-date"
+  ]
+}
 ```
 
 ## Api Reference
