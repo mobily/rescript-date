@@ -1,55 +1,78 @@
-# `Day` helpers
 
-#### `addDays: (Js.Date.t, int) => Js.Date.t`
+# Day helpers
 
-Add the specified number of days to the given date.
+#### addDays
+
+> Add the specified number of days to the given date.
+
+`let addDays: (Js.Date.t, int) => Js.Date.t`
 
 ```reason
 let date = Js.Date.make();
 date->addDays(5);
 ```
 
-#### `subDays: (Js.Date.t, int) => Js.Date.t`
+#### subDays
 
-Subtract the specified number of days from the given date.
+> Subtract the specified number of days from the given date.
+
+`let subDays: (Js.Date.t, int) => Js.Date.t`
 
 ```reason
 let date = Js.Date.make();
 date->subDays(5);
 ```
 
-#### `startOfDay: Js.Date.t => Js.Date.t`
+#### startOfDay
 
-Return the start of a day for the given date.
+> Return the start of a day for the given date.
 
-#### `endOfDay: Js.Date.t => Js.Date.t`
+`let startOfDay: Js.Date.t => Js.Date.t`
 
-Return the end of a day for the given date.
+#### endOfDay
 
-#### `differenceInCalendarDays: (Js.Date.t, Js.Date.t) => int`
+> Return the end of a day for the given date.
 
-Get the number of calendar days between the given dates. This means that the times are removed from the dates and then the difference in days is calculated.
+`let endOfDay: Js.Date.t => Js.Date.t`
 
-#### `differenceInDays: (Js.Date.t, Js.Date.t) => int`
+#### differenceInCalendarDays
 
-Get the number of full day periods between the given dates.
+> Get the number of calendar days between the given dates. This means that the times are removed from the dates and then the difference in days is calculated.
 
-#### `getDayOfYear: Js.Date.t => int`
+`let differenceInCalendarDays: (Js.Date.t, Js.Date.t) => int`
 
-Get the day of the year of the given date.
+#### differenceInDays
 
-#### `isSameDay: (Js.Date.t, Js.Date.t) => bool`
+> Get the number of full day periods between the given dates.
 
-Are the given dates in the same day?
+`let differenceInDays: (Js.Date.t, Js.Date.t) => int`
 
-#### `isToday: Js.Date.t => bool`
+#### getDayOfYear
 
-Is the given date today?
+> Get the day of the year of the given date.
 
-#### `isTomorrow: Js.Date.t => bool`
+`let getDayOfYear: Js.Date.t => int`
 
-Is the given date tomorrow?
+#### isSameDay
 
-#### `isYesterday: Js.Date.t => bool`
+> Are the given dates in the same day?
 
-Is the given date yesterday?
+`let isSameDay: (Js.Date.t, Js.Date.t) => bool`
+
+#### isToday
+
+> Is the given date today?
+
+`let isToday: Js.Date.t => bool`
+
+#### isTomorrow
+
+> Is the given date tomorrow?
+
+`let isTomorrow: Js.Date.t => bool`
+
+#### isYesterday
+
+> Is the given date yesterday?
+
+`let isYesterday: Js.Date.t => bool`
