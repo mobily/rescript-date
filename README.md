@@ -105,6 +105,22 @@ yarn add @mobily/re-date
 * [isSaturday](docs/weekday.md#issaturday)
 * [isWeekend](docs/weekday.md#isweekend)
 
+**Month**
+
+* [addMonths](docs/month.md#addmonths)
+* [subMonths](docs/month.md#submonths)
+* [differenceInCalendarMonths](docs/month.md#differenceincalendarmonths)
+* [differenceInMonths](docs/month.md#differenceinmonths)
+* [startOfMonth](docs/month.md#startofmonth)
+* [endOfMonth](docs/month.md#endofmonth)
+* [isFirstDayOfMonth](docs/month.md#isfirstdayofmonth)
+* [isLastDayOfMonth](docs/month.md#islastdayofmonth)
+* [isSameMonth](docs/month.md#issamemonth)
+* [lastDayOfMonth](docs/month.md#lastdayofmonth)
+* [getDaysInMonth](docs/month.md#getdaysinmonth)
+* [getWeekOfMonth](docs/month.md#getweekofmonth)
+* [getWeeksInMonth](docs/month.md#getweeksinmonth)
+
 <!-- TOC:END -->
 
 ## Status
