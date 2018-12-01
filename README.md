@@ -17,6 +17,21 @@ yarn add @mobily/re-date
 ## Api Reference
 
 <!-- TOC:START - Do not remove or modify this section -->
+**Common**
+
+* [isEqual](docs/common.md#isequal)
+* [isBefore](docs/common.md#isbefore)
+* [isAfter](docs/common.md#isafter)
+* [isFuture](docs/common.md#isfuture)
+* [isPast](docs/common.md#ispast)
+* [compareAsc](docs/common.md#compareasc)
+* [compareDesc](docs/common.md#comparedesc)
+* [maxOfArray](docs/common.md#maxofarray)
+* [maxOfList](docs/common.md#maxoflist)
+* [minOfArray](docs/common.md#minofarray)
+* [minOfList](docs/common.md#minoflist)
+* [isValid](docs/common.md#isvalid)
+
 **Second**
 
 * [addSeconds](docs/second.md#addseconds)
