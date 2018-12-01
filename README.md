@@ -17,7 +17,8 @@ yarn add @mobily/re-date
 ## Api Reference
 
 <!-- TOC:START - Do not remove or modify this section -->
-<details><summary><strong>Common</strong></summary>
+<details>
+<summary><strong>Common</strong></summary>
 
 * [isEqual](docs/common.md#isequal)
 * [isBefore](docs/common.md#isbefore)
@@ -33,7 +34,8 @@ yarn add @mobily/re-date
 * [isValid](docs/common.md#isvalid)
 </details>
 
-<details><summary><strong>Interval</strong></summary>
+<details>
+<summary><strong>Interval</strong></summary>
 
 * [isWithinInterval](docs/interval.md#iswithininterval)
 * [areIntervalsOverlapping](docs/interval.md#areintervalsoverlapping)
@@ -42,7 +44,8 @@ yarn add @mobily/re-date
 * [eachDayOfIntervalList](docs/interval.md#eachdayofintervallist)
 </details>
 
-<details><summary><strong>Second</strong></summary>
+<details>
+<summary><strong>Second</strong></summary>
 
 * [addSeconds](docs/second.md#addseconds)
 * [subSeconds](docs/second.md#subseconds)
@@ -52,7 +55,8 @@ yarn add @mobily/re-date
 * [isSameSecond](docs/second.md#issamesecond)
 </details>
 
-<details><summary><strong>Minute</strong></summary>
+<details>
+<summary><strong>Minute</strong></summary>
 
 * [addMinutes](docs/minute.md#addminutes)
 * [subMinutes](docs/minute.md#subminutes)
@@ -63,7 +67,8 @@ yarn add @mobily/re-date
 * [roundToNearestMinute](docs/minute.md#roundtonearestminute)
 </details>
 
-<details><summary><strong>Hour</strong></summary>
+<details>
+<summary><strong>Hour</strong></summary>
 
 * [addHours](docs/hour.md#addhours)
 * [subHours](docs/hour.md#subhours)
@@ -73,7 +78,8 @@ yarn add @mobily/re-date
 * [isSameHour](docs/hour.md#issamehour)
 </details>
 
-<details><summary><strong>Day</strong></summary>
+<details>
+<summary><strong>Day</strong></summary>
 
 * [addDays](docs/day.md#adddays)
 * [subDays](docs/day.md#subdays)
@@ -88,7 +94,8 @@ yarn add @mobily/re-date
 * [isYesterday](docs/day.md#isyesterday)
 </details>
 
-<details><summary><strong>Week</strong></summary>
+<details>
+<summary><strong>Week</strong></summary>
 
 * [addWeeks](docs/week.md#addweeks)
 * [subWeeks](docs/week.md#subweeks)
@@ -100,7 +107,8 @@ yarn add @mobily/re-date
 * [lastDayOfWeek](docs/week.md#lastdayofweek)
 </details>
 
-<details><summary><strong>Weekday</strong></summary>
+<details>
+<summary><strong>Weekday</strong></summary>
 
 * [is](docs/weekday.md#is)
 * [isSunday](docs/weekday.md#issunday)
@@ -113,7 +121,8 @@ yarn add @mobily/re-date
 * [isWeekend](docs/weekday.md#isweekend)
 </details>
 
-<details><summary><strong>Month</strong></summary>
+<details>
+<summary><strong>Month</strong></summary>
 
 * [addMonths](docs/month.md#addmonths)
 * [subMonths](docs/month.md#submonths)
@@ -130,7 +139,8 @@ yarn add @mobily/re-date
 * [getWeeksInMonth](docs/month.md#getweeksinmonth)
 </details>
 
-<details><summary><strong>Year</strong></summary>
+<details>
+<summary><strong>Year</strong></summary>
 
 * [addYears](docs/year.md#addyears)
 * [subYears](docs/year.md#subyears)
