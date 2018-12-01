@@ -36,6 +36,9 @@ let maxOfArray: array(Js.Date.t) => Js.Date.t;
 
 let maxOfList: list(Js.Date.t) => Js.Date.t;
 
+let isValid:
+  (~year: float, ~month: float, ~date: float, ~hours: float=?, ~minutes: float=?, ~seconds: float=?, unit) => bool;
+
 /* ——[Second helpers]——————————— */
 
 let addSeconds: (Js.Date.t, int) => Js.Date.t;
@@ -57,6 +60,14 @@ let addMinutes: (Js.Date.t, int) => Js.Date.t;
 let subMinutes: (Js.Date.t, int) => Js.Date.t;
 
 let differenceInMinutes: (Js.Date.t, Js.Date.t) => int;
+
+let startOfMinute: Js.Date.t => Js.Date.t;
+
+let endOfMinute: Js.Date.t => Js.Date.t;
+
+let isSameMinute: (Js.Date.t, Js.Date.t) => bool;
+
+let roundToNearestMinute: (~nearestTo: int=?, Js.Date.t) => Js.Date.t;
 
 /* ——[Hour helpers]——————————— */
 
@@ -160,7 +171,7 @@ let lastDayOfMonth: Js.Date.t => Js.Date.t;
 
 let getWeekOfMonth: (~weekStartsOn: day=?, Js.Date.t) => int;
 
-let getWeeksInMonth: (~weekStartsOn: day=?, Js.Date.t) => int
+let getWeeksInMonth: (~weekStartsOn: day=?, Js.Date.t) => int;
 
 /* ——[Year helpers]——————————— */
 

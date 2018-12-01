@@ -1,6 +1,6 @@
 # `re-date`
 
-[![Build Status](https://img.shields.io/travis/com/mobily/re-date.svg?style=flat-square)](https://travis-ci.com/mobily/re-date) [![npm](https://img.shields.io/npm/v/@mobily/re-date.svg?style=flat-square)](https://www.npmjs.com/package/@mobily/re-date) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/mobily/re-date/blob/master/LICENSE)
+[![Build Status](https://img.shields.io/travis/com/mobily/re-date.svg?style=flat-square)](https://travis-ci.com/mobily/re-date) [![Coverage](https://img.shields.io/coveralls/github/mobily/re-date.svg?style=flat-square)](https://coveralls.io/github/mobily/re-date?branch=master) [![npm](https://img.shields.io/npm/v/@mobily/re-date.svg?style=flat-square)](https://www.npmjs.com/package/@mobily/re-date) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/mobily/re-date/blob/master/LICENSE)
 
 > …
 

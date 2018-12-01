@@ -200,6 +200,20 @@ let maxOfArray = dates => Internal.(dates->Belt.Array.reduce(None, (>)->reduceMi
 
 let maxOfList = dates => Internal.(dates->Belt.List.reduce(None, (>)->reduceMinOrMax)->retrieveMinOrMax);
 
+let isValid = (~year, ~month, ~date, ~hours=0., ~minutes=0., ~seconds=0., ()) =>
+  year <= 199999.
+  && year >= (-199999.)
+  && month <= 11.
+  && month >= 0.
+  && date >= 1.
+  && date <= Date.makeWithYM(~year, ~month, ())->Internal.makeLastDayOfMonth->Date.getDate
+  && hours >= 0.
+  && hours <= 23.
+  && minutes >= 0.
+  && minutes <= 59.
+  && seconds >= 0.
+  && seconds <= 59.;
+
 /* ——[Second helpers]——————————— */
 
 let addSeconds = (date, seconds) =>
@@ -223,6 +237,24 @@ let addMinutes = (date, minutes) =>
 let subMinutes = (date, minutes) => date->addMinutes(- minutes);
 
 let differenceInMinutes = Internal.differenceIn(Minutes);
+
+let startOfMinute = date =>
+  Date.(date->Internal.makeDate->setSecondsMs(~seconds=0., ~milliseconds=0., ())->fromFloat);
+
+let endOfMinute = date =>
+  Date.(date->Internal.makeDate->setSecondsMs(~seconds=59., ~milliseconds=999., ())->fromFloat);
+
+let isSameMinute = (fst, snd) => fst->startOfMinute->isEqual(snd->startOfMinute);
+
+let roundToNearestMinute = (~nearestTo=1, date) => {
+  let closestTo = Math.round(date->Date.getSeconds /. 60.);
+  let closestMinute = Date.(date->getMinutes +. closestTo);
+  let nearestRoundedMinute =
+    nearestTo !== 1 ?
+      (date->Date.getMinutes /. nearestTo->float_of_int)->Math.round *. nearestTo->float_of_int : closestMinute;
+
+  Date.(date->Internal.makeDate->setMinutes(nearestRoundedMinute)->fromFloat->startOfMinute);
+};
 
 /* ——[Hour helpers]——————————— */
 
