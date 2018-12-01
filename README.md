@@ -17,7 +17,7 @@ yarn add @mobily/re-date
 ## Api Reference
 
 <!-- TOC:START - Do not remove or modify this section -->
-<details><summary><strong>Common helpers</strong></summary>
+<details><summary><strong>Common</strong></summary>
 
 * [isEqual](docs/common.md#isequal)
 * [isBefore](docs/common.md#isbefore)
@@ -31,16 +31,18 @@ yarn add @mobily/re-date
 * [minOfArray](docs/common.md#minofarray)
 * [minOfList](docs/common.md#minoflist)
 * [isValid](docs/common.md#isvalid)
+</details>
 
-</details><details><summary><strong>Interval helpers</strong></summary>
+<details><summary><strong>Interval</strong></summary>
 
 * [isWithinInterval](docs/interval.md#iswithininterval)
 * [areIntervalsOverlapping](docs/interval.md#areintervalsoverlapping)
 * [getOverlappingDaysInIntervals](docs/interval.md#getoverlappingdaysinintervals)
 * [eachDayOfIntervalArray](docs/interval.md#eachdayofintervalarray)
 * [eachDayOfIntervalList](docs/interval.md#eachdayofintervallist)
+</details>
 
-</details><details><summary><strong>Second helpers</strong></summary>
+<details><summary><strong>Second</strong></summary>
 
 * [addSeconds](docs/second.md#addseconds)
 * [subSeconds](docs/second.md#subseconds)
@@ -48,8 +50,9 @@ yarn add @mobily/re-date
 * [startOfSecond](docs/second.md#startofsecond)
 * [endOfSecond](docs/second.md#endofsecond)
 * [isSameSecond](docs/second.md#issamesecond)
+</details>
 
-</details><details><summary><strong>Minute helpers</strong></summary>
+<details><summary><strong>Minute</strong></summary>
 
 * [addMinutes](docs/minute.md#addminutes)
 * [subMinutes](docs/minute.md#subminutes)
@@ -58,8 +61,9 @@ yarn add @mobily/re-date
 * [endOfMinute](docs/minute.md#endofminute)
 * [isSameMinute](docs/minute.md#issameminute)
 * [roundToNearestMinute](docs/minute.md#roundtonearestminute)
+</details>
 
-</details><details><summary><strong>Hour helpers</strong></summary>
+<details><summary><strong>Hour</strong></summary>
 
 * [addHours](docs/hour.md#addhours)
 * [subHours](docs/hour.md#subhours)
@@ -67,8 +71,9 @@ yarn add @mobily/re-date
 * [startOfHour](docs/hour.md#startofhour)
 * [endOfHour](docs/hour.md#endofhour)
 * [isSameHour](docs/hour.md#issamehour)
+</details>
 
-</details><details><summary><strong>Day helpers</strong></summary>
+<details><summary><strong>Day</strong></summary>
 
 * [addDays](docs/day.md#adddays)
 * [subDays](docs/day.md#subdays)
@@ -81,8 +86,9 @@ yarn add @mobily/re-date
 * [isToday](docs/day.md#istoday)
 * [isTomorrow](docs/day.md#istomorrow)
 * [isYesterday](docs/day.md#isyesterday)
+</details>
 
-</details><details><summary><strong>Week helpers</strong></summary>
+<details><summary><strong>Week</strong></summary>
 
 * [addWeeks](docs/week.md#addweeks)
 * [subWeeks](docs/week.md#subweeks)
@@ -92,8 +98,9 @@ yarn add @mobily/re-date
 * [endOfWeek](docs/week.md#endofweek)
 * [isSameWeek](docs/week.md#issameweek)
 * [lastDayOfWeek](docs/week.md#lastdayofweek)
+</details>
 
-</details><details><summary><strong>Weekday helpers</strong></summary>
+<details><summary><strong>Weekday</strong></summary>
 
 * [is](docs/weekday.md#is)
 * [isSunday](docs/weekday.md#issunday)
@@ -104,8 +111,9 @@ yarn add @mobily/re-date
 * [isFriday](docs/weekday.md#isfriday)
 * [isSaturday](docs/weekday.md#issaturday)
 * [isWeekend](docs/weekday.md#isweekend)
+</details>
 
-</details><details><summary><strong>Month helpers</strong></summary>
+<details><summary><strong>Month</strong></summary>
 
 * [addMonths](docs/month.md#addmonths)
 * [subMonths](docs/month.md#submonths)
@@ -120,8 +128,9 @@ yarn add @mobily/re-date
 * [getDaysInMonth](docs/month.md#getdaysinmonth)
 * [getWeekOfMonth](docs/month.md#getweekofmonth)
 * [getWeeksInMonth](docs/month.md#getweeksinmonth)
+</details>
 
-</details><details><summary><strong>Year helpers</strong></summary>
+<details><summary><strong>Year</strong></summary>
 
 * [addYears](docs/year.md#addyears)
 * [subYears](docs/year.md#subyears)
@@ -134,8 +143,9 @@ yarn add @mobily/re-date
 * [getDaysInYear](docs/year.md#getdaysinyear)
 * [differenceInCalendarYears](docs/year.md#differenceincalendaryears)
 * [differenceInYears](docs/year.md#differenceinyears)
+</details>
 
-</details><!-- TOC:END -->
+<!-- TOC:END -->
 
 ## Status
 
