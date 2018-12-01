@@ -17,32 +17,38 @@ yarn add @mobily/re-date
 ## Api Reference
 
 <!-- TOC:START - Do not remove or modify this section -->
-* [Second helpers](docs/second.md#second-helpers)
-    * [addSeconds](docs/second.md#addseconds)
-    * [subSeconds](docs/second.md#subseconds)
-    * [differenceInSeconds](docs/second.md#differenceinseconds)
-    * [startOfSecond](docs/second.md#startofsecond)
-    * [endOfSecond](docs/second.md#endofsecond)
-    * [isSameSecond](docs/second.md#issamesecond)
-* [Hour helpers](docs/hour.md#hour-helpers)
-    * [addHours](docs/hour.md#addhours)
-    * [subHours](docs/hour.md#subhours)
-    * [differenceInHours](docs/hour.md#differenceinhours)
-    * [startOfHour](docs/hour.md#startofhour)
-    * [endOfHour](docs/hour.md#endofhour)
-    * [isSameHour](docs/hour.md#issamehour)
-* [Day helpers](docs/day.md#day-helpers)
-    * [addDays](docs/day.md#adddays)
-    * [subDays](docs/day.md#subdays)
-    * [startOfDay](docs/day.md#startofday)
-    * [endOfDay](docs/day.md#endofday)
-    * [differenceInCalendarDays](docs/day.md#differenceincalendardays)
-    * [differenceInDays](docs/day.md#differenceindays)
-    * [getDayOfYear](docs/day.md#getdayofyear)
-    * [isSameDay](docs/day.md#issameday)
-    * [isToday](docs/day.md#istoday)
-    * [isTomorrow](docs/day.md#istomorrow)
-    * [isYesterday](docs/day.md#isyesterday)
+**Second**
+
+* [addSeconds](docs/second.md#addseconds)
+* [subSeconds](docs/second.md#subseconds)
+* [differenceInSeconds](docs/second.md#differenceinseconds)
+* [startOfSecond](docs/second.md#startofsecond)
+* [endOfSecond](docs/second.md#endofsecond)
+* [isSameSecond](docs/second.md#issamesecond)
+
+**Hour**
+
+* [addHours](docs/hour.md#addhours)
+* [subHours](docs/hour.md#subhours)
+* [differenceInHours](docs/hour.md#differenceinhours)
+* [startOfHour](docs/hour.md#startofhour)
+* [endOfHour](docs/hour.md#endofhour)
+* [isSameHour](docs/hour.md#issamehour)
+
+**Day**
+
+* [addDays](docs/day.md#adddays)
+* [subDays](docs/day.md#subdays)
+* [startOfDay](docs/day.md#startofday)
+* [endOfDay](docs/day.md#endofday)
+* [differenceInCalendarDays](docs/day.md#differenceincalendardays)
+* [differenceInDays](docs/day.md#differenceindays)
+* [getDayOfYear](docs/day.md#getdayofyear)
+* [isSameDay](docs/day.md#issameday)
+* [isToday](docs/day.md#istoday)
+* [isTomorrow](docs/day.md#istomorrow)
+* [isYesterday](docs/day.md#isyesterday)
+
 <!-- TOC:END -->
 
 ## Status
