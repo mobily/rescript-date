@@ -8,8 +8,8 @@
 `let addDays: (Js.Date.t, int) => Js.Date.t`
 
 ```reason
-let date = Js.Date.make();
-date->addDays(5);
+let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ());
+date->ReDate.addDays(5);
 ```
 
 #### subDays
@@ -19,8 +19,8 @@ date->addDays(5);
 `let subDays: (Js.Date.t, int) => Js.Date.t`
 
 ```reason
-let date = Js.Date.make();
-date->subDays(5);
+let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ());
+date->ReDate.subDays(5);
 ```
 
 #### startOfDay
@@ -29,11 +29,21 @@ date->subDays(5);
 
 `let startOfDay: Js.Date.t => Js.Date.t`
 
+```reason
+let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=16., ~minutes=50., ~seconds=12., ());
+date->ReDate.startOfDay;
+```
+
 #### endOfDay
 
 > Return the end of a day for the given date.
 
 `let endOfDay: Js.Date.t => Js.Date.t`
+
+```reason
+let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=16., ~minutes=50., ~seconds=12., ());
+date->ReDate.endOfDay;
+```
 
 #### differenceInCalendarDays
 
@@ -41,11 +51,25 @@ date->subDays(5);
 
 `let differenceInCalendarDays: (Js.Date.t, Js.Date.t) => int`
 
+```reason
+let fstDate = Js.Date.makeWithYMD(~year=2019., ~month=0., ~date=1., ());
+let sndDate = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ());
+
+fstDate->ReDate.differenceInCalendarDays(sndDate);
+```
+
 #### differenceInDays
 
 > Get the number of full day periods between the given dates.
 
 `let differenceInDays: (Js.Date.t, Js.Date.t) => int`
+
+```reason
+let fstDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=10., ~hours=10., ~minutes=15., ~seconds=55., ());
+let sndDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=2., ~hours=20., ~minutes=50., ~seconds=10., ());
+
+fstDate->ReDate.differenceInDays(sndDate);
+```
 
 #### getDayOfYear
 
@@ -53,11 +77,24 @@ date->subDays(5);
 
 `let getDayOfYear: Js.Date.t => int`
 
+```reason
+let date = Js.Date.makeWithYMD(~year=2018., ~month=7., ~date=23., ());
+
+date->ReDate.getDayOfYear;
+```
+
 #### isSameDay
 
 > Are the given dates in the same day?
 
 `let isSameDay: (Js.Date.t, Js.Date.t) => bool`
+
+```reason
+let fstDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=16., ~minutes=50., ~seconds=12., ());
+let sndDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=10., ~minutes=15., ~seconds=55., ());
+
+fstDate->ReDate.isSameDay(sndDate);
+```
 
 #### isToday
 
@@ -65,14 +102,29 @@ date->subDays(5);
 
 `let isToday: Js.Date.t => bool`
 
+```reason
+let date = Js.Date.make();
+date->ReDate.isToday;
+```
+
 #### isTomorrow
 
 > Is the given date tomorrow?
 
 `let isTomorrow: Js.Date.t => bool`
 
+```reason
+let date = Js.Date.make();
+ReDate.(date->addDays(1)->isTomorrow);
+```
+
 #### isYesterday
 
 > Is the given date yesterday?
 
 `let isYesterday: Js.Date.t => bool`
+
+```reason
+let date = Js.Date.make();
+ReDate.(date->subDays(1)->isYesterday);
+```
