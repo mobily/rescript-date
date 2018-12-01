@@ -41,7 +41,6 @@ Then add `@mobily/re-date` to `bs-dependencies` in your `bsconfig.json`:
 
 ```json
 {
-  …
   "bs-dependencies": [
     "@mobily/re-date"
   ]
@@ -51,9 +50,7 @@ Then add `@mobily/re-date` to `bs-dependencies` in your `bsconfig.json`:
 ## Api Reference
 
 <!-- TOC:START - Do not remove or modify this section -->
-<details>
-<summary><strong>Common</strong></summary>
-
+**Common**
 * [isEqual](docs/common.md#isequal)
 * [isBefore](docs/common.md#isbefore)
 * [isAfter](docs/common.md#isafter)
@@ -66,32 +63,26 @@ Then add `@mobily/re-date` to `bs-dependencies` in your `bsconfig.json`:
 * [minOfArray](docs/common.md#minofarray)
 * [minOfList](docs/common.md#minoflist)
 * [isValid](docs/common.md#isvalid)
-</details>
 
-<details>
-<summary><strong>Interval</strong></summary>
 
+**Interval**
 * [isWithinInterval](docs/interval.md#iswithininterval)
 * [areIntervalsOverlapping](docs/interval.md#areintervalsoverlapping)
 * [getOverlappingDaysInIntervals](docs/interval.md#getoverlappingdaysinintervals)
 * [eachDayOfIntervalArray](docs/interval.md#eachdayofintervalarray)
 * [eachDayOfIntervalList](docs/interval.md#eachdayofintervallist)
-</details>
 
-<details>
-<summary><strong>Second</strong></summary>
 
+**Second**
 * [addSeconds](docs/second.md#addseconds)
 * [subSeconds](docs/second.md#subseconds)
 * [differenceInSeconds](docs/second.md#differenceinseconds)
 * [startOfSecond](docs/second.md#startofsecond)
 * [endOfSecond](docs/second.md#endofsecond)
 * [isSameSecond](docs/second.md#issamesecond)
-</details>
 
-<details>
-<summary><strong>Minute</strong></summary>
 
+**Minute**
 * [addMinutes](docs/minute.md#addminutes)
 * [subMinutes](docs/minute.md#subminutes)
 * [differenceInMinutes](docs/minute.md#differenceinminutes)
@@ -99,22 +90,18 @@ Then add `@mobily/re-date` to `bs-dependencies` in your `bsconfig.json`:
 * [endOfMinute](docs/minute.md#endofminute)
 * [isSameMinute](docs/minute.md#issameminute)
 * [roundToNearestMinute](docs/minute.md#roundtonearestminute)
-</details>
 
-<details>
-<summary><strong>Hour</strong></summary>
 
+**Hour**
 * [addHours](docs/hour.md#addhours)
 * [subHours](docs/hour.md#subhours)
 * [differenceInHours](docs/hour.md#differenceinhours)
 * [startOfHour](docs/hour.md#startofhour)
 * [endOfHour](docs/hour.md#endofhour)
 * [isSameHour](docs/hour.md#issamehour)
-</details>
 
-<details>
-<summary><strong>Day</strong></summary>
 
+**Day**
 * [addDays](docs/day.md#adddays)
 * [subDays](docs/day.md#subdays)
 * [startOfDay](docs/day.md#startofday)
@@ -126,11 +113,9 @@ Then add `@mobily/re-date` to `bs-dependencies` in your `bsconfig.json`:
 * [isToday](docs/day.md#istoday)
 * [isTomorrow](docs/day.md#istomorrow)
 * [isYesterday](docs/day.md#isyesterday)
-</details>
 
-<details>
-<summary><strong>Week</strong></summary>
 
+**Week**
 * [addWeeks](docs/week.md#addweeks)
 * [subWeeks](docs/week.md#subweeks)
 * [differenceInWeeks](docs/week.md#differenceinweeks)
@@ -139,11 +124,9 @@ Then add `@mobily/re-date` to `bs-dependencies` in your `bsconfig.json`:
 * [endOfWeek](docs/week.md#endofweek)
 * [isSameWeek](docs/week.md#issameweek)
 * [lastDayOfWeek](docs/week.md#lastdayofweek)
-</details>
 
-<details>
-<summary><strong>Weekday</strong></summary>
 
+**Weekday**
 * [is](docs/weekday.md#is)
 * [isSunday](docs/weekday.md#issunday)
 * [isMonday](docs/weekday.md#ismonday)
@@ -153,11 +136,9 @@ Then add `@mobily/re-date` to `bs-dependencies` in your `bsconfig.json`:
 * [isFriday](docs/weekday.md#isfriday)
 * [isSaturday](docs/weekday.md#issaturday)
 * [isWeekend](docs/weekday.md#isweekend)
-</details>
 
-<details>
-<summary><strong>Month</strong></summary>
 
+**Month**
 * [addMonths](docs/month.md#addmonths)
 * [subMonths](docs/month.md#submonths)
 * [differenceInCalendarMonths](docs/month.md#differenceincalendarmonths)
@@ -171,11 +152,9 @@ Then add `@mobily/re-date` to `bs-dependencies` in your `bsconfig.json`:
 * [getDaysInMonth](docs/month.md#getdaysinmonth)
 * [getWeekOfMonth](docs/month.md#getweekofmonth)
 * [getWeeksInMonth](docs/month.md#getweeksinmonth)
-</details>
 
-<details>
-<summary><strong>Year</strong></summary>
 
+**Year**
 * [addYears](docs/year.md#addyears)
 * [subYears](docs/year.md#subyears)
 * [startOfYear](docs/year.md#startofyear)
@@ -187,7 +166,7 @@ Then add `@mobily/re-date` to `bs-dependencies` in your `bsconfig.json`:
 * [getDaysInYear](docs/year.md#getdaysinyear)
 * [differenceInCalendarYears](docs/year.md#differenceincalendaryears)
 * [differenceInYears](docs/year.md#differenceinyears)
-</details>
+
 
 <!-- TOC:END -->
 
