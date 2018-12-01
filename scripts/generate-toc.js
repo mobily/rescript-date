@@ -33,7 +33,11 @@ const generateToC = pipe(
 )
 const saveReadme = content => {
   const readmeContent = readFile(pathToReadme)
-  const newReadmeContent = replace('[[toc]]', content, readmeContent)
+  const newReadmeContent = replace(
+    /\<\!\-\- TOC\:START.+\-\-\>(\n.+)+\n+\<\!\-\- TOC:END \-\-\>/gm,
+    `<!-- TOC:START - Do not remove or modify this section -->\n${content}<!-- TOC:END -->`,
+    readmeContent
+  )
   writeFile(pathToReadme, newReadmeContent)
 }
 const generateToCAndSaveReadme = pipe(

@@ -16,6 +16,7 @@ yarn add @mobily/re-date
 
 ## Api Reference
 
+<!-- TOC:START - Do not remove or modify this section -->
 * [Second helpers](docs/second.md#second-helpers)
     * [addSeconds](docs/second.md#addseconds)
     * [subSeconds](docs/second.md#subseconds)
@@ -42,6 +43,7 @@ yarn add @mobily/re-date
     * [isToday](docs/day.md#istoday)
     * [isTomorrow](docs/day.md#istomorrow)
     * [isYesterday](docs/day.md#isyesterday)
+<!-- TOC:END -->
 
 ## Status
 
