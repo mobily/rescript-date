@@ -1,37 +1,37 @@
-# `Second` helpers
+# Second helpers
 
-### `addSeconds`
+#### addSeconds
 
-Add the specified number of seconds to the given date.
+> Add the specified number of seconds to the given date.
 
-`let addSeconds: (Js.Date.t, int) => Js.Date.t;`
+`let addSeconds: (Js.Date.t, int) => Js.Date.t`
 
-### `subSeconds`
+#### subSeconds
 
-Subtract the specified number of seconds from the given date.
+> Subtract the specified number of seconds from the given date.
 
-`let subSeconds: (Js.Date.t, int) => Js.Date.t;`
+`let subSeconds: (Js.Date.t, int) => Js.Date.t`
 
-### `differenceInSeconds`
+#### differenceInSeconds
 
-Get the number of seconds between the given dates.
+> Get the number of seconds between the given dates.
 
-`let differenceInSeconds: (Js.Date.t, Js.Date.t) => int;`
+`let differenceInSeconds: (Js.Date.t, Js.Date.t) => int`
 
-### `startOfSecond`
+#### startOfSecond
 
-Return the start of a second for the given date.
+> Return the start of a second for the given date.
 
-`let startOfSecond: Js.Date.t => Js.Date.t;`
+`let startOfSecond: Js.Date.t => Js.Date.t`
 
-### `endOfSecond`
+#### endOfSecond
 
-Return the end of a second for the given date.
+> Return the end of a second for the given date.
 
-`let endOfSecond: Js.Date.t => Js.Date.t;`
+`let endOfSecond: Js.Date.t => Js.Date.t`
 
-### `isSameSecond`
+#### isSameSecond
 
-Are the given dates in the same second?
+> Are the given dates in the same second?
 
-`let isSameSecond: (Js.Date.t, Js.Date.t) => bool;`
+`let isSameSecond: (Js.Date.t, Js.Date.t) => bool`
