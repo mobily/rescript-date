@@ -18,7 +18,7 @@ type day =
 ```reason
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=7., ());
 
-date->is(Sunday);
+date->ReDate.is(Sunday);
 ```
 
 #### isSunday
