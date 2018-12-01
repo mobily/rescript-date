@@ -93,6 +93,18 @@ yarn add @mobily/re-date
 * [isSameWeek](docs/week.md#issameweek)
 * [lastDayOfWeek](docs/week.md#lastdayofweek)
 
+**Weekday**
+
+* [is](docs/weekday.md#is)
+* [isSunday](docs/weekday.md#issunday)
+* [isMonday](docs/weekday.md#ismonday)
+* [isTuesday](docs/weekday.md#istuesday)
+* [isWednesday](docs/weekday.md#iswednesday)
+* [isThursday](docs/weekday.md#isthursday)
+* [isFriday](docs/weekday.md#isfriday)
+* [isSaturday](docs/weekday.md#issaturday)
+* [isWeekend](docs/weekday.md#isweekend)
+
 <!-- TOC:END -->
 
 ## Status
