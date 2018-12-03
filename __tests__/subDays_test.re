@@ -9,13 +9,13 @@ describe("subDays", () => {
     let date = makeWithYMD(~year=2018., ~month=0., ~date=2., ());
     let expectedDate = makeWithYMD(~year=2018., ~month=0., ~date=1., ());
 
-    date->ReDate.subDays(1)->expect->toEqual(expectedDate, _);
+    date |> ReDate.subDays(1) |> expect |> toEqual(expectedDate);
   });
 
   test("subtracts 100 days", () => {
     let date = makeWithYMD(~year=2018., ~month=3., ~date=11., ());
     let expectedDate = makeWithYMD(~year=2018., ~month=0., ~date=1., ());
 
-    date->ReDate.subDays(100)->expect->toEqual(expectedDate, _);
+    date |> ReDate.subDays(100) |> expect |> toEqual(expectedDate);
   });
 });

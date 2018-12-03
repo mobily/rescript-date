@@ -85,9 +85,9 @@ let isSameHour: (Js.Date.t, Js.Date.t) => bool;
 
 /* ——[Day helpers——————————— */
 
-let addDays: (Js.Date.t, int) => Js.Date.t;
+let addDays: (int, Js.Date.t) => Js.Date.t;
 
-let subDays: (Js.Date.t, int) => Js.Date.t;
+let subDays: (int, Js.Date.t) => Js.Date.t;
 
 let startOfDay: Js.Date.t => Js.Date.t;
 
@@ -109,9 +109,9 @@ let isYesterday: Js.Date.t => bool;
 
 /* ——[Week helpers]——————————— */
 
-let addWeeks: (Js.Date.t, int) => Js.Date.t;
+let addWeeks: (int, Js.Date.t) => Js.Date.t;
 
-let subWeeks: (Js.Date.t, int) => Js.Date.t;
+let subWeeks: (int, Js.Date.t) => Js.Date.t;
 
 let differenceInWeeks: (Js.Date.t, Js.Date.t) => int;
 

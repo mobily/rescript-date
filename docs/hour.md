@@ -9,7 +9,7 @@
 ```reason
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=0., ());
 
-date->ReDate.addHours(1)l
+date->ReDate.addHours(1);
 ```
 
 #### subHours
