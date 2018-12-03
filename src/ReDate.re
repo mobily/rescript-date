@@ -9,7 +9,6 @@ type offset =
   | Start(Date.t)
   | End(Date.t);
 
-[@bs.deriving jsConverter]
 type day =
   | Sunday
   | Monday
@@ -47,6 +46,16 @@ module Milliseconds = {
 };
 
 module Internal = {
+  let dayToJs =
+    fun
+    | Sunday => 0
+    | Monday => 1
+    | Tuesday => 2
+    | Wednesday => 3
+    | Thursday => 4
+    | Friday => 5
+    | Saturday => 6;
+
   let makeDate = date => Date.(date->getTime->fromFloat);
 
   /* based on: https://github.com/date-fns/date-fns/blob/master/src/_lib/getTimezoneOffsetInMilliseconds/index.js */
