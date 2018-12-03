@@ -88,12 +88,12 @@ module Internal = {
   let addDays = (days, date) =>
     Date.(setDate(date |> makeDate, (date |> getDate) +. (days |> float_of_int)) |> fromFloat);
 
-  let addMonths = (date, months) =>
+  let addMonths = (months, date) =>
     Date.(
       makeWithYMD(
-        ~year=date->getFullYear,
-        ~month=date->getMonth +. months->float_of_int,
-        ~date=Math.min_float(date->getDaysInMonth->float_of_int, date->getDate),
+        ~year=date |> getFullYear,
+        ~month=(date |> getMonth) +. (months |> float_of_int),
+        ~date=Math.min_float(date |> getDaysInMonth |> float_of_int, date |> getDate),
         (),
       )
     );
@@ -123,14 +123,14 @@ module Internal = {
         diff > 0. ? diff->Math.floor_int : diff->Math.ceil_int;
       | Months =>
         let diff = (fst->getMonth -. snd->getMonth +. 12. *. (fst->getFullYear -. snd->getFullYear))->int_of_float;
-        let anchor = snd->addMonths(diff);
+        let anchor = snd |> addMonths(diff);
         let anchorTime = anchor->getTime;
         let fstTime = fst->getTime;
         let adjust =
           if (fstTime -. anchorTime < 0.) {
-            (fstTime -. anchorTime) /. (anchorTime -. snd->addMonths(diff->pred)->getTime);
+            (fstTime -. anchorTime) /. (anchorTime -. (snd |> addMonths(diff |> pred) |> getTime));
           } else {
-            (fstTime -. anchorTime) /. (snd->addMonths(diff->succ)->getTime -. anchorTime);
+            (fstTime -. anchorTime) /. ((snd |> addMonths(diff |> succ) |> getTime) -. anchorTime);
           };
 
         adjust->Math.round->int_of_float + diff;
@@ -362,7 +362,7 @@ let isFriday = Internal.is(Friday);
 
 let isSaturday = Internal.is(Saturday);
 
-let isWeekend = date => date->isSaturday || date->isSunday;
+let isWeekend = date => date |> isSaturday || date |> isSunday;
 
 /* ——[Month helpers]——————————— */
 
@@ -370,14 +370,14 @@ let getDaysInMonth = Internal.getDaysInMonth;
 
 let addMonths = Internal.addMonths;
 
-let subMonths = (date, months) => date->addMonths(- months);
+let subMonths = (months, date) => date |> addMonths(- months);
 
 let differenceInCalendarMonths = Internal.differenceIn(CalendarMonths);
 
 let differenceInMonths = Internal.differenceIn(Months);
 
 let startOfMonth = date =>
-  Date.(date->Internal.makeDate->setDate(1.)->fromFloat->Internal.makeDateWithStartOfDayHours);
+  Date.(setDate(date |> Internal.makeDate, 1.) |> fromFloat |> Internal.makeDateWithStartOfDayHours);
 
 let endOfMonth = date => Internal.(date->makeLastDayOfMonth->makeDateWithEndOfDayHours);
 
@@ -404,25 +404,25 @@ let getWeeksInMonth = (~weekStartsOn=Sunday, date) => {
 
 /* ——[Year helpers]——————————— */
 
-let addYears = (date, years) => date->addMonths(12 * years);
+let addYears = (years, date) => date |> addMonths(12 * years);
 
-let subYears = (date, years) => date->addYears(- years);
+let subYears = (years, date) => date |> addYears(- years);
 
 let startOfYear = Internal.startOfYear;
 
-let isSameYear = (fst, snd) => fst->startOfYear->isEqual(snd->startOfYear);
+let isSameYear = (snd, fst) => fst |> startOfYear |> isEqual(snd |> startOfYear);
 
-let isLeapYear = date => date->Date.getFullYear->int_of_float->Internal.isLeap;
+let isLeapYear = date => date |> Date.getFullYear |> int_of_float |> Internal.isLeap;
 
 let endOfYear = date =>
-  Date.(makeWithYMD(~year=date->getFullYear, ~month=11., ~date=31., ()))->Internal.makeDateWithEndOfDayHours;
+  Date.(makeWithYMD(~year=date |> getFullYear, ~month=11., ~date=31., ())) |> Internal.makeDateWithEndOfDayHours;
 
 let lastMonthOfYear = date =>
-  Date.(makeWithYMD(~year=date->getFullYear, ~month=11., ~date=1., ()))->Internal.makeDateWithStartOfDayHours;
+  Date.(makeWithYMD(~year=date |> getFullYear, ~month=11., ~date=1., ())) |> Internal.makeDateWithStartOfDayHours;
 
-let lastDayOfYear = date => date->lastMonthOfYear->lastDayOfMonth;
+let lastDayOfYear = date => date |> lastMonthOfYear |> lastDayOfMonth;
 
-let getDaysInYear = date => date->isLeapYear ? 366 : 365;
+let getDaysInYear = date => date |> isLeapYear ? 366 : 365;
 
 let differenceInCalendarYears = Internal.differenceIn(CalendarYears);
 
@@ -430,29 +430,29 @@ let differenceInYears = Internal.differenceIn(Years);
 
 /* ——[Interval helpers]——————————— */
 
-let isWithinInterval = (date, ~start, ~end_) => {
-  let ts = date->Date.getTime;
-  ts >= start->Date.getTime && ts <= end_->Date.getTime;
+let isWithinInterval = (~start, ~end_, date) => {
+  let ts = date |> Date.getTime;
+  ts >= (start |> Date.getTime) && ts <= (end_ |> Date.getTime);
 };
 
 let areIntervalsOverlapping = (left, right) =>
-  Date.(left.start->getTime < right.end_->getTime && right.start->getTime < left.end_->getTime);
+  Date.(left.start |> getTime < (right.end_ |> getTime) && right.start |> getTime < (left.end_ |> getTime));
 
 let getOverlappingDaysInIntervals = (left, right) =>
   Date.(
-    switch (left.start->getTime, left.end_->getTime, right.start->getTime, right.end_->getTime) {
+    switch (left.start |> getTime, left.end_ |> getTime, right.start |> getTime, right.end_ |> getTime) {
     | (lst, let', rst, ret) when lst < ret && rst < let' =>
       let overlapStartTime = rst < lst ? lst : rst;
       let overlapEndTime = ret > let' ? let' : ret;
-      let overlap = (overlapEndTime -. overlapStartTime) /. Milliseconds.day->float_of_int;
+      let overlap = (overlapEndTime -. overlapStartTime) /. (Milliseconds.day |> float_of_int);
 
-      overlap->Math.ceil_int;
+      overlap |> Math.ceil_int;
     | _ => 0
     }
   );
 
 let eachDayOfIntervalArray = interval =>
-  Internal.(interval->getAmountOfIntervalDays->Belt.Array.makeBy(interval->makeIntervalDay));
+  Internal.(Belt.Array.makeBy(interval |> getAmountOfIntervalDays, interval |> makeIntervalDay));
 
 let eachDayOfIntervalList = interval =>
-  Internal.(interval->getAmountOfIntervalDays->Belt.List.makeBy(interval->makeIntervalDay));
+  Internal.(Belt.List.makeBy(interval |> getAmountOfIntervalDays, interval |> makeIntervalDay));

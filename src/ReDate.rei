@@ -147,9 +147,9 @@ let isWeekend: Js.Date.t => bool;
 
 let getDaysInMonth: Js.Date.t => int;
 
-let addMonths: (Js.Date.t, int) => Js.Date.t;
+let addMonths: (int, Js.Date.t) => Js.Date.t;
 
-let subMonths: (Js.Date.t, int) => Js.Date.t;
+let subMonths: (int, Js.Date.t) => Js.Date.t;
 
 let differenceInCalendarMonths: (Js.Date.t, Js.Date.t) => int;
 
@@ -173,9 +173,9 @@ let getWeeksInMonth: (~weekStartsOn: day=?, Js.Date.t) => int;
 
 /* ——[Year helpers]——————————— */
 
-let addYears: (Js.Date.t, int) => Js.Date.t;
+let addYears: (int, Js.Date.t) => Js.Date.t;
 
-let subYears: (Js.Date.t, int) => Js.Date.t;
+let subYears: (int, Js.Date.t) => Js.Date.t;
 
 let startOfYear: Js.Date.t => Js.Date.t;
 
@@ -197,7 +197,7 @@ let differenceInYears: (Js.Date.t, Js.Date.t) => int;
 
 /* ——[Interval helpers]——————————— */
 
-let isWithinInterval: (Js.Date.t, ~start: Js.Date.t, ~end_: Js.Date.t) => bool;
+let isWithinInterval: (~start: Js.Date.t, ~end_: Js.Date.t, Js.Date.t) => bool;
 
 let areIntervalsOverlapping: (interval, interval) => bool;
 

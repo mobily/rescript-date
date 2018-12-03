@@ -20,10 +20,8 @@ describe("eachDayOfIntervalArray", () => {
 
     let expectedDates = [|a, b, c, d, e|];
 
-    interval
-    ->ReDate.eachDayOfIntervalArray
-    ->Belt.Array.eq(expectedDates, (a, b) => a->getTime === b->getTime)
-    ->expect
-    ->toBeTruthy;
+    Belt.Array.eq(interval |> ReDate.eachDayOfIntervalArray, expectedDates, (a, b) => a |> getTime === (b |> getTime))
+    |> expect
+    |> toBeTruthy;
   });
 });

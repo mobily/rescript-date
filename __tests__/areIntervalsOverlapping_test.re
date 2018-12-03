@@ -17,7 +17,7 @@ describe("areIntervalsOverlapping", () => {
       end_: makeWithYMD(~year=2018., ~month=4., ~date=5., ()),
     };
 
-    interval->ReDate.areIntervalsOverlapping(includedInterval)->expect->toBeTruthy;
+    interval |> ReDate.areIntervalsOverlapping(includedInterval) |> expect |> toBeTruthy;
   });
 
   test("returns true for an interval including another interval", () => {
@@ -26,7 +26,7 @@ describe("areIntervalsOverlapping", () => {
       end_: makeWithYMD(~year=2018., ~month=4., ~date=5., ()),
     };
 
-    includingInterval->ReDate.areIntervalsOverlapping(interval)->expect->toBeTruthy;
+    includingInterval |> ReDate.areIntervalsOverlapping(interval) |> expect |> toBeTruthy;
   });
 
   test("returns false for a valid non overlapping interval before another interval", () => {
@@ -35,7 +35,7 @@ describe("areIntervalsOverlapping", () => {
       end_: makeWithYMD(~year=2018., ~month=2., ~date=30., ()),
     };
 
-    earlierInterval->ReDate.areIntervalsOverlapping(interval)->expect->toBeFalsy;
+    earlierInterval |> ReDate.areIntervalsOverlapping(interval) |> expect |> toBeFalsy;
   });
 
   test("returns false for a valid non overlapping interval after another interval", () => {
@@ -44,6 +44,6 @@ describe("areIntervalsOverlapping", () => {
       end_: makeWithYMD(~year=2018., ~month=4., ~date=30., ()),
     };
 
-    laterInterval->ReDate.areIntervalsOverlapping(interval)->expect->toBeFalsy;
+    laterInterval |> ReDate.areIntervalsOverlapping(interval) |> expect |> toBeFalsy;
   });
 });
