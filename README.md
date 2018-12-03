@@ -3,7 +3,7 @@
 </h1>
 
 <h4 align="center">
-  📆 A toolset that parses, validates, manipulates dates, with the same modern API as the well-known `date-fns`, written in ReasonML.
+  📆 A collection of useful helpers for handling dates in ReasonML with the same modern API as the well-known `date-fns`.
 </h4>
 
 <div align="center">
