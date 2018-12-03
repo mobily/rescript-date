@@ -183,6 +183,8 @@ module Internal = {
 
   let getAmountOfIntervalDays = interval =>
     differenceIn(CalendarDays(makeDateWithStartOfDayHours), interval.end_, interval.start)->succ;
+
+  let is = (date, day) => date->Date.getDay === day->dayToJs->float_of_int;
 };
 
 /* ——[Common helpers]——————————— */
@@ -335,21 +337,19 @@ let lastDayOfWeek = (~weekStartsOn=Sunday, date) =>
 
 /* ——[Weekday helpers]——————————— */
 
-let is = (date, day) => date->Date.getDay === day->dayToJs->float_of_int;
+let isSunday = Internal.is(_, Sunday);
 
-let isSunday = is(_, Sunday);
+let isMonday = Internal.is(_, Monday);
 
-let isMonday = is(_, Monday);
+let isTuesday = Internal.is(_, Tuesday);
 
-let isTuesday = is(_, Tuesday);
+let isWednesday = Internal.is(_, Wednesday);
 
-let isWednesday = is(_, Wednesday);
+let isThursday = Internal.is(_, Thursday);
 
-let isThursday = is(_, Thursday);
+let isFriday = Internal.is(_, Friday);
 
-let isFriday = is(_, Friday);
-
-let isSaturday = is(_, Saturday);
+let isSaturday = Internal.is(_, Saturday);
 
 let isWeekend = date => date->isSaturday || date->isSunday;
 
@@ -380,7 +380,7 @@ let lastDayOfMonth = date => Internal.(date->makeLastDayOfMonth->makeDateWithSta
 
 let getWeekOfMonth = (~weekStartsOn=Sunday, date) => {
   let startWeekDay = date->startOfMonth->Date.getDay;
-  let weekStartsOn' = weekStartsOn->dayToJs->float_of_int;
+  let weekStartsOn' = weekStartsOn->Internal.dayToJs->float_of_int;
   let diff = startWeekDay < weekStartsOn' ? 7. -. weekStartsOn' +. startWeekDay : startWeekDay -. weekStartsOn';
 
   ((date->Date.getDate +. diff) /. 7.)->Math.ceil_int;

@@ -127,8 +127,6 @@ let lastDayOfWeek: (~weekStartsOn: day=?, Js.Date.t) => Js.Date.t;
 
 /* ——[Weekday helpers]——————————— */
 
-let is: (Js.Date.t, day) => bool;
-
 let isSunday: Js.Date.t => bool;
 
 let isMonday: Js.Date.t => bool;

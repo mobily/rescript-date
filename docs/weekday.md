@@ -1,26 +1,5 @@
 # Weekday helpers
 
-```reason
-type day =
-  | Sunday
-  | Monday
-  | Tuesday
-  | Wednesday
-  | Thursday
-  | Friday
-  | Saturday;
-```
-
-#### is
-
-`let is: (Js.Date.t, day) => bool`
-
-```reason
-let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=7., ());
-
-date->ReDate.is(Sunday);
-```
-
 #### isSunday
 
 > Is the given date Sunday?
