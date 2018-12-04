@@ -61,9 +61,11 @@ Then add `@mobily/re-date` to `bs-dependencies` in your `bsconfig.json`:
 
 If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 
+**The list of helpers:**
+
 <!-- TOC:START - Do not remove or modify this section -->
 <details>
-<summary><code>Common helpers</code></summary>
+<summary><code>Common</code></summary>
 
 * [isEqual](docs/common.md#isequal)
 * [isBefore](docs/common.md#isbefore)
@@ -80,7 +82,7 @@ If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 </details>
 
 <details>
-<summary><code>Interval helpers</code></summary>
+<summary><code>Interval</code></summary>
 
 * [isWithinInterval](docs/interval.md#iswithininterval)
 * [areIntervalsOverlapping](docs/interval.md#areintervalsoverlapping)
@@ -90,7 +92,7 @@ If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 </details>
 
 <details>
-<summary><code>Second helpers</code></summary>
+<summary><code>Second</code></summary>
 
 * [addSeconds](docs/second.md#addseconds)
 * [subSeconds](docs/second.md#subseconds)
@@ -101,7 +103,7 @@ If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 </details>
 
 <details>
-<summary><code>Minute helpers</code></summary>
+<summary><code>Minute</code></summary>
 
 * [addMinutes](docs/minute.md#addminutes)
 * [subMinutes](docs/minute.md#subminutes)
@@ -113,7 +115,7 @@ If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 </details>
 
 <details>
-<summary><code>Hour helpers</code></summary>
+<summary><code>Hour</code></summary>
 
 * [addHours](docs/hour.md#addhours)
 * [subHours](docs/hour.md#subhours)
@@ -124,7 +126,7 @@ If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 </details>
 
 <details>
-<summary><code>Day helpers</code></summary>
+<summary><code>Day</code></summary>
 
 * [addDays](docs/day.md#adddays)
 * [subDays](docs/day.md#subdays)
@@ -140,7 +142,7 @@ If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 </details>
 
 <details>
-<summary><code>Week helpers</code></summary>
+<summary><code>Week</code></summary>
 
 * [addWeeks](docs/week.md#addweeks)
 * [subWeeks](docs/week.md#subweeks)
@@ -153,7 +155,7 @@ If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 </details>
 
 <details>
-<summary><code>Weekday helpers</code></summary>
+<summary><code>Weekday</code></summary>
 
 * [isSunday](docs/weekday.md#issunday)
 * [isMonday](docs/weekday.md#ismonday)
@@ -166,7 +168,7 @@ If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 </details>
 
 <details>
-<summary><code>Month helpers</code></summary>
+<summary><code>Month</code></summary>
 
 * [addMonths](docs/month.md#addmonths)
 * [subMonths](docs/month.md#submonths)
@@ -184,7 +186,7 @@ If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 </details>
 
 <details>
-<summary><code>Year helpers</code></summary>
+<summary><code>Year</code></summary>
 
 * [addYears](docs/year.md#addyears)
 * [subYears](docs/year.md#subyears)
