@@ -111,7 +111,7 @@ module Internal = {
       | _ => failwith("error")
     );
 
-  let rec differenceIn = (differenceType, fst, snd) =>
+  let rec differenceIn = (differenceType, snd, fst) =>
     Date.(
       switch (differenceType) {
       | Seconds
@@ -139,7 +139,7 @@ module Internal = {
           };
 
         (adjust |> Math.round |> int_of_float) + diff;
-      | Years => differenceIn(Months, fst, snd) / 12
+      | Years => differenceIn(Months, snd, fst) / 12
       | CalendarDays(startOf)
       | CalendarWeeks(startOf) =>
         let fst = fst |> startOf;
@@ -159,8 +159,8 @@ module Internal = {
 
   let retrieveMinOrMax = value => value |> Belt.Option.getExn |> Date.fromFloat;
 
-  let compareAscOrDesc = (~x, ~y, firstDate, secondDate) =>
-    switch ((firstDate |> Date.getTime) -. (secondDate |> Date.getTime)) {
+  let compareAscOrDesc = (~x, ~y, fst, snd) =>
+    switch ((fst |> Date.getTime) -. (snd |> Date.getTime)) {
     | ts when ts < 0. => x
     | ts when ts > 0. => y
     | _ => 0
@@ -175,7 +175,7 @@ module Internal = {
   let startOrEndOfWeek = (weekStartsOn, type_) => {
     open Date;
 
-    let week = weekStartsOn->dayToJs->float_of_int;
+    let week = weekStartsOn |> dayToJs |> float_of_int;
 
     let date =
       switch (type_) {
@@ -189,7 +189,7 @@ module Internal = {
         setDate(date |> makeDate, (date |> getDate) +. diff);
       };
 
-    date->fromFloat;
+    date |> fromFloat;
   };
 
   let isLeap = year => year mod 400 === 0 || year mod 4 === 0 && year mod 100 !== 0;
@@ -197,7 +197,7 @@ module Internal = {
   let makeIntervalDay = (interval, index) => interval.start |> makeDateWithStartOfDayHours |> addDays(index);
 
   let getAmountOfIntervalDays = interval =>
-    differenceIn(CalendarDays(makeDateWithStartOfDayHours), interval.end_, interval.start)->succ;
+    differenceIn(CalendarDays(makeDateWithStartOfDayHours), interval.start, interval.end_) |> succ;
 
   let is = (day, date) => date |> Date.getDay === (day |> dayToJs |> float_of_int);
 
@@ -318,7 +318,7 @@ let differenceInCalendarDays = Internal.differenceIn(CalendarDays(startOfDay));
 
 let differenceInDays = Internal.differenceIn(Days);
 
-let getDayOfYear = date => date->differenceInCalendarDays(date->Internal.startOfYear)->succ;
+let getDayOfYear = date => date |> differenceInCalendarDays(date |> Internal.startOfYear) |> succ;
 
 let isSameDay = (fst, snd) => fst |> startOfDay |> isEqual(snd |> startOfDay);
 
@@ -408,7 +408,7 @@ let getWeekOfMonth = (~weekStartsOn=Sunday, date) => {
 
 let getWeeksInMonth = (~weekStartsOn=Sunday, date) => {
   let differenceInCalendarWeeks' = differenceInCalendarWeeks(~weekStartsOn);
-  date->lastDayOfMonth->differenceInCalendarWeeks'(date->startOfMonth)->succ;
+  date |> lastDayOfMonth |> differenceInCalendarWeeks'(date |> startOfMonth) |> succ;
 };
 
 /* ——[Year helpers]——————————— */
@@ -419,7 +419,7 @@ let subYears = (years, date) => date |> addYears(- years);
 
 let startOfYear = Internal.startOfYear;
 
-let isSameYear = (snd, fst) => fst |> startOfYear |> isEqual(snd |> startOfYear);
+let isSameYear = (fst, snd) => fst |> startOfYear |> isEqual(snd |> startOfYear);
 
 let isLeapYear = date => date |> Date.getFullYear |> int_of_float |> Internal.isLeap;
 

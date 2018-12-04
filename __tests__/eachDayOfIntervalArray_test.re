@@ -19,9 +19,8 @@ describe("eachDayOfIntervalArray", () => {
     let e = makeWithYMD(~year=2018., ~month=0., ~date=5., ());
 
     let expectedDates = [|a, b, c, d, e|];
+    let result = interval |> ReDate.eachDayOfIntervalArray;
 
-    Belt.Array.eq(interval |> ReDate.eachDayOfIntervalArray, expectedDates, (a, b) => a |> getTime === (b |> getTime))
-    |> expect
-    |> toBeTruthy;
+    Belt.Array.eq(result, expectedDates, (a, b) => a |> getTime === (b |> getTime)) |> expect |> toBeTruthy;
   });
 });

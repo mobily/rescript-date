@@ -12,7 +12,7 @@ describe("minOfList", () =>
 
       let dates = [b, c, d, a];
 
-      dates->ReDate.minOfList->expect->toEqual(a, _);
+      dates |> ReDate.minOfList |> expect |> toEqual(a);
     })
   )
 );

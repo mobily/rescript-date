@@ -12,7 +12,7 @@ describe("maxOfArray", () =>
 
       let dates = [|b, c, d, a|];
 
-      dates->ReDate.maxOfArray->expect->toEqual(d, _);
+      dates |> ReDate.maxOfArray |> expect |> toEqual(d);
     })
   )
 );

@@ -12,7 +12,7 @@ describe("minOfArray", () =>
 
       let dates = [|b, c, d, a|];
 
-      dates->ReDate.minOfArray->expect->toEqual(a, _);
+      dates |> ReDate.minOfArray |> expect |> toEqual(a);
     })
   )
 );

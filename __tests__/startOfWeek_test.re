@@ -9,7 +9,7 @@ describe("startOfWeek", () => {
     let date = makeWithYMDHMS(~year=2018., ~month=0., ~date=12., ~hours=16., ~minutes=50., ~seconds=12., ());
     let expectedDate = makeWithYMDHMS(~year=2018., ~month=0., ~date=7., ~hours=0., ~minutes=0., ~seconds=0., ());
 
-    date->ReDate.startOfWeek->expect->toEqual(expectedDate, _);
+    date |> ReDate.startOfWeek |> expect |> toEqual(expectedDate);
   });
 
   test("allows to specify which day is the first day of the week", () => {
@@ -17,6 +17,6 @@ describe("startOfWeek", () => {
     let expectedDate = makeWithYMDHMS(~year=2018., ~month=0., ~date=8., ~hours=0., ~minutes=0., ~seconds=0., ());
     let startOfWeek' = ReDate.startOfWeek(~weekStartsOn=Monday);
 
-    date->startOfWeek'->expect->toEqual(expectedDate, _);
+    date |> startOfWeek' |> expect |> toEqual(expectedDate);
   });
 });

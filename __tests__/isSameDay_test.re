@@ -9,13 +9,13 @@ describe("isSameDay", () => {
     let fstDate = makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=16., ~minutes=50., ~seconds=12., ());
     let sndDate = makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=10., ~minutes=15., ~seconds=55., ());
 
-    fstDate->ReDate.isSameDay(sndDate)->expect->toBeTruthy;
+    fstDate |> ReDate.isSameDay(sndDate) |> expect |> toBeTruthy;
   });
 
   test("returns false if the given dates have different days", () => {
     let fstDate = makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=23., ~minutes=59., ~seconds=59., ());
     let sndDate = makeWithYMDHMS(~year=2018., ~month=0., ~date=2., ~hours=0., ~minutes=0., ~seconds=1., ());
 
-    fstDate->ReDate.isSameDay(sndDate)->expect->toBeFalsy;
+    fstDate |> ReDate.isSameDay(sndDate) |> expect |> toBeFalsy;
   });
 });

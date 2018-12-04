@@ -9,13 +9,13 @@ describe("differenceInSeconds", () => {
     let fstDate = makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=40., ~seconds=15., ());
     let sndDate = makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=0., ());
 
-    fstDate->ReDate.differenceInSeconds(sndDate)->expect->toEqual(615, _);
+    fstDate |> ReDate.differenceInSeconds(sndDate) |> expect |> toEqual(615);
   });
 
   test("returns a negative number if the time value of the first date is smaller", () => {
     let fstDate = makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=0., ());
     let sndDate = makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=40., ~seconds=15., ());
 
-    fstDate->ReDate.differenceInSeconds(sndDate)->expect->toEqual(-615, _);
+    fstDate |> ReDate.differenceInSeconds(sndDate) |> expect |> toEqual(-615);
   });
 });

@@ -12,7 +12,7 @@ describe("maxOfList", () =>
 
       let dates = [b, c, d, a];
 
-      dates->ReDate.maxOfList->expect->toEqual(d, _);
+      dates |> ReDate.maxOfList |> expect |> toEqual(d);
     })
   )
 );

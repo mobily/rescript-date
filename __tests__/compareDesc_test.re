@@ -9,21 +9,21 @@ describe("compareDesc", () => {
     let fstDate = makeWithYMD(~year=2018., ~month=0., ~date=1., ());
     let sndDate = makeWithYMD(~year=2018., ~month=0., ~date=1., ());
 
-    fstDate->ReDate.compareDesc(sndDate)->expect->toEqual(0, _);
+    ReDate.compareDesc(fstDate, sndDate) |> expect |> toEqual(0);
   });
 
   test("returns -1 if the first date is after the second one", () => {
     let fstDate = makeWithYMD(~year=2018., ~month=0., ~date=2., ());
     let sndDate = makeWithYMD(~year=2018., ~month=0., ~date=1., ());
 
-    fstDate->ReDate.compareDesc(sndDate)->expect->toEqual(-1, _);
+    ReDate.compareDesc(fstDate, sndDate) |> expect |> toEqual(-1);
   });
 
   test("returns 1 if the first date is before the second one", () => {
     let fstDate = makeWithYMD(~year=2018., ~month=0., ~date=1., ());
     let sndDate = makeWithYMD(~year=2018., ~month=0., ~date=2., ());
 
-    fstDate->ReDate.compareDesc(sndDate)->expect->toEqual(1, _);
+    ReDate.compareDesc(fstDate, sndDate) |> expect |> toEqual(1);
   });
 
   test("sorts the dates array in the chronological order when function is passed as the argument to sort function", () => {
@@ -34,11 +34,8 @@ describe("compareDesc", () => {
 
     let unsortedArray = [|a, b, d, c|];
     let sortedArray = [|d, c, b, a|];
+    let result = Belt.SortArray.stableSortBy(unsortedArray, ReDate.compareDesc);
 
-    unsortedArray
-    ->Belt.SortArray.stableSortBy(ReDate.compareDesc)
-    ->Belt.Array.eq(sortedArray, (===))
-    ->expect
-    ->toBeTruthy;
+    Belt.Array.eq(result, sortedArray, (===)) |> expect |> toBeTruthy;
   });
 });
