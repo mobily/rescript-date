@@ -18,7 +18,7 @@ let start = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ());
 let end_ = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=10., ());
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=5., ());
 
-date->ReDate.isWithinInterval(~start, ~end_);
+date |> ReDate.isWithinInterval(~start, ~end_);
 ```
 
 #### areIntervalsOverlapping
@@ -37,7 +37,7 @@ let includedInterval = {
   end_: makeWithYMD(~year=2018., ~month=4., ~date=5., ()),
 };
 
-interval->ReDate.areIntervalsOverlapping(includedInterval);
+interval |> ReDate.areIntervalsOverlapping(includedInterval);
 ```
 
 #### getOverlappingDaysInIntervals
@@ -56,7 +56,7 @@ let includedInterval = {
   end_: Js.Date.makeWithYMD(~year=2018., ~month=3., ~date=15., ()),
 };
 
-interval->ReDate.getOverlappingDaysInIntervals(includedInterval);
+interval |> ReDate.getOverlappingDaysInIntervals(includedInterval);
 ```
 
 #### eachDayOfIntervalArray
@@ -71,7 +71,7 @@ let interval = {
   end_: Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=5., ~hours=8., ~minutes=45., ~seconds=15., ()),
 };
 
-interval->ReDate.eachDayOfIntervalArray;
+interval |> ReDate.eachDayOfIntervalArray;
 ```
 
 #### eachDayOfIntervalList
@@ -86,5 +86,5 @@ let interval = {
   end_: Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=5., ~hours=8., ~minutes=45., ~seconds=15., ()),
 };
 
-interval->ReDate.eachDayOfIntervalList;
+interval |> ReDate.eachDayOfIntervalList;
 ```

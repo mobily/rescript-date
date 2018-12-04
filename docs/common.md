@@ -10,7 +10,7 @@
 let fstDate = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ());
 let sndDate = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ());
 
-fstDate->ReDate.isEqual(sndDate)
+fstDate |> ReDate.isEqual(sndDate)
 ```
 
 #### isBefore
@@ -23,7 +23,7 @@ fstDate->ReDate.isEqual(sndDate)
 let fstDate = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ());
 let sndDate = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=2., ());
 
-fstDate->ReDate.isBefore(sndDate)
+fstDate |> ReDate.isBefore(sndDate)
 ```
 
 #### isAfter
@@ -36,7 +36,7 @@ fstDate->ReDate.isBefore(sndDate)
 let fstDate = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=2., ());
 let sndDate = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ());
 
-fstDate->ReDate.isAfter(sndDate)
+fstDate |> ReDate.isAfter(sndDate)
 ```
 
 #### isFuture
@@ -48,7 +48,7 @@ fstDate->ReDate.isAfter(sndDate)
 ```reason
 let date = Js.Date.makeWithYMD(~year=2030., ~month=0., ~date=1., ());
 
-date->ReDate.isFuture;
+date |> ReDate.isFuture;
 ```
 
 #### isPast
@@ -60,7 +60,7 @@ date->ReDate.isFuture;
 ```reason
 let date = Js.Date.makeWithYMD(~year=1999., ~month=0., ~date=1., ());
 
-date->ReDate.isPast;
+date |> ReDate.isPast;
 ```
 
 #### compareAsc
@@ -77,7 +77,7 @@ let d = Js.Date.makeWithYMD(~year=2018., ~month=12., ~date=1., ());
 
 let unsortedArray = [|d, b, c, a|];
 
-unsortedArray->Belt.SortArray.stableSortBy(ReDate.compareAsc);
+Belt.SortArray.stableSortBy(unsortedArray, ReDate.compareAsc);
 ```
 
 #### compareDesc
@@ -94,7 +94,7 @@ let d = Js.Date.makeWithYMD(~year=2018., ~month=12., ~date=1., ());
 
 let unsortedArray = [|a, b, d, c|];
 
-unsortedArray->Belt.SortArray.stableSortBy(ReDate.compareDesc);
+Belt.SortArray.stableSortBy(unsortedArray, ReDate.compareDesc);
 ```
 
 #### maxOfArray
@@ -111,7 +111,7 @@ let d = Js.Date.makeWithYMD(~year=2018., ~month=12., ~date=1., ());
 
 let dates = [|b, c, d, a|];
 
-dates->ReDate.maxOfArray;
+dates |> ReDate.maxOfArray;
 ```
 
 #### maxOfList
@@ -128,7 +128,7 @@ let d = Js.Date.makeWithYMD(~year=2018., ~month=12., ~date=1., ());
 
 let dates = [b, c, d, a];
 
-dates->ReDate.maxOfList;
+dates |> ReDate.maxOfList;
 ```
 
 #### minOfArray
@@ -145,7 +145,7 @@ let d = Js.Date.makeWithYMD(~year=2018., ~month=12., ~date=1., ());
 
 let dates = [|b, c, d, a|];
 
-dates->ReDate.minOfArray;
+dates |> ReDate.minOfArray;
 ```
 
 #### minOfList
@@ -162,7 +162,7 @@ let d = Js.Date.makeWithYMD(~year=2018., ~month=12., ~date=1., ());
 
 let dates = [b, c, d, a];
 
-dates->ReDate.minOfList;
+dates |> ReDate.minOfList;
 ```
 
 #### isValid

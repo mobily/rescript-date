@@ -4,24 +4,24 @@
 
 > Add the specified number of years to the given date.
 
-`let addYears: (Js.Date.t, int) => Js.Date.t`
+`let addYears: (int, Js.Date.t) => Js.Date.t`
 
 ```reason
 let date = makeWithYMD(~year=2018., ~month=4., ~date=1., ());
 
-date->ReDate.addYears(1);
+date |> ReDate.addYears(1);
 ```
 
 #### subYears
 
 > Subtract the specified number of years from the given date.
 
-`let subYears: (Js.Date.t, int) => Js.Date.t`
+`let subYears: (int, Js.Date.t) => Js.Date.t`
 
 ```reason
 let date = makeWithYMD(~year=2019., ~month=4., ~date=1., ());
 
-date->ReDate.subYears(1);
+date |> ReDate.subYears(1);
 ```
 
 #### startOfYear
@@ -33,7 +33,7 @@ date->ReDate.subYears(1);
 ```reason
 let date = makeWithYMD(~year=2018., ~month=5., ~date=1., ());
 
-date->ReDate.startOfYear;
+date |> ReDate.startOfYear;
 ```
 
 #### endOfYear
@@ -45,7 +45,7 @@ date->ReDate.startOfYear;
 ```reason
 let date = makeWithYMD(~year=2018., ~month=8., ~date=10., ());
 
-date->ReDate.endOfYear;
+date |> ReDate.endOfYear;
 ```
 
 #### isSameYear
@@ -58,7 +58,7 @@ date->ReDate.endOfYear;
 let fstDate = makeWithYMD(~year=2018., ~month=8., ~date=10., ());
 let sndDate = makeWithYMD(~year=2018., ~month=6., ~date=20., ());
 
-fstDate->ReDate.isSameYear(sndDate);
+fstDate |> ReDate.isSameYear(sndDate);
 ```
 
 #### isLeapYear
@@ -70,7 +70,7 @@ fstDate->ReDate.isSameYear(sndDate);
 ```reason
 let date = makeWithYMD(~year=2020., ~month=8., ~date=10., ());
 
-date->ReDate.isLeapYear;
+date |> ReDate.isLeapYear;
 ```
 
 #### lastMonthOfYear
@@ -82,7 +82,7 @@ date->ReDate.isLeapYear;
 ```reason
 let date = makeWithYMD(~year=2018., ~month=8., ~date=10., ());
 
-date->ReDate.lastMonthOfYear;
+date |> ReDate.lastMonthOfYear;
 ```
 
 #### lastDayOfYear
@@ -94,7 +94,7 @@ date->ReDate.lastMonthOfYear;
 ```reason
 let date = makeWithYMD(~year=2018., ~month=8., ~date=10., ());
 
-date->ReDate.lastDayOfYear;
+date |> ReDate.lastDayOfYear;
 ```
 
 #### getDaysInYear
@@ -106,7 +106,7 @@ date->ReDate.lastDayOfYear;
 ```reason
 let date = makeWithYMD(~year=2018., ~month=10., ~date=10., ());
 
-date->ReDate.getDaysInYear;
+date |> ReDate.getDaysInYear;
 ```
 
 #### differenceInCalendarYears
@@ -119,7 +119,7 @@ date->ReDate.getDaysInYear;
 let fstDate = makeWithYMD(~year=2020., ~month=5., ~date=1., ());
 let sndDate = makeWithYMD(~year=2018., ~month=1., ~date=1., ());
 
-fstDate->ReDate.differenceInCalendarYears(sndDate);
+fstDate |> ReDate.differenceInCalendarYears(sndDate);
 ```
 
 #### differenceInYears
@@ -132,5 +132,5 @@ fstDate->ReDate.differenceInCalendarYears(sndDate);
 let fstDate = makeWithYMD(~year=2018., ~month=0., ~date=1., ());
 let sndDate = makeWithYMD(~year=2016., ~month=0., ~date=1., ());
 
-fstDate->ReDate.differenceInYears(sndDate);
+fstDate |> ReDate.differenceInYears(sndDate);
 ```

@@ -4,24 +4,24 @@
 
 > Add the specified number of days to the given date.
 
-`let addDays: (Js.Date.t, int) => Js.Date.t`
+`let addDays: (int, Js.Date.t) => Js.Date.t`
 
 ```reason
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ());
 
-date->ReDate.addDays(5);
+date |> ReDate.addDays(5);
 ```
 
 #### subDays
 
 > Subtract the specified number of days from the given date.
 
-`let subDays: (Js.Date.t, int) => Js.Date.t`
+`let subDays: (int, Js.Date.t) => Js.Date.t`
 
 ```reason
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ());
 
-date->ReDate.subDays(5);
+date |> ReDate.subDays(5);
 ```
 
 #### startOfDay
@@ -33,7 +33,7 @@ date->ReDate.subDays(5);
 ```reason
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=16., ~minutes=50., ~seconds=12., ());
 
-date->ReDate.startOfDay;
+date |> ReDate.startOfDay;
 ```
 
 #### endOfDay
@@ -45,7 +45,7 @@ date->ReDate.startOfDay;
 ```reason
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=16., ~minutes=50., ~seconds=12., ());
 
-date->ReDate.endOfDay;
+date |> ReDate.endOfDay;
 ```
 
 #### differenceInCalendarDays
@@ -58,7 +58,7 @@ date->ReDate.endOfDay;
 let fstDate = Js.Date.makeWithYMD(~year=2019., ~month=0., ~date=1., ());
 let sndDate = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ());
 
-fstDate->ReDate.differenceInCalendarDays(sndDate);
+fstDate |> ReDate.differenceInCalendarDays(sndDate);
 ```
 
 #### differenceInDays
@@ -71,7 +71,7 @@ fstDate->ReDate.differenceInCalendarDays(sndDate);
 let fstDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=10., ~hours=10., ~minutes=15., ~seconds=55., ());
 let sndDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=2., ~hours=20., ~minutes=50., ~seconds=10., ());
 
-fstDate->ReDate.differenceInDays(sndDate);
+fstDate |> ReDate.differenceInDays(sndDate);
 ```
 
 #### getDayOfYear
@@ -83,7 +83,7 @@ fstDate->ReDate.differenceInDays(sndDate);
 ```reason
 let date = Js.Date.makeWithYMD(~year=2018., ~month=7., ~date=23., ());
 
-date->ReDate.getDayOfYear;
+date |> ReDate.getDayOfYear;
 ```
 
 #### isSameDay
@@ -96,7 +96,7 @@ date->ReDate.getDayOfYear;
 let fstDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=16., ~minutes=50., ~seconds=12., ());
 let sndDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=10., ~minutes=15., ~seconds=55., ());
 
-fstDate->ReDate.isSameDay(sndDate);
+fstDate |> ReDate.isSameDay(sndDate);
 ```
 
 #### isToday
@@ -108,7 +108,7 @@ fstDate->ReDate.isSameDay(sndDate);
 ```reason
 let date = Js.Date.make();
 
-date->ReDate.isToday;
+date |> ReDate.isToday;
 ```
 
 #### isTomorrow
@@ -120,7 +120,7 @@ date->ReDate.isToday;
 ```reason
 let date = Js.Date.make();
 
-ReDate.(date->addDays(1)->isTomorrow);
+ReDate.(date |> addDays(1) |> isTomorrow);
 ```
 
 #### isYesterday
@@ -132,5 +132,5 @@ ReDate.(date->addDays(1)->isTomorrow);
 ```reason
 let date = Js.Date.make();
 
-ReDate.(date->subDays(1)->isYesterday);
+ReDate.(date |> subDays(1) |> isYesterday);
 ```

@@ -4,24 +4,24 @@
 
 > Add the specified number of months to the given date.
 
-`let addMonths: (Js.Date.t, int) => Js.Date.t`
+`let addMonths: (int, Js.Date.t) => Js.Date.t`
 
 ```reason
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ());
 
-date->ReDate.addMonths(1);
+date |> ReDate.addMonths(1);
 ```
 
 #### subMonths
 
 > Subtract the specified number of months from the given date.
 
-`let subMonths: (Js.Date.t, int) => Js.Date.t`
+`let subMonths: (int, Js.Date.t) => Js.Date.t`
 
 ```reason
 let date = Js.Date.makeWithYMD(~year=2018., ~month=1., ~date=1., ());
 
-date->ReDate.subMonths(1);
+date |> ReDate.subMonths(1);
 ```
 
 #### differenceInCalendarMonths
@@ -34,7 +34,7 @@ date->ReDate.subMonths(1);
 let fstDate = Js.Date.makeWithYMD(~year=2019., ~month=5., ~date=1., ());
 let sndDate = Js.Date.makeWithYMD(~year=2018., ~month=1., ~date=1., ());
 
-fstDate->ReDate.differenceInCalendarMonths(sndDate);
+fstDate |> ReDate.differenceInCalendarMonths(sndDate);
 ```
 
 #### differenceInMonths
@@ -47,7 +47,7 @@ fstDate->ReDate.differenceInCalendarMonths(sndDate);
 let fstDate = Js.Date.makeWithYMD(~year=2018., ~month=7., ~date=1., ());
 let sndDate = Js.Date.makeWithYMD(~year=2018., ~month=6., ~date=31., ());
 
-fstDate->ReDate.differenceInMonths(sndDate);
+fstDate |> ReDate.differenceInMonths(sndDate);
 ```
 
 #### startOfMonth
@@ -59,7 +59,7 @@ fstDate->ReDate.differenceInMonths(sndDate);
 ```reason
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=24., ~hours=16., ~minutes=50., ~seconds=12., ());
 
-date->ReDate.startOfMonth;
+date |> ReDate.startOfMonth;
 ```
 
 #### endOfMonth
@@ -71,7 +71,7 @@ date->ReDate.startOfMonth;
 ```reason
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=24., ~hours=16., ~minutes=50., ~seconds=12., ());
 
-date->ReDate.endOfMonth;
+date |> ReDate.endOfMonth;
 ```
 
 #### isFirstDayOfMonth
@@ -83,7 +83,7 @@ date->ReDate.endOfMonth;
 ```reason
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ());
 
-date->ReDate.isFirstDayOfMonth;
+date |> ReDate.isFirstDayOfMonth;
 ```
 
 #### isLastDayOfMonth
@@ -95,7 +95,7 @@ date->ReDate.isFirstDayOfMonth;
 ```reason
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=31., ());
 
-date->ReDate.isLastDayOfMonth;
+date |> ReDate.isLastDayOfMonth;
 ```
 
 #### isSameMonth
@@ -108,7 +108,7 @@ date->ReDate.isLastDayOfMonth;
 let fstDate = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ());
 let sndDate = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=24., ());
 
-fstDate->ReDate.isSameMonth(sndDate);
+fstDate |> ReDate.isSameMonth(sndDate);
 ```
 
 #### lastDayOfMonth
@@ -120,7 +120,7 @@ fstDate->ReDate.isSameMonth(sndDate);
 ```reason
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=12., ());
 
-date->ReDate.lastDayOfMonth;
+date |> ReDate.lastDayOfMonth;
 ```
 
 #### getDaysInMonth
@@ -132,7 +132,7 @@ date->ReDate.lastDayOfMonth;
 ```reason
 let date = Js.Date.makeWithYMD(~year=2018., ~month=10., ~date=10., ());
 
-date->ReDate.getDaysInMonth;
+date |> ReDate.getDaysInMonth;
 ```
 
 #### getWeekOfMonth
@@ -144,14 +144,14 @@ date->ReDate.getDaysInMonth;
 ```reason
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ());
 
-date->ReDate.getWeekOfMonth;
+date |> ReDate.getWeekOfMonth;
 ```
 
 ```reason
 let date = Js.Date.makeWithYMD(~year=2018., ~month=10., ~date=23., ());
 let getWeekOfMonth' = ReDate.getWeekOfMonth(~weekStartsOn=Saturday);
 
-date->getWeekOfMonth';
+date |> getWeekOfMonth';
 ```
 
 #### getWeeksInMonth
@@ -163,12 +163,12 @@ date->getWeekOfMonth';
 ```reason
 let date = Js.Date.makeWithYMD(~year=2018., ~month=10., ~date=1., ());
 
-date->ReDate.getWeeksInMonth;
+date |> ReDate.getWeeksInMonth;
 ```
 
 ```reason
 let date = Js.Date.makeWithYMD(~year=2018., ~month=10., ~date=14., ());
 let getWeeksInMonth' = ReDate.getWeeksInMonth(~weekStartsOn=Friday);
 
-date->getWeeksInMonth';
+date |> getWeeksInMonth';
 ```

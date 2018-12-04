@@ -4,24 +4,24 @@
 
 > Add the specified number of minutes to the given date.
 
-`let addMinutes: (Js.Date.t, int) => Js.Date.t`
+`let addMinutes: (int, Js.Date.t) => Js.Date.t`
 
 ```reason
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=30., ());
 
-date->ReDate.addMinutes(1);
+date |> ReDate.addMinutes(1);
 ```
 
 #### subMinutes
 
 > Subtract the specified number of minutes from the given date.
 
-`let subMinutes: (Js.Date.t, int) => Js.Date.t`
+`let subMinutes: (int, Js.Date.t) => Js.Date.t`
 
 ```reason
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=30., ());
 
-date->ReDate.subMinutes(1);
+date |> ReDate.subMinutes(1);
 ```
 
 #### differenceInMinutes
@@ -34,7 +34,7 @@ date->ReDate.subMinutes(1);
 let fstDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=40., ~seconds=15., ());
 let sndDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=0., ());
 
-fstDate->ReDate.differenceInMinutes(sndDate);
+fstDate |> ReDate.differenceInMinutes(sndDate);
 ```
 
 #### startOfMinute
@@ -46,7 +46,7 @@ fstDate->ReDate.differenceInMinutes(sndDate);
 ```reason
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=8., ~date=10., ~hours=8., ~minutes=20., ~seconds=35., ());
 
-date->ReDate.startOfMinute;
+date |> ReDate.startOfMinute;
 ```
 
 #### endOfMinute
@@ -58,7 +58,7 @@ date->ReDate.startOfMinute;
 ```reason
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=8., ~date=10., ~hours=8., ~minutes=20., ~seconds=35., ());
 
-date->ReDate.endOfMinute;
+date |> ReDate.endOfMinute;
 ```
 
 #### isSameMinute
@@ -71,7 +71,7 @@ date->ReDate.endOfMinute;
 let fstDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=8., ~date=10., ~hours=19., ~minutes=6., ~seconds=10., ());
 let sndDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=8., ~date=10., ~hours=19., ~minutes=6., ~seconds=35., ());
 
-fstDate->ReDate.isSameMinute(sndDate);
+fstDate |> ReDate.isSameMinute(sndDate);
 ```
 
 #### roundToNearestMinute
@@ -83,12 +83,12 @@ fstDate->ReDate.isSameMinute(sndDate);
 ```reason
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=8., ~date=10., ~hours=19., ~minutes=6., ~seconds=31., ());
 
-date->ReDate.roundToNearestMinute;
+date |> ReDate.roundToNearestMinute;
 ```
 
 ```reason
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=8., ~date=10., ~hours=19., ~minutes=12., ~seconds=10., ());
 let roundToNearest15Minute = ReDate.roundToNearestMinute(~nearestTo=15);
 
-date->roundToNearest15Minute;
+date |> roundToNearest15Minute;
 ```

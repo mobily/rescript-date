@@ -9,7 +9,7 @@
 ```reason
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=7., ());
 
-date->ReDate.isSunday;
+date |> ReDate.isSunday;
 ```
 
 #### isMonday
@@ -21,7 +21,7 @@ date->ReDate.isSunday;
 ```reason
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=8., ());
 
-date->ReDate.isMonday;
+date |> ReDate.isMonday;
 ```
 
 #### isTuesday
@@ -33,7 +33,7 @@ date->ReDate.isMonday;
 ```reason
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=9., ());
 
-date->ReDate.isTuesday;
+date |> ReDate.isTuesday;
 ```
 
 #### isWednesday
@@ -45,7 +45,7 @@ date->ReDate.isTuesday;
 ```reason
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=10., ());
 
-date->ReDate.isWednesday;
+date |> ReDate.isWednesday;
 ```
 
 #### isThursday
@@ -57,7 +57,7 @@ date->ReDate.isWednesday;
 ```reason
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=11., ());
 
-date->ReDate.isThursday;
+date |> ReDate.isThursday;
 ```
 
 #### isFriday
@@ -69,7 +69,7 @@ date->ReDate.isThursday;
 ```reason
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=12., ());
 
-date->ReDate.isFriday;
+date |> ReDate.isFriday;
 ```
 
 #### isSaturday
@@ -81,7 +81,7 @@ date->ReDate.isFriday;
 ```reason
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=13., ());
 
-date->ReDate.isSaturday;
+date |> ReDate.isSaturday;
 ```
 
 #### isWeekend
@@ -93,5 +93,5 @@ date->ReDate.isSaturday;
 ```reason
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=13., ());
 
-date->ReDate.isWeekend;
+date |> ReDate.isWeekend;
 ```
