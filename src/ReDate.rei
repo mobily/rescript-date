@@ -71,9 +71,9 @@ let roundToNearestMinute: (~nearestTo: int=?, Js.Date.t) => Js.Date.t;
 
 /* ——[Hour helpers]——————————— */
 
-let addHours: (Js.Date.t, int) => Js.Date.t;
+let addHours: (int, Js.Date.t) => Js.Date.t;
 
-let subHours: (Js.Date.t, int) => Js.Date.t;
+let subHours: (int, Js.Date.t) => Js.Date.t;
 
 let differenceInHours: (Js.Date.t, Js.Date.t) => int;
 

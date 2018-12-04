@@ -269,39 +269,40 @@ let subMinutes = (minutes, date) => date |> addMinutes(- minutes);
 let differenceInMinutes = Internal.differenceIn(Minutes);
 
 let startOfMinute = date =>
-  Date.(date->Internal.makeDate->setSecondsMs(~seconds=0., ~milliseconds=0., ())->fromFloat);
+  Date.(setSecondsMs(date |> Internal.makeDate, ~seconds=0., ~milliseconds=0., ()) |> fromFloat);
 
 let endOfMinute = date =>
-  Date.(date->Internal.makeDate->setSecondsMs(~seconds=59., ~milliseconds=999., ())->fromFloat);
+  Date.(setSecondsMs(date |> Internal.makeDate, ~seconds=59., ~milliseconds=999., ()) |> fromFloat);
 
-let isSameMinute = (fst, snd) => fst->startOfMinute->isEqual(snd->startOfMinute);
+let isSameMinute = (fst, snd) => fst |> startOfMinute |> isEqual(snd |> startOfMinute);
 
 let roundToNearestMinute = (~nearestTo=1, date) => {
-  let closestTo = Math.round(date->Date.getSeconds /. 60.);
-  let closestMinute = Date.(date->getMinutes +. closestTo);
+  let closestTo = (date |> Date.getSeconds) /. 60. |> Math.round;
+  let closestMinute = (date |> Date.getMinutes) +. closestTo;
   let nearestRoundedMinute =
     nearestTo !== 1 ?
-      (date->Date.getMinutes /. nearestTo->float_of_int)->Math.round *. nearestTo->float_of_int : closestMinute;
+      ((date |> Date.getMinutes) /. (nearestTo |> float_of_int) |> Math.round) *. (nearestTo |> float_of_int) :
+      closestMinute;
 
-  Date.(date->Internal.makeDate->setMinutes(nearestRoundedMinute)->fromFloat->startOfMinute);
+  Date.(setMinutes(date |> Internal.makeDate, nearestRoundedMinute) |> fromFloat |> startOfMinute);
 };
 
 /* ——[Hour helpers]——————————— */
 
-let addHours = (date, hours) =>
-  Date.(date->Internal.makeDate->setHours(date->getHours +. hours->float_of_int)->fromFloat);
+let addHours = (hours, date) =>
+  Date.(setHours(date |> Internal.makeDate, (date |> getHours) +. (hours |> float_of_int)) |> fromFloat);
 
-let subHours = (date, hours) => date->addHours(- hours);
+let subHours = (hours, date) => date |> addHours(- hours);
 
 let differenceInHours = Internal.differenceIn(Hours);
 
 let startOfHour = date =>
-  Date.(date->Internal.makeDate->setMinutesSMs(~minutes=0., ~seconds=0., ~milliseconds=0., ())->fromFloat);
+  Date.(setMinutesSMs(date |> Internal.makeDate, ~minutes=0., ~seconds=0., ~milliseconds=0., ()) |> fromFloat);
 
 let endOfHour = date =>
-  Date.(date->Internal.makeDate->setMinutesSMs(~minutes=59., ~seconds=59., ~milliseconds=999., ())->fromFloat);
+  Date.(setMinutesSMs(date |> Internal.makeDate, ~minutes=59., ~seconds=59., ~milliseconds=999., ()) |> fromFloat);
 
-let isSameHour = (fst, snd) => fst->startOfHour->isEqual(snd->startOfHour);
+let isSameHour = (fst, snd) => fst |> startOfHour |> isEqual(snd |> startOfHour);
 
 /* ——[Day helpers]——————————— */
 
@@ -348,7 +349,7 @@ let differenceInCalendarWeeks = (~weekStartsOn=Sunday) => {
 
 let isSameWeek = (~weekStartsOn=Sunday, fst, snd) => {
   let startOfWeek' = startOfWeek(~weekStartsOn);
-  fst->startOfWeek'->isEqual(snd->startOfWeek');
+  fst |> startOfWeek' |> isEqual(snd |> startOfWeek');
 };
 
 let lastDayOfWeek = (~weekStartsOn=Sunday, date) =>
@@ -387,22 +388,22 @@ let differenceInMonths = Internal.differenceIn(Months);
 let startOfMonth = date =>
   Date.(setDate(date |> Internal.makeDate, 1.) |> fromFloat |> Internal.makeDateWithStartOfDayHours);
 
-let endOfMonth = date => Internal.(date->makeLastDayOfMonth->makeDateWithEndOfDayHours);
+let endOfMonth = date => Internal.(date |> makeLastDayOfMonth |> makeDateWithEndOfDayHours);
 
-let isFirstDayOfMonth = date => date->Date.getDate->int_of_float === 1;
+let isFirstDayOfMonth = date => date |> Date.getDate |> int_of_float === 1;
 
-let isLastDayOfMonth = date => Date.(date->endOfDay->getTime === date->endOfMonth->getTime);
+let isLastDayOfMonth = date => Date.(date |> endOfDay |> getTime === (date |> endOfMonth |> getTime));
 
-let isSameMonth = (fst, snd) => fst->startOfMonth->isEqual(snd->startOfMonth);
+let isSameMonth = (fst, snd) => fst |> startOfMonth |> isEqual(snd |> startOfMonth);
 
-let lastDayOfMonth = date => Internal.(date->makeLastDayOfMonth->makeDateWithStartOfDayHours);
+let lastDayOfMonth = date => Internal.(date |> makeLastDayOfMonth |> makeDateWithStartOfDayHours);
 
 let getWeekOfMonth = (~weekStartsOn=Sunday, date) => {
-  let startWeekDay = date->startOfMonth->Date.getDay;
-  let weekStartsOn' = weekStartsOn->Internal.dayToJs->float_of_int;
+  let startWeekDay = date |> startOfMonth |> Date.getDay;
+  let weekStartsOn' = weekStartsOn |> Internal.dayToJs |> float_of_int;
   let diff = startWeekDay < weekStartsOn' ? 7. -. weekStartsOn' +. startWeekDay : startWeekDay -. weekStartsOn';
 
-  ((date->Date.getDate +. diff) /. 7.)->Math.ceil_int;
+  ((date |> Date.getDate) +. diff) /. 7. |> Math.ceil_int;
 };
 
 let getWeeksInMonth = (~weekStartsOn=Sunday, date) => {
