@@ -119,13 +119,18 @@ module Internal = {
       | Hours
       | Days
       | Weeks =>
-        let diff = (fst->getTime -. snd->getTime) /. differenceType->getMillisecondsOf->float_of_int;
-        diff > 0. ? diff->Math.floor_int : diff->Math.ceil_int;
+        let diff = ((fst |> getTime) -. (snd |> getTime)) /. (differenceType |> getMillisecondsOf |> float_of_int);
+        diff > 0. ? diff |> Math.floor_int : diff |> Math.ceil_int;
       | Months =>
-        let diff = (fst->getMonth -. snd->getMonth +. 12. *. (fst->getFullYear -. snd->getFullYear))->int_of_float;
+        let diff =
+          (fst |> getMonth)
+          -. (snd |> getMonth)
+          +. 12.
+          *. ((fst |> getFullYear) -. (snd |> getFullYear))
+          |> int_of_float;
         let anchor = snd |> addMonths(diff);
-        let anchorTime = anchor->getTime;
-        let fstTime = fst->getTime;
+        let anchorTime = anchor |> getTime;
+        let fstTime = fst |> getTime;
         let adjust =
           if (fstTime -. anchorTime < 0.) {
             (fstTime -. anchorTime) /. (anchorTime -. (snd |> addMonths(diff |> pred) |> getTime));
@@ -133,26 +138,29 @@ module Internal = {
             (fstTime -. anchorTime) /. ((snd |> addMonths(diff |> succ) |> getTime) -. anchorTime);
           };
 
-        adjust->Math.round->int_of_float + diff;
+        (adjust |> Math.round |> int_of_float) + diff;
       | Years => differenceIn(Months, fst, snd) / 12
       | CalendarDays(startOf)
       | CalendarWeeks(startOf) =>
-        let fst = fst->startOf;
-        let snd = snd->startOf;
-        let fstTime = fst->Date.getTime -. fst->getTimezoneOffsetInMilliseconds;
-        let sndTime = snd->Date.getTime -. snd->getTimezoneOffsetInMilliseconds;
-        let diff = (fstTime -. sndTime) /. differenceType->getMillisecondsOf->float_of_int;
-        diff->Math.round->int_of_float;
+        let fst = fst |> startOf;
+        let snd = snd |> startOf;
+        let fstTime = (fst |> Date.getTime) -. (fst |> getTimezoneOffsetInMilliseconds);
+        let sndTime = (snd |> Date.getTime) -. (snd |> getTimezoneOffsetInMilliseconds);
+        let diff = (fstTime -. sndTime) /. (differenceType |> getMillisecondsOf |> float_of_int);
+        diff |> Math.round |> int_of_float;
       | CalendarMonths =>
-        ((fst->getFullYear -. snd->getFullYear) *. 12. +. (fst->getMonth -. snd->getMonth))->int_of_float
-      | CalendarYears => (fst->getFullYear -. snd->getFullYear)->int_of_float
+        ((fst |> getFullYear) -. (snd |> getFullYear))
+        *. 12.
+        +. ((fst |> getMonth) -. (snd |> getMonth))
+        |> int_of_float
+      | CalendarYears => (fst |> getFullYear) -. (snd |> getFullYear) |> int_of_float
       }
     );
 
   let retrieveMinOrMax = value => value |> Belt.Option.getExn |> Date.fromFloat;
 
   let compareAscOrDesc = (~x, ~y, firstDate, secondDate) =>
-    switch (firstDate->Date.getTime -. secondDate->Date.getTime) {
+    switch ((firstDate |> Date.getTime) -. (secondDate |> Date.getTime)) {
     | ts when ts < 0. => x
     | ts when ts > 0. => y
     | _ => 0
@@ -172,13 +180,13 @@ module Internal = {
     let date =
       switch (type_) {
       | Start(date) =>
-        let day = date->getDay;
+        let day = date |> getDay;
         let diff = (day < week ? 7. : 0.) +. day -. week;
-        date->makeDate->setDate(date->getDate -. diff);
+        setDate(date |> makeDate, (date |> getDate) -. diff);
       | End(date) =>
-        let day = date->getDay;
+        let day = date |> getDay;
         let diff = (day < week ? (-7.) : 0.) +. 6. -. (day -. week);
-        date->makeDate->setDate(date->getDate +. diff);
+        setDate(date |> makeDate, (date |> getDate) +. diff);
       };
 
     date->fromFloat;
@@ -191,7 +199,7 @@ module Internal = {
   let getAmountOfIntervalDays = interval =>
     differenceIn(CalendarDays(makeDateWithStartOfDayHours), interval.end_, interval.start)->succ;
 
-  let is = (day, date) => date->Date.getDay === day->dayToJs->float_of_int;
+  let is = (day, date) => date |> Date.getDay === (day |> dayToJs |> float_of_int);
 
   let minOrMaxOfArray = (fn, dates) => Belt.Array.reduce(dates, None, fn |> reduceMinOrMax) |> retrieveMinOrMax;
 
@@ -228,7 +236,7 @@ let isValid = (~year, ~month, ~date, ~hours=0., ~minutes=0., ~seconds=0., ()) =>
   && month <= 11.
   && month >= 0.
   && date >= 1.
-  && date <= Date.makeWithYM(~year, ~month, ())->Internal.makeLastDayOfMonth->Date.getDate
+  && date <= Date.(makeWithYM(~year, ~month, ()) |> Internal.makeLastDayOfMonth |> getDate)
   && hours >= 0.
   && hours <= 23.
   && minutes >= 0.
@@ -238,25 +246,25 @@ let isValid = (~year, ~month, ~date, ~hours=0., ~minutes=0., ~seconds=0., ()) =>
 
 /* ——[Second helpers]——————————— */
 
-let addSeconds = (date, seconds) =>
-  Date.(date->Internal.makeDate->setSeconds(date->getSeconds +. seconds->float_of_int)->fromFloat);
+let addSeconds = (seconds, date) =>
+  Date.(setSeconds(date |> Internal.makeDate, (date |> getSeconds) +. (seconds |> float_of_int)) |> fromFloat);
 
-let subSeconds = (date, seconds) => date->addSeconds(- seconds);
+let subSeconds = (seconds, date) => date |> addSeconds(- seconds);
 
 let differenceInSeconds = Internal.differenceIn(Seconds);
 
-let startOfSecond = date => Date.(date->Internal.makeDate->setMilliseconds(0.)->fromFloat);
+let startOfSecond = date => Date.(setMilliseconds(date |> Internal.makeDate, 0.) |> fromFloat);
 
-let endOfSecond = date => Date.(date->Internal.makeDate->setMilliseconds(999.)->fromFloat);
+let endOfSecond = date => Date.(setMilliseconds(date |> Internal.makeDate, 999.) |> fromFloat);
 
-let isSameSecond = (fst, snd) => fst->startOfSecond->isEqual(snd->startOfSecond);
+let isSameSecond = (fst, snd) => fst |> startOfSecond |> isEqual(snd |> startOfSecond);
 
 /* ——[Minute helpers]——————————— */
 
-let addMinutes = (date, minutes) =>
-  Date.(date->Internal.makeDate->setMinutes(date->getMinutes +. minutes->float_of_int)->fromFloat);
+let addMinutes = (minutes, date) =>
+  Date.(setMinutes(date |> Internal.makeDate, (date |> getMinutes) +. (minutes |> float_of_int)) |> fromFloat);
 
-let subMinutes = (date, minutes) => date->addMinutes(- minutes);
+let subMinutes = (minutes, date) => date |> addMinutes(- minutes);
 
 let differenceInMinutes = Internal.differenceIn(Minutes);
 

@@ -41,9 +41,9 @@ let isValid:
 
 /* ——[Second helpers]——————————— */
 
-let addSeconds: (Js.Date.t, int) => Js.Date.t;
+let addSeconds: (int, Js.Date.t) => Js.Date.t;
 
-let subSeconds: (Js.Date.t, int) => Js.Date.t;
+let subSeconds: (int, Js.Date.t) => Js.Date.t;
 
 let differenceInSeconds: (Js.Date.t, Js.Date.t) => int;
 
@@ -55,9 +55,9 @@ let isSameSecond: (Js.Date.t, Js.Date.t) => bool;
 
 /* ——[Minute helpers]——————————— */
 
-let addMinutes: (Js.Date.t, int) => Js.Date.t;
+let addMinutes: (int, Js.Date.t) => Js.Date.t;
 
-let subMinutes: (Js.Date.t, int) => Js.Date.t;
+let subMinutes: (int, Js.Date.t) => Js.Date.t;
 
 let differenceInMinutes: (Js.Date.t, Js.Date.t) => int;
 
