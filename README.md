@@ -155,7 +155,6 @@ If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 <details>
 <summary><code>Weekday helpers</code></summary>
 
-* [is](docs/weekday.md#is)
 * [isSunday](docs/weekday.md#issunday)
 * [isMonday](docs/weekday.md#ismonday)
 * [isTuesday](docs/weekday.md#istuesday)
