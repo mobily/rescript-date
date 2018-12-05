@@ -146,3 +146,41 @@ let lastDayOfWeek' = ReDate.lastDayOfWeek(~weekStartsOn=Monday);
 
 date |> lastDayOfWeek';
 ```
+
+#### getWeekOfMonth
+
+> Get the week of the month of the given date.
+
+`let getWeekOfMonth: (~weekStartsOn: day=?, Js.Date.t) => int`
+
+```reason
+let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ());
+
+date |> ReDate.getWeekOfMonth;
+```
+
+```reason
+let date = Js.Date.makeWithYMD(~year=2018., ~month=10., ~date=23., ());
+let getWeekOfMonth' = ReDate.getWeekOfMonth(~weekStartsOn=Saturday);
+
+date |> getWeekOfMonth';
+```
+
+#### getWeeksInMonth
+
+> Get the number of calendar weeks the month in the given date spans.
+
+`let getWeeksInMonth: (~weekStartsOn: day=?, Js.Date.t) => int`
+
+```reason
+let date = Js.Date.makeWithYMD(~year=2018., ~month=10., ~date=1., ());
+
+date |> ReDate.getWeeksInMonth;
+```
+
+```reason
+let date = Js.Date.makeWithYMD(~year=2018., ~month=10., ~date=14., ());
+let getWeeksInMonth' = ReDate.getWeeksInMonth(~weekStartsOn=Friday);
+
+date |> getWeeksInMonth';
+```

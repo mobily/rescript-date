@@ -152,6 +152,8 @@ If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 * [endOfWeek](docs/week.md#endofweek)
 * [isSameWeek](docs/week.md#issameweek)
 * [lastDayOfWeek](docs/week.md#lastdayofweek)
+* [getWeekOfMonth](docs/week.md#getweekofmonth)
+* [getWeeksInMonth](docs/week.md#getweeksinmonth)
 </details>
 
 <details>
@@ -181,8 +183,6 @@ If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 * [isSameMonth](docs/month.md#issamemonth)
 * [lastDayOfMonth](docs/month.md#lastdayofmonth)
 * [getDaysInMonth](docs/month.md#getdaysinmonth)
-* [getWeekOfMonth](docs/month.md#getweekofmonth)
-* [getWeeksInMonth](docs/month.md#getweeksinmonth)
 </details>
 
 <details>
