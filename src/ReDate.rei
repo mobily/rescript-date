@@ -125,6 +125,10 @@ let isSameWeek: (~weekStartsOn: day=?, Js.Date.t, Js.Date.t) => bool;
 
 let lastDayOfWeek: (~weekStartsOn: day=?, Js.Date.t) => Js.Date.t;
 
+let getWeekOfMonth: (~weekStartsOn: day=?, Js.Date.t) => int;
+
+let getWeeksInMonth: (~weekStartsOn: day=?, Js.Date.t) => int;
+
 /* ——[Weekday helpers]——————————— */
 
 let isSunday: Js.Date.t => bool;
@@ -166,10 +170,6 @@ let isLastDayOfMonth: Js.Date.t => bool;
 let isSameMonth: (Js.Date.t, Js.Date.t) => bool;
 
 let lastDayOfMonth: Js.Date.t => Js.Date.t;
-
-let getWeekOfMonth: (~weekStartsOn: day=?, Js.Date.t) => int;
-
-let getWeeksInMonth: (~weekStartsOn: day=?, Js.Date.t) => int;
 
 /* ——[Year helpers]——————————— */
 

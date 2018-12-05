@@ -204,6 +204,10 @@ module Internal = {
   let minOrMaxOfArray = (fn, dates) => Belt.Array.reduce(dates, None, fn |> reduceMinOrMax) |> retrieveMinOrMax;
 
   let minOrMaxOfList = (fn, dates) => Belt.List.reduce(dates, None, fn |> reduceMinOrMax) |> retrieveMinOrMax;
+
+  let startOfMonth = date => Date.(setDate(date |> makeDate, 1.) |> fromFloat |> makeDateWithStartOfDayHours);
+
+  let lastDayOfMonth = date => date |> makeLastDayOfMonth |> makeDateWithStartOfDayHours;
 };
 
 /* ——[Common helpers]——————————— */
@@ -355,6 +359,19 @@ let isSameWeek = (~weekStartsOn=Sunday, fst, snd) => {
 let lastDayOfWeek = (~weekStartsOn=Sunday, date) =>
   Internal.(End(date) |> startOrEndOfWeek(weekStartsOn) |> makeDateWithStartOfDayHours);
 
+let getWeekOfMonth = (~weekStartsOn=Sunday, date) => {
+  let startWeekDay = date |> Internal.startOfMonth |> Date.getDay;
+  let weekStartsOn' = weekStartsOn |> Internal.dayToJs |> float_of_int;
+  let diff = startWeekDay < weekStartsOn' ? 7. -. weekStartsOn' +. startWeekDay : startWeekDay -. weekStartsOn';
+
+  ((date |> Date.getDate) +. diff) /. 7. |> Math.ceil_int;
+};
+
+let getWeeksInMonth = (~weekStartsOn=Sunday, date) => {
+  let differenceInCalendarWeeks' = differenceInCalendarWeeks(~weekStartsOn);
+  Internal.(date |> lastDayOfMonth |> differenceInCalendarWeeks'(date |> startOfMonth) |> succ);
+};
+
 /* ——[Weekday helpers]——————————— */
 
 let isSunday = Internal.is(Sunday);
@@ -385,8 +402,7 @@ let differenceInCalendarMonths = Internal.differenceIn(CalendarMonths);
 
 let differenceInMonths = Internal.differenceIn(Months);
 
-let startOfMonth = date =>
-  Date.(setDate(date |> Internal.makeDate, 1.) |> fromFloat |> Internal.makeDateWithStartOfDayHours);
+let startOfMonth = Internal.startOfMonth;
 
 let endOfMonth = date => Internal.(date |> makeLastDayOfMonth |> makeDateWithEndOfDayHours);
 
@@ -396,20 +412,7 @@ let isLastDayOfMonth = date => Date.(date |> endOfDay |> getTime === (date |> en
 
 let isSameMonth = (fst, snd) => fst |> startOfMonth |> isEqual(snd |> startOfMonth);
 
-let lastDayOfMonth = date => Internal.(date |> makeLastDayOfMonth |> makeDateWithStartOfDayHours);
-
-let getWeekOfMonth = (~weekStartsOn=Sunday, date) => {
-  let startWeekDay = date |> startOfMonth |> Date.getDay;
-  let weekStartsOn' = weekStartsOn |> Internal.dayToJs |> float_of_int;
-  let diff = startWeekDay < weekStartsOn' ? 7. -. weekStartsOn' +. startWeekDay : startWeekDay -. weekStartsOn';
-
-  ((date |> Date.getDate) +. diff) /. 7. |> Math.ceil_int;
-};
-
-let getWeeksInMonth = (~weekStartsOn=Sunday, date) => {
-  let differenceInCalendarWeeks' = differenceInCalendarWeeks(~weekStartsOn);
-  date |> lastDayOfMonth |> differenceInCalendarWeeks'(date |> startOfMonth) |> succ;
-};
+let lastDayOfMonth = Internal.lastDayOfMonth;
 
 /* ——[Year helpers]——————————— */
 
