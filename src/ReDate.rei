@@ -197,7 +197,7 @@ let differenceInYears: (Js.Date.t, Js.Date.t) => int;
 
 /* ——[Interval helpers]——————————— */
 
-let isWithinInterval: (~start: Js.Date.t, ~end_: Js.Date.t, Js.Date.t) => bool;
+let isWithinInterval: (interval, Js.Date.t) => bool;
 
 let areIntervalsOverlapping: (interval, interval) => bool;
 

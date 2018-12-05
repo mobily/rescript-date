@@ -442,9 +442,9 @@ let differenceInYears = Internal.differenceIn(Years);
 
 /* ——[Interval helpers]——————————— */
 
-let isWithinInterval = (~start, ~end_, date) => {
+let isWithinInterval = (interval, date) => {
   let ts = date |> Date.getTime;
-  ts >= (start |> Date.getTime) && ts <= (end_ |> Date.getTime);
+  ts >= (interval.start |> Date.getTime) && ts <= (interval.end_ |> Date.getTime);
 };
 
 let areIntervalsOverlapping = (left, right) =>
