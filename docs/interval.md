@@ -11,14 +11,16 @@ type interval = {
 
 > Is the given date within the interval?
 
-`let isWithinInterval: (Js.Date.t, ~start: Js.Date.t, ~end_: Js.Date.t) => bool`
+`let isWithinInterval: (interval, Js.Date.t) => bool`
 
 ```reason
-let start = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ());
-let end_ = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=10., ());
+let interval = {
+  start: Js.Date.makeWithYMD(~year=2018., ~month=3., ~date=1., ()),
+  end_: Js.Date.makeWithYMD(~year=2018., ~month=4., ~date=10., ()),
+};
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=5., ());
 
-date |> ReDate.isWithinInterval(~start, ~end_);
+date |> ReDate.isWithinInterval(interval);
 ```
 
 #### areIntervalsOverlapping
