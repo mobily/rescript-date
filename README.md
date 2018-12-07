@@ -31,10 +31,6 @@
   </a>
 </p>
 
-## Motivation
-
-TODO
-
 ## Installation
 
 ```shell
