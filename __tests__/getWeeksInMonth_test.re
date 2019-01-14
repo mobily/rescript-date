@@ -5,7 +5,9 @@ open Js.Date;
 describe("getWeeksInMonth", () => {
   open ExpectJs;
 
-  test("returns the number of calendar weeks the month in the given date spans", () => {
+  test(
+    "returns the number of calendar weeks the month in the given date spans",
+    () => {
     let date = makeWithYMD(~year=2018., ~month=10., ~date=1., ());
 
     date |> ReDate.getWeeksInMonth |> expect |> toEqual(5);

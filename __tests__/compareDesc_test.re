@@ -26,16 +26,20 @@ describe("compareDesc", () => {
     ReDate.compareDesc(fstDate, sndDate) |> expect |> toEqual(1);
   });
 
-  test("sorts the dates array in the chronological order when function is passed as the argument to sort function", () => {
-    let a = makeWithYMD(~year=1999., ~month=0., ~date=1., ());
-    let b = makeWithYMD(~year=2017., ~month=2., ~date=1., ());
-    let c = makeWithYMD(~year=2017., ~month=4., ~date=1., ());
-    let d = makeWithYMD(~year=2018., ~month=12., ~date=1., ());
+  test(
+    "sorts the dates array in the chronological order when function is passed as the argument to sort function",
+    () => {
+      let a = makeWithYMD(~year=1999., ~month=0., ~date=1., ());
+      let b = makeWithYMD(~year=2017., ~month=2., ~date=1., ());
+      let c = makeWithYMD(~year=2017., ~month=4., ~date=1., ());
+      let d = makeWithYMD(~year=2018., ~month=12., ~date=1., ());
 
-    let unsortedArray = [|a, b, d, c|];
-    let sortedArray = [|d, c, b, a|];
-    let result = Belt.SortArray.stableSortBy(unsortedArray, ReDate.compareDesc);
+      let unsortedArray = [|a, b, d, c|];
+      let sortedArray = [|d, c, b, a|];
+      let result =
+        Belt.SortArray.stableSortBy(unsortedArray, ReDate.compareDesc);
 
-    Belt.Array.eq(result, sortedArray, (===)) |> expect |> toBeTruthy;
-  });
+      Belt.Array.eq(result, sortedArray, (===)) |> expect |> toBeTruthy;
+    },
+  );
 });

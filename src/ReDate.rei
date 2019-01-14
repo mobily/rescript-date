@@ -37,7 +37,16 @@ let maxOfArray: array(Js.Date.t) => Js.Date.t;
 let maxOfList: list(Js.Date.t) => Js.Date.t;
 
 let isValid:
-  (~year: float, ~month: float, ~date: float, ~hours: float=?, ~minutes: float=?, ~seconds: float=?, unit) => bool;
+  (
+    ~year: float,
+    ~month: float,
+    ~date: float,
+    ~hours: float=?,
+    ~minutes: float=?,
+    ~seconds: float=?,
+    unit
+  ) =>
+  bool;
 
 /* ——[Second helpers]——————————— */
 
@@ -119,7 +128,8 @@ let startOfWeek: (~weekStartsOn: day=?, Js.Date.t) => Js.Date.t;
 
 let endOfWeek: (~weekStartsOn: day=?, Js.Date.t) => Js.Date.t;
 
-let differenceInCalendarWeeks: (~weekStartsOn: day=?, Js.Date.t, Js.Date.t) => int;
+let differenceInCalendarWeeks:
+  (~weekStartsOn: day=?, Js.Date.t, Js.Date.t) => int;
 
 let isSameWeek: (~weekStartsOn: day=?, Js.Date.t, Js.Date.t) => bool;
 

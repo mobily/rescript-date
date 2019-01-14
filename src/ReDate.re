@@ -68,30 +68,66 @@ module Internal = {
     |> float_of_int;
 
   let makeDateWithStartOfDayHours = date =>
-    Js.Date.(setHoursMSMs(date |> makeDate, ~hours=0., ~minutes=0., ~seconds=0., ~milliseconds=0., ()) |> fromFloat);
+    Js.Date.(
+      setHoursMSMs(
+        date |> makeDate,
+        ~hours=0.,
+        ~minutes=0.,
+        ~seconds=0.,
+        ~milliseconds=0.,
+        (),
+      )
+      |> fromFloat
+    );
 
   let makeDateWithEndOfDayHours = date =>
     Js.Date.(
-      setHoursMSMs(date |> makeDate, ~hours=23., ~minutes=59., ~seconds=59., ~milliseconds=999., ()) |> fromFloat
+      setHoursMSMs(
+        date |> makeDate,
+        ~hours=23.,
+        ~minutes=59.,
+        ~seconds=59.,
+        ~milliseconds=999.,
+        (),
+      )
+      |> fromFloat
     );
 
   let makeLastDayOfMonth = date =>
-    Js.Date.(makeWithYMD(~year=date |> getFullYear, ~month=(date |> getMonth) +. 1., ~date=0., ()));
+    Js.Date.(
+      makeWithYMD(
+        ~year=date |> getFullYear,
+        ~month=(date |> getMonth) +. 1.,
+        ~date=0.,
+        (),
+      )
+    );
 
   let startOfYear = date =>
-    Js.Date.(makeWithYMD(~year=date |> getFullYear, ~month=0., ~date=1., ()) |> makeDateWithStartOfDayHours);
+    Js.Date.(
+      makeWithYMD(~year=date |> getFullYear, ~month=0., ~date=1., ())
+      |> makeDateWithStartOfDayHours
+    );
 
-  let getDaysInMonth = date => date |> makeLastDayOfMonth |> Js.Date.getDate |> int_of_float;
+  let getDaysInMonth = date =>
+    date |> makeLastDayOfMonth |> Js.Date.getDate |> int_of_float;
 
   let addDays = (days, date) =>
-    Js.Date.(setDate(date |> makeDate, (date |> getDate) +. (days |> float_of_int)) |> fromFloat);
+    Js.Date.(
+      setDate(date |> makeDate, (date |> getDate) +. (days |> float_of_int))
+      |> fromFloat
+    );
 
   let addMonths = (months, date) =>
     Js.Date.(
       makeWithYMD(
         ~year=date |> getFullYear,
         ~month=(date |> getMonth) +. (months |> float_of_int),
-        ~date=Js.Math.min_float(date |> getDaysInMonth |> float_of_int, date |> getDate),
+        ~date=
+          Js.Math.min_float(
+            date |> getDaysInMonth |> float_of_int,
+            date |> getDate,
+          ),
         (),
       )
     );
@@ -117,7 +153,9 @@ module Internal = {
       | Hours
       | Days
       | Weeks =>
-        let diff = ((fst |> getTime) -. (snd |> getTime)) /. (differenceType |> getMillisecondsOf |> float_of_int);
+        let diff =
+          ((fst |> getTime) -. (snd |> getTime))
+          /. (differenceType |> getMillisecondsOf |> float_of_int);
         diff > 0. ? diff |> Js.Math.floor_int : diff |> Js.Math.ceil_int;
       | Months =>
         let diff =
@@ -131,9 +169,11 @@ module Internal = {
         let fstTime = fst |> getTime;
         let adjust =
           if (fstTime -. anchorTime < 0.) {
-            (fstTime -. anchorTime) /. (anchorTime -. (snd |> addMonths(diff |> pred) |> getTime));
+            (fstTime -. anchorTime)
+            /. (anchorTime -. (snd |> addMonths(diff |> pred) |> getTime));
           } else {
-            (fstTime -. anchorTime) /. ((snd |> addMonths(diff |> succ) |> getTime) -. anchorTime);
+            (fstTime -. anchorTime)
+            /. ((snd |> addMonths(diff |> succ) |> getTime) -. anchorTime);
           };
 
         (adjust |> Js.Math.round |> int_of_float) + diff;
@@ -142,20 +182,26 @@ module Internal = {
       | CalendarWeeks(startOf) =>
         let fst = fst |> startOf;
         let snd = snd |> startOf;
-        let fstTime = (fst |> Js.Date.getTime) -. (fst |> getTimezoneOffsetInMilliseconds);
-        let sndTime = (snd |> Js.Date.getTime) -. (snd |> getTimezoneOffsetInMilliseconds);
-        let diff = (fstTime -. sndTime) /. (differenceType |> getMillisecondsOf |> float_of_int);
+        let fstTime =
+          (fst |> Js.Date.getTime) -. (fst |> getTimezoneOffsetInMilliseconds);
+        let sndTime =
+          (snd |> Js.Date.getTime) -. (snd |> getTimezoneOffsetInMilliseconds);
+        let diff =
+          (fstTime -. sndTime)
+          /. (differenceType |> getMillisecondsOf |> float_of_int);
         diff |> Js.Math.round |> int_of_float;
       | CalendarMonths =>
         ((fst |> getFullYear) -. (snd |> getFullYear))
         *. 12.
         +. ((fst |> getMonth) -. (snd |> getMonth))
         |> int_of_float
-      | CalendarYears => (fst |> getFullYear) -. (snd |> getFullYear) |> int_of_float
+      | CalendarYears =>
+        (fst |> getFullYear) -. (snd |> getFullYear) |> int_of_float
       }
     );
 
-  let retrieveMinOrMax = value => value |> Belt.Option.getExn |> Js.Date.fromFloat;
+  let retrieveMinOrMax = value =>
+    value |> Belt.Option.getExn |> Js.Date.fromFloat;
 
   let compareAscOrDesc = (~x, ~y, fst, snd) =>
     switch ((fst |> Js.Date.getTime) -. (snd |> Js.Date.getTime)) {
@@ -190,22 +236,38 @@ module Internal = {
     date |> Js.Date.fromFloat;
   };
 
-  let isLeap = year => year mod 400 === 0 || year mod 4 === 0 && year mod 100 !== 0;
+  let isLeap = year =>
+    year mod 400 === 0 || year mod 4 === 0 && year mod 100 !== 0;
 
-  let makeIntervalDay = (interval, index) => interval.start |> makeDateWithStartOfDayHours |> addDays(index);
+  let makeIntervalDay = (interval, index) =>
+    interval.start |> makeDateWithStartOfDayHours |> addDays(index);
 
   let getAmountOfIntervalDays = interval =>
-    differenceIn(CalendarDays(makeDateWithStartOfDayHours), interval.start, interval.end_) |> succ;
+    differenceIn(
+      CalendarDays(makeDateWithStartOfDayHours),
+      interval.start,
+      interval.end_,
+    )
+    |> succ;
 
-  let is = (day, date) => date |> Js.Date.getDay === (day |> dayToJs |> float_of_int);
+  let is = (day, date) =>
+    date |> Js.Date.getDay === (day |> dayToJs |> float_of_int);
 
-  let minOrMaxOfArray = (fn, dates) => Belt.Array.reduce(dates, None, fn |> reduceMinOrMax) |> retrieveMinOrMax;
+  let minOrMaxOfArray = (fn, dates) =>
+    Belt.Array.reduce(dates, None, fn |> reduceMinOrMax) |> retrieveMinOrMax;
 
-  let minOrMaxOfList = (fn, dates) => Belt.List.reduce(dates, None, fn |> reduceMinOrMax) |> retrieveMinOrMax;
+  let minOrMaxOfList = (fn, dates) =>
+    Belt.List.reduce(dates, None, fn |> reduceMinOrMax) |> retrieveMinOrMax;
 
-  let startOfMonth = date => Js.Date.(setDate(date |> makeDate, 1.) |> fromFloat |> makeDateWithStartOfDayHours);
+  let startOfMonth = date =>
+    Js.Date.(
+      setDate(date |> makeDate, 1.)
+      |> fromFloat
+      |> makeDateWithStartOfDayHours
+    );
 
-  let lastDayOfMonth = date => date |> makeLastDayOfMonth |> makeDateWithStartOfDayHours;
+  let lastDayOfMonth = date =>
+    date |> makeLastDayOfMonth |> makeDateWithStartOfDayHours;
 };
 
 /* ——[Common helpers]——————————— */
@@ -238,7 +300,10 @@ let isValid = (~year, ~month, ~date, ~hours=0., ~minutes=0., ~seconds=0., ()) =>
   && month <= 11.
   && month >= 0.
   && date >= 1.
-  && date <= Js.Date.(makeWithYM(~year, ~month, ()) |> Internal.makeLastDayOfMonth |> getDate)
+  && date
+  <= Js.Date.(
+       makeWithYM(~year, ~month, ()) |> Internal.makeLastDayOfMonth |> getDate
+     )
   && hours >= 0.
   && hours <= 23.
   && minutes >= 0.
@@ -249,62 +314,123 @@ let isValid = (~year, ~month, ~date, ~hours=0., ~minutes=0., ~seconds=0., ()) =>
 /* ——[Second helpers]——————————— */
 
 let addSeconds = (seconds, date) =>
-  Js.Date.(setSeconds(date |> Internal.makeDate, (date |> getSeconds) +. (seconds |> float_of_int)) |> fromFloat);
+  Js.Date.(
+    setSeconds(
+      date |> Internal.makeDate,
+      (date |> getSeconds) +. (seconds |> float_of_int),
+    )
+    |> fromFloat
+  );
 
 let subSeconds = (seconds, date) => date |> addSeconds(- seconds);
 
 let differenceInSeconds = Internal.differenceIn(Seconds);
 
-let startOfSecond = date => Js.Date.(setMilliseconds(date |> Internal.makeDate, 0.) |> fromFloat);
+let startOfSecond = date =>
+  Js.Date.(setMilliseconds(date |> Internal.makeDate, 0.) |> fromFloat);
 
-let endOfSecond = date => Js.Date.(setMilliseconds(date |> Internal.makeDate, 999.) |> fromFloat);
+let endOfSecond = date =>
+  Js.Date.(setMilliseconds(date |> Internal.makeDate, 999.) |> fromFloat);
 
-let isSameSecond = (fst, snd) => fst |> startOfSecond |> isEqual(snd |> startOfSecond);
+let isSameSecond = (fst, snd) =>
+  fst |> startOfSecond |> isEqual(snd |> startOfSecond);
 
 /* ——[Minute helpers]——————————— */
 
 let addMinutes = (minutes, date) =>
-  Js.Date.(setMinutes(date |> Internal.makeDate, (date |> getMinutes) +. (minutes |> float_of_int)) |> fromFloat);
+  Js.Date.(
+    setMinutes(
+      date |> Internal.makeDate,
+      (date |> getMinutes) +. (minutes |> float_of_int),
+    )
+    |> fromFloat
+  );
 
 let subMinutes = (minutes, date) => date |> addMinutes(- minutes);
 
 let differenceInMinutes = Internal.differenceIn(Minutes);
 
 let startOfMinute = date =>
-  Js.Date.(setSecondsMs(date |> Internal.makeDate, ~seconds=0., ~milliseconds=0., ()) |> fromFloat);
+  Js.Date.(
+    setSecondsMs(date |> Internal.makeDate, ~seconds=0., ~milliseconds=0., ())
+    |> fromFloat
+  );
 
 let endOfMinute = date =>
-  Js.Date.(setSecondsMs(date |> Internal.makeDate, ~seconds=59., ~milliseconds=999., ()) |> fromFloat);
+  Js.Date.(
+    setSecondsMs(
+      date |> Internal.makeDate,
+      ~seconds=59.,
+      ~milliseconds=999.,
+      (),
+    )
+    |> fromFloat
+  );
 
-let isSameMinute = (fst, snd) => fst |> startOfMinute |> isEqual(snd |> startOfMinute);
+let isSameMinute = (fst, snd) =>
+  fst |> startOfMinute |> isEqual(snd |> startOfMinute);
 
 let roundToNearestMinute = (~nearestTo=1, date) => {
   let closestTo = (date |> Js.Date.getSeconds) /. 60. |> Js.Math.round;
   let closestMinute = (date |> Js.Date.getMinutes) +. closestTo;
   let nearestRoundedMinute =
     nearestTo !== 1 ?
-      ((date |> Js.Date.getMinutes) /. (nearestTo |> float_of_int) |> Js.Math.round) *. (nearestTo |> float_of_int) :
+      (
+        (date |> Js.Date.getMinutes)
+        /. (nearestTo |> float_of_int)
+        |> Js.Math.round
+      )
+      *. (nearestTo |> float_of_int) :
       closestMinute;
 
-  Js.Date.(setMinutes(date |> Internal.makeDate, nearestRoundedMinute) |> fromFloat |> startOfMinute);
+  Js.Date.(
+    setMinutes(date |> Internal.makeDate, nearestRoundedMinute)
+    |> fromFloat
+    |> startOfMinute
+  );
 };
 
 /* ——[Hour helpers]——————————— */
 
 let addHours = (hours, date) =>
-  Js.Date.(setHours(date |> Internal.makeDate, (date |> getHours) +. (hours |> float_of_int)) |> fromFloat);
+  Js.Date.(
+    setHours(
+      date |> Internal.makeDate,
+      (date |> getHours) +. (hours |> float_of_int),
+    )
+    |> fromFloat
+  );
 
 let subHours = (hours, date) => date |> addHours(- hours);
 
 let differenceInHours = Internal.differenceIn(Hours);
 
 let startOfHour = date =>
-  Js.Date.(setMinutesSMs(date |> Internal.makeDate, ~minutes=0., ~seconds=0., ~milliseconds=0., ()) |> fromFloat);
+  Js.Date.(
+    setMinutesSMs(
+      date |> Internal.makeDate,
+      ~minutes=0.,
+      ~seconds=0.,
+      ~milliseconds=0.,
+      (),
+    )
+    |> fromFloat
+  );
 
 let endOfHour = date =>
-  Js.Date.(setMinutesSMs(date |> Internal.makeDate, ~minutes=59., ~seconds=59., ~milliseconds=999., ()) |> fromFloat);
+  Js.Date.(
+    setMinutesSMs(
+      date |> Internal.makeDate,
+      ~minutes=59.,
+      ~seconds=59.,
+      ~milliseconds=999.,
+      (),
+    )
+    |> fromFloat
+  );
 
-let isSameHour = (fst, snd) => fst |> startOfHour |> isEqual(snd |> startOfHour);
+let isSameHour = (fst, snd) =>
+  fst |> startOfHour |> isEqual(snd |> startOfHour);
 
 /* ——[Day helpers]——————————— */
 
@@ -316,13 +442,16 @@ let startOfDay = Internal.makeDateWithStartOfDayHours;
 
 let endOfDay = Internal.makeDateWithEndOfDayHours;
 
-let differenceInCalendarDays = Internal.differenceIn(CalendarDays(startOfDay));
+let differenceInCalendarDays =
+  Internal.differenceIn(CalendarDays(startOfDay));
 
 let differenceInDays = Internal.differenceIn(Days);
 
-let getDayOfYear = date => date |> differenceInCalendarDays(date |> Internal.startOfYear) |> succ;
+let getDayOfYear = date =>
+  date |> differenceInCalendarDays(date |> Internal.startOfYear) |> succ;
 
-let isSameDay = (fst, snd) => fst |> startOfDay |> isEqual(snd |> startOfDay);
+let isSameDay = (fst, snd) =>
+  fst |> startOfDay |> isEqual(snd |> startOfDay);
 
 let isToday = date => date |> isSameDay(Js.Date.make());
 
@@ -339,10 +468,16 @@ let subWeeks = (weeks, date) => date |> addWeeks(- weeks);
 let differenceInWeeks = Internal.differenceIn(Weeks);
 
 let startOfWeek = (~weekStartsOn=Sunday, date) =>
-  Internal.(Start(date) |> startOrEndOfWeek(weekStartsOn) |> makeDateWithStartOfDayHours);
+  Internal.(
+    Start(date)
+    |> startOrEndOfWeek(weekStartsOn)
+    |> makeDateWithStartOfDayHours
+  );
 
 let endOfWeek = (~weekStartsOn=Sunday, date) =>
-  Internal.(End(date) |> startOrEndOfWeek(weekStartsOn) |> makeDateWithEndOfDayHours);
+  Internal.(
+    End(date) |> startOrEndOfWeek(weekStartsOn) |> makeDateWithEndOfDayHours
+  );
 
 let differenceInCalendarWeeks = (~weekStartsOn=Sunday) => {
   let startOfWeek' = startOfWeek(~weekStartsOn);
@@ -355,19 +490,30 @@ let isSameWeek = (~weekStartsOn=Sunday, fst, snd) => {
 };
 
 let lastDayOfWeek = (~weekStartsOn=Sunday, date) =>
-  Internal.(End(date) |> startOrEndOfWeek(weekStartsOn) |> makeDateWithStartOfDayHours);
+  Internal.(
+    End(date)
+    |> startOrEndOfWeek(weekStartsOn)
+    |> makeDateWithStartOfDayHours
+  );
 
 let getWeekOfMonth = (~weekStartsOn=Sunday, date) => {
   let startWeekDay = date |> Internal.startOfMonth |> Js.Date.getDay;
   let weekStartsOn' = weekStartsOn |> Internal.dayToJs |> float_of_int;
-  let diff = startWeekDay < weekStartsOn' ? 7. -. weekStartsOn' +. startWeekDay : startWeekDay -. weekStartsOn';
+  let diff =
+    startWeekDay < weekStartsOn' ?
+      7. -. weekStartsOn' +. startWeekDay : startWeekDay -. weekStartsOn';
 
   ((date |> Js.Date.getDate) +. diff) /. 7. |> Js.Math.ceil_int;
 };
 
 let getWeeksInMonth = (~weekStartsOn=Sunday, date) => {
   let differenceInCalendarWeeks' = differenceInCalendarWeeks(~weekStartsOn);
-  Internal.(date |> lastDayOfMonth |> differenceInCalendarWeeks'(date |> startOfMonth) |> succ);
+  Internal.(
+    date
+    |> lastDayOfMonth
+    |> differenceInCalendarWeeks'(date |> startOfMonth)
+    |> succ
+  );
 };
 
 /* ——[Weekday helpers]——————————— */
@@ -402,13 +548,16 @@ let differenceInMonths = Internal.differenceIn(Months);
 
 let startOfMonth = Internal.startOfMonth;
 
-let endOfMonth = date => Internal.(date |> makeLastDayOfMonth |> makeDateWithEndOfDayHours);
+let endOfMonth = date =>
+  Internal.(date |> makeLastDayOfMonth |> makeDateWithEndOfDayHours);
 
 let isFirstDayOfMonth = date => date |> Js.Date.getDate |> int_of_float === 1;
 
-let isLastDayOfMonth = date => Js.Date.(date |> endOfDay |> getTime === (date |> endOfMonth |> getTime));
+let isLastDayOfMonth = date =>
+  Js.Date.(date |> endOfDay |> getTime === (date |> endOfMonth |> getTime));
 
-let isSameMonth = (fst, snd) => fst |> startOfMonth |> isEqual(snd |> startOfMonth);
+let isSameMonth = (fst, snd) =>
+  fst |> startOfMonth |> isEqual(snd |> startOfMonth);
 
 let lastDayOfMonth = Internal.lastDayOfMonth;
 
@@ -420,15 +569,19 @@ let subYears = (years, date) => date |> addYears(- years);
 
 let startOfYear = Internal.startOfYear;
 
-let isSameYear = (fst, snd) => fst |> startOfYear |> isEqual(snd |> startOfYear);
+let isSameYear = (fst, snd) =>
+  fst |> startOfYear |> isEqual(snd |> startOfYear);
 
-let isLeapYear = date => date |> Js.Date.getFullYear |> int_of_float |> Internal.isLeap;
+let isLeapYear = date =>
+  date |> Js.Date.getFullYear |> int_of_float |> Internal.isLeap;
 
 let endOfYear = date =>
-  Js.Date.(makeWithYMD(~year=date |> getFullYear, ~month=11., ~date=31., ())) |> Internal.makeDateWithEndOfDayHours;
+  Js.Date.(makeWithYMD(~year=date |> getFullYear, ~month=11., ~date=31., ()))
+  |> Internal.makeDateWithEndOfDayHours;
 
 let lastMonthOfYear = date =>
-  Js.Date.(makeWithYMD(~year=date |> getFullYear, ~month=11., ~date=1., ())) |> Internal.makeDateWithStartOfDayHours;
+  Js.Date.(makeWithYMD(~year=date |> getFullYear, ~month=11., ~date=1., ()))
+  |> Internal.makeDateWithStartOfDayHours;
 
 let lastDayOfYear = date => date |> lastMonthOfYear |> lastDayOfMonth;
 
@@ -442,19 +595,32 @@ let differenceInYears = Internal.differenceIn(Years);
 
 let isWithinInterval = (interval, date) => {
   let ts = date |> Js.Date.getTime;
-  ts >= (interval.start |> Js.Date.getTime) && ts <= (interval.end_ |> Js.Date.getTime);
+  ts >= (interval.start |> Js.Date.getTime)
+  && ts <= (interval.end_ |> Js.Date.getTime);
 };
 
 let areIntervalsOverlapping = (left, right) =>
-  Js.Date.(left.start |> getTime < (right.end_ |> getTime) && right.start |> getTime < (left.end_ |> getTime));
+  Js.Date.(
+    left.start
+    |> getTime < (right.end_ |> getTime)
+    && right.start
+    |> getTime < (left.end_ |> getTime)
+  );
 
 let getOverlappingDaysInIntervals = (left, right) =>
   Js.Date.(
-    switch (left.start |> getTime, left.end_ |> getTime, right.start |> getTime, right.end_ |> getTime) {
+    switch (
+      left.start |> getTime,
+      left.end_ |> getTime,
+      right.start |> getTime,
+      right.end_ |> getTime,
+    ) {
     | (lst, let', rst, ret) when lst < ret && rst < let' =>
       let overlapStartTime = rst < lst ? lst : rst;
       let overlapEndTime = ret > let' ? let' : ret;
-      let overlap = (overlapEndTime -. overlapStartTime) /. (Milliseconds.day |> float_of_int);
+      let overlap =
+        (overlapEndTime -. overlapStartTime)
+        /. (Milliseconds.day |> float_of_int);
 
       overlap |> Js.Math.ceil_int;
     | _ => 0
@@ -462,7 +628,17 @@ let getOverlappingDaysInIntervals = (left, right) =>
   );
 
 let eachDayOfIntervalArray = interval =>
-  Internal.(Belt.Array.makeBy(interval |> getAmountOfIntervalDays, interval |> makeIntervalDay));
+  Internal.(
+    Belt.Array.makeBy(
+      interval |> getAmountOfIntervalDays,
+      interval |> makeIntervalDay,
+    )
+  );
 
 let eachDayOfIntervalList = interval =>
-  Internal.(Belt.List.makeBy(interval |> getAmountOfIntervalDays, interval |> makeIntervalDay));
+  Internal.(
+    Belt.List.makeBy(
+      interval |> getAmountOfIntervalDays,
+      interval |> makeIntervalDay,
+    )
+  );
