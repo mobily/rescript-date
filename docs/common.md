@@ -174,3 +174,41 @@ dates |> ReDate.minOfList;
 ```reason
 ReDate.isValid(~year=1999., ~month=1., ~date=29., ());
 ```
+
+### closestToArray
+
+> Return a date from the array closest to the given date.
+
+`let closestToArray: (array(Js.Date.t), Js.Date.t) => option(Js.Date.t);`
+
+```reason
+let date = makeWithYMD(~year=2018., ~month=0., ~date=1., ());
+
+let a = makeWithYMD(~year=1999., ~month=0., ~date=1., ());
+let b = makeWithYMD(~year=2018., ~month=2., ~date=1., ());
+let c = makeWithYMD(~year=2020., ~month=4., ~date=1., ());
+let d = makeWithYMD(~year=2022., ~month=12., ~date=1., ());
+
+let dates = [|a, b, c, d|];
+
+date |> ReDate.closestToArray(dates);
+```
+
+### closestToList
+
+> Return a date from the list closest to the given date.
+
+`let closestToList: (list(Js.Date.t), Js.Date.t) => option(Js.Date.t);`
+
+```reason
+let date = makeWithYMD(~year=2018., ~month=0., ~date=1., ());
+
+let a = makeWithYMD(~year=1999., ~month=0., ~date=1., ());
+let b = makeWithYMD(~year=2018., ~month=2., ~date=1., ());
+let c = makeWithYMD(~year=2020., ~month=4., ~date=1., ());
+let d = makeWithYMD(~year=2022., ~month=12., ~date=1., ());
+
+let dates = [a, b, c, d];
+
+date |> ReDate.closestToList(dates);
+```
