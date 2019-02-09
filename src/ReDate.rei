@@ -48,6 +48,10 @@ let isValid:
   ) =>
   bool;
 
+let closestToArray: (array(Js.Date.t), Js.Date.t) => option(Js.Date.t);
+
+let closestToList: (list(Js.Date.t), Js.Date.t) => option(Js.Date.t);
+
 /* ——[Second helpers]——————————— */
 
 let addSeconds: (int, Js.Date.t) => Js.Date.t;

@@ -31,6 +31,11 @@ type differenceIn =
   | Years
   | CalendarYears;
 
+type closestTo = {
+  distance: option(float),
+  date: option(Js.Date.t),
+};
+
 module Milliseconds = {
   let second = 1000;
 
@@ -268,6 +273,22 @@ module Internal = {
 
   let lastDayOfMonth = date =>
     date |> makeLastDayOfMonth |> makeDateWithStartOfDayHours;
+
+  let closestTo = (date, acc, dateToCompare) => {
+    let distance =
+      Js.Math.abs_float(
+        (date |> Js.Date.getTime) -. (dateToCompare |> Js.Date.getTime),
+      );
+    let result = {date: Some(dateToCompare), distance: Some(distance)};
+
+    Belt.Option.mapWithDefault(acc.distance, result, minDistance =>
+      distance < minDistance ? result : acc
+    );
+  };
+
+  let defaultClosestToDate = {date: None, distance: None};
+
+  let retrieveClosestToDate = currentDate => currentDate.date;
 };
 
 /* ——[Common helpers]——————————— */
@@ -334,6 +355,18 @@ let endOfSecond = date =>
 
 let isSameSecond = (fst, snd) =>
   fst |> startOfSecond |> isEqual(snd |> startOfSecond);
+
+let closestToArray = (datesToCompare, date) =>
+  Internal.(
+    Belt.Array.reduce(datesToCompare, defaultClosestToDate, closestTo(date))
+    |> retrieveClosestToDate
+  );
+
+let closestToList = (datesToCompare, date) =>
+  Internal.(
+    Belt.List.reduce(datesToCompare, defaultClosestToDate, closestTo(date))
+    |> retrieveClosestToDate
+  );
 
 /* ——[Minute helpers]——————————— */
 
