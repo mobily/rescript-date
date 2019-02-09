@@ -13,8 +13,10 @@
 - [x] `maxOfList`
 - [x] `minOfArray`
 - [x] `minOfList`
-- [ ] `closestTo`
-- [ ] `closestIndexTo`
+- [x] `closestToArray`
+- [x] `closestToList`
+- [ ] `closestIndexToArray`
+- [ ] `closestIndexToList`
 - [x] `isValid` ⚠️
 
 ### Interval helpers
