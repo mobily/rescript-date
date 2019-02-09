@@ -75,6 +75,8 @@ If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 * [minOfArray](docs/common.md#minofarray)
 * [minOfList](docs/common.md#minoflist)
 * [isValid](docs/common.md#isvalid)
+* [closestToArray](docs/common.md#closesttoarray)
+* [closestToList](docs/common.md#closesttolist)
 </details>
 
 <details>
