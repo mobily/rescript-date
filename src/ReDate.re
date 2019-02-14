@@ -61,7 +61,8 @@ module Internal = {
 
   let makeDate = date => Js.Date.(date |> getTime |> fromFloat);
 
-  /* based on: https://github.com/date-fns/date-fns/blob/master/src/_lib/getTimezoneOffsetInMilliseconds/index.js */
+  /* https://github.com/date-fns/date-fns/blob/master/src/_lib/getTimezoneOffsetInMilliseconds/index.js
+   */
   let getTimezoneOffsetInMilliseconds = date =>
     Js.Date.(
       (date |> getTimezoneOffset)
