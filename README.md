@@ -2,9 +2,9 @@
   ReDate
 </h1>
 
-<h4 align="center">
+<blockquote align="center">
   📆 A collection of useful helpers for handling dates in ReasonML with the same modern API as the well-known `date-fns`.
-</h4>
+</blockquote>
 
 <div align="center">
   <img alt="ReDate" width="100%" src="assets/header.png"/>
