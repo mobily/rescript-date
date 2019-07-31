@@ -4,7 +4,7 @@ open Js.Date;
 
 describe("startOfDay", () =>
   ExpectJs.(
-    test("returns the date with the time setted to 00:00:00", () => {
+    test("returns the date with the time set to 00:00:00", () => {
       let date =
         makeWithYMDHMS(
           ~year=2018.,

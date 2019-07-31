@@ -5,7 +5,7 @@ open Js.Date;
 describe("startOfHour", () =>
   ExpectJs.(
     test(
-      "returns the date with the time setted to the first millisecond of an hour",
+      "returns the date with the time set to the first millisecond of an hour",
       () => {
       let date =
         setMilliseconds(

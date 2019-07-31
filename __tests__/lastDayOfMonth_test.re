@@ -5,7 +5,7 @@ open Js.Date;
 describe("lastDayOfMonth", () =>
   ExpectJs.(
     test(
-      "returns the date with the time setted to 00:00:00 and the date setted to the last day of a month",
+      "returns the date with the time set to 00:00:00 and the date set to the last day of a month",
       () => {
         let date =
           makeWithYMDHMS(

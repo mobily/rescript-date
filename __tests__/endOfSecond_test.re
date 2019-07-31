@@ -5,7 +5,7 @@ open Js.Date;
 describe("endOfSecond", () =>
   ExpectJs.(
     test(
-      "returns the date with the time setted to the last millisecond before a second ends",
+      "returns the date with the time set to the last millisecond before a second ends",
       () => {
         let date =
           setMilliseconds(
