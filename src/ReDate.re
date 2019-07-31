@@ -694,3 +694,9 @@ let lastDayOfISOWeek = date => date;
 let setISOWeek = (date, week) => date;
 
 let startOfISOWeek = date => date;
+
+/* ——[ISO Week-Numbering Year Helpers]—— */
+
+let getISOWeekYear = date => (-1); /* https://github.com/date-fns/date-fns/blob/master/src/getISOWeekYear/index.js */
+
+let startOfISOWeekYear = date => date;

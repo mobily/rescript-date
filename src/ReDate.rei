@@ -238,3 +238,9 @@ let lastDayOfISOWeek: Js.Date.t => Js.Date.t;
 let setISOWeek: (Js.Date.t, int) => Js.Date.t;
 
 let startOfISOWeek: Js.Date.t => Js.Date.t;
+
+/* ——[ISO Week-Numbering Year Helpers]—— */
+
+let getISOWeekYear: Js.Date.t => int;
+
+let startOfISOWeekYear: Js.Date.t => Js.Date.t;
