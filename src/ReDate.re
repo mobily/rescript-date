@@ -676,3 +676,21 @@ let eachDayOfIntervalList = interval =>
       interval |> makeIntervalDay,
     )
   );
+
+/* ——[ISO Week helpers]——————— */
+
+let differenceInCalendarISOWeeks = (fst, snd) => (-1);
+
+let endOfISOWeek = date => date;
+
+let getISOWeek = date => (-1);
+
+let isSameISOWeek = (fst, snd) => true;
+
+let isThisISOWeek = date => true;
+
+let lastDayOfISOWeek = date => date;
+
+let setISOWeek = (date, week) => date;
+
+let startOfISOWeek = date => date;
