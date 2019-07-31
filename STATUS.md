@@ -150,14 +150,14 @@
 
 ### ISO week helpers
 
-- [ ] `endOfISOWeek`
-- [ ] `getISOWeek`
-- [ ] `isSameISOWeek`
-- [ ] `isThisISOWeek`
-- [ ] `lastDayOfISOWeek`
-- [ ] `setISOWeek`
-- [ ] `startOfISOWeek`
-- [ ] `differenceInCalendarISOWeeks`
+- [x] `endOfISOWeek`
+- [x] `getISOWeek`
+- [x] `isSameISOWeek`
+- [x] `isThisISOWeek`
+- [x] `lastDayOfISOWeek`
+- [x] `setISOWeek`
+- [x] `startOfISOWeek`
+- [x] `differenceInCalendarISOWeeks`
 
 ### ISO week-numbering year helpers
 
@@ -166,10 +166,10 @@
 - [ ] `differenceInISOWeekYears`
 - [ ] `endOfISOWeekYear`
 - [ ] `getISOWeeksInYear`
-- [ ] `getISOWeekYear`
+- [x] `getISOWeekYear`
 - [ ] `isSameISOWeekYear`
 - [ ] `isThisISOWeekYear`
 - [ ] `lastDayOfISOWeekYear`
 - [ ] `setISOWeekYear`
-- [ ] `startOfISOWeekYear`
+- [x] `startOfISOWeekYear`
 - [ ] `subISOWeekYears`
