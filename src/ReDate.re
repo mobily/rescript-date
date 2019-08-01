@@ -679,21 +679,43 @@ let eachDayOfIntervalList = interval =>
 
 /* ——[ISO Week helpers]——————— */
 
-let differenceInCalendarISOWeeks = (fst, snd) => (-1);
-
-let endOfISOWeek = date => date;
+let endOfISOWeek = date => endOfWeek(~weekStartsOn=Monday, date);
 
 let getISOWeek = date => (-1);
 
-let isSameISOWeek = (fst, snd) => true;
+let isSameISOWeek = (fst, snd) => isSameWeek(~weekStartsOn=Monday, fst, snd);
 
-let isThisISOWeek = date => true;
+let isThisISOWeek = date => isSameISOWeek(Js.Date.make(), date);
 
-let lastDayOfISOWeek = date => date;
+let lastDayOfISOWeek = date => lastDayOfWeek(~weekStartsOn=Monday, date);
 
-let setISOWeek = (date, week) => date;
+let setISOWeek = (date, ~week) => {
+  let diff = getISOWeek(date) - week |> float_of_int;
 
-let startOfISOWeek = date => date;
+  let newDate = Js.Date.getTime(date) |> Js.Date.fromFloat;
+  Js.Date.setDate(newDate, Js.Date.getDate(date) -. diff *. 7.0)
+  |> Js.Date.fromFloat;
+};
+
+let startOfISOWeek = date => startOfWeek(~weekStartsOn=Monday, date);
+
+let differenceInCalendarISOWeeks = (fst, snd) => {
+  let startOfFstISOWeek = startOfISOWeek(fst);
+  let startOfSndISOWeek = startOfISOWeek(snd);
+
+  let timestampFst =
+    Js.Date.getTime(startOfFstISOWeek)
+    -. Internal.getTimezoneOffsetInMilliseconds(startOfFstISOWeek);
+  let timestampSnd =
+    Js.Date.getTime(startOfSndISOWeek)
+    -. Internal.getTimezoneOffsetInMilliseconds(startOfSndISOWeek);
+
+  let milliseconds_in_week = 604800000.;
+  (timestampFst -. timestampSnd)
+  /. milliseconds_in_week
+  |> Js.Math.round
+  |> int_of_float;
+};
 
 /* ——[ISO Week-Numbering Year Helpers]—— */
 
