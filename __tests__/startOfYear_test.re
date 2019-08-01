@@ -5,7 +5,7 @@ open Js.Date;
 describe("startOfYear", () =>
   ExpectJs.(
     test(
-      "returns the date with the time setted to 00:00:00 and the date setted to the first day of a year",
+      "returns the date with the time set to 00:00:00 and the date set to the first day of a year",
       () => {
         let date =
           makeWithYMDHMS(
