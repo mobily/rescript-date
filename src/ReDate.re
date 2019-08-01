@@ -719,6 +719,46 @@ let differenceInCalendarISOWeeks = (fst, snd) => {
 
 /* ——[ISO Week-Numbering Year Helpers]—— */
 
-let getISOWeekYear = date => (-1); /* https://github.com/date-fns/date-fns/blob/master/src/getISOWeekYear/index.js */
+let getISOWeekYear = date => {
+  let year = Js.Date.getFullYear(date);
 
-let startOfISOWeekYear = date => date;
+  let fourthOfJanuaryOfNextYear =
+    Js.Date.setFullYearMD(
+      Js.Date.fromFloat(0.),
+      ~year=year +. 1.,
+      ~month=0.,
+      ~date=4.,
+      (),
+    )
+    |> Js.Date.fromFloat
+    |> Internal.makeDateWithStartOfDayHours;
+  let startOfNextYear = fourthOfJanuaryOfNextYear |> startOfISOWeek;
+
+  let fourthOfJanuaryOfThisYear =
+    Js.Date.setFullYear(
+      fourthOfJanuaryOfNextYear |> Js.Date.getTime |> Js.Date.fromFloat,
+      year,
+    )
+    |> Js.Date.fromFloat;
+  let startOfThisYear = fourthOfJanuaryOfThisYear |> startOfISOWeek;
+
+  if (Js.Date.getTime(date) >= Js.Date.getTime(startOfNextYear)) {
+    year +. 1. |> int_of_float;
+  } else if (Js.Date.getTime(date) >= Js.Date.getTime(startOfThisYear)) {
+    year |> int_of_float;
+  } else {
+    year -. 1. |> int_of_float;
+  };
+};
+
+let startOfISOWeekYear = date => {
+  let year = getISOWeekYear(date) |> float_of_int;
+
+  let fourthOfJanuary = Js.Date.fromFloat(0.);
+  let fourthOfJanuary =
+    Js.Date.setFullYearMD(fourthOfJanuary, ~year, ~month=0., ~date=4., ())
+    |> Js.Date.fromFloat
+    |> Internal.makeDateWithStartOfDayHours;
+  let startOfThisYear = startOfISOWeek(fourthOfJanuary);
+  startOfThisYear;
+};
