@@ -681,21 +681,11 @@ let eachDayOfIntervalList = interval =>
 
 let endOfISOWeek = date => endOfWeek(~weekStartsOn=Monday, date);
 
-let getISOWeek = date => (-1);
-
 let isSameISOWeek = (fst, snd) => isSameWeek(~weekStartsOn=Monday, fst, snd);
 
 let isThisISOWeek = date => isSameISOWeek(Js.Date.make(), date);
 
 let lastDayOfISOWeek = date => lastDayOfWeek(~weekStartsOn=Monday, date);
-
-let setISOWeek = (date, ~week) => {
-  let diff = getISOWeek(date) - week |> float_of_int;
-
-  let newDate = Js.Date.getTime(date) |> Js.Date.fromFloat;
-  Js.Date.setDate(newDate, Js.Date.getDate(date) -. diff *. 7.0)
-  |> Js.Date.fromFloat;
-};
 
 let startOfISOWeek = date => startOfWeek(~weekStartsOn=Monday, date);
 
@@ -761,4 +751,27 @@ let startOfISOWeekYear = date => {
     |> Internal.makeDateWithStartOfDayHours;
   let startOfThisYear = startOfISOWeek(fourthOfJanuary);
   startOfThisYear;
+};
+
+let getISOWeek = date => {
+  let millisecondsInWeek = 604800000.;
+
+  let diff =
+    Js.Date.getTime(startOfISOWeek(date))
+    -. Js.Date.getTime(startOfISOWeekYear(date));
+
+  /*
+   Round the number of days to the nearest integer
+   because the number of milliseconds in a week is not constant
+   (e.g. it's different in the week of the daylight saving time clock shift)
+   */
+  Js.Math.round(diff /. millisecondsInWeek) +. 1. |> int_of_float;
+};
+
+let setISOWeek = (date, ~week) => {
+  let diff = getISOWeek(date) - week |> float_of_int;
+
+  let newDate = Js.Date.getTime(date) |> Js.Date.fromFloat;
+  Js.Date.setDate(newDate, Js.Date.getDate(date) -. diff *. 7.0)
+  |> Js.Date.fromFloat;
 };
