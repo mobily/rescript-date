@@ -2,18 +2,12 @@ open Jest;
 
 open Js.Date;
 
-describe("getISOWeekYear", () => {
-  open ExpectJs;
+describe("getISOWeekYear", () =>
+  ExpectJs.(
+    test("returns the ISO week-numbering year of the given date", () => {
+      let date = makeWithYMD(~year=2007., ~month=11., ~date=31., ());
 
-  test("dummy", () => {
-    let date = make();
-
-    date |> expect |> not_ |> toEqual(date);
-  });
-
-  test("dummy2", () => {
-    let date = make();
-
-    date |> expect |> not_ |> toEqual(date);
-  });
-});
+      date |> ReDate.getISOWeekYear |> expect |> toEqual(2008);
+    })
+  )
+);

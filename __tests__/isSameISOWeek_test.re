@@ -5,15 +5,17 @@ open Js.Date;
 describe("isSameISOWeek", () => {
   open ExpectJs;
 
-  test("dummy", () => {
-    let date = make();
+  test("returns true if the given dates have the same ISO week", () => {
+    let fstDate = makeWithYMD(~year=2014., ~month=8., ~date=1., ());
+    let sndDate = makeWithYMD(~year=2014., ~month=8., ~date=7., ());
 
-    date |> expect |> not_ |> toEqual(date);
+    sndDate |> ReDate.isSameISOWeek(fstDate) |> expect |> toEqual(true);
   });
 
-  test("dummy2", () => {
-    let date = make();
+  test("returns false if the given dates have different ISO weeks", () => {
+    let fstDate = makeWithYMD(~year=2014., ~month=8., ~date=1., ());
+    let sndDate = makeWithYMD(~year=2014., ~month=8., ~date=14., ());
 
-    date |> expect |> not_ |> toEqual(date);
+    sndDate |> ReDate.isSameISOWeek(fstDate) |> expect |> toEqual(false);
   });
 });

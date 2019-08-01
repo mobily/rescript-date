@@ -5,15 +5,33 @@ open Js.Date;
 describe("getISOWeek", () => {
   open ExpectJs;
 
-  test("dummy", () => {
-    let date = make();
+  test("returns the ISO week of the given date", () => {
+    let date = makeWithYMD(~year=2005., ~month=0., ~date=2., ());
 
-    date |> expect |> not_ |> toEqual(date);
+    date |> ReDate.getISOWeek |> expect |> toEqual(53);
   });
 
-  test("dummy2", () => {
-    let date = make();
+  test("returns the ISO week at 1 January 2016", () => {
+    let date = makeWithYMD(~year=2016., ~month=0., ~date=1., ());
 
-    date |> expect |> not_ |> toEqual(date);
+    date |> ReDate.getISOWeek |> expect |> toEqual(53);
+  });
+
+  test("returns the ISO week at 1 May 2016", () => {
+    let date = makeWithYMD(~year=2016., ~month=4., ~date=1., ());
+
+    date |> ReDate.getISOWeek |> expect |> toEqual(17);
+  });
+
+  test("returns the ISO week at 2 May 2016", () => {
+    let date = makeWithYMD(~year=2016., ~month=4., ~date=2., ());
+
+    date |> ReDate.getISOWeek |> expect |> toEqual(18);
+  });
+
+  test("returns the ISO week at 31 May 2016", () => {
+    let date = makeWithYMD(~year=2016., ~month=4., ~date=31., ());
+
+    date |> ReDate.getISOWeek |> expect |> toEqual(22);
   });
 });
