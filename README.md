@@ -199,6 +199,26 @@ If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 * [differenceInYears](docs/year.md#differenceinyears)
 </details>
 
+<details>
+<summary><code>ISO week</code></summary>
+
+* [endOfISOWeek](docs/ISO week.md#endofisoweek)
+* [getISOWeek](docs/ISO week.md#getisoweek)
+* [isSameISOWeek](docs/ISO week.md#issameisoweek)
+* [isThisISOWeek](docs/ISO week.md#isthisisoweek)
+* [lastDayOfISOWeek](docs/ISO week.md#lastdayofisoweek)
+* [setISOWeek](docs/ISO week.md#setisoweek)
+* [startOfISOWeek](docs/ISO week.md#startofisoweek)
+* [differenceInCalendarISOWeeks](docs/ISO week.md#differenceincalendarisoweeks)
+</details>
+
+<details>
+<summary><code>ISO year</code></summary>
+
+* [getISOWeekYear](docs/ISO year.md#getisoweekyear)
+* [startOfISOWeekYear](docs/ISO year.md#startofisoweekyear)
+</details>
+
 <!-- TOC:END -->
 
 ## Status
