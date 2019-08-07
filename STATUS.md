@@ -26,6 +26,12 @@
 - [x] `getOverlappingDaysInIntervals`
 - [x] `eachDayOfIntervalArray`
 - [x] `eachDayOfIntervalList`
+- [ ] `eachWeekendOfIntervalList`
+- [ ] `eachWeekendOfIntervalArray`
+- [ ] `eachWeekendOfMonthList`
+- [ ] `eachWeekendOfMonthArray`
+- [ ] `eachWeekendOfYearList`
+- [ ] `eachWeekendOfYearArray`
 - [ ] `eachWeekOfIntervalArray`
 - [ ] `eachWeekOfIntervalList`
 
@@ -59,8 +65,10 @@
 
 ### Day helpers
 
+- [ ] `addBusinessDays`
 - [x] `addDays`
 - [x] `subDays`
+- [ ] `differenceInBusinessDays`
 - [x] `differenceInDays`
 - [x] `differenceInCalendarDays`
 - [x] `startOfDay`
@@ -73,6 +81,7 @@
 
 ### Weekday helpers
 
+- [ ] `getISODay`
 - [x] `isMonday`
 - [x] `isTuesday`
 - [x] `isWednesday`
@@ -81,6 +90,7 @@
 - [x] `isSaturday`
 - [x] `isSunday`
 - [x] `isWeekend`
+- [ ] `setISODay`
 
 ### Week helpers
 
@@ -92,8 +102,10 @@
 - [x] `endOfWeek`
 - [x] `isSameWeek`
 - [x] `lastDayOfWeek`
+- [ ] `getWeek`
 - [x] `getWeekOfMonth`
 - [x] `getWeeksInMonth`
+- [ ] `setWeek`
 
 ### Month helpers
 
@@ -123,6 +135,41 @@
 - [x] `lastMonthOfYear`
 - [x] `lastDayOfYear`
 
-### ISO
+### Week-numbering year helpers
 
-> TODO
+- [ ] `getWeekYear`
+- [ ] `setWeekYear`
+- [ ] `startOfWeekYear`
+
+### Decade helpers
+
+- [ ] `getDecade`
+- [ ] `startOfDecade`
+- [ ] `endOfDecade`
+- [ ] `lastDayOfDecade`
+
+### ISO week helpers
+
+- [ ] `endOfISOWeek`
+- [ ] `getISOWeek`
+- [ ] `isSameISOWeek`
+- [ ] `isThisISOWeek`
+- [ ] `lastDayOfISOWeek`
+- [ ] `setISOWeek`
+- [ ] `startOfISOWeek`
+- [ ] `differenceInCalendarISOWeeks`
+
+### ISO week-numbering year helpers
+
+- [ ] `addISOWeekYears`
+- [ ] `differenceInCalendarISOWeekYears`
+- [ ] `differenceInISOWeekYears`
+- [ ] `endOfISOWeekYear`
+- [ ] `getISOWeeksInYear`
+- [ ] `getISOWeekYear`
+- [ ] `isSameISOWeekYear`
+- [ ] `isThisISOWeekYear`
+- [ ] `lastDayOfISOWeekYear`
+- [ ] `setISOWeekYear`
+- [ ] `startOfISOWeekYear`
+- [ ] `subISOWeekYears`
