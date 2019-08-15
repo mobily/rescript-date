@@ -32,10 +32,10 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@glennsl/bs-jest": "^0.4.8",
-    "all-contributors-cli": "^6.4.0",
-    "bs-platform": "^5.0.4",
-    "coveralls": "^3.0.3",
+    "@glennsl/bs-jest": "^0.4.9",
+    "all-contributors-cli": "^6.8.1",
+    "bs-platform": "^5.0.6",
+    "coveralls": "^3.0.6",
     "markdown-contents": "^1.0.11",
     "ramda": "^0.26.1"
   },
