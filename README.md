@@ -200,23 +200,23 @@ If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 </details>
 
 <details>
-<summary><code>ISO week</code></summary>
+<summary><code>ISO Week</code></summary>
 
-* [endOfISOWeek](docs/ISO week.md#endofisoweek)
-* [getISOWeek](docs/ISO week.md#getisoweek)
-* [isSameISOWeek](docs/ISO week.md#issameisoweek)
-* [isThisISOWeek](docs/ISO week.md#isthisisoweek)
-* [lastDayOfISOWeek](docs/ISO week.md#lastdayofisoweek)
-* [setISOWeek](docs/ISO week.md#setisoweek)
-* [startOfISOWeek](docs/ISO week.md#startofisoweek)
-* [differenceInCalendarISOWeeks](docs/ISO week.md#differenceincalendarisoweeks)
+* [endOfISOWeek](docs/iso_week.md#endofisoweek)
+* [getISOWeek](docs/iso_week.md#getisoweek)
+* [isSameISOWeek](docs/iso_week.md#issameisoweek)
+* [isThisISOWeek](docs/iso_week.md#isthisisoweek)
+* [lastDayOfISOWeek](docs/iso_week.md#lastdayofisoweek)
+* [setISOWeek](docs/iso_week.md#setisoweek)
+* [startOfISOWeek](docs/iso_week.md#startofisoweek)
+* [differenceInCalendarISOWeeks](docs/iso_week.md#differenceincalendarisoweeks)
 </details>
 
 <details>
-<summary><code>ISO year</code></summary>
+<summary><code>ISO Year</code></summary>
 
-* [getISOWeekYear](docs/ISO year.md#getisoweekyear)
-* [startOfISOWeekYear](docs/ISO year.md#startofisoweekyear)
+* [getISOWeekYear](docs/iso_year.md#getisoweekyear)
+* [startOfISOWeekYear](docs/iso_year.md#startofisoweekyear)
 </details>
 
 <!-- TOC:END -->
