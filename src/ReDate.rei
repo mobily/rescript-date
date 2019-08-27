@@ -220,3 +220,27 @@ let getOverlappingDaysInIntervals: (interval, interval) => int;
 let eachDayOfIntervalArray: interval => array(Js.Date.t);
 
 let eachDayOfIntervalList: interval => list(Js.Date.t);
+
+/* ——[ISO Week helpers]——————————— */
+
+let endOfISOWeek: Js.Date.t => Js.Date.t;
+
+let getISOWeek: Js.Date.t => int;
+
+let isSameISOWeek: (Js.Date.t, Js.Date.t) => bool;
+
+let isThisISOWeek: Js.Date.t => bool;
+
+let lastDayOfISOWeek: Js.Date.t => Js.Date.t;
+
+let setISOWeek: (Js.Date.t, ~week: int) => Js.Date.t;
+
+let startOfISOWeek: Js.Date.t => Js.Date.t;
+
+let differenceInCalendarISOWeeks: (Js.Date.t, Js.Date.t) => int;
+
+/* ——[ISO Week-Numbering Year Helpers]—— */
+
+let getISOWeekYear: Js.Date.t => int;
+
+let startOfISOWeekYear: Js.Date.t => Js.Date.t;

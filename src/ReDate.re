@@ -676,3 +676,101 @@ let eachDayOfIntervalList = interval =>
       interval |> makeIntervalDay,
     )
   );
+
+/* ——[ISO Week helpers]——————— */
+
+let endOfISOWeek = endOfWeek(~weekStartsOn=Monday);
+
+let isSameISOWeek = isSameWeek(~weekStartsOn=Monday);
+
+let isThisISOWeek = date => isSameISOWeek(Js.Date.make(), date);
+
+let lastDayOfISOWeek = lastDayOfWeek(~weekStartsOn=Monday);
+
+let startOfISOWeek = startOfWeek(~weekStartsOn=Monday);
+
+let differenceInCalendarISOWeeks = (fst, snd) => {
+  let startOfFstISOWeek = startOfISOWeek(fst);
+  let startOfSndISOWeek = startOfISOWeek(snd);
+
+  let timestampFst =
+    Js.Date.getTime(startOfFstISOWeek)
+    -. Internal.getTimezoneOffsetInMilliseconds(startOfFstISOWeek);
+  let timestampSnd =
+    Js.Date.getTime(startOfSndISOWeek)
+    -. Internal.getTimezoneOffsetInMilliseconds(startOfSndISOWeek);
+
+  (timestampFst -. timestampSnd)
+  /. float_of_int(Milliseconds.week)
+  |> Js.Math.round
+  |> int_of_float;
+};
+
+/* ——[ISO Week-Numbering Year Helpers]—— */
+
+let getISOWeekYear = date => {
+  let year = Js.Date.getFullYear(date);
+
+  let fourthOfJanuaryOfNextYear =
+    Js.Date.setFullYearMD(
+      Js.Date.fromFloat(0.),
+      ~year=year +. 1.,
+      ~month=0.,
+      ~date=4.,
+      (),
+    )
+    |> Js.Date.fromFloat
+    |> Internal.makeDateWithStartOfDayHours;
+  let startOfNextYear = fourthOfJanuaryOfNextYear |> startOfISOWeek;
+
+  let fourthOfJanuaryOfThisYear =
+    Js.Date.setFullYear(
+      fourthOfJanuaryOfNextYear |> Js.Date.getTime |> Js.Date.fromFloat,
+      year,
+    )
+    |> Js.Date.fromFloat;
+  let startOfThisYear = fourthOfJanuaryOfThisYear |> startOfISOWeek;
+
+  if (Js.Date.getTime(date) >= Js.Date.getTime(startOfNextYear)) {
+    year +. 1. |> int_of_float;
+  } else if (Js.Date.getTime(date) >= Js.Date.getTime(startOfThisYear)) {
+    year |> int_of_float;
+  } else {
+    year -. 1. |> int_of_float;
+  };
+};
+
+let startOfISOWeekYear = date => {
+  let year = getISOWeekYear(date) |> float_of_int;
+
+  let fourthOfJanuary = Js.Date.fromFloat(0.);
+  let fourthOfJanuary =
+    Js.Date.setFullYearMD(fourthOfJanuary, ~year, ~month=0., ~date=4., ())
+    |> Js.Date.fromFloat
+    |> Internal.makeDateWithStartOfDayHours;
+  let startOfThisYear = startOfISOWeek(fourthOfJanuary);
+  startOfThisYear;
+};
+
+let getISOWeek = date => {
+  let diff =
+    Js.Date.getTime(startOfISOWeek(date))
+    -. Js.Date.getTime(startOfISOWeekYear(date));
+
+  /*
+   Round the number of days to the nearest integer
+   because the number of milliseconds in a week is not constant
+   (e.g. it's different in the week of the daylight saving time clock shift)
+   */
+  Js.Math.round(diff /. float_of_int(Milliseconds.week))
+  +. 1.
+  |> int_of_float;
+};
+
+let setISOWeek = (date, ~week) => {
+  let diff = getISOWeek(date) - week |> float_of_int;
+
+  let newDate = Js.Date.getTime(date) |> Js.Date.fromFloat;
+  Js.Date.setDate(newDate, Js.Date.getDate(date) -. diff *. 7.0)
+  |> Js.Date.fromFloat;
+};
