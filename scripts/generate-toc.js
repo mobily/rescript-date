@@ -3,7 +3,7 @@
 const mdContents = require('markdown-contents')
 const fs = require('fs')
 const path = require('path')
-const { pipe, map, reduce, replace, curry } = require('ramda')
+const { pipe, map, reduce, replace, curry, split, join } = require('ramda')
 
 const resolvePath = (...paths) => path.resolve(__dirname, '..', ...paths)
 const pathToReadme = resolvePath('README.md')
@@ -18,8 +18,14 @@ const treeToMarkdown = tree => mdContents.treeToMarkdown(tree[0].descendants)
 const pathToDocs = doc => `docs/${doc}.md`
 const generateAnchors = curry((doc, content) => replace(/\(\#(.+)\)/g, `(${pathToDocs(doc)}#$1)`, content))
 const capitalizeFirstLetter = str => str.charAt(0).toUpperCase() + str.slice(1)
+const capitalizeISO = str => str.replace('iso', 'ISO')
+const transformToTitle = pipe(
+  split('_'),
+  map(pipe(capitalizeISO, capitalizeFirstLetter)),
+  join(' '),
+)
 
-const docs = ['common', 'interval', 'second', 'minute', 'hour', 'day', 'week', 'weekday', 'month', 'year', 'ISO week', 'ISO year']
+const docs = ['common', 'interval', 'second', 'minute', 'hour', 'day', 'week', 'weekday', 'month', 'year', 'iso_week', 'iso_year']
 const retrieveMarkdownOf = pipe(
   readDocFile,
   retrieveMarkdownTree,
@@ -28,7 +34,7 @@ const retrieveMarkdownOf = pipe(
 const generateToC = pipe(
   map(doc => {
     const content = retrieveMarkdownOf(doc)
-    return `<details>\n<summary><code>${capitalizeFirstLetter(doc)}</code></summary>\n\n${generateAnchors(doc, content)}</details>\n\n`
+    return `<details>\n<summary><code>${transformToTitle(doc)}</code></summary>\n\n${generateAnchors(doc, content)}</details>\n\n`
   }),
   reduce((acc, toc) => `${acc}${toc}`, ''),
 )
