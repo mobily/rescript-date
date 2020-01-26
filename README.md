@@ -3,7 +3,7 @@
 </h1>
 
 <blockquote align="center">
-  📆 Collection of useful helpers for handling dates in Reason with the same modern API as the well-known `date-fns`.
+  📆 A collection of useful helpers for handling dates in Reason with the same modern API as the well-known `date-fns`.
 </blockquote>
 
 <div align="center">
