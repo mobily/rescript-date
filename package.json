@@ -1,6 +1,6 @@
 {
   "name": "@mobily/re-date",
-  "description": "📆 Collection of useful helpers for handling dates in Reason with the same modern API as the well-known `date-fns`.",
+  "description": "📆 A collection of useful helpers for handling dates in Reason with the same modern API as the well-known `date-fns`.",
   "version": "0.9.0",
   "scripts": {
     "dev": "bsb -make-world -w",
