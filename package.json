@@ -33,9 +33,9 @@
   "dependencies": {},
   "devDependencies": {
     "@glennsl/bs-jest": "^0.4.9",
-    "all-contributors-cli": "^6.8.1",
-    "bs-platform": "^5.0.6",
-    "coveralls": "^3.0.6",
+    "all-contributors-cli": "^6.13.0",
+    "bs-platform": "^7.0.1",
+    "coveralls": "^3.0.9",
     "markdown-contents": "^1.0.11",
     "ramda": "^0.26.1"
   },
