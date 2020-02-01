@@ -127,11 +127,13 @@ If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 <summary><code>Day</code></summary>
 
 * [addDays](docs/day.md#adddays)
+* [addBusinessDays](docs/day.md#addbusinessdays)
 * [subDays](docs/day.md#subdays)
 * [startOfDay](docs/day.md#startofday)
 * [endOfDay](docs/day.md#endofday)
 * [differenceInCalendarDays](docs/day.md#differenceincalendardays)
 * [differenceInDays](docs/day.md#differenceindays)
+* [differenceInBusinessDays](docs/day.md#differenceinbusinessdays)
 * [getDayOfYear](docs/day.md#getdayofyear)
 * [isSameDay](docs/day.md#issameday)
 * [isToday](docs/day.md#istoday)
