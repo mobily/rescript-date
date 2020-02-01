@@ -2,6 +2,7 @@ node_modules/
 lib/
 coverage/
 dist/
+.trash/
 
 .idea/
 .vscode/
