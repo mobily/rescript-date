@@ -98,6 +98,8 @@ let isSameHour: (Js.Date.t, Js.Date.t) => bool;
 
 /* ——[Day helpers——————————— */
 
+let addBusinessDays: (int, Js.Date.t) => Js.Date.t;
+
 let addDays: (int, Js.Date.t) => Js.Date.t;
 
 let subDays: (int, Js.Date.t) => Js.Date.t;

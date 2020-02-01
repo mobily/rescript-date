@@ -470,6 +470,19 @@ let isSameHour = (fst, snd) =>
 
 let addDays = Internal.addDays;
 
+let rec addBusinessDays = (days, date) => {
+  let next = days < 0 ? succ : pred;
+  let sign = days < 0 ? (-1) : 1;
+  let date = date |> addDays(sign);
+
+  if (Internal.isWeekend(date)) {
+    date |> addBusinessDays(days);
+  } else {
+    days == 0
+      ? date |> addDays(- sign) : date |> addBusinessDays(days |> next);
+  };
+};
+
 let subDays = (days, date) => date |> addDays(- days);
 
 let startOfDay = Internal.makeDateWithStartOfDayHours;

@@ -12,6 +12,18 @@ let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ());
 date |> ReDate.addDays(5);
 ```
 
+#### addBusinessDays
+
+> Add the specified number of business days to the given date (excluding weekends).
+
+`let addBusinessDays: (int, Js.Date.t) => Js.Date.t`
+
+```reason
+let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ());
+
+date |> ReDate.addBusinessDays(5);
+```
+
 #### subDays
 
 > Subtract the specified number of days from the given date.

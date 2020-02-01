@@ -65,7 +65,7 @@
 
 ### Day helpers
 
-- [ ] `addBusinessDays`
+- [x] `addBusinessDays`
 - [x] `addDays`
 - [x] `subDays`
 - [ ] `differenceInBusinessDays`
