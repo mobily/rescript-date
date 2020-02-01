@@ -112,6 +112,8 @@ let differenceInCalendarDays: (Js.Date.t, Js.Date.t) => int;
 
 let differenceInDays: (Js.Date.t, Js.Date.t) => int;
 
+let differenceInBusinessDays: (Js.Date.t, Js.Date.t) => int;
+
 let getDayOfYear: Js.Date.t => int;
 
 let isSameDay: (Js.Date.t, Js.Date.t) => bool;

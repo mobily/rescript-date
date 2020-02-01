@@ -86,6 +86,19 @@ let sndDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=2., ~hours=20
 fstDate |> ReDate.differenceInDays(sndDate);
 ```
 
+#### differenceInBusinessDays
+
+> Get the number of full day periods between the given dates.
+
+`let differenceInBusinessDays: (Js.Date.t, Js.Date.t) => int`
+
+```reason
+let fstDate = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=10., ());
+let sndDate = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=2., ());
+
+fstDate |> ReDate.differenceInBusinessDays(sndDate);
+```
+
 #### getDayOfYear
 
 > Get the day of the year of the given date.

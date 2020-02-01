@@ -68,7 +68,7 @@
 - [x] `addBusinessDays`
 - [x] `addDays`
 - [x] `subDays`
-- [ ] `differenceInBusinessDays`
+- [x] `differenceInBusinessDays`
 - [x] `differenceInDays`
 - [x] `differenceInCalendarDays`
 - [x] `startOfDay`

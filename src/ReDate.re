@@ -23,6 +23,7 @@ type differenceIn =
   | Hours
   | Minutes
   | Days
+  | BusinessDays(helper)
   | CalendarDays(helper)
   | Weeks
   | CalendarWeeks(helper)
@@ -151,6 +152,11 @@ module Internal = {
       | _ => failwith("error")
     );
 
+  let is = (day, date) =>
+    date |> Js.Date.getDay === (day |> dayToJs |> float_of_int);
+
+  let isWeekend = date => date |> is(Saturday) || date |> is(Sunday);
+
   let rec differenceIn = (differenceType, snd, fst) =>
     Js.Date.(
       switch (differenceType) {
@@ -163,6 +169,17 @@ module Internal = {
           ((fst |> getTime) -. (snd |> getTime))
           /. (differenceType |> getMillisecondsOf |> float_of_int);
         diff > 0. ? diff |> Js.Math.floor_int : diff |> Js.Math.ceil_int;
+      | BusinessDays(startOf) =>
+        let diff = differenceIn(CalendarDays(startOf), snd, fst);
+        let date = diff < 0 ? fst : snd;
+        let result = ref(0);
+
+        for (index in 0 to diff |> Js.Math.abs_int |> pred) {
+          let day = date |> addDays(index);
+          result := isWeekend(day) ? result^ : result^ |> succ;
+        };
+
+        diff < 0 ? - result^ : result^;
       | Months =>
         let diff =
           (fst |> getMonth)
@@ -255,9 +272,6 @@ module Internal = {
       interval.end_,
     )
     |> succ;
-
-  let is = (day, date) =>
-    date |> Js.Date.getDay === (day |> dayToJs |> float_of_int);
 
   let minOrMaxOfArray = (fn, dates) =>
     Belt.Array.reduce(dates, None, fn |> reduceMinOrMax) |> retrieveMinOrMax;
@@ -408,14 +422,14 @@ let roundToNearestMinute = (~nearestTo=1, date) => {
   let closestTo = (date |> Js.Date.getSeconds) /. 60. |> Js.Math.round;
   let closestMinute = (date |> Js.Date.getMinutes) +. closestTo;
   let nearestRoundedMinute =
-    nearestTo !== 1 ?
-      (
-        (date |> Js.Date.getMinutes)
-        /. (nearestTo |> float_of_int)
-        |> Js.Math.round
-      )
-      *. (nearestTo |> float_of_int) :
-      closestMinute;
+    nearestTo !== 1
+      ? (
+          (date |> Js.Date.getMinutes)
+          /. (nearestTo |> float_of_int)
+          |> Js.Math.round
+        )
+        *. (nearestTo |> float_of_int)
+      : closestMinute;
 
   Js.Date.(
     setMinutes(date |> Internal.makeDate, nearestRoundedMinute)
@@ -494,6 +508,9 @@ let differenceInCalendarDays =
 
 let differenceInDays = Internal.differenceIn(Days);
 
+let differenceInBusinessDays =
+  Internal.differenceIn(BusinessDays(startOfDay));
+
 let getDayOfYear = date =>
   date |> differenceInCalendarDays(date |> Internal.startOfYear) |> succ;
 
@@ -547,8 +564,8 @@ let getWeekOfMonth = (~weekStartsOn=Sunday, date) => {
   let startWeekDay = date |> Internal.startOfMonth |> Js.Date.getDay;
   let weekStartsOn' = weekStartsOn |> Internal.dayToJs |> float_of_int;
   let diff =
-    startWeekDay < weekStartsOn' ?
-      7. -. weekStartsOn' +. startWeekDay : startWeekDay -. weekStartsOn';
+    startWeekDay < weekStartsOn'
+      ? 7. -. weekStartsOn' +. startWeekDay : startWeekDay -. weekStartsOn';
 
   ((date |> Js.Date.getDate) +. diff) /. 7. |> Js.Math.ceil_int;
 };
@@ -579,7 +596,7 @@ let isFriday = Internal.is(Friday);
 
 let isSaturday = Internal.is(Saturday);
 
-let isWeekend = date => date |> isSaturday || date |> isSunday;
+let isWeekend = Internal.isWeekend;
 
 /* ——[Month helpers]——————————— */
 
