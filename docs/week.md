@@ -151,7 +151,7 @@ date |> lastDayOfWeek';
 
 > Get the week of the month of the given date.
 
-`let getWeekOfMonth: (~weekStartsOn: day=?, Js.Date.t) => int`
+`let getWeekOfMonth: (~weekStartsOn: day=?, Js.Date.t) => float`
 
 ```reason
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ());

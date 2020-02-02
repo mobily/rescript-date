@@ -143,7 +143,7 @@ let isSameWeek: (~weekStartsOn: day=?, Js.Date.t, Js.Date.t) => bool;
 
 let lastDayOfWeek: (~weekStartsOn: day=?, Js.Date.t) => Js.Date.t;
 
-let getWeekOfMonth: (~weekStartsOn: day=?, Js.Date.t) => int;
+let getWeekOfMonth: (~weekStartsOn: day=?, Js.Date.t) => float;
 
 let getWeeksInMonth: (~weekStartsOn: day=?, Js.Date.t) => int;
 

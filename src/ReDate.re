@@ -567,7 +567,7 @@ let getWeekOfMonth = (~weekStartsOn=Sunday, date) => {
     startWeekDay < weekStartsOn'
       ? 7. -. weekStartsOn' +. startWeekDay : startWeekDay -. weekStartsOn';
 
-  ((date |> Js.Date.getDate) +. diff) /. 7. |> Js.Math.ceil_int;
+  ((date |> Js.Date.getDate) +. diff) /. 7. |> Js.Math.ceil_float;
 };
 
 let getWeeksInMonth = (~weekStartsOn=Sunday, date) => {
