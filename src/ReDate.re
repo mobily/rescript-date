@@ -263,6 +263,8 @@ module Internal = {
     date |> Js.Date.fromFloat;
   };
 
+  let addYears = (years, date) => date |> addMonths(12 * years);
+
   let isLeap = year =>
     year mod 400 === 0 || year mod 4 === 0 && year mod 100 !== 0;
 
@@ -631,7 +633,7 @@ let lastDayOfMonth = Internal.lastDayOfMonth;
 
 /* ——[Year helpers]——————————— */
 
-let addYears = (years, date) => date |> addMonths(12 * years);
+let addYears = Internal.addYears;
 
 let subYears = (years, date) => date |> addYears(- years);
 
