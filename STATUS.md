@@ -137,7 +137,7 @@
 
 ### Week-numbering year helpers
 
-- [ ] `getWeekYear`
+- [x] `getWeekYear`
 - [ ] `setWeekYear`
 - [ ] `startOfWeekYear`
 

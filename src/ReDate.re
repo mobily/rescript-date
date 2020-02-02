@@ -270,6 +270,25 @@ module Internal = {
     |> startOrEndOfWeek(weekStartsOn)
     |> makeDateWithStartOfDayHours;
 
+  let getWeekYear = (~weekStartsOn=Sunday, date) => {
+    let year = date |> Js.Date.getFullYear |> int_of_float;
+    let currentYear =
+      year |> float_of_int |> makeDateWithY |> startOfWeek(~weekStartsOn);
+    let nextYear =
+      year
+      |> succ
+      |> float_of_int
+      |> makeDateWithY
+      |> startOfWeek(~weekStartsOn);
+
+    Js.Date.(
+      date |> getTime >= (nextYear |> getTime)
+        ? year |> succ
+        : date |> getTime >= (currentYear |> getTime) ? year : year |> pred
+    )
+    |> float_of_int;
+  };
+
   let isLeap = year =>
     year mod 400 === 0 || year mod 4 === 0 && year mod 100 !== 0;
 
@@ -660,6 +679,10 @@ let getDaysInYear = date => date |> isLeapYear ? 366 : 365;
 let differenceInCalendarYears = Internal.differenceIn(CalendarYears);
 
 let differenceInYears = Internal.differenceIn(Years);
+
+/* ——[Week-numbering year helpers]——————————— */
+
+let getWeekYear = Internal.getWeekYear;
 
 /* ——[Interval helpers]——————————— */
 

@@ -213,6 +213,10 @@ let differenceInCalendarYears: (Js.Date.t, Js.Date.t) => int;
 
 let differenceInYears: (Js.Date.t, Js.Date.t) => int;
 
+/* ——[Week-numbering year helpers]——————————— */
+
+let getWeekYear: (~weekStartsOn: day=?, Js.Date.t) => float;
+
 /* ——[Interval helpers]——————————— */
 
 let isWithinInterval: (interval, Js.Date.t) => bool;
