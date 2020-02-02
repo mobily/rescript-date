@@ -139,7 +139,7 @@
 
 - [x] `getWeekYear`
 - [ ] `setWeekYear`
-- [ ] `startOfWeekYear`
+- [x] `startOfWeekYear`
 
 ### Decade helpers
 

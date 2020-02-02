@@ -289,6 +289,11 @@ module Internal = {
     |> float_of_int;
   };
 
+  let startOfWeekYear = (~weekStartsOn=Sunday, date) => {
+    let year = date |> getWeekYear(~weekStartsOn);
+    year |> makeDateWithY |> startOfWeek(~weekStartsOn);
+  };
+
   let isLeap = year =>
     year mod 400 === 0 || year mod 4 === 0 && year mod 100 !== 0;
 
@@ -683,6 +688,8 @@ let differenceInYears = Internal.differenceIn(Years);
 /* ——[Week-numbering year helpers]——————————— */
 
 let getWeekYear = Internal.getWeekYear;
+
+let startOfWeekYear = Internal.startOfWeekYear;
 
 /* ——[Interval helpers]——————————— */
 

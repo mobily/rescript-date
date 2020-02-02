@@ -217,6 +217,8 @@ let differenceInYears: (Js.Date.t, Js.Date.t) => int;
 
 let getWeekYear: (~weekStartsOn: day=?, Js.Date.t) => float;
 
+let startOfWeekYear: (~weekStartsOn: day=?, Js.Date.t) => Js.Date.t;
+
 /* ——[Interval helpers]——————————— */
 
 let isWithinInterval: (interval, Js.Date.t) => bool;

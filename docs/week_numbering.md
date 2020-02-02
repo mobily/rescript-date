@@ -18,3 +18,22 @@ let getWeekYear' = ReDate.getWeekYear(~weekStartsOn=Monday);
 
 date |> getWeekYear';
 ```
+
+#### startOfWeekYear
+
+> Return the start of a local week-numbering year.
+
+`let startOfWeekYear: (~weekStartsOn: day=?, Js.Date.t) => Js.Date.t`
+
+```reason
+let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=12., ());
+
+date |> ReDate.startOfWeekYear;
+```
+
+```reason
+let date = Js.Date.makeWithYMD(~year=2018., ~month=10., ~date=14., ());
+let startOfWeekYear' = ReDate.startOfWeekYear(~weekStartsOn=Monday);
+
+date |> startOfWeekYear';
+```
