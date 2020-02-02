@@ -25,7 +25,7 @@ const transformToTitle = pipe(
   join(' '),
 )
 
-const docs = ['common', 'interval', 'second', 'minute', 'hour', 'day', 'week', 'weekday', 'month', 'year', 'iso_week', 'iso_year']
+const docs = ['common', 'interval', 'second', 'minute', 'hour', 'day', 'week', 'week_numbering', 'weekday', 'month', 'year', 'iso_week', 'iso_year']
 const retrieveMarkdownOf = pipe(
   readDocFile,
   retrieveMarkdownTree,
