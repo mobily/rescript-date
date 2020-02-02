@@ -71,12 +71,12 @@ date |> ReDate.lastDayOfISOWeek;
 > Set the ISO week for the given date, preserving the weekday number. A new date will be returned, the original date will not be changed.
 > ISO week-numbering year: http://en.wikipedia.org/wiki/ISO_week_date
 
-`let setISOWeek: (Js.Date.t, ~week: int) => Js.Date.t`
+`let setISOWeek: (Js.Date.t, ~week: float) => Js.Date.t`
 
 ```reason
 let date = Js.Date.makeWithYMD(~year=2004., ~month=7., ~date=7., ());
 
-date |> ReDate.setISOWeek(~week=53);
+date |> ReDate.setISOWeek(~week=53.);
 ```
 
 #### startOfISOWeek

@@ -778,8 +778,8 @@ let startOfISOWeekYear = date => {
     Js.Date.setFullYearMD(fourthOfJanuary, ~year, ~month=0., ~date=4., ())
     |> Js.Date.fromFloat
     |> Internal.makeDateWithStartOfDayHours;
-  let startOfThisYear = startOfISOWeek(fourthOfJanuary);
-  startOfThisYear;
+
+  startOfISOWeek(fourthOfJanuary);
 };
 
 let getISOWeek = date => {
@@ -791,9 +791,9 @@ let getISOWeek = date => {
 };
 
 let setISOWeek = (date, ~week) => {
-  let diff = getISOWeek(date) - week |> float_of_int;
-
+  let diff = getISOWeek(date) -. week;
   let newDate = Js.Date.getTime(date) |> Js.Date.fromFloat;
+
   Js.Date.setDate(newDate, Js.Date.getDate(date) -. diff *. 7.0)
   |> Js.Date.fromFloat;
 };

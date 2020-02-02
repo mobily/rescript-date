@@ -237,7 +237,7 @@ let isThisISOWeek: Js.Date.t => bool;
 
 let lastDayOfISOWeek: Js.Date.t => Js.Date.t;
 
-let setISOWeek: (Js.Date.t, ~week: int) => Js.Date.t;
+let setISOWeek: (Js.Date.t, ~week: float) => Js.Date.t;
 
 let startOfISOWeek: Js.Date.t => Js.Date.t;
 
