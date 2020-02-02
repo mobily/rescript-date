@@ -110,6 +110,10 @@ module Internal = {
       )
     );
 
+  let makeDateWithY = year =>
+    Js.Date.makeWithYMD(~year, ~month=0., ~date=1., ())
+    |> makeDateWithStartOfDayHours;
+
   let startOfYear = date =>
     Js.Date.(
       makeWithYMD(~year=date |> getFullYear, ~month=0., ~date=1., ())
