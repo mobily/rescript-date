@@ -184,3 +184,22 @@ let getWeeksInMonth' = ReDate.getWeeksInMonth(~weekStartsOn=Friday);
 
 date |> getWeeksInMonth';
 ```
+
+#### getWeek
+
+> Get the local week index of the given date.
+
+`let getWeek: (~weekStartsOn: day=?, Js.Date.t) => float`
+
+```reason
+let date = Js.Date.makeWithYMD(~year=2018., ~month=10., ~date=1., ());
+
+date |> ReDate.getWeek;
+```
+
+```reason
+let date = Js.Date.makeWithYMD(~year=2018., ~month=10., ~date=14., ());
+let getWeek' = ReDate.getWeek(~weekStartsOn=Monday);
+
+date |> getWeek';
+```

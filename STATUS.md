@@ -102,7 +102,7 @@
 - [x] `endOfWeek`
 - [x] `isSameWeek`
 - [x] `lastDayOfWeek`
-- [ ] `getWeek`
+- [x] `getWeek`
 - [x] `getWeekOfMonth`
 - [x] `getWeeksInMonth`
 - [ ] `setWeek`

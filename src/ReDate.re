@@ -610,6 +610,16 @@ let getWeeksInMonth = (~weekStartsOn=Sunday, date) => {
   );
 };
 
+let getWeek = (~weekStartsOn=Sunday, date) => {
+  let diff =
+    Js.Date.(
+      (date |> Internal.startOfWeek(~weekStartsOn) |> getTime)
+      -. (date |> Internal.startOfWeekYear(~weekStartsOn) |> getTime)
+    );
+
+  Js.Math.round(diff /. (Milliseconds.week |> float_of_int)) +. 1.;
+};
+
 /* ——[Weekday helpers]——————————— */
 
 let isSunday = Internal.is(Sunday);

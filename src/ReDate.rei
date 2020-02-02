@@ -147,6 +147,8 @@ let getWeekOfMonth: (~weekStartsOn: day=?, Js.Date.t) => float;
 
 let getWeeksInMonth: (~weekStartsOn: day=?, Js.Date.t) => int;
 
+let getWeek: (~weekStartsOn: day=?, Js.Date.t) => float;
+
 /* ——[Weekday helpers]——————————— */
 
 let isSunday: Js.Date.t => bool;
