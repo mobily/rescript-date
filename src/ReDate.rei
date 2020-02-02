@@ -245,6 +245,6 @@ let differenceInCalendarISOWeeks: (Js.Date.t, Js.Date.t) => int;
 
 /* ——[ISO Week-Numbering Year Helpers]—— */
 
-let getISOWeekYear: Js.Date.t => int;
+let getISOWeekYear: Js.Date.t => float;
 
 let startOfISOWeekYear: Js.Date.t => Js.Date.t;
