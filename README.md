@@ -154,6 +154,14 @@ If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 * [lastDayOfWeek](docs/week.md#lastdayofweek)
 * [getWeekOfMonth](docs/week.md#getweekofmonth)
 * [getWeeksInMonth](docs/week.md#getweeksinmonth)
+* [getWeek](docs/week.md#getweek)
+</details>
+
+<details>
+<summary><code>Week Numbering</code></summary>
+
+* [getWeekYear](docs/week_numbering.md#getweekyear)
+* [startOfWeekYear](docs/week_numbering.md#startofweekyear)
 </details>
 
 <details>
