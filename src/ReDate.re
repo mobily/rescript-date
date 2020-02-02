@@ -762,16 +762,16 @@ let getISOWeekYear = date => {
   let startOfThisYear = fourthOfJanuaryOfThisYear |> startOfISOWeek;
 
   if (Js.Date.getTime(date) >= Js.Date.getTime(startOfNextYear)) {
-    year +. 1. |> int_of_float;
+    year +. 1.;
   } else if (Js.Date.getTime(date) >= Js.Date.getTime(startOfThisYear)) {
-    year |> int_of_float;
+    year;
   } else {
-    year -. 1. |> int_of_float;
+    year -. 1.;
   };
 };
 
 let startOfISOWeekYear = date => {
-  let year = getISOWeekYear(date) |> float_of_int;
+  let year = getISOWeekYear(date);
 
   let fourthOfJanuary = Js.Date.fromFloat(0.);
   let fourthOfJanuary =
