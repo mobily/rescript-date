@@ -229,7 +229,7 @@ let eachDayOfIntervalList: interval => list(Js.Date.t);
 
 let endOfISOWeek: Js.Date.t => Js.Date.t;
 
-let getISOWeek: Js.Date.t => int;
+let getISOWeek: Js.Date.t => float;
 
 let isSameISOWeek: (Js.Date.t, Js.Date.t) => bool;
 

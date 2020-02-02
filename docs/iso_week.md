@@ -18,7 +18,7 @@ date |> ReDate.endOfISOWeek;
 > Get the ISO week of the given date.
 > ISO week-numbering year: http://en.wikipedia.org/wiki/ISO_week_date
 
-`let getISOWeek: Js.Date.t => int`
+`let getISOWeek: Js.Date.t => float`
 
 ```reason
 let date = Js.Date.makeWithYMDHMS(~year=2005., ~month=0., ~date=2., ~hours=16., ~minutes=50., ~seconds=12., ());

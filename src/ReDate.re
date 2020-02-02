@@ -787,14 +787,7 @@ let getISOWeek = date => {
     Js.Date.getTime(startOfISOWeek(date))
     -. Js.Date.getTime(startOfISOWeekYear(date));
 
-  /*
-   Round the number of days to the nearest integer
-   because the number of milliseconds in a week is not constant
-   (e.g. it's different in the week of the daylight saving time clock shift)
-   */
-  Js.Math.round(diff /. float_of_int(Milliseconds.week))
-  +. 1.
-  |> int_of_float;
+  Js.Math.round(diff /. float_of_int(Milliseconds.week)) +. 1.;
 };
 
 let setISOWeek = (date, ~week) => {
