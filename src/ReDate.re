@@ -265,6 +265,11 @@ module Internal = {
 
   let addYears = (years, date) => date |> addMonths(12 * years);
 
+  let startOfWeek = (~weekStartsOn=Sunday, date) =>
+    Start(date)
+    |> startOrEndOfWeek(weekStartsOn)
+    |> makeDateWithStartOfDayHours;
+
   let isLeap = year =>
     year mod 400 === 0 || year mod 4 === 0 && year mod 100 !== 0;
 
@@ -537,12 +542,7 @@ let subWeeks = (weeks, date) => date |> addWeeks(- weeks);
 
 let differenceInWeeks = Internal.differenceIn(Weeks);
 
-let startOfWeek = (~weekStartsOn=Sunday, date) =>
-  Internal.(
-    Start(date)
-    |> startOrEndOfWeek(weekStartsOn)
-    |> makeDateWithStartOfDayHours
-  );
+let startOfWeek = Internal.startOfWeek;
 
 let endOfWeek = (~weekStartsOn=Sunday, date) =>
   Internal.(
