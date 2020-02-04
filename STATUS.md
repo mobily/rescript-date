@@ -121,6 +121,19 @@
 - [x] `isSameMonth`
 - [x] `lastDayOfMonth`
 
+### Quarter helpers
+
+- [ ] `addQuarters`
+- [ ] `differenceInCalendarQuarters`
+- [ ] `differenceInQuarters`
+- [ ] `endOfQuarter`
+- [ ] `isSameQuarter`
+- [ ] `isThisQuarter`
+- [ ] `lastDayOfQuarter`
+- [ ] `startOfQuarter`
+- [ ] `setQuarter`
+- [ ] `subQuarters`
+
 ### Year helpers
 
 - [x] `addYears`
