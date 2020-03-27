@@ -2,9 +2,9 @@
   ReDate
 </h1>
 
-<h3 align="center">
+<h4 align="center">
   📆 A collection of useful helpers for handling dates in Reason with the same modern API as the well-known `date-fns`.
-</h3>
+</h4>
 
 <div align="center">
   <img alt="ReDate" width="100%" src="assets/header.png"/>
