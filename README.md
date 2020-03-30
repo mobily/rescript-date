@@ -34,8 +34,6 @@ Add `@mobily/re-date` to `bs-dependencies` in your `bsconfig.json`:
 
 If you are familiar with `date-fns`, then you already know how to use `ReDate`.
 
-**The list of helpers:**
-
 <!-- TOC:START - Do not remove or modify this section -->
 <details>
 <summary><code>Common</code></summary>
