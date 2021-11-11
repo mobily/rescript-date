@@ -1,22 +1,17 @@
 {
-  "name": "@mobily/re-date",
+  "name": "@mobily/rescript-date",
   "namespace": false,
   "bsc-flags": [
     "-bs-no-version-header",
     "-bs-super-errors"
   ],
-  "bs-dependencies": [
-  ],
   "bs-dev-dependencies": [
     "@glennsl/bs-jest"
   ],
-  "package-specs": [{
+  "package-specs": {
     "module": "commonjs",
-    "in-source": false
-  }, {
-    "module": "es6",
-    "in-source": false
-  }],
+    "in-source": true
+  },
   "suffix": ".bs.js",
   "sources": [
     {
@@ -27,9 +22,8 @@
       "type": "dev"
     }
   ],
-  "refmt": 3,
   "warnings": {
-    "number": "+R",
+    "number": "+R-48",
     "error": "+R"
   }
 }

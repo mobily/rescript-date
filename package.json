@@ -1,58 +1,41 @@
 {
-  "name": "@mobily/re-date",
-  "description": "📆 A collection of useful helpers for handling dates in Reason with the same modern API as the well-known `date-fns`.",
-  "version": "0.10.0",
+  "name": "@mobily/rescript-date",
+  "description": "📆 Date manipulation in ReScript",
+  "version": "1.0.0",
   "scripts": {
-    "dev": "bsb -make-world -w",
-    "clean": "bsb -clean-world",
-    "build": "bsb -make-world",
-    "test": "jest --coverage",
-    "generate:toc": "node ./scripts/generate-toc.js",
+    "clean": "rm -rf ./dist && rm -f ./tsconfig.tsbuildinfo",
+    "test": "yarn jest --coverage",
+    "re:clean": "yarn rescript clean",
+    "re:build": "yarn rescript build",
+    "re:dev": "yarn rescript build -w",
     "generate:contributors": "yarn all-contributors generate"
   },
   "license": "MIT",
   "keywords": [
-    "reason",
-    "reasonml",
+    "rescript",
     "date",
     "time",
-    "datetime",
-    "bucklescript"
+    "datetime"
   ],
   "files": [
     "src/*.re*",
     "bsconfig.json"
   ],
-  "author": "mobily",
-  "homepage": "https://github.com/mobily/re-date#readme",
-  "bugs": "https://github.com/mobily/re-date/issues",
+  "author": "Marcin Dziewulski <hello@mobily.pl>",
+  "homepage": "https://github.com/mobily/rescript-date#readme",
+  "bugs": "https://github.com/mobily/rescript-date/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mobily/re-date.git"
+    "url": "https://github.com/mobily/rescript-date.git"
   },
-  "dependencies": {},
   "devDependencies": {
-    "@glennsl/bs-jest": "^0.4.9",
-    "all-contributors-cli": "^6.13.0",
-    "bs-platform": "^7.0.1",
-    "coveralls": "^3.0.9",
+    "@glennsl/bs-jest": "^0.7.0",
+    "all-contributors-cli": "^6.20.0",
+    "coveralls": "^3.1.1",
     "markdown-contents": "^1.0.11",
-    "ramda": "^0.26.1"
+    "rescript": "^9.1.4"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "jest": {
-    "verbose": true,
-    "bail": true,
-    "moduleFileExtensions": [
-      "js"
-    ],
-    "testMatch": [
-      "**/__tests__/*_test.bs.js"
-    ],
-    "modulePathIgnorePatterns": [
-      "/es6/"
-    ]
   }
 }
