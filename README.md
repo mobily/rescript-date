@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-  <img src="./assets/frame.png" width="440">
+  <img src="./assets/frame.png" width="480">
 </p>
 
 ## Getting started
