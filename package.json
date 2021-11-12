@@ -18,8 +18,10 @@
     "datetime"
   ],
   "files": [
-    "src/*.re*",
-    "bsconfig.json"
+    "src/!(*.bs.js)",
+    "*.md",
+    "bsconfig.json",
+    "package.json"
   ],
   "author": "Marcin Dziewulski <hello@mobily.pl>",
   "homepage": "https://github.com/mobily/rescript-date#readme",
