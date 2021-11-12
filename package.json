@@ -3,7 +3,6 @@
   "description": "📆 Date manipulation in ReScript.",
   "version": "1.0.0",
   "scripts": {
-    "clean": "rm -rf ./dist && rm -f ./tsconfig.tsbuildinfo",
     "test": "yarn jest --coverage",
     "re:clean": "yarn rescript clean",
     "re:build": "yarn rescript build",
