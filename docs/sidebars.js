@@ -11,10 +11,6 @@ module.exports = {
   sidebar: [
     {
       type: 'doc',
-      id: 'getting-started',
-    },
-    {
-      type: 'doc',
       id: 'installation',
     },
     {

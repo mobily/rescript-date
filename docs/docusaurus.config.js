@@ -65,6 +65,11 @@ module.exports = {
       ],
       copyright: `Built with Docusaurus ❤️`,
     },
+    colorMode: {
+      defaultMode: 'light',
+      disableSwitch: true,
+      respectPrefersColorScheme: false,
+    },
   },
   themes: [],
   presets: [

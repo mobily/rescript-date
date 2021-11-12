@@ -1,6 +1,7 @@
 ---
 id: installation
 title: Installation
+slug: /
 ---
 
 Use either `npm` or `yarn` to install the package:
@@ -13,7 +14,7 @@ yarn add @mobily/rescript-date
 npm install @mobily/rescript-date --save
 ```
 
-### ReScript Config (`bsconfig.json`)
+### ReScript Config
 
 Add `@mobily/rescript-date` to `bs-dependencies` in your `bsconfig.json`:
 
