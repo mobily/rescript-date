@@ -5,8 +5,8 @@
   <strong>Date manipulation in ReScript with the same modern and convenient API as <code>date-fns</code>.</strong>
 </p>
 
-<p align="center" style="max-width: 440px">
-  <img src="./assets/frame.png">
+<p align="center">
+  <img src="./assets/frame.png" width="440">
 </p>
 
 ## Getting started
