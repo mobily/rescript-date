@@ -1,73 +1,88 @@
-# Hour helpers
+---
+id: hour
+title: Hour
+---
 
-#### addHours
+### addHours
 
-> Add the specified number of hours to the given date.
+Add the specified number of hours to the given date.
 
-`let addHours: (int, Js.Date.t) => Js.Date.t`
-
-```reason
-let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=0., ());
-
-date |> ReDate.addHours(1);
+```js
+let addHours: (float, Js.Date.t) => Js.Date.t
 ```
 
-#### subHours
-
-> Subtract the specified number of hours from the given date.
-
-`let subHours: (int, Js.Date.t) => Js.Date.t`
-
-```reason
+```js
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=0., ());
 
-date |> ReDate.subHours(1);
+date |> ReDate.addHours(1.);
 ```
 
-#### differenceInHours
+### subHours
 
-> Get the number of hours between the given dates.
+Subtract the specified number of hours from the given date.
 
-`let differenceInHours: (Js.Date.t, Js.Date.t) => int`
+```js
+let subHours: (float, Js.Date.t) => Js.Date.t
+```
 
-```reason
+```js
+let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=0., ());
+
+date |> ReDate.subHours(1.);
+```
+
+### differenceInHours
+
+Get the number of hours between the given dates.
+
+```js
+let differenceInHours: (Js.Date.t, Js.Date.t) => float
+```
+
+```js
 let fstDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=40., ~seconds=15., ());
 let sndDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=10., ~minutes=30., ~seconds=0., ());
 
 fstDate |> ReDate.differenceInHours(sndDate);
 ```
 
-#### startOfHour
+### startOfHour
 
-> Return the start of an hour for the given date.
+Return the start of an hour for the given date.
 
-`let startOfHour: Js.Date.t => Js.Date.t`
+```js
+let startOfHour: Js.Date.t => Js.Date.t
+```
 
-```reason
+```js
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=16., ~minutes=50., ~seconds=10., ());
 
 date |> ReDate.startOfHour;
 ```
 
-#### endOfHour
+### endOfHour
 
-> Return the end of an hour for the given date.
+Return the end of an hour for the given date.
 
-`let endOfHour: Js.Date.t => Js.Date.t`
+```js
+let endOfHour: Js.Date.t => Js.Date.t
+```
 
-```reason
+```js
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=16., ~minutes=50., ~seconds=10., ());
 
 date |> ReDate.endOfHour;
 ```
 
-#### isSameHour
+### isSameHour
 
-> Are the given dates in the same hour?
+Are the given dates in the same hour?
 
-`let isSameHour: (Js.Date.t, Js.Date.t) => bool`
+```js
+let isSameHour: (Js.Date.t, Js.Date.t) => bool
+```
 
-```reason
+```js
 let fstDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=16., ~minutes=50., ~seconds=10., ());
 let sndDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=16., ~minutes=0., ~seconds=0., ());
 
