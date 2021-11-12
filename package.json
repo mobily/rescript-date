@@ -1,6 +1,6 @@
 {
   "name": "@mobily/rescript-date",
-  "description": "📆 Date manipulation in ReScript",
+  "description": "📆 Date manipulation in ReScript.",
   "version": "1.0.0",
   "scripts": {
     "clean": "rm -rf ./dist && rm -f ./tsconfig.tsbuildinfo",
@@ -32,7 +32,6 @@
     "@glennsl/bs-jest": "^0.7.0",
     "all-contributors-cli": "^6.20.0",
     "coveralls": "^3.1.1",
-    "markdown-contents": "^1.0.11",
     "rescript": "^9.1.4"
   },
   "publishConfig": {
