@@ -12,7 +12,7 @@ let addYears: (float, Js.Date.t) => Js.Date.t
 ```
 
 ```js
-let date = makeWithYMD(~year=2018., ~month=4., ~date=1., ())
+let date = Js.Date.makeWithYMD(~year=2018., ~month=4., ~date=1., ())
 
 date |> ReDate.addYears(1.)
 ```
@@ -26,9 +26,37 @@ let subYears: (float, Js.Date.t) => Js.Date.t
 ```
 
 ```js
-let date = makeWithYMD(~year=2019., ~month=4., ~date=1., ())
+let date = Js.Date.makeWithYMD(~year=2019., ~month=4., ~date=1., ())
 
 date |> ReDate.subYears(1.)
+```
+
+### getYear
+
+Get the year of the given date.
+
+```js
+let getYear: Js.Date.t => float
+```
+
+```js
+let date = Js.Date.makeWithYMD(~year=2019., ~month=4., ~date=1., ())
+
+date |> ReDate.getYear
+```
+
+### setYear
+
+Set the year to the given date.
+
+```js
+let setYear: (float, Js.Date.t) => Js.Date.t
+```
+
+```js
+let date = Js.Date.makeWithYMD(~year=2019., ~month=4., ~date=1., ())
+
+date |> ReDate.setYear(2021.)
 ```
 
 ### startOfYear
@@ -40,7 +68,7 @@ let startOfYear: Js.Date.t => Js.Date.t
 ```
 
 ```js
-let date = makeWithYMD(~year=2018., ~month=5., ~date=1., ())
+let date = Js.Date.makeWithYMD(~year=2018., ~month=5., ~date=1., ())
 
 date |> ReDate.startOfYear
 ```
@@ -54,7 +82,7 @@ let endOfYear: Js.Date.t => Js.Date.t
 ```
 
 ```js
-let date = makeWithYMD(~year=2018., ~month=8., ~date=10., ())
+let date = Js.Date.makeWithYMD(~year=2018., ~month=8., ~date=10., ())
 
 date |> ReDate.endOfYear
 ```
@@ -68,8 +96,8 @@ let isSameYear: (Js.Date.t, Js.Date.t) => bool
 ```
 
 ```js
-let fstDate = makeWithYMD(~year=2018., ~month=8., ~date=10., ())
-let sndDate = makeWithYMD(~year=2018., ~month=6., ~date=20., ())
+let fstDate = Js.Date.makeWithYMD(~year=2018., ~month=8., ~date=10., ())
+let sndDate = Js.Date.makeWithYMD(~year=2018., ~month=6., ~date=20., ())
 
 fstDate |> ReDate.isSameYear(sndDate)
 ```
@@ -83,7 +111,7 @@ let isLeapYear: Js.Date.t => bool
 ```
 
 ```js
-let date = makeWithYMD(~year=2020., ~month=8., ~date=10., ())
+let date = Js.Date.makeWithYMD(~year=2020., ~month=8., ~date=10., ())
 
 date |> ReDate.isLeapYear
 ```
@@ -97,7 +125,7 @@ let lastMonthOfYear: Js.Date.t => Js.Date.t
 ```
 
 ```js
-let date = makeWithYMD(~year=2018., ~month=8., ~date=10., ())
+let date = Js.Date.makeWithYMD(~year=2018., ~month=8., ~date=10., ())
 
 date |> ReDate.lastMonthOfYear
 ```
@@ -111,7 +139,7 @@ let lastDayOfYear: Js.Date.t => Js.Date.t
 ```
 
 ```js
-let date = makeWithYMD(~year=2018., ~month=8., ~date=10., ())
+let date = Js.Date.makeWithYMD(~year=2018., ~month=8., ~date=10., ())
 
 date |> ReDate.lastDayOfYear
 ```
@@ -125,7 +153,7 @@ let getDaysInYear: Js.Date.t => float
 ```
 
 ```js
-let date = makeWithYMD(~year=2018., ~month=10., ~date=10., ())
+let date = Js.Date.makeWithYMD(~year=2018., ~month=10., ~date=10., ())
 
 date |> ReDate.getDaysInYear
 ```
@@ -139,8 +167,8 @@ let differenceInCalendarYears: (Js.Date.t, Js.Date.t) => float
 ```
 
 ```js
-let fstDate = makeWithYMD(~year=2020., ~month=5., ~date=1., ())
-let sndDate = makeWithYMD(~year=2018., ~month=1., ~date=1., ())
+let fstDate = Js.Date.makeWithYMD(~year=2020., ~month=5., ~date=1., ())
+let sndDate = Js.Date.makeWithYMD(~year=2018., ~month=1., ~date=1., ())
 
 fstDate |> ReDate.differenceInCalendarYears(sndDate)
 ```
@@ -154,8 +182,8 @@ let differenceInYears: (Js.Date.t, Js.Date.t) => float
 ```
 
 ```js
-let fstDate = makeWithYMD(~year=2018., ~month=0., ~date=1., ())
-let sndDate = makeWithYMD(~year=2016., ~month=0., ~date=1., ())
+let fstDate = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ())
+let sndDate = Js.Date.makeWithYMD(~year=2016., ~month=0., ~date=1., ())
 
 fstDate |> ReDate.differenceInYears(sndDate)
 ```

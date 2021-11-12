@@ -31,6 +31,34 @@ let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., 
 date |> ReDate.subMinutes(1)
 ```
 
+### getMinutes
+
+Get the minutes of the given date.
+
+```js
+let getMinutes: Js.Date.t => float
+```
+
+```js
+let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=30., ());
+
+date |> ReDate.getMinutes
+```
+
+### setMinutes
+
+Set the minutes to the given date.
+
+```js
+let setMinutes: (float, Js.Date.t) => Js.Date.t
+```
+
+```js
+let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=0., ());
+
+date |> ReDate.setMinutes(30.)
+```
+
 ### differenceInMinutes
 
 Get the number of minutes between the given dates.

@@ -31,6 +31,34 @@ let date = Js.Date.makeWithYMD(~year=2018., ~month=1., ~date=1., ())
 date |> ReDate.subMonths(1.)
 ```
 
+### getMonth
+
+Get the month of the given date.
+
+```js
+let getMonth: Js.Date.t => float
+```
+
+```js
+let date = Js.Date.makeWithYMD(~year=2019., ~month=4., ~date=1., ())
+
+date |> ReDate.getMonth
+```
+
+### setMonth
+
+Set the month to the given date.
+
+```js
+let setMonth: (float, Js.Date.t) => Js.Date.t
+```
+
+```js
+let date = Js.Date.makeWithYMD(~year=2019., ~month=4., ~date=1., ())
+
+date |> ReDate.setMonth(5.)
+```
+
 ### differenceInCalendarMonths
 
 Get the number of calendar months between the given dates.

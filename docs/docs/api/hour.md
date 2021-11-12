@@ -31,6 +31,34 @@ let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., 
 date |> ReDate.subHours(1.);
 ```
 
+### getHours
+
+Get the hours of the given date.
+
+```js
+let getHours: Js.Date.t => float
+```
+
+```js
+let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=30., ());
+
+date |> ReDate.getHours
+```
+
+### setHours
+
+Set the hours to the given date.
+
+```js
+let setHours: (float, Js.Date.t) => Js.Date.t
+```
+
+```js
+let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=0., ());
+
+date |> ReDate.setHours(18.)
+```
+
 ### differenceInHours
 
 Get the number of hours between the given dates.

@@ -18,16 +18,51 @@ title: Status
 - [ ] `closestIndexTo`
 - [x] `isValid`
 
+### Conversion
+
+- [ ] `daysToWeeks`
+- [ ] `hoursToMilliseconds`
+- [ ] `hoursToMinutes`
+- [ ] `hoursToSeconds`
+- [ ] `millisecondsToHours`
+- [ ] `millisecondsToMinutes`
+- [ ] `millisecondsToSeconds`
+- [ ] `minutesToHours`
+- [ ] `minutesToMilliseconds`
+- [ ] `minutesToSeconds`
+- [ ] `monthsToQuarters`
+- [ ] `monthsToYears`
+- [ ] `quartersToMonths`
+- [ ] `quartersToYears`
+- [ ] `secondsToHours`
+- [ ] `secondsToMilliseconds`
+- [ ] `secondsToMinutes`
+- [ ] `weeksToDays`
+- [ ] `yearsToMonths`
+- [ ] `yearsToQuarters`
+
 ### Interval
 
 - [x] `isWithinInterval`
 - [x] `areIntervalsOverlapping`
 - [x] `getOverlappingDaysInIntervals`
 - [x] `eachDayOfInterval`
-- [ ] `eachWeekendOfInterval`
-- [ ] `eachWeekendOfMonth`
-- [ ] `eachWeekendOfYear`
+- [ ] `eachHourOfInterval`
+- [ ] `eachMinuteOfInterval`
+- [ ] `eachMonthOfInterval`
+- [ ] `eachQuarterOfInterval`
 - [ ] `eachWeekOfInterval`
+- [ ] `eachWeekendOfInterval`
+- [ ] `eachYearOfInterval`
+
+### Millisecond
+
+- [ ] `addMilliseconds`
+- [ ] `differenceInMilliseconds`
+- [ ] `getMilliseconds`
+- [ ] `milliseconds`
+- [ ] `setMilliseconds`
+- [ ] `subMilliseconds`
 
 ### Second
 
@@ -37,6 +72,9 @@ title: Status
 - [x] `startOfSecond`
 - [x] `endOfSecond`
 - [x] `isSameSecond`
+- [ ] `isThisSecond`
+- [x] `getSeconds`
+- [x] `setSeconds`
 
 ### Minute
 
@@ -46,7 +84,10 @@ title: Status
 - [x] `startOfMinute`
 - [x] `endOfMinute`
 - [x] `isSameMinute`
+- [ ] `isThisMinute`
 - [x] `roundToNearestMinute`
+- [x] `getMinutes`
+- [x] `setMinutes`
 
 ### Hour
 
@@ -56,6 +97,9 @@ title: Status
 - [x] `startOfHour`
 - [x] `endOfHour`
 - [x] `isSameHour`
+- [ ] `isThisHour`
+- [x] `getHours`
+- [x] `setHours`
 
 ### Day
 
@@ -67,11 +111,17 @@ title: Status
 - [x] `differenceInCalendarDays`
 - [x] `startOfDay`
 - [x] `endOfDay`
+- [ ] `endOfToday`
+- [ ] `endOfTomorrow`
+- [ ] `endOfYesterday`
 - [x] `getDayOfYear`
+- [ ] `setDayOfYear`
 - [x] `isSameDay`
 - [x] `isToday`
 - [x] `isTomorrow`
 - [x] `isYesterday`
+- [x] `getDate`
+- [x] `setDate`
 
 ### Week
 
@@ -82,6 +132,7 @@ title: Status
 - [x] `startOfWeek`
 - [x] `endOfWeek`
 - [x] `isSameWeek`
+- [ ] `isThisWeek`
 - [x] `lastDayOfWeek`
 - [x] `getWeek`
 - [x] `getWeekOfMonth`
@@ -96,6 +147,7 @@ title: Status
 
 ### Weekday
 
+- [ ] `getDay`
 - [ ] `getISODay`
 - [x] `isMonday`
 - [x] `isTuesday`
@@ -105,6 +157,7 @@ title: Status
 - [x] `isSaturday`
 - [x] `isSunday`
 - [x] `isWeekend`
+- [ ] `setDay`
 - [ ] `setISODay`
 
 ### Month
@@ -119,7 +172,11 @@ title: Status
 - [x] `isFirstDayOfMonth`
 - [x] `isLastDayOfMonth`
 - [x] `isSameMonth`
+- [ ] `isThisMonth`
 - [x] `lastDayOfMonth`
+- [x] `getMonth`
+- [x] `setMonth`
+- [ ] `eachWeekendOfMonth`
 
 ### Quarter
 
@@ -147,6 +204,9 @@ title: Status
 - [x] `isSameYear`
 - [x] `lastMonthOfYear`
 - [x] `lastDayOfYear`
+- [x] `getYear`
+- [x] `setYear`
+- [ ] `eachWeekendOfYear`
 
 ### Decade
 

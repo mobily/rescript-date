@@ -31,6 +31,34 @@ let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., 
 date |> ReDate.subSeconds(1.);
 ```
 
+### getSeconds
+
+Get the seconds of the given date.
+
+```js
+let getSeconds: Js.Date.t => float
+```
+
+```js
+let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=30., ());
+
+date |> ReDate.getSeconds
+```
+
+### setSeconds
+
+Set the seconds to the given date.
+
+```js
+let setSeconds: (float, Js.Date.t) => Js.Date.t
+```
+
+```js
+let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=0., ());
+
+date |> ReDate.setSeconds(30.)
+```
+
 ### differenceInSeconds
 
 Get the number of seconds between the given dates.

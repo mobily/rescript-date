@@ -46,6 +46,34 @@ let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ())
 date |> ReDate.subDays(5.)
 ```
 
+### getDate
+
+Get the day of the month of the given date.
+
+```js
+let getSeconds: Js.Date.t => float
+```
+
+```js
+let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ())
+
+date |> ReDate.getDate
+```
+
+### setDate
+
+Set the day of the month to the given date.
+
+```js
+let setDate: (float, Js.Date.t) => Js.Date.t
+```
+
+```js
+let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ())
+
+date |> ReDate.setDate(23.)
+```
+
 ### startOfDay
 
 Return the start of a day for the given date.
