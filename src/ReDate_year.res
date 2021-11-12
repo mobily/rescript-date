@@ -6,7 +6,7 @@ let subYears = (years, date) => addYears(-.years, date)
 
 let getYear = Js.Date.getFullYear
 
-let setYear = Js.Date.setFullYear
+let setYear = (year, date) => Js.Date.setFullYear(date, year)
 
 let startOfYear = date =>
   Js.Date.makeWithYMDHMS(
