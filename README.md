@@ -2,11 +2,11 @@
 
 
 <p align="center">
-  <strong>Date manipulation in ReScript with the same modern and convenient API as `date-fns`.</strong>
+  <strong>Date manipulation in ReScript with the same modern and convenient API as <code>date-fns</code>.</strong>
 </p>
 
-<p align="center">
-  <img src="./assets/frame.png" style="max-width: 440px">
+<p align="center" style="max-width: 440px">
+  <img src="./assets/frame.png">
 </p>
 
 ## Getting started
