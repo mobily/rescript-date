@@ -9,6 +9,7 @@ module.exports = {
   organizationName: 'mobily',
   projectName: 'rescript-date',
   themeConfig: {
+    sidebarCollapsible: false,
     navbar: {
       title: '',
        logo: {
@@ -17,14 +18,18 @@ module.exports = {
       },
       items: [
         {
-          to: 'docs/',
-          activeBasePath: 'docs',
-          label: 'Docs',
-          position: 'left',
+          href: 'https://www.buymeacoffee.com/utSC0k7',
+          label: 'Sponsor ❤️',
+          position: 'right',
         },
         {
           href: 'https://github.com/mobily/rescript-date',
-          label: 'GitHub',
+          label: 'Github',
+          position: 'right',
+        },
+        {
+          href: 'https://twitter.com/__marcin_',
+          label: 'Twitter',
           position: 'right',
         },
       ],
