@@ -47,7 +47,7 @@ describe("roundToNearestMinute", () => {
       ~seconds=0.,
       (),
     )
-    let roundToNearest15Minute = ReDate.roundToNearestMinute(~nearestTo=15)
+    let roundToNearest15Minute = ReDate.roundToNearestMinute(~nearestTo=15.)
 
     date |> roundToNearest15Minute |> expect |> toEqual(expectedDate)
   })

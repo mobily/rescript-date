@@ -19,3 +19,19 @@ let differenceInCalendarISOWeeks = (fst, snd) => {
 
   (fstTimestamp -. sndTimestamp) /. Milliseconds.week |> Js.Math.round
 }
+
+let getISOWeek = date => {
+  let diff =
+    Js.Date.getTime(startOfISOWeek(date)) -.
+    Js.Date.getTime(ReDate_iso_week_numbering.startOfISOWeekYear(date))
+
+  Js.Math.round(diff /. Milliseconds.week) +. 1.
+}
+
+let setISOWeek = (week, date) => {
+  let diff = getISOWeek(date) -. week
+  let day = Js.Date.getDate(date)
+  let date = date |> Js.Date.getTime |> Js.Date.fromFloat
+
+  Js.Date.setDate(date, day -. diff *. 7.) |> Js.Date.fromFloat
+}

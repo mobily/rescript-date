@@ -22,8 +22,8 @@ let getOverlappingDaysInIntervals = (left, right) => {
     let overlapEndTime = rightEnd > leftEnd ? leftEnd : rightEnd
     let overlap = (overlapEndTime -. overlapStartTime) /. Milliseconds.day
 
-    overlap |> Js.Math.ceil_int
-  | _ => 0
+    overlap |> Js.Math.ceil_float
+  | _ => 0.
   }
 }
 

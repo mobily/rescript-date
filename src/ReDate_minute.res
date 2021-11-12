@@ -33,13 +33,12 @@ let endOfMinute = date => {
 
 let isSameMinute = (fst, snd) => ReDate_common.isEqual(startOfMinute(fst), startOfMinute(snd))
 
-let roundToNearestMinute = (~nearestTo=1, date) => {
+let roundToNearestMinute = (~nearestTo=1., date) => {
   let closestTo = Js.Math.round(Js.Date.getSeconds(date) /. 60.)
   let closestMinute = Js.Date.getMinutes(date) +. closestTo
   let nearestRoundedMinute =
-    nearestTo != 1
-      ? Js.Math.round(Js.Date.getMinutes(date) /. float_of_int(nearestTo)) *.
-        float_of_int(nearestTo)
+    nearestTo != 1.
+      ? Js.Math.round(Js.Date.getMinutes(date) /. nearestTo) *. nearestTo
       : closestMinute
 
   Js.Date.setMinutes(makeDate(date), nearestRoundedMinute) |> Js.Date.fromFloat |> startOfMinute
