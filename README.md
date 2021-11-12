@@ -1,4 +1,6 @@
-# rescript-date
+<p align="center">
+  <img src="./assets/frame.png" width="480">
+</p>
 
 <p align="center">
   <a href="https://travis-ci.com/mobily/rescript-date">
@@ -24,10 +26,6 @@
 
 <p align="center">
   <strong>Date manipulation in ReScript with the same modern and convenient API as <code>date-fns</code>.</strong>
-</p>
-
-<p align="center">
-  <img src="./assets/frame.png" width="480">
 </p>
 
 ## Getting started
