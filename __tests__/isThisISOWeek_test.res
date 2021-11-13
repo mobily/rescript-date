@@ -38,12 +38,16 @@ describe("isThisISOWeek", () => {
   test("returns true if the given date and the current date have the same ISO week", () => {
     let date = makeWithYMD(~year=2014., ~month=8., ~date=22., ())
 
-    date |> ReDate.isThisISOWeek |> expect |> toBeTruthy
+    let result = date->ReDate.isThisISOWeek
+
+    result |> expect |> toBeTruthy
   })
 
   test("returns false if the given date and the current date have different ISO weeks", () => {
     let date = makeWithYMD(~year=2014., ~month=8., ~date=21., ())
 
-    date |> ReDate.isThisISOWeek |> expect |> toBeFalsy
+    let result = date->ReDate.isThisISOWeek
+
+    result |> expect |> toBeFalsy
   })
 })

@@ -5,7 +5,7 @@ let getDaysInMonth = date => {
   Js.Date.getDate(lastDayOfMonth)
 }
 
-let addMonths = (months, date) => {
+let addMonths = (date, months) => {
   let year = Js.Date.getFullYear(date)
   let month = Js.Date.getMonth(date) +. months
   let daysInMonth = getDaysInMonth(date)
@@ -14,11 +14,11 @@ let addMonths = (months, date) => {
   Js.Date.makeWithYMD(~year, ~month, ~date, ())
 }
 
-let subMonths = (months, date) => addMonths(-.months, date)
+let subMonths = (months, date) => addMonths(date, -.months)
 
 let getMonth = Js.Date.getMonth
 
-let setMonth = (month, date) => {
+let setMonth = (date, month) => {
   let year = Js.Date.getFullYear(date)
   let day = Js.Date.getDate(date)
   let date = Js.Date.makeWithYMD(~year, ~month, ~date=day, ())
@@ -33,30 +33,30 @@ let differenceInCalendarMonths = (fst, snd) => {
   let sndYear = Js.Date.getFullYear(snd)
   let sndMonth = Js.Date.getMonth(snd)
 
-  (sndYear -. fstYear) *. 12. +. (sndMonth -. fstMonth)
+  (fstYear -. sndYear) *. 12. +. (fstMonth -. sndMonth)
 }
 
 let differenceInMonths = (fst, snd) => {
   let diff =
-    Js.Date.getMonth(snd) -.
-    Js.Date.getMonth(fst) +.
-    12. *. (Js.Date.getFullYear(snd) -. Js.Date.getFullYear(fst))
-  let anchor = addMonths(diff, fst)
+    Js.Date.getMonth(fst) -.
+    Js.Date.getMonth(snd) +.
+    12. *. (Js.Date.getFullYear(fst) -. Js.Date.getFullYear(snd))
+  let anchor = addMonths(snd, diff)
   let anchorTime = Js.Date.getTime(anchor)
-  let sndTime = Js.Date.getTime(snd)
-  let adjust = if sndTime -. anchorTime < 0. {
-    (sndTime -. anchorTime) /. (anchorTime -. (addMonths(Float.pred(diff), fst) |> Js.Date.getTime))
+  let fstTime = Js.Date.getTime(fst)
+  let adjust = if fstTime -. anchorTime < 0. {
+    (fstTime -. anchorTime) /. (anchorTime -. addMonths(snd, Float.pred(diff))->Js.Date.getTime)
   } else {
-    (sndTime -. anchorTime) /. ((addMonths(Float.succ(diff), fst) |> Js.Date.getTime) -. anchorTime)
+    (fstTime -. anchorTime) /. (addMonths(snd, Float.succ(diff))->Js.Date.getTime -. anchorTime)
   }
 
   Js.Math.round(adjust) +. diff
 }
 
 let startOfMonth = date =>
-  Js.Date.setDate(makeDate(date), 1.) |> Js.Date.fromFloat |> makeStartOfDayDate
+  Js.Date.setDate(makeDate(date), 1.)->Js.Date.fromFloat->makeStartOfDayDate
 
-let endOfMonth = date => date |> makeLastDayOfMonthDate |> makeEndOfDayDate
+let endOfMonth = date => date->makeLastDayOfMonthDate->makeEndOfDayDate
 
 let isFirstDayOfMonth = date => Js.Date.getDate(date) == 1.
 
@@ -64,4 +64,4 @@ let isLastDayOfMonth = date => ReDate_common.isEqual(makeEndOfDayDate(date), end
 
 let isSameMonth = (fst, snd) => ReDate_common.isEqual(startOfMonth(fst), startOfMonth(snd))
 
-let lastDayOfMonth = date => date |> makeLastDayOfMonthDate |> makeStartOfDayDate
+let lastDayOfMonth = date => date->makeLastDayOfMonthDate->makeStartOfDayDate

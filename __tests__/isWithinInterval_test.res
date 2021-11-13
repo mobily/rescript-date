@@ -13,19 +13,25 @@ describe("isWithinInterval", () => {
   test("returns true if the given date in within the given interval", () => {
     let date = makeWithYMD(~year=2018., ~month=0., ~date=5., ())
 
-    date |> ReDate.isWithinInterval(interval) |> expect |> toBeTruthy
+    let result = date->ReDate.isWithinInterval(interval)
+
+    result |> expect |> toBeTruthy
   })
 
   test("returns true if the given date has same time as the left boundary of the interval", () => {
     let date = makeWithYMD(~year=2018., ~month=0., ~date=5., ())
 
-    date |> ReDate.isWithinInterval(interval) |> expect |> toBeTruthy
+    let result = date->ReDate.isWithinInterval(interval)
+
+    result |> expect |> toBeTruthy
   })
 
   test("returns true if the given date has same time as the right boundary of the interval", () => {
     let date = makeWithYMD(~year=2018., ~month=0., ~date=10., ())
 
-    date |> ReDate.isWithinInterval(interval) |> expect |> toBeTruthy
+    let result = date->ReDate.isWithinInterval(interval)
+
+    result |> expect |> toBeTruthy
   })
 
   test("returns true if the given date and the both boundaries are the same", () => {
@@ -35,12 +41,16 @@ describe("isWithinInterval", () => {
       end_: makeWithYMD(~year=2018., ~month=0., ~date=10., ()),
     }
 
-    date |> ReDate.isWithinInterval(interval) |> expect |> toBeTruthy
+    let result = date->ReDate.isWithinInterval(interval)
+
+    result |> expect |> toBeTruthy
   })
 
   test("returns false if the given date is outside of the interval", () => {
     let date = makeWithYMD(~year=2018., ~month=0., ~date=20., ())
 
-    date |> ReDate.isWithinInterval(interval) |> expect |> toBeFalsy
+    let result = date->ReDate.isWithinInterval(interval)
+
+    result |> expect |> toBeFalsy
   })
 })

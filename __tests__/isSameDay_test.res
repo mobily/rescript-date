@@ -25,7 +25,9 @@ describe("isSameDay", () => {
       (),
     )
 
-    fstDate |> ReDate.isSameDay(sndDate) |> expect |> toBeTruthy
+    let result = fstDate->ReDate.isSameDay(sndDate)
+
+    result |> expect |> toBeTruthy
   })
 
   test("returns false if the given dates have different days", () => {
@@ -48,6 +50,8 @@ describe("isSameDay", () => {
       (),
     )
 
-    fstDate |> ReDate.isSameDay(sndDate) |> expect |> toBeFalsy
+    let result = fstDate->ReDate.isSameDay(sndDate)
+
+    result |> expect |> toBeFalsy
   })
 })

@@ -1,12 +1,12 @@
 open ReDate_utils
 open ReDate_types
 
-let addWeeks = (weeks, date) => ReDate_day.addDays(weeks *. 7., date)
+let addWeeks = (date, weeks) => ReDate_day.addDays(date, weeks *. 7.)
 
-let subWeeks = (weeks, date) => addWeeks(-.weeks, date)
+let subWeeks = (date, weeks) => addWeeks(date, -.weeks)
 
 let differenceInWeeks = (fst, snd) => {
-  let diff = (Js.Date.getTime(snd) -. Js.Date.getTime(fst)) /. Milliseconds.week
+  let diff = (Js.Date.getTime(fst) -. Js.Date.getTime(snd)) /. Milliseconds.week
   diff > 0. ? Js.Math.floor_float(diff) : Js.Math.ceil_float(diff)
 }
 
@@ -18,8 +18,8 @@ let endOfWeek = (~weekStartsOn=Sunday, date) => {
   let diff = (day < startWeekDay ? -7. : 0.) +. 6. -. (day -. startWeekDay)
 
   Js.Date.setDate(makeDate(date), Js.Date.getDate(date) +. diff)
-  |> Js.Date.fromFloat
-  |> makeEndOfDayDate
+  ->Js.Date.fromFloat
+  ->makeEndOfDayDate
 }
 
 let differenceInCalendarWeeks = (~weekStartsOn=Sunday, fst, snd) => {
@@ -28,7 +28,7 @@ let differenceInCalendarWeeks = (~weekStartsOn=Sunday, fst, snd) => {
   let snd = startOfWeek(snd)
   let fstTime = Js.Date.getTime(fst) -. getTimezoneOffsetInMilliseconds(fst)
   let sndTime = Js.Date.getTime(snd) -. getTimezoneOffsetInMilliseconds(snd)
-  let diff = (sndTime -. fstTime) /. Milliseconds.week
+  let diff = (fstTime -. sndTime) /. Milliseconds.week
 
   Js.Math.round(diff)
 }
@@ -56,9 +56,9 @@ let getWeekOfMonth = (~weekStartsOn=Sunday, date) => {
 let getWeeksInMonth = (~weekStartsOn=Sunday, date) => {
   let differenceInCalendarWeeks = differenceInCalendarWeeks(~weekStartsOn)
   date
-  |> ReDate_month.lastDayOfMonth
-  |> differenceInCalendarWeeks(ReDate_month.startOfMonth(date))
-  |> Float.succ
+  ->ReDate_month.lastDayOfMonth
+  ->differenceInCalendarWeeks(ReDate_month.startOfMonth(date))
+  ->Float.succ
 }
 
 let getWeek = (~weekStartsOn=Sunday, date) => {

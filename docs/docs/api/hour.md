@@ -8,13 +8,13 @@ title: Hour
 Add the specified number of hours to the given date.
 
 ```js
-let addHours: (float, Js.Date.t) => Js.Date.t
+let addHours: (Js.Date.t, float) => Js.Date.t
 ```
 
 ```js
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=0., ());
 
-date |> ReDate.addHours(1.);
+date->ReDate.addHours(1.);
 ```
 
 ### subHours
@@ -22,13 +22,13 @@ date |> ReDate.addHours(1.);
 Subtract the specified number of hours from the given date.
 
 ```js
-let subHours: (float, Js.Date.t) => Js.Date.t
+let subHours: (Js.Date.t, float) => Js.Date.t
 ```
 
 ```js
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=0., ());
 
-date |> ReDate.subHours(1.);
+date->ReDate.subHours(1.);
 ```
 
 ### getHours
@@ -42,7 +42,7 @@ let getHours: Js.Date.t => float
 ```js
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=30., ());
 
-date |> ReDate.getHours
+date->ReDate.getHours
 ```
 
 ### setHours
@@ -50,13 +50,13 @@ date |> ReDate.getHours
 Set the hours to the given date.
 
 ```js
-let setHours: (float, Js.Date.t) => Js.Date.t
+let setHours: (Js.Date.t, float) => Js.Date.t
 ```
 
 ```js
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=0., ());
 
-date |> ReDate.setHours(18.)
+date->ReDate.setHours(18.)
 ```
 
 ### differenceInHours
@@ -71,7 +71,7 @@ let differenceInHours: (Js.Date.t, Js.Date.t) => float
 let fstDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=40., ~seconds=15., ());
 let sndDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=10., ~minutes=30., ~seconds=0., ());
 
-fstDate |> ReDate.differenceInHours(sndDate);
+fstDate->ReDate.differenceInHours(sndDate);
 ```
 
 ### startOfHour
@@ -85,7 +85,7 @@ let startOfHour: Js.Date.t => Js.Date.t
 ```js
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=16., ~minutes=50., ~seconds=10., ());
 
-date |> ReDate.startOfHour;
+date->ReDate.startOfHour;
 ```
 
 ### endOfHour
@@ -99,7 +99,7 @@ let endOfHour: Js.Date.t => Js.Date.t
 ```js
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=16., ~minutes=50., ~seconds=10., ());
 
-date |> ReDate.endOfHour;
+date->ReDate.endOfHour;
 ```
 
 ### isSameHour
@@ -114,5 +114,5 @@ let isSameHour: (Js.Date.t, Js.Date.t) => bool
 let fstDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=16., ~minutes=50., ~seconds=10., ());
 let sndDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=16., ~minutes=0., ~seconds=0., ());
 
-fstDate |> ReDate.isSameHour(sndDate);
+fstDate->ReDate.isSameHour(sndDate);
 ```

@@ -27,7 +27,9 @@ describe("startOfMonth", () => {
         (),
       )
 
-      date |> ReDate.startOfMonth |> expect |> toEqual(expectedDate)
+      let result = date->ReDate.startOfMonth
+
+      result |> expect |> toEqual(expectedDate)
     },
   )
 })

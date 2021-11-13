@@ -18,7 +18,7 @@ let getISOWeekYear: Js.Date.t => float
 ```js
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=12., ~hours=16., ~minutes=50., ~seconds=12., ())
 
-date |> ReDate.getISOWeekYear
+date->ReDate.getISOWeekYear
 ```
 
 ### startOfISOWeekYear
@@ -32,5 +32,5 @@ let startOfISOWeekYear: Js.Date.t => Js.Date.t
 ```js
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=12., ~hours=16., ~minutes=50., ~seconds=12., ())
 
-date |> ReDate.startOfISOWeekYear
+date->ReDate.startOfISOWeekYear
 ```

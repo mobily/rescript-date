@@ -8,13 +8,13 @@ title: Second
 Add the specified number of seconds to the given date.
 
 ```js
-let addSeconds: (float, Js.Date.t) => Js.Date.t
+let addSeconds: (Js.Date.t, float) => Js.Date.t
 ```
 
 ```js
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=0., ());
 
-date |> ReDate.addSeconds(1.);
+date->ReDate.addSeconds(1.);
 ```
 
 ### subSeconds
@@ -22,13 +22,13 @@ date |> ReDate.addSeconds(1.);
 Subtract the specified number of seconds from the given date.
 
 ```js
-let subSeconds: (float, Js.Date.t) => Js.Date.t
+let subSeconds: (Js.Date.t, float) => Js.Date.t
 ```
 
 ```js
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=0., ());
 
-date |> ReDate.subSeconds(1.);
+date->ReDate.subSeconds(1.);
 ```
 
 ### getSeconds
@@ -42,7 +42,7 @@ let getSeconds: Js.Date.t => float
 ```js
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=30., ());
 
-date |> ReDate.getSeconds
+date->ReDate.getSeconds
 ```
 
 ### setSeconds
@@ -50,13 +50,13 @@ date |> ReDate.getSeconds
 Set the seconds to the given date.
 
 ```js
-let setSeconds: (float, Js.Date.t) => Js.Date.t
+let setSeconds: (Js.Date.t, float) => Js.Date.t
 ```
 
 ```js
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=0., ());
 
-date |> ReDate.setSeconds(30.)
+date->ReDate.setSeconds(30.)
 ```
 
 ### differenceInSeconds
@@ -71,7 +71,7 @@ let differenceInSeconds: (Js.Date.t, Js.Date.t) => float
 let fstDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=40., ~seconds=15., ());
 let sndDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=0., ());
 
-fstDate |> ReDate.differenceInSeconds(sndDate);
+fstDate->ReDate.differenceInSeconds(sndDate);
 ```
 
 ### startOfSecond
@@ -88,9 +88,9 @@ let date =
     Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=16., ~minutes=50., ~seconds=10., ()),
     423.,
   )
-  |> fromFloat;
+ ->fromFloat;
 
-date |> ReDate.startOfSecond;
+date->ReDate.startOfSecond;
 ```
 
 ### endOfSecond
@@ -107,9 +107,9 @@ let date =
     Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=16., ~minutes=50., ~seconds=10., ()),
     423.,
   )
-  |> fromFloat;
+ ->fromFloat;
 
-date |> ReDate.endOfSecond;
+date->ReDate.endOfSecond;
 ```
 
 ### isSameSecond
@@ -124,5 +124,5 @@ let isSameSecond: (Js.Date.t, Js.Date.t) => bool
 let fstDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=23., ~minutes=59., ~seconds=59., ());
 let sndDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=23., ~minutes=59., ~seconds=58., ());
 
-fstDate |> ReDate.isSameSecond(sndDate)
+fstDate->ReDate.isSameSecond(sndDate)
 ```

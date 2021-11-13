@@ -25,6 +25,8 @@ describe("endOfDay", () => {
         (),
       ) |> fromFloat
 
-    date |> ReDate.endOfDay |> expect |> toEqual(expectedDate)
+    let result = date->ReDate.endOfDay
+
+    result |> expect |> toEqual(expectedDate)
   })
 })

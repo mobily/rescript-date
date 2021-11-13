@@ -8,13 +8,13 @@ title: Minute
 Add the specified number of minutes to the given date.
 
 ```js
-let addMinutes: (float, Js.Date.t) => Js.Date.t
+let addMinutes: (Js.Date.t, float) => Js.Date.t
 ```
 
 ```js
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=30., ())
 
-date |> ReDate.addMinutes(1)
+date->ReDate.addMinutes(1)
 ```
 
 ### subMinutes
@@ -22,13 +22,13 @@ date |> ReDate.addMinutes(1)
 Subtract the specified number of minutes from the given date.
 
 ```js
-let subMinutes: (float, Js.Date.t) => Js.Date.t
+let subMinutes: (Js.Date.t, float) => Js.Date.t
 ```
 
 ```js
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=30., ())
 
-date |> ReDate.subMinutes(1)
+date->ReDate.subMinutes(1)
 ```
 
 ### getMinutes
@@ -42,7 +42,7 @@ let getMinutes: Js.Date.t => float
 ```js
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=30., ());
 
-date |> ReDate.getMinutes
+date->ReDate.getMinutes
 ```
 
 ### setMinutes
@@ -50,13 +50,13 @@ date |> ReDate.getMinutes
 Set the minutes to the given date.
 
 ```js
-let setMinutes: (float, Js.Date.t) => Js.Date.t
+let setMinutes: (Js.Date.t, float) => Js.Date.t
 ```
 
 ```js
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=0., ());
 
-date |> ReDate.setMinutes(30.)
+date->ReDate.setMinutes(30.)
 ```
 
 ### differenceInMinutes
@@ -71,7 +71,7 @@ let differenceInMinutes: (Js.Date.t, Js.Date.t) => float
 let fstDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=40., ~seconds=15., ())
 let sndDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=19., ~minutes=30., ~seconds=0., ())
 
-fstDate |> ReDate.differenceInMinutes(sndDate)
+fstDate->ReDate.differenceInMinutes(sndDate)
 ```
 
 ### startOfMinute
@@ -85,7 +85,7 @@ let startOfMinute: Js.Date.t => Js.Date.t
 ```js
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=8., ~date=10., ~hours=8., ~minutes=20., ~seconds=35., ())
 
-date |> ReDate.startOfMinute
+date->ReDate.startOfMinute
 ```
 
 ### endOfMinute
@@ -99,7 +99,7 @@ let endOfMinute: Js.Date.t => Js.Date.t
 ```js
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=8., ~date=10., ~hours=8., ~minutes=20., ~seconds=35., ())
 
-date |> ReDate.endOfMinute
+date->ReDate.endOfMinute
 ```
 
 ### isSameMinute
@@ -114,7 +114,7 @@ let isSameMinute: (Js.Date.t, Js.Date.t) => bool
 let fstDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=8., ~date=10., ~hours=19., ~minutes=6., ~seconds=10., ())
 let sndDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=8., ~date=10., ~hours=19., ~minutes=6., ~seconds=35., ())
 
-fstDate |> ReDate.isSameMinute(sndDate)
+fstDate->ReDate.isSameMinute(sndDate)
 ```
 
 ### roundToNearestMinute
@@ -128,12 +128,12 @@ let roundToNearestMinute: (~nearestTo: float=?, Js.Date.t) => Js.Date.t
 ```js
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=8., ~date=10., ~hours=19., ~minutes=6., ~seconds=31., ())
 
-date |> ReDate.roundToNearestMinute
+date->ReDate.roundToNearestMinute
 ```
 
 ```js
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=8., ~date=10., ~hours=19., ~minutes=12., ~seconds=10., ())
 let roundToNearest15Minute = ReDate.roundToNearestMinute(~nearestTo=15.)
 
-date |> roundToNearest15Minute
+date->roundToNearest15Minute
 ```

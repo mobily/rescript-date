@@ -27,7 +27,9 @@ describe("endOfMonth", () => {
           (),
         ) |> fromFloat
 
-      date |> ReDate.endOfMonth |> expect |> toEqual(expectedDate)
+      let result = date->ReDate.endOfMonth
+
+      result |> expect |> toEqual(expectedDate)
     },
   )
 })

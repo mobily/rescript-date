@@ -25,7 +25,9 @@ describe("isSameHour", () => {
       (),
     )
 
-    fstDate |> ReDate.isSameHour(sndDate) |> expect |> toBeTruthy
+    let result = fstDate->ReDate.isSameHour(sndDate)
+
+    result |> expect |> toBeTruthy
   })
 
   test("returns false if the given dates have different hours", () => {
@@ -48,6 +50,8 @@ describe("isSameHour", () => {
       (),
     )
 
-    fstDate |> ReDate.isSameHour(sndDate) |> expect |> toBeFalsy
+    let result = fstDate->ReDate.isSameHour(sndDate)
+
+    result |> expect |> toBeFalsy
   })
 })

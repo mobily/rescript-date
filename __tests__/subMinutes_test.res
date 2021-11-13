@@ -25,7 +25,9 @@ describe("subMinutes", () => {
       (),
     )
 
-    date |> ReDate.subMinutes(1.) |> expect |> toEqual(expectedDate)
+    let result = date->ReDate.subMinutes(1.)
+
+    result |> expect |> toEqual(expectedDate)
   })
 
   test("subtracts 100 minutes", () => {
@@ -48,6 +50,8 @@ describe("subMinutes", () => {
       (),
     )
 
-    date |> ReDate.subMinutes(100.) |> expect |> toEqual(expectedDate)
+    let result = date->ReDate.subMinutes(100.)
+
+    result |> expect |> toEqual(expectedDate)
   })
 })

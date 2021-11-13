@@ -27,7 +27,9 @@ describe("endOfYear", () => {
           (),
         ) |> fromFloat
 
-      date |> ReDate.endOfYear |> expect |> toEqual(expectedDate)
+      let result = date->ReDate.endOfYear
+
+      result |> expect |> toEqual(expectedDate)
     },
   )
 })

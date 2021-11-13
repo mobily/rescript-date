@@ -1,7 +1,7 @@
 open ReDate_types
 open ReDate_utils
 
-let isWithinInterval = (interval, date) => {
+let isWithinInterval = (date, interval) => {
   let timestamp = Js.Date.getTime(date)
   timestamp >= Js.Date.getTime(interval.start) && timestamp <= Js.Date.getTime(interval.end_)
 }
@@ -22,15 +22,15 @@ let getOverlappingDaysInIntervals = (left, right) => {
     let overlapEndTime = rightEnd > leftEnd ? leftEnd : rightEnd
     let overlap = (overlapEndTime -. overlapStartTime) /. Milliseconds.day
 
-    overlap |> Js.Math.ceil_float
+    overlap->Js.Math.ceil_float
   | _ => 0.
   }
 }
 
 let eachDayOfInterval = interval => {
-  let intervalDays = ReDate_day.differenceInCalendarDays(interval.start, interval.end_)
+  let intervalDays = ReDate_day.differenceInCalendarDays(interval.end_, interval.start)
 
-  Belt.Array.makeBy(intervalDays |> int_of_float |> succ, index =>
-    interval.start |> makeStartOfDayDate |> ReDate_day.addDays(float_of_int(index))
+  Belt.Array.makeBy(intervalDays->int_of_float->succ, index =>
+    interval.start->makeStartOfDayDate->ReDate_day.addDays(float_of_int(index))
   )
 }

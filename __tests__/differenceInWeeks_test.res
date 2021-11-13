@@ -25,14 +25,18 @@ describe("differenceInWeeks", () => {
       (),
     )
 
-    fstDate |> ReDate.differenceInWeeks(sndDate) |> expect |> toEqual(0.)
+    let result = fstDate->ReDate.differenceInWeeks(sndDate)
+
+    result |> expect |> toEqual(0.)
   })
 
   test("returns 0 if the given dates are the same", () => {
     let fstDate = makeWithYMD(~year=2018., ~month=0., ~date=1., ())
     let sndDate = makeWithYMD(~year=2018., ~month=0., ~date=1., ())
 
-    fstDate |> ReDate.differenceInWeeks(sndDate) |> expect |> toEqual(0.)
+    let result = fstDate->ReDate.differenceInWeeks(sndDate)
+
+    result |> expect |> toEqual(0.)
   })
 
   test("returns the number of full weeks between the given dates", () => {
@@ -56,7 +60,9 @@ describe("differenceInWeeks", () => {
       (),
     )
 
-    fstDate |> ReDate.differenceInWeeks(sndDate) |> expect |> toEqual(1.)
+    let result = fstDate->ReDate.differenceInWeeks(sndDate)
+
+    result |> expect |> toEqual(1.)
   })
 
   test("returns a negative number if the time value of the first date is smaller", () => {
@@ -79,6 +85,8 @@ describe("differenceInWeeks", () => {
       (),
     )
 
-    fstDate |> ReDate.differenceInWeeks(sndDate) |> expect |> toEqual(-1.)
+    let result = fstDate->ReDate.differenceInWeeks(sndDate)
+
+    result |> expect |> toEqual(-1.)
   })
 })

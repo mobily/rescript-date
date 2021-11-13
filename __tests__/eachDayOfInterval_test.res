@@ -2,7 +2,7 @@ open Jest
 
 open Js.Date
 
-describe("eachDayOfIntervalList", () => {
+describe("eachDayOfInterval", () => {
   open ExpectJs
 
   let interval: ReDate.interval = {

@@ -18,7 +18,7 @@ let endOfISOWeek: Js.Date.t => Js.Date.t
 ```js
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=10., ~hours=16., ~minutes=50., ~seconds=12., ())
 
-date |> ReDate.endOfISOWeek
+date->ReDate.endOfISOWeek
 ```
 
 ### getISOWeek
@@ -32,7 +32,7 @@ let getISOWeek: Js.Date.t => float
 ```js
 let date = Js.Date.makeWithYMDHMS(~year=2005., ~month=0., ~date=2., ~hours=16., ~minutes=50., ~seconds=12., ())
 
-date |> ReDate.getISOWeek
+date->ReDate.getISOWeek
 ```
 
 ### isSameISOWeek
@@ -47,7 +47,7 @@ let isSameISOWeek: (Js.Date.t, Js.Date.t) => bool
 let fstDate = Js.Date.makeWithYMDHMS(~year=2005., ~month=11., ~date=31., ~hours=16., ~minutes=50., ~seconds=12., ())
 let sndDate = Js.Date.makeWithYMDHMS(~year=2006., ~month=0., ~date=1., ~hours=10., ~minutes=15., ~seconds=55., ())
 
-fstDate |> ReDate.isSameISOWeek(sndDate)
+fstDate->ReDate.isSameISOWeek(sndDate)
 ```
 
 ### isThisISOWeek
@@ -61,7 +61,7 @@ let isThisISOWeek: Js.Date.t => bool
 ```js
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=12., ~hours=16., ~minutes=50., ~seconds=12., ())
 
-date |> ReDate.isThisISOWeek
+date->ReDate.isThisISOWeek
 ```
 
 ### lastDayOfISOWeek
@@ -75,7 +75,7 @@ let lastDayOfISOWeek: Js.Date.t => bool
 ```js
 let date = Js.Date.makeWithYMDHMS(~year=2014., ~month=8., ~date=2., ~hours=11., ~minutes=55., ~seconds=12., ())
 
-date |> ReDate.lastDayOfISOWeek
+date->ReDate.lastDayOfISOWeek
 ```
 
 ### setISOWeek
@@ -83,13 +83,13 @@ date |> ReDate.lastDayOfISOWeek
 Set the ISO week for the given date, preserving the weekday number. A new date will be returned, the original date will not be changed.
 
 ```js
-let setISOWeek: (float, Js.Date.t) => Js.Date.t
+let setISOWeek: (Js.Date.t, float) => Js.Date.t
 ```
 
 ```js
 let date = Js.Date.makeWithYMD(~year=2004., ~month=7., ~date=7., ())
 
-date |> ReDate.setISOWeek(53.)
+date->ReDate.setISOWeek(53.)
 ```
 
 ### startOfISOWeek
@@ -103,7 +103,7 @@ let startOfISOWeek: Js.Date.t => Js.Date.t
 ```js
 let date = Js.Date.makeWithYMDHMS(~year=2014., ~month=8., ~date=2., ~hours=11., ~minutes=55., ~seconds=0., ())
 
-date |> ReDate.startOfISOWeek
+date->ReDate.startOfISOWeek
 ```
 
 ### differenceInCalendarISOWeeks
@@ -118,5 +118,5 @@ let differenceInCalendarISOWeeks: (Js.Date.t, Js.Date.t) => int
 let fstDate = Js.Date.makeWithYMDHMS(~year=2014., ~month=6., ~date=21., ~hours=23., ~minutes=59., ~seconds=59., ())
 let sndDate = Js.Date.makeWithYMDHMS(~year=2014., ~month=6., ~date=6., ~hours=0., ~minutes=0., ~seconds=0., ())
 
-fstDate |> ReDate.differenceInCalendarISOWeeks(sndDate)
+fstDate->ReDate.differenceInCalendarISOWeeks(sndDate)
 ```

@@ -25,6 +25,8 @@ describe("startOfHour", () => {
         0.,
       ) |> fromFloat
 
-    date |> ReDate.startOfHour |> expect |> toEqual(expectedDate)
+    let result = date->ReDate.startOfHour
+
+    result |> expect |> toEqual(expectedDate)
   })
 })

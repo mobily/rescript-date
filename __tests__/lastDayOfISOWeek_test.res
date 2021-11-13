@@ -27,7 +27,9 @@ describe("lastDayOfISOWeek", () => {
           (),
         ) |> fromFloat
 
-      date |> ReDate.lastDayOfISOWeek |> expect |> toEqual(expectedDate)
+      let result = date->ReDate.lastDayOfISOWeek
+
+      result |> expect |> toEqual(expectedDate)
     },
   )
 })

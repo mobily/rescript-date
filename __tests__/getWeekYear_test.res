@@ -8,13 +8,17 @@ describe("getWeekYear", () => {
   test("returns the local week-numbering year of the given date", () => {
     let date = makeWithYMD(~year=2019., ~month=11., ~date=29., ())
 
-    date |> ReDate.getWeekYear |> expect |> toEqual(2020.)
+    let result = date->ReDate.getWeekYear
+
+    result |> expect |> toEqual(2020.)
   })
 
   test("allows to specify which day is the first day of the week", () => {
     let date = makeWithYMD(~year=2019., ~month=11., ~date=23., ())
-    let getWeekYear' = ReDate.getWeekYear(~weekStartsOn=Monday)
+    let getWeekYear = ReDate.getWeekYear(~weekStartsOn=Monday)
 
-    date |> getWeekYear' |> expect |> toEqual(2019.)
+    let result = date->getWeekYear
+
+    result |> expect |> toEqual(2019.)
   })
 })

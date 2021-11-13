@@ -1,22 +1,22 @@
 open ReDate_utils
 
-let addMinutes = (minutes, date) => {
+let addMinutes = (date, minutes) => {
   let minutes = Js.Date.getMinutes(date) +. minutes
   let date = Js.Date.setMinutes(makeDate(date), minutes)
 
   Js.Date.fromFloat(date)
 }
 
-let subMinutes = (minutes, date) => addMinutes(-.minutes, date)
+let subMinutes = (date, minutes) => addMinutes(date, -.minutes)
 
 let differenceInMinutes = (fst, snd) => {
-  let diff = (Js.Date.getTime(snd) -. Js.Date.getTime(fst)) /. Milliseconds.minute
+  let diff = (Js.Date.getTime(fst) -. Js.Date.getTime(snd)) /. Milliseconds.minute
   diff > 0. ? Js.Math.floor_float(diff) : Js.Math.ceil_float(diff)
 }
 
 let getMinutes = Js.Date.getMinutes
 
-let setMinutes = (minutes, date) => {
+let setMinutes = (date, minutes) => {
   let date = Js.Date.setMinutes(makeDate(date), minutes)
   Js.Date.fromFloat(date)
 }
@@ -41,5 +41,5 @@ let roundToNearestMinute = (~nearestTo=1., date) => {
       ? Js.Math.round(Js.Date.getMinutes(date) /. nearestTo) *. nearestTo
       : closestMinute
 
-  Js.Date.setMinutes(makeDate(date), nearestRoundedMinute) |> Js.Date.fromFloat |> startOfMinute
+  Js.Date.setMinutes(makeDate(date), nearestRoundedMinute)->Js.Date.fromFloat->startOfMinute
 }

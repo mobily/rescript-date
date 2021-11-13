@@ -25,7 +25,9 @@ describe("roundToNearestMinute", () => {
       (),
     )
 
-    date |> ReDate.roundToNearestMinute |> expect |> toEqual(expectedDate)
+    let result = date->ReDate.roundToNearestMinute
+
+    result |> expect |> toEqual(expectedDate)
   })
 
   test("returns true if the given dates round to the nearest 15 minutes", () => {
@@ -49,6 +51,8 @@ describe("roundToNearestMinute", () => {
     )
     let roundToNearest15Minute = ReDate.roundToNearestMinute(~nearestTo=15.)
 
-    date |> roundToNearest15Minute |> expect |> toEqual(expectedDate)
+    let result = date->roundToNearest15Minute
+
+    result |> expect |> toEqual(expectedDate)
   })
 })

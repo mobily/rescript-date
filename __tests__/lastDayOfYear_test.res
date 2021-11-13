@@ -27,7 +27,9 @@ describe("lastDayOfYear", () => {
           (),
         ) |> fromFloat
 
-      date |> ReDate.lastDayOfYear |> expect |> toEqual(expectedDate)
+      let result = date->ReDate.lastDayOfYear
+
+      result |> expect |> toEqual(expectedDate)
     },
   )
 })

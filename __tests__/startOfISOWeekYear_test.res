@@ -28,7 +28,9 @@ describe("startOfISOWeekYear", () => {
           (),
         ) |> fromFloat
 
-      date |> ReDate.startOfISOWeekYear |> expect |> toEqual(expectedDate)
+      let result = date->ReDate.startOfISOWeekYear
+
+      result |> expect |> toEqual(expectedDate)
     },
   )
 
@@ -55,7 +57,9 @@ describe("startOfISOWeekYear", () => {
         (),
       ) |> fromFloat
 
-    date |> ReDate.startOfISOWeekYear |> expect |> toEqual(expectedDate)
+    let result = date->ReDate.startOfISOWeekYear
+
+    result |> expect |> toEqual(expectedDate)
   })
 
   test("correctly handles years in which 4 January is Sunday", () => {
@@ -63,6 +67,8 @@ describe("startOfISOWeekYear", () => {
 
     let expectedDate = makeWithYMD(~year=2008., ~month=11., ~date=29., ())
 
-    date |> ReDate.startOfISOWeekYear |> expect |> toEqual(expectedDate)
+    let result = date->ReDate.startOfISOWeekYear
+
+    result |> expect |> toEqual(expectedDate)
   })
 })

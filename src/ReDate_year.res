@@ -1,12 +1,15 @@
 open ReDate_utils
 
-let addYears = (years, date) => ReDate_month.addMonths(12. *. years, date)
+let addYears = (date, years) => ReDate_month.addMonths(date, 12. *. years)
 
-let subYears = (years, date) => addYears(-.years, date)
+let subYears = (date, years) => addYears(date, -.years)
 
 let getYear = Js.Date.getFullYear
 
-let setYear = (year, date) => Js.Date.setFullYear(date, year)
+let setYear = (date, year) => {
+  let date = Js.Date.setFullYear(makeDate(date), year)
+  Js.Date.fromFloat(date)
+}
 
 let startOfYear = date =>
   Js.Date.makeWithYMDHMS(
@@ -22,7 +25,7 @@ let startOfYear = date =>
 let isSameYear = (fst, snd) => ReDate_common.isEqual(startOfYear(fst), startOfYear(snd))
 
 let isLeapYear = date => {
-  let year = date |> Js.Date.getFullYear |> int_of_float
+  let year = date->Js.Date.getFullYear->int_of_float
   mod(year, 400) == 0 || (mod(year, 4) == 0 && mod(year, 100) != 0)
 }
 
@@ -40,7 +43,7 @@ let lastMonthOfYear = date => {
   makeStartOfDayDate(date)
 }
 
-let lastDayOfYear = date => date |> lastMonthOfYear |> ReDate_month.lastDayOfMonth
+let lastDayOfYear = date => date->lastMonthOfYear->ReDate_month.lastDayOfMonth
 
 let getDaysInYear = date => isLeapYear(date) ? 366 : 365
 
@@ -48,7 +51,7 @@ let differenceInCalendarYears = (fst, snd) => {
   let fstYear = Js.Date.getFullYear(fst)
   let sndYear = Js.Date.getFullYear(snd)
 
-  sndYear -. fstYear
+  fstYear -. sndYear
 }
 
 let differenceInYears = (fst, snd) => {

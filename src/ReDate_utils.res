@@ -25,7 +25,7 @@ let getWeekDay = day => {
   }
 }
 
-let makeDate = date => date |> Js.Date.getTime |> Js.Date.fromFloat
+let makeDate = date => date->Js.Date.getTime->Js.Date.fromFloat
 
 let makeLastDayOfMonthDate = date =>
   Js.Date.makeWithYMD(
@@ -85,6 +85,6 @@ let startOfWeek = (~weekStartsOn=Sunday, date) => {
   let diff = (day < startWeekDay ? 7. : 0.) +. day -. startWeekDay
 
   Js.Date.setDate(makeDate(date), Js.Date.getDate(date) -. diff)
-  |> Js.Date.fromFloat
-  |> makeStartOfDayDate
+  ->Js.Date.fromFloat
+  ->makeStartOfDayDate
 }

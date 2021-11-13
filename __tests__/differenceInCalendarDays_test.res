@@ -9,7 +9,9 @@ describe("differenceInCalendarDays", () => {
     let fstDate = makeWithYMD(~year=2019., ~month=0., ~date=1., ())
     let sndDate = makeWithYMD(~year=2018., ~month=0., ~date=1., ())
 
-    fstDate |> ReDate.differenceInCalendarDays(sndDate) |> expect |> toEqual(365.)
+    let result = fstDate->ReDate.differenceInCalendarDays(sndDate)
+
+    result |> expect |> toEqual(365.)
   })
 
   test("returns a negative number if the time value of the first date is smaller", () => {
@@ -32,6 +34,8 @@ describe("differenceInCalendarDays", () => {
       (),
     )
 
-    fstDate |> ReDate.differenceInCalendarDays(sndDate) |> expect |> toEqual(-365.)
+    let result = fstDate->ReDate.differenceInCalendarDays(sndDate)
+
+    result |> expect |> toEqual(-365.)
   })
 })

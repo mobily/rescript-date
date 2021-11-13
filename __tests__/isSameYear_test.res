@@ -9,13 +9,17 @@ describe("isSameYear", () => {
     let fstDate = makeWithYMD(~year=2018., ~month=8., ~date=10., ())
     let sndDate = makeWithYMD(~year=2018., ~month=6., ~date=20., ())
 
-    fstDate |> ReDate.isSameYear(sndDate) |> expect |> toBeTruthy
+    let result = fstDate->ReDate.isSameYear(sndDate)
+
+    result |> expect |> toBeTruthy
   })
 
   test("returns false if the given dates have different years", () => {
     let fstDate = makeWithYMD(~year=2018., ~month=8., ~date=10., ())
     let sndDate = makeWithYMD(~year=2015., ~month=6., ~date=20., ())
 
-    fstDate |> ReDate.isSameYear(sndDate) |> expect |> toBeFalsy
+    let result = fstDate->ReDate.isSameYear(sndDate)
+
+    result |> expect |> toBeFalsy
   })
 })

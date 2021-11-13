@@ -9,7 +9,9 @@ describe("differenceInWeeks", () => {
     let fstDate = makeWithYMD(~year=2018., ~month=8., ~date=20., ())
     let sndDate = makeWithYMD(~year=2018., ~month=7., ~date=7., ())
 
-    fstDate |> ReDate.differenceInCalendarWeeks(sndDate) |> expect |> toEqual(6.)
+    let result = fstDate->ReDate.differenceInCalendarWeeks(sndDate)
+
+    result |> expect |> toEqual(6.)
   })
 
   test("allows to specify which day is the first day of the week", () => {
@@ -17,7 +19,9 @@ describe("differenceInWeeks", () => {
     let sndDate = makeWithYMD(~year=2018., ~month=5., ~date=20., ())
     let differenceInCalendarWeeks' = ReDate.differenceInCalendarWeeks(~weekStartsOn=Monday)
 
-    fstDate |> differenceInCalendarWeeks'(sndDate) |> expect |> toEqual(3.)
+    let result = fstDate->differenceInCalendarWeeks'(sndDate)
+
+    result |> expect |> toEqual(3.)
   })
 
   test("returns a negative number if the time value of the first date is smaller", () => {
@@ -40,6 +44,8 @@ describe("differenceInWeeks", () => {
       (),
     )
 
-    fstDate |> ReDate.differenceInCalendarWeeks(sndDate) |> expect |> toEqual(-6.)
+    let result = fstDate->ReDate.differenceInCalendarWeeks(sndDate)
+
+    result |> expect |> toEqual(-6.)
   })
 })

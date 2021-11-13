@@ -9,13 +9,13 @@ title: Day
 Add the specified number of days to the given date.
 
 ```js
-let addDays: (float, Js.Date.t) => Js.Date.t
+let addDays: (Js.Date.t, float) => Js.Date.t
 ```
 
 ```js
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ())
 
-date |> ReDate.addDays(5.)
+date->ReDate.addDays(5.)
 ```
 
 ### addBusinessDays
@@ -23,13 +23,13 @@ date |> ReDate.addDays(5.)
 Add the specified number of business days to the given date (excluding weekends).
 
 ```js
-let addBusinessDays: (float, Js.Date.t) => Js.Date.t
+let addBusinessDays: (Js.Date.t, float) => Js.Date.t
 ```
 
 ```js
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ())
 
-date |> ReDate.addBusinessDays(5.)
+date->ReDate.addBusinessDays(5.)
 ```
 
 ### subDays
@@ -37,13 +37,13 @@ date |> ReDate.addBusinessDays(5.)
 Subtract the specified number of days from the given date.
 
 ```js
-let subDays: (float, Js.Date.t) => Js.Date.t
+let subDays: (Js.Date.t, float) => Js.Date.t
 ```
 
 ```js
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ())
 
-date |> ReDate.subDays(5.)
+date->ReDate.subDays(5.)
 ```
 
 ### getDate
@@ -57,7 +57,7 @@ let getSeconds: Js.Date.t => float
 ```js
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ())
 
-date |> ReDate.getDate
+date->ReDate.getDate
 ```
 
 ### setDate
@@ -65,13 +65,13 @@ date |> ReDate.getDate
 Set the day of the month to the given date.
 
 ```js
-let setDate: (float, Js.Date.t) => Js.Date.t
+let setDate: (Js.Date.t, float) => Js.Date.t
 ```
 
 ```js
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ())
 
-date |> ReDate.setDate(23.)
+date->ReDate.setDate(23.)
 ```
 
 ### startOfDay
@@ -85,7 +85,7 @@ let startOfDay: Js.Date.t => Js.Date.t
 ```js
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=16., ~minutes=50., ~seconds=12., ())
 
-date |> ReDate.startOfDay
+date->ReDate.startOfDay
 ```
 
 ### endOfDay
@@ -99,7 +99,7 @@ let endOfDay: Js.Date.t => Js.Date.t
 ```js
 let date = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=16., ~minutes=50., ~seconds=12., ())
 
-date |> ReDate.endOfDay
+date->ReDate.endOfDay
 ```
 
 ### differenceInCalendarDays
@@ -114,7 +114,7 @@ let differenceInCalendarDays: (Js.Date.t, Js.Date.t) => float
 let fstDate = Js.Date.makeWithYMD(~year=2019., ~month=0., ~date=1., ())
 let sndDate = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ())
 
-fstDate |> ReDate.differenceInCalendarDays(sndDate)
+fstDate->ReDate.differenceInCalendarDays(sndDate)
 ```
 
 ### differenceInDays
@@ -129,7 +129,7 @@ let differenceInDays: (Js.Date.t, Js.Date.t) => float
 let fstDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=10., ~hours=10., ~minutes=15., ~seconds=55., ())
 let sndDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=2., ~hours=20., ~minutes=50., ~seconds=10., ())
 
-fstDate |> ReDate.differenceInDays(sndDate)
+fstDate->ReDate.differenceInDays(sndDate)
 ```
 
 ### differenceInBusinessDays
@@ -144,7 +144,7 @@ let differenceInBusinessDays: (Js.Date.t, Js.Date.t) => float
 let fstDate = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=10., ())
 let sndDate = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=2., ())
 
-fstDate |> ReDate.differenceInBusinessDays(sndDate)
+fstDate->ReDate.differenceInBusinessDays(sndDate)
 ```
 
 ### getDayOfYear
@@ -158,7 +158,7 @@ let getDayOfYear: Js.Date.t => float
 ```js
 let date = Js.Date.makeWithYMD(~year=2018., ~month=7., ~date=23., ())
 
-date |> ReDate.getDayOfYear
+date->ReDate.getDayOfYear
 ```
 
 ### isSameDay
@@ -173,7 +173,7 @@ let isSameDay: (Js.Date.t, Js.Date.t) => bool
 let fstDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=16., ~minutes=50., ~seconds=12., ())
 let sndDate = Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=1., ~hours=10., ~minutes=15., ~seconds=55., ())
 
-fstDate |> ReDate.isSameDay(sndDate)
+fstDate->ReDate.isSameDay(sndDate)
 ```
 
 ### isToday
@@ -187,7 +187,7 @@ let isToday: Js.Date.t => bool
 ```js
 let date = Js.Date.make()
 
-date |> ReDate.isToday
+date->ReDate.isToday
 ```
 
 ### isTomorrow
@@ -201,7 +201,7 @@ let isTomorrow: Js.Date.t => bool
 ```js
 let date = Js.Date.make()
 
-date |> ReDate.addDays(.1) |> ReDate.isTomorrow
+date->ReDate.addDays(.1)->ReDate.isTomorrow
 ```
 
 ### isYesterday
@@ -215,5 +215,5 @@ let isYesterday: Js.Date.t => bool
 ```js
 let date = Js.Date.make()
 
-date |> ReDate.subDays(1.) |> ReDate.isYesterday
+date->ReDate.subDays(1.)->ReDate.isYesterday
 ```

@@ -1,10 +1,10 @@
 open ReDate_utils
 
 let isEqual = (fst, snd) => Js.Date.getTime(fst) == Js.Date.getTime(snd)
-let isAfter = (fst, snd) => Js.Date.getTime(snd) > Js.Date.getTime(fst)
-let isBefore = (fst, snd) => Js.Date.getTime(snd) < Js.Date.getTime(fst)
-let isFuture = date => isAfter(Js.Date.make(), date)
-let isPast = date => isBefore(Js.Date.make(), date)
+let isAfter = (fst, snd) => Js.Date.getTime(fst) > Js.Date.getTime(snd)
+let isBefore = (fst, snd) => Js.Date.getTime(fst) < Js.Date.getTime(snd)
+let isFuture = date => isAfter(date, Js.Date.make())
+let isPast = date => isBefore(date, Js.Date.make())
 
 let compareAsc = (fst, snd) => {
   switch Js.Date.getTime(fst) -. Js.Date.getTime(snd) {
@@ -30,7 +30,7 @@ let min = dates => {
     }
   })
 
-  date |> Belt.Option.getExn |> Js.Date.fromFloat
+  date->Belt.Option.getExn->Js.Date.fromFloat
 }
 
 let max = dates => {
@@ -41,12 +41,12 @@ let max = dates => {
     }
   })
 
-  date |> Belt.Option.getExn |> Js.Date.fromFloat
+  date->Belt.Option.getExn->Js.Date.fromFloat
 }
 
 let isValid = (~year, ~month, ~date, ~hours=0., ~minutes=0., ~seconds=0., ()) => {
   let lastDayOfMonth =
-    Js.Date.makeWithYM(~year, ~month, ()) |> makeLastDayOfMonthDate |> Js.Date.getDate
+    Js.Date.makeWithYM(~year, ~month, ())->makeLastDayOfMonthDate->Js.Date.getDate
 
   year <= 199999. &&
   year >= -199999. &&

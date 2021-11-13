@@ -17,6 +17,8 @@ describe("getDayOfYear", () => {
     )
 
     /* https://asd.gsfc.nasa.gov/Craig.Markwardt/doy2018.html */
-    date |> ReDate.getDayOfYear |> expect |> toEqual(235.)
+    let result = date->ReDate.getDayOfYear
+
+    result |> expect |> toEqual(235.)
   })
 })

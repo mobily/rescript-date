@@ -11,7 +11,9 @@ describe("differenceInMonths", () => {
       let fstDate = makeWithYMD(~year=2018., ~month=7., ~date=1., ())
       let sndDate = makeWithYMD(~year=2018., ~month=6., ~date=31., ())
 
-      fstDate |> ReDate.differenceInMonths(sndDate) |> expect |> toEqual(0.)
+      let result = fstDate->ReDate.differenceInMonths(sndDate)
+
+      result |> expect |> toEqual(0.)
     },
   )
 
@@ -19,14 +21,18 @@ describe("differenceInMonths", () => {
     let fstDate = makeWithYMD(~year=2018., ~month=8., ~date=1., ())
     let sndDate = makeWithYMD(~year=2018., ~month=7., ~date=1., ())
 
-    fstDate |> ReDate.differenceInMonths(sndDate) |> expect |> toEqual(1.)
+    let result = fstDate->ReDate.differenceInMonths(sndDate)
+
+    result |> expect |> toEqual(1.)
   })
 
   test("the given dates are the same", () => {
     let fstDate = makeWithYMD(~year=2018., ~month=0., ~date=1., ())
     let sndDate = makeWithYMD(~year=2018., ~month=0., ~date=1., ())
 
-    fstDate |> ReDate.differenceInMonths(sndDate) |> expect |> toEqual(0.)
+    let result = fstDate->ReDate.differenceInMonths(sndDate)
+
+    result |> expect |> toEqual(0.)
   })
 
   test("returns the number of full months between the given dates", () => {
@@ -34,13 +40,17 @@ describe("differenceInMonths", () => {
     let fstDate = makeWithYMD(~year=2018., ~month=1., ~date=10., ())
     let sndDate = makeWithYMD(~year=2018., ~month=0., ~date=2., ())
 
-    fstDate |> ReDate.differenceInMonths(sndDate) |> expect |> toEqual(1.)
+    let result = fstDate->ReDate.differenceInMonths(sndDate)
+
+    result |> expect |> toEqual(1.)
   })
 
   test("returns a negative number if the time value of the first date is smaller", () => {
     let fstDate = makeWithYMD(~year=2018., ~month=0., ~date=2., ())
     let sndDate = makeWithYMD(~year=2018., ~month=1., ~date=10., ())
 
-    fstDate |> ReDate.differenceInMonths(sndDate) |> expect |> toEqual(-1.)
+    let result = fstDate->ReDate.differenceInMonths(sndDate)
+
+    result |> expect |> toEqual(-1.)
   })
 })

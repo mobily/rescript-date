@@ -9,13 +9,17 @@ describe("isEqual", () => {
     let fstDate = makeWithYMD(~year=2018., ~month=0., ~date=1., ())
     let sndDate = makeWithYMD(~year=2018., ~month=0., ~date=1., ())
 
-    fstDate |> ReDate.isEqual(sndDate) |> expect |> toBeTruthy
+    let result = fstDate->ReDate.isEqual(sndDate)
+
+    result |> expect |> toBeTruthy
   })
 
   test("returns false if the given dates are not equal", () => {
     let fstDate = makeWithYMD(~year=2018., ~month=0., ~date=1., ())
     let sndDate = makeWithYMD(~year=2018., ~month=0., ~date=2., ())
 
-    fstDate |> ReDate.isEqual(sndDate) |> expect |> toBeFalsy
+    let result = fstDate->ReDate.isEqual(sndDate)
+
+    result |> expect |> toBeFalsy
   })
 })

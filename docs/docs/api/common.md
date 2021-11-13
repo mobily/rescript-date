@@ -15,7 +15,7 @@ let isEqual: (Js.Date.t, Js.Date.t) => bool
 let fstDate = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ())
 let sndDate = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ())
 
-fstDate |> ReDate.isEqual(sndDate)
+fstDate->ReDate.isEqual(sndDate)
 ```
 
 ### isBefore
@@ -30,7 +30,7 @@ let isBefore: (Js.Date.t, Js.Date.t) => bool
 let fstDate = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ())
 let sndDate = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=2., ())
 
-fstDate |> ReDate.isBefore(sndDate)
+fstDate->ReDate.isBefore(sndDate)
 ```
 
 ### isAfter
@@ -45,7 +45,7 @@ let isAfter: (Js.Date.t, Js.Date.t) => bool
 let fstDate = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=2., ())
 let sndDate = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=1., ())
 
-fstDate |> ReDate.isAfter(sndDate)
+fstDate->ReDate.isAfter(sndDate)
 ```
 
 ### isFuture
@@ -59,7 +59,7 @@ let isFuture: Js.Date.t => bool
 ```js
 let date = Js.Date.makeWithYMD(~year=2030., ~month=0., ~date=1., ())
 
-date |> ReDate.isFuture
+date->ReDate.isFuture
 ```
 
 ### isPast
@@ -73,7 +73,7 @@ let isPast: Js.Date.t => bool
 ```js
 let date = Js.Date.makeWithYMD(~year=1999., ~month=0., ~date=1., ())
 
-date |> ReDate.isPast
+date->ReDate.isPast
 ```
 
 ### compareAsc
@@ -130,7 +130,7 @@ let d = Js.Date.makeWithYMD(~year=2018., ~month=12., ~date=1., ())
 
 let dates = [b, c, d, a]
 
-dates |> ReDate.max
+dates->ReDate.max
 ```
 
 ### min
@@ -149,7 +149,7 @@ let d = Js.Date.makeWithYMD(~year=2018., ~month=12., ~date=1., ())
 
 let dates = [b, c, d, a]
 
-dates |> ReDate.min
+dates->ReDate.min
 ```
 
 ### isValid
@@ -169,7 +169,7 @@ ReDate.isValid(~year=1999., ~month=1., ~date=29., ())
 Return a date from the array closest to the given date.
 
 ```js
-let closestTo: (array<Js.Date.t>, Js.Date.t) => option<Js.Date.t>
+let closestTo: (Js.Date.t, array<Js.Date.t>) => option<Js.Date.t>
 ```
 
 ```js
@@ -182,5 +182,5 @@ let d = Js.Date.makeWithYMD(~year=2022., ~month=12., ~date=1., ())
 
 let dates = [a, b, c, d]
 
-date |> ReDate.closestTo(dates)
+date->ReDate.closestTo(dates)
 ```

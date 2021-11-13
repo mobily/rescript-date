@@ -33,6 +33,8 @@ describe("startOfSecond", () => {
         0.,
       ) |> fromFloat
 
-    date |> ReDate.startOfSecond |> expect |> toEqual(expectedDate)
+    let result = date->ReDate.startOfSecond
+
+    result |> expect |> toEqual(expectedDate)
   })
 })

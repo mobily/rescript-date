@@ -1,23 +1,23 @@
 open ReDate_utils
 
-let addHours = (hours, date) => {
+let addHours = (date, hours) => {
   let hours = Js.Date.getHours(date) +. hours
   let date = Js.Date.setHours(makeDate(date), hours)
 
   Js.Date.fromFloat(date)
 }
 
-let subHours = (hours, date) => addHours(-.hours, date)
+let subHours = (date, hours) => addHours(date, -.hours)
 
 let getHours = Js.Date.getHours
 
-let setHours = (hours, date) => {
+let setHours = (date, hours) => {
   let date = Js.Date.setHours(makeDate(date), hours)
   Js.Date.fromFloat(date)
 }
 
 let differenceInHours = (fst, snd) => {
-  let diff = (Js.Date.getTime(snd) -. Js.Date.getTime(fst)) /. Milliseconds.hour
+  let diff = (Js.Date.getTime(fst) -. Js.Date.getTime(snd)) /. Milliseconds.hour
   diff > 0. ? Js.Math.floor_float(diff) : Js.Math.ceil_float(diff)
 }
 

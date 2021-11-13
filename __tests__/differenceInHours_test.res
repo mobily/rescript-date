@@ -25,7 +25,9 @@ describe("differenceInHours", () => {
       (),
     )
 
-    fstDate |> ReDate.differenceInHours(sndDate) |> expect |> toEqual(9.)
+    let result = fstDate->ReDate.differenceInHours(sndDate)
+
+    result |> expect |> toEqual(9.)
   })
 
   test("returns a negative number if the time value of the first date is smaller", () => {
@@ -48,6 +50,8 @@ describe("differenceInHours", () => {
       (),
     )
 
-    fstDate |> ReDate.differenceInHours(sndDate) |> expect |> toEqual(-9.)
+    let result = fstDate->ReDate.differenceInHours(sndDate)
+
+    result |> expect |> toEqual(-9.)
   })
 })

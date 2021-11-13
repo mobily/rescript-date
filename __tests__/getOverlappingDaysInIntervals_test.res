@@ -17,7 +17,9 @@ describe("getOverlappingDaysInIntervals", () => {
       end_: makeWithYMD(~year=2018., ~month=3., ~date=15., ()),
     }
 
-    interval |> ReDate.getOverlappingDaysInIntervals(includedInterval) |> expect |> toEqual(10.)
+    let result = interval->ReDate.getOverlappingDaysInIntervals(includedInterval)
+
+    result |> expect |> toEqual(10.)
   })
 
   test("returns the correct value for an interval including another interval", () => {
@@ -26,7 +28,9 @@ describe("getOverlappingDaysInIntervals", () => {
       end_: makeWithYMD(~year=2018., ~month=3., ~date=10., ()),
     }
 
-    includingInterval |> ReDate.getOverlappingDaysInIntervals(interval) |> expect |> toEqual(5.)
+    let result = includingInterval->ReDate.getOverlappingDaysInIntervals(interval)
+
+    result |> expect |> toEqual(5.)
   })
 
   test("returns 0 for a valid non overlapping interval before another interval", () => {
@@ -35,7 +39,9 @@ describe("getOverlappingDaysInIntervals", () => {
       end_: makeWithYMD(~year=2018., ~month=2., ~date=30., ()),
     }
 
-    earlierInterval |> ReDate.getOverlappingDaysInIntervals(interval) |> expect |> toEqual(0.)
+    let result = earlierInterval->ReDate.getOverlappingDaysInIntervals(interval)
+
+    result |> expect |> toEqual(0.)
   })
 
   test("returns 0 for a valid non overlapping interval after another interval", () => {
@@ -44,6 +50,8 @@ describe("getOverlappingDaysInIntervals", () => {
       end_: makeWithYMD(~year=2018., ~month=4., ~date=30., ()),
     }
 
-    laterInterval |> ReDate.getOverlappingDaysInIntervals(interval) |> expect |> toEqual(0.)
+    let result = laterInterval->ReDate.getOverlappingDaysInIntervals(interval)
+
+    result |> expect |> toEqual(0.)
   })
 })

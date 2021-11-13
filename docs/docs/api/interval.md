@@ -15,7 +15,7 @@ type interval = {
 Is the given date within the interval?
 
 ```js
-let isWithinInterval: (interval, Js.Date.t) => bool
+let isWithinInterval: (Js.Date.t, interval) => bool
 ```
 
 ```js
@@ -25,7 +25,7 @@ let interval = {
 }
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=5., ())
 
-date |> ReDate.isWithinInterval(interval)
+date->ReDate.isWithinInterval(interval)
 ```
 
 ### areIntervalsOverlapping
@@ -46,7 +46,7 @@ let includedInterval = {
   end_: makeWithYMD(~year=2018., ~month=4., ~date=5., ()),
 }
 
-interval |> ReDate.areIntervalsOverlapping(includedInterval)
+interval->ReDate.areIntervalsOverlapping(includedInterval)
 ```
 
 ### getOverlappingDaysInIntervals
@@ -67,7 +67,7 @@ let includedInterval = {
   end_: Js.Date.makeWithYMD(~year=2018., ~month=3., ~date=15., ()),
 }
 
-interval |> ReDate.getOverlappingDaysInIntervals(includedInterval)
+interval->ReDate.getOverlappingDaysInIntervals(includedInterval)
 ```
 
 ### eachDayOfInterval
@@ -84,5 +84,5 @@ let interval = {
   end_: Js.Date.makeWithYMDHMS(~year=2018., ~month=0., ~date=5., ~hours=8., ~minutes=45., ~seconds=15., ()),
 }
 
-interval |> ReDate.eachDayOfInterval
+interval->ReDate.eachDayOfInterval
 ```

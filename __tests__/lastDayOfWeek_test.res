@@ -27,7 +27,9 @@ describe("lastDayOfWeek", () => {
           (),
         ) |> fromFloat
 
-      date |> ReDate.lastDayOfWeek |> expect |> toEqual(expectedDate)
+      let result = date->ReDate.lastDayOfWeek
+
+      result |> expect |> toEqual(expectedDate)
     },
   )
 
@@ -50,8 +52,10 @@ describe("lastDayOfWeek", () => {
         ~milliseconds=0.,
         (),
       ) |> fromFloat
-    let lastDayOfWeek' = ReDate.lastDayOfWeek(~weekStartsOn=Monday)
+    let lastDayOfWeek = ReDate.lastDayOfWeek(~weekStartsOn=Monday)
 
-    date |> lastDayOfWeek' |> expect |> toEqual(expectedDate)
+    let result = date->lastDayOfWeek
+
+    result |> expect |> toEqual(expectedDate)
   })
 })

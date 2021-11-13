@@ -15,7 +15,9 @@ describe("closestTo", () => {
 
     let dates = [a, b, c, d]
 
-    date |> ReDate.closestTo(dates) |> expect |> toEqual(Some(b))
+    let result = date->ReDate.closestTo(dates)
+
+    result |> expect |> toEqual(Some(b))
   })
 
   test("returns the date from the given list closest to the given date #2", () => {
@@ -68,13 +70,17 @@ describe("closestTo", () => {
 
     let dates = [a, b, c, d]
 
-    date |> ReDate.closestTo(dates) |> expect |> toEqual(Some(d))
+    let result = date->ReDate.closestTo(dates)
+
+    result |> expect |> toEqual(Some(d))
   })
 
   test("returns `None` if the given list is empty", () => {
     let date = makeWithYMD(~year=2018., ~month=0., ~date=2., ())
     let dates = []
 
-    date |> ReDate.closestTo(dates) |> expect |> toEqual(None)
+    let result = date->ReDate.closestTo(dates)
+
+    result |> expect |> toEqual(None)
   })
 })

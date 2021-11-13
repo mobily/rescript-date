@@ -8,12 +8,16 @@ describe("isSunday", () => {
   test("returns true if the given date is Sunday", () => {
     let date = makeWithYMD(~year=2018., ~month=0., ~date=7., ())
 
-    date |> ReDate.isSunday |> expect |> toBeTruthy
+    let result = date->ReDate.isSunday
+
+    result |> expect |> toBeTruthy
   })
 
   test("returns false if the given date is not Sunday", () => {
     let date = makeWithYMD(~year=2018., ~month=0., ~date=8., ())
 
-    date |> ReDate.isSunday |> expect |> toBeFalsy
+    let result = date->ReDate.isSunday
+
+    result |> expect |> toBeFalsy
   })
 })

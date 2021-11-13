@@ -33,6 +33,8 @@ describe("endOfSecond", () => {
         999.,
       ) |> fromFloat
 
-    date |> ReDate.endOfHour |> expect |> toEqual(expectedDate)
+    let result = date->ReDate.endOfHour
+
+    result |> expect |> toEqual(expectedDate)
   })
 })

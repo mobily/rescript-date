@@ -14,7 +14,7 @@ let isSunday: Js.Date.t => bool
 ```js
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=7., ())
 
-date |> ReDate.isSunday
+date->ReDate.isSunday
 ```
 
 ### isMonday
@@ -28,7 +28,7 @@ let isMonday: Js.Date.t => bool
 ```js
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=8., ())
 
-date |> ReDate.isMonday
+date->ReDate.isMonday
 ```
 
 ### isTuesday
@@ -42,7 +42,7 @@ let isTuesday: Js.Date.t => bool
 ```js
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=9., ())
 
-date |> ReDate.isTuesday
+date->ReDate.isTuesday
 ```
 
 ### isWednesday
@@ -56,7 +56,7 @@ let isWednesday: Js.Date.t => bool
 ```js
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=10., ())
 
-date |> ReDate.isWednesday
+date->ReDate.isWednesday
 ```
 
 ### isThursday
@@ -70,7 +70,7 @@ let isThursday: Js.Date.t => bool
 ```js
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=11., ())
 
-date |> ReDate.isThursday
+date->ReDate.isThursday
 ```
 
 ### isFriday
@@ -84,7 +84,7 @@ let isFriday: Js.Date.t => bool
 ```js
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=12., ())
 
-date |> ReDate.isFriday
+date->ReDate.isFriday
 ```
 
 ### isSaturday
@@ -98,7 +98,7 @@ let isSaturday: Js.Date.t => bool
 ```js
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=13., ())
 
-date |> ReDate.isSaturday
+date->ReDate.isSaturday
 ```
 
 ### isWeekend
@@ -112,5 +112,5 @@ let isWeekend: Js.Date.t => bool
 ```js
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=13., ())
 
-date |> ReDate.isWeekend
+date->ReDate.isWeekend
 ```

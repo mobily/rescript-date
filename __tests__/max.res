@@ -13,6 +13,8 @@ describe("max", () => {
 
     let dates = [b, c, d, a]
 
-    dates |> ReDate.max |> expect |> toEqual(d)
+    let result = dates->ReDate.max
+
+    result |> expect |> toEqual(d)
   })
 })
