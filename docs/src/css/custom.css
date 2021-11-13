@@ -28,3 +28,11 @@
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
 }
+
+svg[class*="ExternalLink"] {
+  display: none;
+}
+
+.navbar__search-input:focus {
+  outline-color: var(--ifm-color-primary);
+}

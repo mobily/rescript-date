@@ -2,7 +2,7 @@ const root = require('../package.json')
 
 module.exports = {
   title: 'rescript-date',
-  tagline: '',
+  tagline: '📅 Date manipulation in ReScript.',
   url: 'https://mobily.github.io',
   baseUrl: '/rescript-date/',
   onBrokenLinks: 'throw',
@@ -11,11 +11,14 @@ module.exports = {
   organizationName: 'mobily',
   projectName: 'rescript-date',
   themeConfig: {
-    sidebarCollapsible: false,
+    prism: {
+      defaultLanguage: 'javascript',
+      // theme: require('prism-react-renderer/themes/github'),
+    },
     navbar: {
       title: `v${root.version}`,
-       logo: {
-        alt: 'ReDate',
+      logo: {
+        alt: 'rescript-date',
         src: 'img/rescript-date-logo.png',
       },
       items: [
@@ -79,15 +82,24 @@ module.exports = {
     },
   },
   themes: [],
+  plugins: [
+    [
+      require.resolve('@easyops-cn/docusaurus-search-local'),
+      {
+        hashed: true,
+      },
+    ],
+  ],
   presets: [
     [
       '@docusaurus/preset-classic',
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
+          sidebarCollapsible: false,
+          showLastUpdateTime: true,
           editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/',
+            'https://github.com/mobily/rescript-date/edit/master/docs/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
