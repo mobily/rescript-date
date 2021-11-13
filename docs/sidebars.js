@@ -37,5 +37,9 @@ module.exports = {
       type: 'doc',
       id: 'status',
     },
+    {
+      type: 'doc',
+      id: 'changelog',
+    },
   ],
 };

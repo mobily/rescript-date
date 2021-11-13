@@ -1,3 +1,5 @@
+const root = require('../package.json')
+
 module.exports = {
   title: 'rescript-date',
   tagline: '',
@@ -11,7 +13,7 @@ module.exports = {
   themeConfig: {
     sidebarCollapsible: false,
     navbar: {
-      title: '',
+      title: `v${root.version}`,
        logo: {
         alt: 'ReDate',
         src: 'img/rescript-date-logo.png',
