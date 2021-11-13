@@ -1,7 +1,6 @@
 <p align="center">
-  <img src="./assets/frame.png" width="480">
+  <img src="https://raw.githubusercontent.com/mobily/rescript-date/master/assets/rescript-date-frame.png" width="480">
 </p>
-
 <p align="center">
   <a href="https://travis-ci.com/mobily/rescript-date">
     <img src="https://img.shields.io/travis/com/mobily/rescript-date.svg?style=flat-square&amp;logo=travis" alt="Build Status">

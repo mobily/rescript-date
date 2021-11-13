@@ -13,7 +13,6 @@ module.exports = {
   themeConfig: {
     prism: {
       defaultLanguage: 'javascript',
-      // theme: require('prism-react-renderer/themes/github'),
     },
     navbar: {
       title: `v${root.version}`,
