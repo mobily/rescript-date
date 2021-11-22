@@ -13,7 +13,7 @@ let differenceInWeeks = (fst, snd) => {
 let startOfWeek = ReDate_utils.startOfWeek
 
 let endOfWeek = (~weekStartsOn=Sunday, date) => {
-  let startWeekDay = getWeekDay(weekStartsOn)
+  let startWeekDay = getWeekDayNum(weekStartsOn)
   let day = Js.Date.getDay(date)
   let diff = (day < startWeekDay ? -7. : 0.) +. 6. -. (day -. startWeekDay)
 
@@ -43,7 +43,7 @@ let lastDayOfWeek = (~weekStartsOn=Sunday, date) =>
 
 let getWeekOfMonth = (~weekStartsOn=Sunday, date) => {
   let firstMonthDay = Js.Date.getDay(ReDate_month.startOfMonth(date))
-  let startWeekDay = getWeekDay(weekStartsOn)
+  let startWeekDay = getWeekDayNum(weekStartsOn)
   let diff =
     firstMonthDay < startWeekDay
       ? 7. -. startWeekDay +. firstMonthDay
