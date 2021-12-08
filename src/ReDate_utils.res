@@ -13,7 +13,7 @@ module Float = {
   let pred = value => value -. 1.
 }
 
-let getWeekDay = day => {
+let getWeekDayNum = day => {
   switch day {
   | Sunday => 0.
   | Monday => 1.
@@ -77,10 +77,10 @@ let getTimezoneOffsetInMilliseconds = date => {
 }
 
 // HACK: ⬇️ avoid dependency cycle
-let is = (day, date) => Js.Date.getDay(date) == getWeekDay(day)
+let is = (day, date) => Js.Date.getDay(date) == getWeekDayNum(day)
 
 let startOfWeek = (~weekStartsOn=Sunday, date) => {
-  let startWeekDay = getWeekDay(weekStartsOn)
+  let startWeekDay = getWeekDayNum(weekStartsOn)
   let day = Js.Date.getDay(date)
   let diff = (day < startWeekDay ? 7. : 0.) +. day -. startWeekDay
 
