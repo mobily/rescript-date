@@ -2,7 +2,7 @@ const root = require('../package.json')
 
 module.exports = {
   title: 'rescript-date',
-  tagline: '📅 Date manipulation in ReScript.',
+  tagline: 'Date manipulation in ReScript.',
   url: 'https://mobily.github.io',
   baseUrl: '/rescript-date/',
   onBrokenLinks: 'throw',
@@ -10,9 +10,16 @@ module.exports = {
   favicon: 'img/favicon.ico',
   organizationName: 'mobily',
   projectName: 'rescript-date',
+  scripts: [
+    {
+      src: 'https://cdn.splitbee.io/sb.js',
+      async: true,
+    },
+  ],
   themeConfig: {
+    image: 'img/hero-logo.png',
     prism: {
-      defaultLanguage: 'javascript',
+      theme: require('prism-react-renderer/themes/github'),
     },
     navbar: {
       title: `v${root.version}`,
@@ -22,19 +29,26 @@ module.exports = {
       },
       items: [
         {
+          to: 'docs',
+          activeBasePath: 'docs',
+          label: 'Docs',
+          position: 'left',
+        },
+        {
+          to: 'api/common',
+          activeBasePath: 'api',
+          label: 'API',
+          position: 'left',
+        },
+        {
           href: 'https://www.buymeacoffee.com/utSC0k7',
-          label: 'Sponsor ❤️',
+          label: 'Buy me a coffee ❤️',
           position: 'right',
         },
         {
           href: 'https://github.com/mobily/rescript-date',
-          label: 'Github',
           position: 'right',
-        },
-        {
-          href: 'https://twitter.com/__marcin_',
-          label: 'Twitter',
-          position: 'right',
+          className: 'header-github-link',
         },
       ],
     },
@@ -80,12 +94,22 @@ module.exports = {
       respectPrefersColorScheme: false,
     },
   },
-  themes: [],
   plugins: [
     [
       require.resolve('@easyops-cn/docusaurus-search-local'),
       {
         hashed: true,
+        docsRouteBasePath: ['/docs', '/api', '/benchmarks'],
+        docsDir: ['docs', 'api', 'benchmarks'],
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'api',
+        path: 'api',
+        routeBasePath: 'api',
+        sidebarPath: require.resolve('./sidebars.api.js'),
       },
     ],
   ],
@@ -95,10 +119,9 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          sidebarCollapsible: false,
-          showLastUpdateTime: true,
-          editUrl:
-            'https://github.com/mobily/rescript-date/edit/master/docs/',
+          path: 'docs',
+          routeBasePath: 'docs',
+          editUrl: 'https://github.com/mobily/rescript-date/edit/master/docs/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

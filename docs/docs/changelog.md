@@ -3,6 +3,11 @@ id: changelog
 title: Changelog
 ---
 
+### `v2.1.0`
+
+- ✨ added [`getDay`](/api/weekday#getday)
+- ✨ added [`isWeekDay`](/api/weekday#isweekday)
+
 ### `v2.0.0`
 
 Use a pipe-first (`->`) operator instead of deprecated pipe-forward (`|>`).

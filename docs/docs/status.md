@@ -147,7 +147,7 @@ title: Status
 
 ### Weekday
 
-- [ ] `getDay`
+- [x] `getDay`
 - [ ] `getISODay`
 - [x] `isMonday`
 - [x] `isTuesday`

@@ -3,6 +3,16 @@ id: day
 title: Day
 ---
 
+```js
+type day =
+  | Sunday
+  | Monday
+  | Tuesday
+  | Wednesday
+  | Thursday
+  | Friday
+  | Saturday
+```
 
 ### addDays
 
@@ -51,7 +61,7 @@ date->ReDate.subDays(5.)
 Get the day of the month of the given date.
 
 ```js
-let getSeconds: Js.Date.t => float
+let getDate: Js.Date.t => float
 ```
 
 ```js

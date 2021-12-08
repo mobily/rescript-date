@@ -3,6 +3,31 @@ id: weekday
 title: Weekday
 ---
 
+```js
+type day =
+  | Sunday
+  | Monday
+  | Tuesday
+  | Wednesday
+  | Thursday
+  | Friday
+  | Saturday
+```
+
+### getDay
+
+Get the day of the week of the given date.
+
+```js
+let getDay: Js.Date.t => day
+```
+
+```js
+let date = Js.Date.makeWithYMD(~year=2021., ~month=11., ~date=10., ())
+
+date->ReDate.getDay
+```
+
 ### isSunday
 
 Is the given date Sunday?
@@ -113,4 +138,18 @@ let isWeekend: Js.Date.t => bool
 let date = Js.Date.makeWithYMD(~year=2018., ~month=0., ~date=13., ())
 
 date->ReDate.isWeekend
+```
+
+### isWeekDay
+
+Is the day of the week of the given date same as the provided day?
+
+```js
+let isWeekDay: Js.Date.t => bool
+```
+
+```js
+let date = Js.Date.makeWithYMD(~year=2021., ~month=11., ~date=10., ())
+
+date->ReDate.isWeekDay(ReDate.Friday)
 ```
