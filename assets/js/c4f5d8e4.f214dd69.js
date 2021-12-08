@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkrescript_date_docs=self.webpackChunkrescript_date_docs||[]).push([[195],{2841:function(e,t,c){c.r(t);var r=c(7294),s=c(6775);t.default=function(){return r.createElement(s.l_,{to:"/rescript-date/docs/"})}}}]);
