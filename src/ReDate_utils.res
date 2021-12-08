@@ -1,5 +1,7 @@
 open ReDate_types
 
+external toDayMagic: int => ReDate_types.day = "%identity"
+
 module Milliseconds = {
   let second = 1000.
   let minute = 60. *. second
