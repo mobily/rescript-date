@@ -16,7 +16,9 @@
       "profile": "https://twitter.com/__marcin_",
       "contributions": [
         "code",
-        "doc"
+        "doc",
+        "design",
+        "test"
       ]
     },
     {
@@ -35,7 +37,17 @@
       "profile": "https://github.com/mikaello",
       "contributions": [
         "code",
-        "doc"
+        "doc",
+        "test"
+      ]
+    },
+    {
+      "login": "fccm",
+      "name": "Florent Monnier",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2274092?v=4",
+      "profile": "http://decapode314.free.fr/ocaml/",
+      "contributions": [
+        "code"
       ]
     }
   ],

@@ -55,7 +55,7 @@ Add `@mobily/rescript-date` to `bs-dependencies` in your `bsconfig.json`:
 
 ## Api Reference
 
-Full documentation is available [here](https://mobily.github.io/rescript-date).
+Full documentation can be found [here](https://mobily.github.io/rescript-date).
 
 ## Contributors
 
@@ -64,14 +64,16 @@ Full documentation is available [here](https://mobily.github.io/rescript-date).
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://twitter.com/__marcin_"><img src="https://avatars1.githubusercontent.com/u/1467712?v=4" width="100px;" alt="Marcin Dziewulski"/><br /><sub><b>Marcin Dziewulski</b></sub></a><br /><a href="https://github.com/mobily/rescript-date/commits?author=mobily" title="Code">💻</a> <a href="https://github.com/mobily/rescript-date/commits?author=mobily" title="Documentation">📖</a></td>
-    <td align="center"><a href="http://radoslawkoziel.pl"><img src="https://avatars3.githubusercontent.com/u/1303365?v=4" width="100px;" alt="Radek Kozieł"/><br /><sub><b>Radek Kozieł</b></sub></a><br /><a href="https://github.com/mobily/rescript-date/commits?author=panr" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/mikaello"><img src="https://avatars3.githubusercontent.com/u/2505178?v=4" width="100px;" alt="mikaello"/><br /><sub><b>mikaello</b></sub></a><br /><a href="https://github.com/mobily/rescript-date/commits?author=mikaello" title="Code">💻</a> <a href="https://github.com/mobily/rescript-date/commits?author=mikaello" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://twitter.com/__marcin_"><img src="https://avatars1.githubusercontent.com/u/1467712?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Marcin Dziewulski</b></sub></a><br /><a href="https://github.com/mobily/re-date/commits?author=mobily" title="Code">💻</a> <a href="https://github.com/mobily/re-date/commits?author=mobily" title="Documentation">📖</a> <a href="#design-mobily" title="Design">🎨</a> <a href="https://github.com/mobily/re-date/commits?author=mobily" title="Tests">⚠️</a></td>
+    <td align="center"><a href="http://radoslawkoziel.pl"><img src="https://avatars3.githubusercontent.com/u/1303365?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Radek Kozieł</b></sub></a><br /><a href="https://github.com/mobily/re-date/commits?author=panr" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/mikaello"><img src="https://avatars3.githubusercontent.com/u/2505178?v=4?s=100" width="100px;" alt=""/><br /><sub><b>mikaello</b></sub></a><br /><a href="https://github.com/mobily/re-date/commits?author=mikaello" title="Code">💻</a> <a href="https://github.com/mobily/re-date/commits?author=mikaello" title="Documentation">📖</a> <a href="https://github.com/mobily/re-date/commits?author=mikaello" title="Tests">⚠️</a></td>
+    <td align="center"><a href="http://decapode314.free.fr/ocaml/"><img src="https://avatars.githubusercontent.com/u/2274092?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Florent Monnier</b></sub></a><br /><a href="https://github.com/mobily/re-date/commits?author=fccm" title="Code">💻</a></td>
   </tr>
 </table>
 
-<!-- markdownlint-enable -->
+<!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
