@@ -145,7 +145,7 @@ date->ReDate.isWeekend
 Is the day of the week of the given date same as the provided day?
 
 ```js
-let isWeekDay: Js.Date.t => bool
+let isWeekDay: (Js.Date.t, day) => bool
 ```
 
 ```js
