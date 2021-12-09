@@ -1,56 +1,26 @@
+const makeSidebar = names =>
+  names.map(name => {
+    return {
+      type: 'doc',
+      id: name,
+      className: `sidebar-api sidebar-api-${name}`,
+    }
+  })
+
 module.exports = {
-  sidebar: [
-    {
-      type: 'doc',
-      id: 'common',
-    },
-    {
-      type: 'doc',
-      id: 'interval',
-    },
-    {
-      type: 'doc',
-      id: 'second',
-    },
-    {
-      type: 'doc',
-      id: 'minute',
-    },
-    {
-      type: 'doc',
-      id: 'hour',
-    },
-    {
-      type: 'doc',
-      id: 'day',
-    },
-    {
-      type: 'doc',
-      id: 'week',
-    },
-    {
-      type: 'doc',
-      id: 'week-numbering',
-    },
-    {
-      type: 'doc',
-      id: 'weekday',
-    },
-    {
-      type: 'doc',
-      id: 'month',
-    },
-    {
-      type: 'doc',
-      id: 'year',
-    },
-    {
-      type: 'doc',
-      id: 'iso-week',
-    },
-    {
-      type: 'doc',
-      id: 'iso-week-numbering',
-    },
-  ],
-};
+  sidebar: makeSidebar([
+    'common',
+    'interval',
+    'second',
+    'minute',
+    'hour',
+    'day',
+    'week',
+    'week-numbering',
+    'weekday',
+    'month',
+    'year',
+    'iso-week',
+    'iso-week-numbering',
+  ]),
+}

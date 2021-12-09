@@ -12,5 +12,11 @@ module.exports = {
       type: 'doc',
       id: 'changelog',
     },
+    {
+      type: 'link',
+      label: 'Go to API',
+      href: '/api/common',
+      className: 'sidebar-api-button',
+    },
   ],
 };
