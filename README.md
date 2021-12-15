@@ -53,7 +53,7 @@ Add `@mobily/rescript-date` to `bs-dependencies` in your `bsconfig.json`:
 }
 ```
 
-## Api Reference
+## Documentation
 
 Full documentation can be found [here](https://mobily.github.io/rescript-date).
 
