@@ -27,6 +27,10 @@
   <strong>Date manipulation in ReScript with the same modern and convenient API as <code>date-fns</code>.</strong>
 </p>
 
+## Documentation
+
+Full documentation can be found [here](https://mobily.github.io/rescript-date).
+
 ## Getting started
 
 ### Installation
@@ -52,10 +56,6 @@ Add `@mobily/rescript-date` to `bs-dependencies` in your `bsconfig.json`:
   ]
 }
 ```
-
-## Documentation
-
-Full documentation can be found [here](https://mobily.github.io/rescript-date).
 
 ## Contributors
 
