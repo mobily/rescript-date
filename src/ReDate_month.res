@@ -14,7 +14,7 @@ let addMonths = (date, months) => {
   Js.Date.makeWithYMD(~year, ~month, ~date, ())
 }
 
-let subMonths = (months, date) => addMonths(date, -.months)
+let subMonths = (date, months) => addMonths(date, -.months)
 
 let getMonth = Js.Date.getMonth
 
