@@ -10,7 +10,7 @@ let addSeconds = (date, seconds) => {
 
 let subSeconds = (date, seconds) => addSeconds(date, -.seconds)
 
-let setSeconds = (seconds, date) => {
+let setSeconds = (date, seconds) => {
   let date = Js.Date.setSeconds(makeDate(date), seconds)
   Js.Date.fromFloat(date)
 }
